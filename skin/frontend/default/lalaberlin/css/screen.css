@@ -1,0 +1,2112 @@
+/*
+| ====================================================================
+| =SASS-IMPORTS
+| ====================================================================
+*/
+/*
+| ---------------------------------------------------------------------
+| =FONTS
+| ---------------------------------------------------------------------
+*/
+/* =BROWN
+ * ------------------------------------------------ */
+@font-face {
+  font-family: 'Brown-Bold';
+  src:  url("../fonts/Brown-Bold.eot");
+  /* IE9 Compat Modes */
+  src:  url("../fonts/Brown-Bold.eot?#iefix") format("embedded-opentype"), 
+        url("../fonts/Brown-Bold.woff") format("woff"), 
+        url("../fonts/Brown-Bold.ttf") format("truetype"), 
+        url("../fonts/Brown-Bold.svg#bc16b9b0db9ef0f1430dd17d45a4b42f") format("svg");
+  /* Legacy iOS */
+  font-style: normal;
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Brown';
+  src:  url("../fonts/Brown-Regular.eot");
+  /* IE9 Compat Modes */
+  src:  url("../fonts/Brown-Regular.eot?#iefix") format("embedded-opentype"), 
+        url("../fonts/Brown-Regular.woff") format("woff"), 
+        url("../fonts/Brown-Regular.ttf") format("truetype"), 
+        url("../fonts/Brown-Regular.svg#e8bb100efb3d47ffea678fdff45642f8") format("svg");
+  /* Legacy iOS */
+  font-style: normal;
+  font-weight: 400;
+}
+
+/*
+ * 1. strip out unit for calculation and conversion
+*/
+/* =FLUID-ASPECT-RATIO
+ * ------------------------------------------------
+ * A box that fluidly goes from one aspect ratio to another. Courtesy of Rolf Timmermans
+ * http://voormedia.com/blog/2012/11/responsive-background-images-with-fixed-or-fluid-aspect-ratios
+ *
+ * If you wan't to use it with nested elements, set its position to relative and nest a container
+ * element that extends %stretch.
+*/
+/*
+| ====================================================================
+| =BASE
+| ====================================================================
+*/
+/*! normalize.css v2.1.3 | MIT License | git.io/normalize */
+/* ==========================================================================
+   HTML5 display definitions
+   ========================================================================== */
+/**
+ * Correct `block` display not defined in IE 8/9.
+ */
+/* line 22, src/base/_normalize.scss */
+
+* { margin:0; padding:0; }
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+  display: block;
+}
+
+/**
+ * Correct `inline-block` display not defined in IE 8/9.
+ */
+/* line 32, src/base/_normalize.scss */
+audio,
+canvas,
+video {
+  display: inline-block;
+}
+
+/**
+ * Prevent modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS 5 devices.
+ */
+/* line 41, src/base/_normalize.scss */
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+/**
+ * Address `[hidden]` styling not present in IE 8/9.
+ * Hide the `template` element in IE, Safari, and Firefox < 22.
+ */
+/* line 52, src/base/_normalize.scss */
+[hidden],
+template {
+  display: none;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+/**
+ * 1. Set default font family to sans-serif.
+ * 2. Prevent iOS text size adjust after orientation change, without disabling
+ *    user zoom.
+ */
+/* line 66, src/base/_normalize.scss */
+html {
+  font-family: sans-serif;
+  /* 1 */
+  -ms-text-size-adjust: 100%;
+  /* 2 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+}
+
+/**
+ * Remove default margin.
+ */
+/* line 76, src/base/_normalize.scss */
+
+header { /*display: none;*/}
+
+/* ==========================================================================
+   Links
+   ========================================================================== */
+/**
+ * Remove the gray background color from active links in IE 10.
+ */
+/* line 88, src/base/_normalize.scss */
+a {
+  background: #rgba(255, 255, 255, 0);
+}
+
+/**
+ * Address `outline` inconsistency between Chrome and other browsers.
+ */
+/* line 96, src/base/_normalize.scss */
+a:focus {
+  outline: thin dotted;
+}
+
+/**
+ * Improve readability when focused and also mouse hovered in all browsers.
+ */
+/* line 105, src/base/_normalize.scss */
+a:active,
+a:hover {
+  outline: 0;
+}
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+/**
+ * Address variable `h1` font-size and margin within `section` and `article`
+ * contexts in Firefox 4+, Safari 5, and Chrome.
+ */
+/* line 118, src/base/_normalize.scss */
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+/**
+ * Address styling not present in IE 8/9, Safari 5, and Chrome.
+ */
+/* line 127, src/base/_normalize.scss */
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+
+/**
+ * Address style set to `bolder` in Firefox 4+, Safari 5, and Chrome.
+ */
+/* line 136, src/base/_normalize.scss */
+b,
+strong {
+  font-weight: bold;
+}
+
+/**
+ * Address styling not present in Safari 5 and Chrome.
+ */
+/* line 144, src/base/_normalize.scss */
+dfn {
+  font-style: italic;
+}
+
+/**
+ * Address differences between Firefox and other browsers.
+ */
+/* line 152, src/base/_normalize.scss */
+hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+}
+
+/**
+ * Address styling not present in IE 8/9.
+ */
+/* line 162, src/base/_normalize.scss */
+mark {
+  background: #ff0;
+  color: #000;
+}
+
+/**
+ * Correct font family set oddly in Safari 5 and Chrome.
+ */
+/* line 174, src/base/_normalize.scss */
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, serif;
+  font-size: 1em;
+}
+
+/**
+ * Improve readability of pre-formatted text in all browsers.
+ */
+/* line 183, src/base/_normalize.scss */
+pre {
+  white-space: pre-wrap;
+}
+
+/**
+ * Set consistent quote types.
+ */
+/* line 191, src/base/_normalize.scss */
+q {
+  quotes: "\201C" "\201D" "\2018" "\2019";
+}
+
+/**
+ * Address inconsistent and variable font size in all browsers.
+ */
+/* line 199, src/base/_normalize.scss */
+small {
+  font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+/* line 208, src/base/_normalize.scss */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+/* line 215, src/base/_normalize.scss */
+sup {
+  top: -0.5em;
+}
+
+/* line 219, src/base/_normalize.scss */
+sub {
+  bottom: -0.25em;
+}
+
+/* ==========================================================================
+   Embedded content
+   ========================================================================== */
+/**
+ * Remove border when inside `a` element in IE 8/9.
+ */
+/* line 231, src/base/_normalize.scss */
+.cms-home .col-main img {
+  border: 0;
+  max-width: 100%;
+  width: 100%;
+}
+
+/*.cms-home .main-container { max-width: 112.5rem;}
+.cms-home .main-container .col-main { padding: 0;}*/
+
+/**
+ * Correct overflow displayed oddly in IE 9.
+ */
+/* line 239, src/base/_normalize.scss */
+svg:not(:root) {
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   Figures
+   ========================================================================== */
+/**
+ * Address margin not present in IE 8/9 and Safari 5.
+ */
+/* line 251, src/base/_normalize.scss */
+figure {
+  margin: 0;
+}
+
+/* ==========================================================================
+   Forms
+   ========================================================================== */
+/**
+ * Define consistent border, margin, and padding.
+ */
+/* line 263, src/base/_normalize.scss */
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+
+/**
+ * 1. Correct `color` not being inherited in IE 8/9.
+ * 2. Remove padding so people aren't caught out if they zero out fieldsets.
+ */
+/* line 274, src/base/_normalize.scss */
+legend {
+  border: 0;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+
+/**
+ * 1. Correct font family not being inherited in all browsers.
+ * 2. Correct font size not being inherited in all browsers.
+ * 3. Address margins set differently in Firefox 4+, Safari 5, and Chrome.
+ */
+/* line 288, src/base/_normalize.scss */
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 2 */
+  margin: 0;
+  /* 3 */
+}
+
+/**
+ * Address Firefox 4+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+/* line 300, src/base/_normalize.scss */
+button,
+input {
+  line-height: normal;
+}
+
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Chrome, Safari 5+, and IE 8+.
+ * Correct `select` style inheritance in Firefox 4+ and Opera.
+ */
+/* line 312, src/base/_normalize.scss */
+button,
+select {
+  text-transform: none;
+}
+
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ */
+/* line 327, src/base/_normalize.scss */
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  /* 2 */
+  cursor: pointer;
+  /* 3 */
+}
+
+/**
+ * Re-set default cursor for disabled elements.
+ */
+/* line 337, src/base/_normalize.scss */
+button[disabled],
+html input[disabled] {
+  cursor: default;
+}
+
+/**
+ * 1. Address box sizing set to `content-box` in IE 8/9/10.
+ * 2. Remove excess padding in IE 8/9/10.
+ */
+/* line 347, src/base/_normalize.scss */
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+
+/**
+ * 1. Address `appearance` set to `searchfield` in Safari 5 and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome
+ *    (include `-moz` to future-proof).
+ */
+/* line 358, src/base/_normalize.scss */
+input[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  /* 2 */
+  box-sizing: content-box;
+}
+
+/**
+ * Remove inner padding and search cancel button in Safari 5 and Chrome
+ * on OS X.
+ */
+/* line 371, src/base/_normalize.scss */
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+ * Remove inner padding and border in Firefox 4+.
+ */
+/* line 380, src/base/_normalize.scss */
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+/**
+ * 1. Remove default vertical scrollbar in IE 8/9.
+ * 2. Improve readability and alignment in all browsers.
+ */
+/* line 390, src/base/_normalize.scss */
+textarea {
+  overflow: auto;
+  /* 1 */
+  vertical-align: top;
+  /* 2 */
+}
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+/**
+ * Remove most spacing between table cells.
+ */
+/* line 403, src/base/_normalize.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/*
+| ---------------------------------------------------------------------
+| =TYPOGRAPHY-BASE
+| ---------------------------------------------------------------------
+*/
+/* line 12, src/base/_typography.scss */
+html {
+  font: normal 100% "Brown", "Trebuchet MS", Verdana, sans-serif;
+  color: black;
+}
+
+body {
+
+}
+
+.columns img { width: 100%;}
+
+/* =TEXT-SELECTION
+ * ------------------------------------------------ */
+/* =BODY-TEXT
+ * ------------------------------------------------ */
+/* line 59, src/base/_typography.scss */
+abbr[title] {
+  border-bottom: 0;
+  font-weight: 500;
+}
+
+/*
+| ---------------------------------------------------------------------
+| =HEADINGS
+| ---------------------------------------------------------------------
+*/
+/* line 70, src/base/_typography.scss */
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  /* [1] */
+  font-size: 1em;
+  line-height: normal;
+  text-rendering: optimizeLegibility;
+  /* [2] */
+}
+
+/*
+ * 1.	Avoid huge vertical spacing when heading wraps on multiple lines
+ * 2.	CSS3 voodoo for kerning and ligatures
+*/
+/* line 84, src/base/_typography.scss */
+.hero {
+  font-size: 180.57143px;
+  font-size: 11.28571rem;
+  margin: 0;
+  text-align: center;
+}
+
+/*
+| ---------------------------------------------------------------------
+| =LINKS
+| ---------------------------------------------------------------------
+*/
+/* line 7, src/base/_links.scss */
+.silent-link, .nav-link, .block-link {
+  color: inherit;
+  text-decoration: inherit;
+  border: 0;
+}
+/* line 12, src/tools/_reset.scss */
+.silent-link:active, .nav-link:active, .block-link:active, .silent-link:focus, .nav-link:focus, .block-link:focus {
+  outline: 0;
+}
+
+/* line 12, src/base/_links.scss */
+a {
+  color: inherit;
+  text-decoration: inherit;
+  /*border-bottom: 1px solid black;*/
+}
+/* line 12, src/tools/_reset.scss */
+a:active, a:focus {
+  outline: 0;
+}
+/* line 16, src/base/_links.scss */
+a:hover, a:active {
+  border-color: transparent;
+}
+
+/* line 25, src/base/_links.scss */
+.block-link {
+  display: block;
+}
+
+/*
+| ---------------------------------------------------------------------
+| =LAYOUT-BASE
+| ---------------------------------------------------------------------
+*/
+/* =GENERIC
+ * ------------------------------------------------ */
+/* line 16, src/base/_layout.scss */
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 20, src/base/_layout.scss */
+
+ul {
+  list-style: none;
+}
+
+/* line 25, src/base/_layout.scss */
+.l-inner {
+  /*width: 90%;
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 0 20px;*/
+}
+
+/* line 32, src/base/_layout.scss */
+.l-footer {
+  
+}
+
+/*
+| ---------------------------------------------------------------------
+| =TABLES-BASE
+| ---------------------------------------------------------------------
+| Default styles for table elements
+|
+*/
+/*
+| ====================================================================
+| =HELPERS
+| ====================================================================
+*/
+/* =SR-ONLY
+ * ------------------------------------------------
+ * Apply '.sr-only' to visually hide an item but keep it in the content for
+ * html parsers such as the HTML outliner and Screen-readers.
+ * Courtesy of Jonathan Snook and the HTML5 boilerplate team :
+ * https://github.com/h5bp/html5-boilerplate/blob/master/css/main.css
+*/
+/* line 16, src/helpers/_sr-only.scss */
+.sr-only {
+  position: absolute !important;
+  clip: rect(0 0 0 0) !important;
+  overflow: hidden !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+
+/* =IMAGE-REPLACEMENT
+ * ------------------------------------------------
+ * Extend ’ir’ to hide the text of the element for image-replacement
+ * (doesn't modify the layout). Courtesy of the HTML5 Boilerplate Team:
+ * https://github.com/h5bp/html5-boilerplate/blob/master/css/main.css
+*/
+/* line 15, src/helpers/_ir.scss */
+.icon-btn, .lala-logo, .lala-logo-white, .lala-logo-medium, .lala-logo-medium-white, .lala-logo-small, .lala-logo-small-white, .menu-close {
+  background-color: transparent;
+  /* [1] */
+  border: 0;
+  /* [1] */
+  overflow: hidden !important;
+  /* [2] */
+}
+/* line 20, src/helpers/_ir.scss */
+.icon-btn:before, .lala-logo:before, .lala-logo-white:before, .lala-logo-medium:before, .lala-logo-medium-white:before, .lala-logo-small:before, .lala-logo-small-white:before, .menu-close:before {
+  content: "";
+  display: block !important;
+  /* [3] */
+  width: 0;
+  height: 150% !important;
+  /* [4] */
+}
+
+	/*
+	 * 1.	By defaults, you don't want any visual styles when replacing
+	 *		the elemnt by an image
+	 * 2.	Hides text that is pushed out of the element
+	 * 3.	Allow the use of ’inline’ and ’inlune-block’ elements
+ 	 * 4.	Pushes the text out of the element
+	*/
+/* =UILIST
+ * ------------------------------------------------
+ * Apply the ’.uilist’ class to <ol> and <ul> elements to delete
+ * default list appearance
+*/
+/* line 14, src/helpers/_uilist.scss */
+.uilist {
+  margin: 0;
+  padding: 0;
+  list-style: none !important;
+}
+
+/* =CLEARFIX
+ * ------------------------------------------------
+ * Extend the ’cf’ class to contain child floated elements
+*/
+/* line 13, src/helpers/_cf.scss */
+.cf:after, .leveled-list:after, .tiles:after {
+  content: "";
+  display: block;
+  clear: both !important;
+  /* [1] */
+}
+
+/*
+ * 1.	clear floated children
+*/
+/* =FLUSH
+ * ------------------------------------------------
+ * Extend ’flush-l’ or ’flush--r’ to float the element on the left or right side.
+ * You very often want the container to extend ’cf’ to contain floated elements.
+*/
+/* line 13, src/helpers/_flush.scss */
+.flush-l {
+  float: left !important;
+}
+
+/* line 14, src/helpers/_flush.scss */
+.flush-r {
+  float: right !important;
+}
+
+
+/* line 16, src/helpers/_no-ends.scss */
+.news-excerpt > :first-child {
+  margin-top: 0 !important;
+}
+/* line 17, src/helpers/_no-ends.scss */
+.news-excerpt > :last-child {
+  margin-bottom: 0 !important;
+}
+
+/* =NO-WS
+ * ------------------------------------------------
+ * Deletes white-space rendered between child elements set to ’display: inline’
+ * or ’display: inline-block’. Extend ’reset-ws in children to recover
+ * normal whitespace.
+*/
+/* line 15, src/helpers/_no-ws.scss */
+.grid, .centroid-wrap {
+  letter-spacing: -0.31em;
+  text-rendering: optimizeSpeed;
+  /* [1] */
+  /* IE < 8 hack */
+  *word-spacing: -0.43em;
+  /* [2] */
+}
+
+/* Opera hack */
+/* line 23, src/helpers/_no-ws.scss */
+.opera:-o-prefocus, .grid, .centroid-wrap {
+  word-spacing: -0.43em;
+  /* [2] */
+}
+
+/*
+ * 1.	Fix for webkit that defaults to ’text-rendering: optimizeLegibility’
+ *		which makes ’letter-spacing’ variable and unreliable
+ * 2.	IE < 8 and Opera need ’word-spacing’ to delete whitespace between
+ *		child elements
+*/
+/* line 35, src/helpers/_no-ws.scss */
+.grid-unit, .centroid {
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-rendering: auto;
+}
+
+/* =FONTSCALE
+ * ------------------------------------------------
+ * Extend ’font-name--scale-name’ to give a font-size to the element as
+ * described in the ’$typescale’ table (uses ’rem’s). You can also adjust the
+ * font size based on the font's x-height for more consistent type hierarchy.
+ * To do so, pass a namespace for the font and a ’base-size’ that is visually
+ * similar to your base-font at ’$font-size-base’.
+ * ---
+ * @require GLOBAL $fonts
+ * @require GLOBAL $typescale
+ * ---
+ * CAUTION: the ’fontscale’ helper is a bit diferent as it takes the name of
+ * font it builds a sscale for: the class will be ’font-name--scale-name’
+*/
+/* =ONE-LINE
+ * ------------------------------------------------
+ * Extend ’one-line’ to force text to stay on a single line. Overflowing text
+ * will be truncated and end with ’…’. Inpsired by suitcss's 'u-textTruncate':
+ * https://github.com/suitcss/utils-text
+*/
+/* line 15, src/helpers/_one-line.scss */
+.btn, .icon-btn, .btn-small {
+  max-width: 100%;
+  overflow: hidden !important;
+  /* [2] */
+  text-overflow: ellipsis !important;
+  /* [3] */
+  white-space: nowrap !important;
+  /* [4] */
+  word-wrap: normal !important;
+  /* [5] */
+}
+
+/*
+ * 1.	Make sure text-overflow is activated on some elements like <td>
+ * 2.	Hide overflow for text-overflow to be clipped
+ * 3.	Clip text-overflow by adding an ellipsis character (…) at
+ *		the end of the line
+ * 4.	Keep the text on a single line
+ * 5.	Prevent line-breaks in IE 8/9, where they might occur inside of
+ *		words, if ’word-wrap: break-word’ is set on an ancestor element
+ */
+/* =NO-SELECT
+ * ------------------------------------------------
+ * Extend ’no-select’ if you don't want users to be able to select the
+ * text in the element. Useful for ’buttons’ and other controls, especially
+ * on touch devices where sloppy fingers might select by error.
+ * ---
+ * @require ’compass/css/user-interface’
+*/
+/* line 17, src/helpers/_no-select.scss */
+.btn, .icon-btn, .btn-small {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+/* =COVERLET
+ * ------------------------------------------------ */
+/* line 14, src/helpers/_coverlet.scss */
+.coverlet, .news-link {
+  display: block;
+  position: absolute !important;
+  z-index: 100;
+  margin: 0;
+}
+
+/* =POPUP
+ * ------------------------------------------------ */
+/* line 14, src/helpers/_popup.scss */
+.popup {
+  display: block;
+  position: fixed !important;
+  z-index: 200;
+  margin: 0;
+}
+
+/* =STRETCH
+ * ------------------------------------------------
+ * Apply the ’.stretch’ class to cover entirely the first parent that is positioned.
+ * Don't forget to position the element or use it in conjuction with either the
+ * ’coverlet’ or ’popup’ helper
+*/
+/* line 15, src/helpers/_stretch.scss */
+.stretch, .fill, .img-cover, .menu, .news-link {
+  top: 0;
+  left: 0;
+  margin: 0;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* line 2, src/helpers/_fill.scss */
+.fill {
+  position: absolute !important;
+}
+
+/* =HOLDER
+ * ------------------------------------------------ */
+/* line 11, src/helpers/_holder.scss */
+.img-fit, .img-cover, .embed-cover {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+/* =RATIO
+ * ------------------------------------------------ */
+/* line 12, src/helpers/_frame.scss */
+.frame-16by9 {
+  position: relative;
+  height: 0 !important;
+  padding-bottom: 56.25% !important;
+}
+
+/* =IMG-FIT
+ * ------------------------------------------------
+ *
+ * ---
+ * @require "helpers/holder";
+*/
+/* line 18, src/helpers/_img-fit.scss */
+.img-fit img, .img-cover img {
+  display: block;
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+/* =IMG-COVER
+ * ------------------------------------------------
+ *
+ * ---
+ * @require "helpers/img-fit";
+ * @require JS "modules/img-cover";
+*/
+/* line 16, src/helpers/_img-cover.scss */
+.img-cover {
+  position: absolute;
+  overflow: hidden !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  -webkit-background-size: cover !important;
+  -moz-background-size: cover !important;
+  -o-background-size: cover !important;
+  background-size: cover !important;
+}
+/* line 26, src/helpers/_img-cover.scss */
+.img-cover img {
+ /* opacity: 0 !important;*/
+}
+/* line 29, src/helpers/_img-cover.scss */
+.no-js .img-cover img {
+  opacity: 1 !important;
+}
+
+/* = EMBED-FIT
+ * ------------------------------------------------
+ *
+ * ---
+ * @require "helpers/holder"
+*/
+/* =EMBED-COVER
+ * ------------------------------------------------
+ *
+ * ---
+ * @require "helpers/holder"
+ * @require JS "modules/embed-cover"
+*/
+/* line 16, src/helpers/_embed-cover.scss */
+.embed-cover {
+  position: relative;
+  overflow: hidden !important;
+}
+/* line 21, src/helpers/_embed-cover.scss */
+.embed-cover video {
+  position: absolute !important;
+  width: auto;
+  height: auto;
+  min-height: 100% !important;
+  min-width: 100% !important;
+}
+
+/* =LAZY-LOAD
+ * ------------------------------------------------
+ *
+ * @require JS "modules/lazy-load"
+*/
+/* line 16, src/helpers/_lazy-load.scss */
+.lazy-load {
+  -webkit-transition: opacity 0.5s ease-out;
+  -moz-transition: opacity 0.5s ease-out;
+  -o-transition: opacity 0.5s ease-out;
+  transition: opacity 0.5s ease-out;
+  opacity: 0;
+}
+/* line 20, src/helpers/_lazy-load.scss */
+.loaded.lazy-load {
+  opacity: 1;
+}
+
+/* line 25, src/helpers/_lazy-load.scss */
+.lazy-obj {
+  padding-top: 0 !important;
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+  height: 0;
+}
+/* line 31, src/helpers/_lazy-load.scss */
+.loaded .lazy-obj {
+  padding-bottom: 0 !important;
+  height: auto;
+}
+
+/*
+| ---------------------------------------------------------------------
+| =BREAKPOINT-HELPERS
+| ---------------------------------------------------------------------
+| To inject a helper into each breakpoint, just add it to the list here.
+| The helper will be namespaced with the breakpoint-name prefix and, when
+| extended, it will only apply when the breakpoint is reached.
+*/
+@media only screen and (min-width: 48.75em) {
+  /* line 54, src/helpers/_span.scss */
+  .tile-left, .tile-right,
+  .tile-topleft, .tile-topright,
+  .tile-bottomleft, .tile-bottomright {
+    width: 50% !important;
+  }
+}
+/*
+| ====================================================================
+| =COMPONENTS
+| ====================================================================
+*/
+/* =GRID-SYSTEM
+ * ------------------------------------------------
+ * @require "helpers/no-ws";
+*/
+/* line 12, src/components/_grid.scss */
+.grid {
+  margin-left: -10px;
+  margin-right: -10px;
+}
+/* line 18, src/components/_grid.scss */
+.grid > .grid {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* line 25, src/components/_grid.scss */
+.grid-unit {
+  /*display: inline-block;
+  width: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+  vertical-align: top;*/
+}
+
+/* =LEVELED-LIST
+ * ------------------------------------------------
+ * Make a horizontal list by floating its item
+ * ---
+ * @require "helpers/cf"
+*/
+/* line 20, src/components/_leveled-list.scss */
+.menu-user .leveled-list li {
+  float: left;
+  margin-left: 20px;
+}
+.menu-user .leveled-list li:last-child {
+  margin-left: 0;
+}
+
+
+/* =STACKED-LIST
+ * ------------------------------------------------
+ * stack list items vertically
+*/
+/* line 15, src/components/_stacked-list.scss */
+.stacked-list li {
+  float: none;
+  display: block;
+  margin-bottom: 0.71429em;
+}
+
+/* line 2, src/components/_banner-list.scss */
+.banner-list {
+  text-align: center;
+  word-spacing: 0.71429em;
+}
+/* line 6, src/components/_banner-list.scss */
+.banner-list li {
+  display: inline-block;
+  word-spacing: normal;
+}
+
+/*
+| ---------------------------------------------------------------------
+| =BUTTON
+| ---------------------------------------------------------------------
+*/
+/* line 24, src/components/_btn.scss */
+.btn, .icon-btn, .btn-small {
+  display: inline-block;
+  margin: 0;
+  border: 1px solid black;
+  font: normal 1em/1.02976 "brown";
+  font-size: 16px;
+  font-size: 1rem;
+  vertical-align: middle;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  color: inherit;
+  background: none;
+  cursor: pointer;
+}
+/* line 44, src/components/_btn.scss */
+.btn:hover, .icon-btn:hover, .btn-small:hover, .btn:active, .icon-btn:active, .btn-small:active {
+  border-color: black;
+}
+/* line 48, src/components/_btn.scss */
+.btn:disabled, .icon-btn:disabled, .btn-small:disabled, .disabled.btn, .disabled.icon-btn, .disabled.btn-small {
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* line 54, src/components/_btn.scss */
+.btn {
+  padding: 0.55655em 1.07143em;
+}
+
+/* line 59, src/components/_btn.scss */
+.icon-btn {
+  padding: 0;
+  width: 30px;
+  height: 30px;
+}
+
+/* line 67, src/components/_btn.scss */
+.btn-small {
+  font-size: 12.57143px;
+  font-size: 0.78571rem;
+  height: 25px;
+}
+/* line 72, src/components/_btn.scss */
+.btn-small.btn {
+  padding: 0.66688em 1.07143em;
+}
+/* line 76, src/components/_btn.scss */
+.btn-small.icon-btn {
+  padding: 0;
+  width: 25px;
+}
+
+/* =CENTROID
+ * ------------------------------------------------
+ * Center both vertically and horizontally without knowing the
+ * width or height of the element. Apply the ’.centroid-wrapper’
+ * class to the element's container. Courtesy of Michał Czernow
+ * => http://css-tricks.com/centering-in-the-unknown/
+ * ---
+ * @require 'no-ws'
+*/
+/* line 14, src/components/_centroid.scss */
+.centroid-wrap {
+  /* [1] */
+  text-align: center;
+  /* [2] */
+}
+/* line 19, src/components/_centroid.scss */
+.centroid-wrap:before {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+
+/* line 28, src/components/_centroid.scss */
+.centroid {
+  /* [4] */
+  display: inline-block;
+  /* [1] */
+  vertical-align: middle;
+  /* [5] */
+}
+
+/*
+ * 2.	Center horizontally
+ * 1.	Delete white-space between ghost element and ’.centroid’ due to
+ *		’display: inline-block’.
+ * 3. 	Ghost element that allows for vertical centering
+ * 4. 	Reset font-size for children elements
+ * 5.	Center vertically
+*/
+/*
+| ---------------------------------------------------------------------
+| =TILES
+| ---------------------------------------------------------------------
+*/
+/* line 17, src/components/_tiles.scss */
+.tiles {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* line 23, src/components/_tiles.scss */
+.tile {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  /*width: 100%;*/
+  /* [1] */
+  /*clear: both;*/
+  /* [1] */
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/*
+ * 1.	By default = full width + clear sibling tiles
+*/
+/* line 41, src/components/_tiles.scss */
+.tile-left, .tile-right {
+  height: 100%;
+}
+
+@media only screen and (min-width: 48.75em) {
+  /* line 46, src/components/_tiles.scss */
+  .tile-left, .tile-right, .tile-topleft, .tile-topright {
+    clear: none;
+  }
+
+  /* line 50, src/components/_tiles.scss */
+  .tile-left, .tile-bottomleft, .tile-topleft {
+    float: left;
+    margin-right: -100%;
+  }
+
+  /* line 55, src/components/_tiles.scss */
+  .tile-bottomleft {
+    clear: left;
+  }
+
+  /* line 59, src/components/_tiles.scss */
+  .tile-right, .tile-bottomright, .tile-topright {
+    float: right;
+    margin-left: -100%;
+  }
+
+  /* line 64, src/components/_tiles.scss */
+  .tile-bottomright {
+    clear: right;
+  }
+}
+/* =VIEW-COVER
+ * ------------------------------------------------ */
+/* line 5, src/components/_view-cover.scss */
+.view-cover {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+}
+
+/*
+| ====================================================================
+| =MODULES
+| ====================================================================
+*/
+/*
+| ---------------------------------------------------------------------
+| =LOGO
+| ---------------------------------------------------------------------
+*/
+/* line 8, src/modules/_logo.scss */
+.lala-logo, .lala-logo-white {
+  width: 214px;
+  height: 106px;
+}
+
+/* line 14, src/modules/_logo.scss */
+.lala-logo {
+  background: url(../img/lala-logo.png) left top no-repeat;
+}
+
+/* line 18, src/modules/_logo.scss */
+.lala-logo-white {
+  background: url(../img/lala-logo-white.png) left top no-repeat;
+}
+
+/* line 22, src/modules/_logo.scss */
+.lala-logo-medium, .lala-logo-medium-white {
+  width: 128px;
+  height: 64px;
+}
+
+/* line 28, src/modules/_logo.scss */
+.lala-logo-medium {
+  background: url(../img/lala-logo-medium.png) left top no-repeat;
+}
+
+/* line 32, src/modules/_logo.scss */
+.lala-logo-medium-white {
+  background: url(../img/lala-logo-medium-white.png) left top no-repeat;
+}
+
+/* line 36, src/modules/_logo.scss */
+.lala-logo-small, .lala-logo-small-white {
+  width: 107px;
+  height: 53px;
+}
+
+/* line 42, src/modules/_logo.scss */
+.lala-logo-small {
+  background: url(../img/lala-logo-small.png) left top no-repeat;
+}
+
+/* line 46, src/modules/_logo.scss */
+.lala-logo-small-white {
+  background: url(../img/lala-logo-small-white.png) left top no-repeat;
+}
+
+/* line 3, src/modules/_banner.scss */
+.banner {
+  /*background: url(../img/lala-logo-white.png) center center no-repeat fixed, url(../img/lala-image-01.jpg) center center no-repeat fixed;
+  -webkit-background-size: auto, cover;
+  -moz-background-size: auto, cover;
+  -o-background-size: auto, cover;
+  background-size: auto, cover;*/
+}
+
+/* line 13, src/modules/_banner.scss */
+.banner-link {
+  width: 100%;
+  height: 100%;
+}
+
+/*
+| ---------------------------------------------------------------------
+| =MENU
+| ---------------------------------------------------------------------
+*/
+/* line 14, src/modules/_menu.scss */
+.menu {
+  position: absolute;
+  z-index: 10000;
+  /*top: 100%;*/
+  overflow: hidden;
+  pointer-events: none;
+}
+/* line 22, src/modules/_menu.scss */
+.menu.active {
+  pointer-events: auto;
+  cursor: url(../img/close-icon.svg), url(../img/close-icon.png), crosshair;
+}
+
+/* line 28, src/modules/_menu.scss */
+.menu-main, .menu-user {
+  -webkit-transition: all 0.35s ease-out;
+  -moz-transition: all 0.35s ease-out;
+  -o-transition: all 0.35s ease-out;
+  transition: all 0.35s ease-out;
+  position: absolute;
+  z-index: 100;
+  padding: 1.42857em 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  pointer-events: auto;
+  cursor: auto;
+}
+/* line 40, src/modules/_menu.scss */
+.menu.active .menu-main {
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+/* line 46, src/modules/_menu.scss */
+.menu-main {
+  top: 0;
+  width: 150px;
+  height: 100%;
+  padding: 2.85714em 0;
+  -webkit-transform: translate3d(-11.07143em, 0, 0);
+  -moz-transform: translate3d(-11.07143em, 0, 0);
+  -ms-transform: translate3d(-11.07143em, 0, 0);
+  -o-transform: translate3d(-11.07143em, 0, 0);
+  transform: translate3d(-11.07143em, 0, 0);
+  text-align: center;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* line 57, src/modules/_menu.scss */
+.menu-header, .menu-newsletter {
+  position: relative;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+/* line 62, src/modules/_menu.scss */
+.menu-header:after, .menu-newsletter:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  display: block;
+  width: 26px;
+  height: 1px;
+  margin-left: -13px;
+  background: black;
+}
+
+/* line 75, src/modules/_menu.scss */
+ #menu-main .menu-title {
+  margin: 0 auto;
+}
+
+.footer .menu-title { margin-bottom: 30px;}
+
+
+/* line 79, src/modules/_menu.scss */
+.menu-site li {
+  display: block;
+  margin: 2em 0;
+  padding: .5em;
+}
+
+/* line 85, src/modules/_menu.scss */
+.menu-newsletter .newsletter-label {
+  display: block;
+  margin-bottom: .5em;
+  font: italic 1em "Adobe Caslon Pro", Georgia, serif;
+  font-size: 22.85714px;
+  font-size: 1.42857rem;
+  text-transform: none;
+}
+
+/* line 93, src/modules/_menu.scss */
+.menu-follow {
+  position: absolute;
+  left: 0;
+  bottom: 2.85714em;
+  width: 100%;
+}
+/* line 99, src/modules/_menu.scss */
+.menu-follow .facebook-icon {
+  background: url(../img/facebook-icon.png) center center no-repeat;
+}
+/* line 100, src/modules/_menu.scss */
+.menu-follow .pinterest-icon {
+  background: url(../img/pinterest-icon.png) center center no-repeat;
+}
+/* line 101, src/modules/_menu.scss */
+.menu-follow .instagram-icon {
+  background: url(../img/instagram-icon.png) center center no-repeat;
+}
+
+/* line 104, src/modules/_menu.scss */
+.menu-user {
+  /*padding-top: 2.85714em;*/
+  right: 0;
+ /* left: 11.07143em;*/
+  position: fixed;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+/* line 109, src/modules/_menu.scss */
+.menu-user a {
+  font-size: 12.57143px;
+  font-size: 0.78571rem;
+}
+/* line 113, src/modules/_menu.scss */
+.menu-user .bag-btn {
+  font-size: 16px;
+  font-size: 1rem;
+  margin: -0.71429em 0 0 1.42857em;
+}
+
+/*
+| ---------------------------------------------------------------------
+| =MENU-HOVER
+| ---------------------------------------------------------------------
+*/
+/* line 131, src/modules/_menu.scss */
+.menu-hover.active {
+  pointer-events: auto;
+  cursor: url(../img/close-icon.svg), url(../img/close-icon.png), crosshair;
+}
+/* line 136, src/modules/_menu.scss */
+.menu-hover .menu-main {
+  -webkit-transform: translate3d(-10em, 0, 0);
+  -moz-transform: translate3d(-10em, 0, 0);
+  -ms-transform: translate3d(-10em, 0, 0);
+  -o-transform: translate3d(-10em, 0, 0);
+  transform: translate3d(-10em, 0, 0);
+}
+/* line 140, src/modules/_menu.scss */
+.menu-hover .menu-user {
+  left: 12.14286em;
+}
+
+/*
+| ---------------------------------------------------------------------
+| =BUTTON-MENU
+| ---------------------------------------------------------------------
+*/
+/* line 157, src/modules/_menu.scss */
+.btn-menu .menu-main {
+  opacity: 0;
+}
+/* line 158, src/modules/_menu.scss */
+.btn-menu.active .menu-main {
+  opacity: 1;
+}
+
+/* line 161, src/modules/_menu.scss */
+.menu-button, .menu-close {
+  -webkit-transition: all 0.35s ease-out;
+  -moz-transition: all 0.35s ease-out;
+  -o-transition: all 0.35s ease-out;
+  transition: all 0.35s ease-out;
+  top: 20px;
+}
+
+.menu-button { left: 15px;}
+
+/* line 166, src/modules/_menu.scss */
+.menu-button {
+  /*left: 27px;*/
+  pointer-events: auto;
+  background: url(../img/menu-icon.png) center center no-repeat;
+}
+/* line 171, src/modules/_menu.scss */
+.menu-button.active {
+  pointer-events: auto;
+  opacity: 1;
+}
+/* line 176, src/modules/_menu.scss */
+.menu-button, .menu.active .menu-button {
+  pointer-events: none;
+  opacity: 0;
+}
+
+/* line 183, src/modules/_menu.scss */
+.menu-close {
+  z-index: 10000;
+  top: -35px;
+  right: 5px;
+  width: 27px;
+  height: 27px;
+  border: 0;
+  background: url(../img/close-icon.png) center center no-repeat;
+  opacity: 0.8;
+}
+
+/*
+| ---------------------------------------------------------------------
+| =SPECIFIC-MENUS
+| ---------------------------------------------------------------------
+*/
+/* line 202, src/modules/_menu.scss */
+#menu5 {
+  pointer-events: none;
+  cursor: auto;
+}
+
+/* line 207, src/modules/_menu.scss */
+#menu6.active {
+  pointer-events: none;
+}
+
+/*
+| ---------------------------------------------------------------------
+| =NEWS
+| ---------------------------------------------------------------------
+*/
+/* line 31, src/modules/_news.scss */
+.news .img-fit img, .news .img-cover img {
+  width: 100% !important;
+}
+
+/* line 35, src/modules/_news.scss */
+.news-entry {
+  position: relative;
+}
+
+/* line 40, src/modules/_news.scss */
+.news-link {
+  -webkit-transition: opacity 0.35s ease-out;
+  -moz-transition: opacity 0.35s ease-out;
+  -o-transition: opacity 0.35s ease-out;
+  transition: opacity 0.35s ease-out;
+  background: rgba(255, 255, 255, 0.75);
+  opacity: 0;
+}
+/* line 48, src/modules/_news.scss */
+.news-entry:hover .news-link {
+  opacity: 1;
+}
+
+/* line 53, src/modules/_news.scss */
+.news-excerpt {
+  width: 60%;
+  max-width: 340px;
+  text-align: center;
+  color: white;
+}
+
+/* line 66, src/modules/_news.scss */
+.news-title, .news-byline {
+  margin: 0;
+}
+
+/* line 70, src/modules/_news.scss */
+.news-title {
+  font-size: 1.1rem;
+  line-height: 26px;
+  text-transform: uppercase;
+  font-weight: normal;
+  color: #030000;
+}
+
+/* line 77, src/modules/_news.scss */
+.news-byline {
+  font-size: 20.57143px;
+  font-size: 1.28571rem;
+  font-family: "Adobe Caslon Pro", Georgia, serif;
+  font-style: italic;
+  letter-spacing: 0.1em;
+}
+
+/*
+| ---------------------------------------------------------------------
+| =FOOTER
+| ---------------------------------------------------------------------
+*/
+/* line 11, src/modules/_foot-new.scss */
+.foot {
+  color: black;
+  background-color: white;
+  font-size: 13.71429px;
+  font-size: 0.85714rem;
+  color: black;
+}
+/* line 18, src/modules/_foot-new.scss */
+.foot p {
+  line-height: 1.5;
+}
+/* line 22, src/modules/_foot-new.scss */
+.foot a {
+  border: 0;
+}
+/* line 25, src/modules/_foot-new.scss */
+.foot a:hover, .foot a:active {
+  color: black;
+}
+/* line 30, src/modules/_foot-new.scss */
+.foot .section-title {
+  margin-bottom: 2.1em;
+  font-size: 16px;
+  font-weight: 400;
+  color: black;
+}
+
+
+/* line 57, src/modules/_foot-new.scss */
+.footnav .leveled-list li {
+  
+}
+/* line 60, src/modules/_foot-new.scss */
+.footnav .leveled-list li:first-child {
+  
+}
+
+/* line 66, src/modules/_foot-new.scss */
+.footnav .leveled-list, .footnav .newsletter-link {
+  
+}
+
+/* line 71, src/modules/_foot-new.scss */
+.address {
+  font-style: normal;
+}
+/* line 74, src/modules/_foot-new.scss */
+.address p {
+  margin: 0;
+}
+
+/* line 79, src/modules/_foot-new.scss */
+.ms-link {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.menu-social { padding-left: 15px;}
+.menu-social li { float: left; margin-left: 10px;}
+
+
+.footer-container {
+  float: left;
+  width: 100%;
+  padding: 50px 0 30px;
+  background: #fff;
+  
+}
+.footer-container .footer {
+  width: 86%;
+  margin: 0 auto;
+  color: #fff;
+  font-size: 12px;
+  max-width: 128.571rem;
+}
+
+.footnav li h2.section-title {
+  text-transform: uppercase;
+  font-size: 16px;
+  letter-spacing: 1px;
+  margin-bottom: 30px;
+  color: #333;
+  font-weight: 600;
+}
+
+.footnav .subscribe-newsletter .form-subscribe { 
+  position: relative; 
+}
+
+.footer .footer-top { border-bottom: 1px solid #e7e7e7; margin-bottom: 30px;}
+.footer .footer-top .footnav ul.leveled-list { color: #5d5d5d;}
+.footer .footer-top .footnav ul.leveled-list li { margin-bottom: 10px;}
+.footer .footer-top .footnav ul.leveled-list li a {
+ -webkit-transition: all 0.35s ease-out 0s;
+ -moz-transition: all 0.35s ease-out 0s;
+ -ms-transition: all 0.35s ease-out 0s;
+ -o-transition: all 0.35s ease-out 0s;
+ transition: all 0.35s ease-out 0s;
+}
+.footer .footer-top .footnav ul.leveled-list li a:hover { color: #000;}
+
+.footer-bottom { color: #5d5d5d;}
+.footer-bottom address { float: left;}
+.footer-bottom p.copyright { float: right; line-height: 45px;}
+
+.footnav .subscribe-newsletter .form-subscribe input#newsletter {
+  padding: 3px 5px 5px;
+  height: 28px;
+  width: 85%;
+  border: none;
+  color: #e7e7e7;
+  border: 1px solid #e7e7e7;
+  background: url(../img/btn_subscribe.png) no-repeat right center;
+}
+.footnav .subscribe-newsletter .form-subscribe button {
+  position: absolute;
+  top: 0;
+  right: 15%;
+  background: none;
+  border: none;
+  width: 28px;
+  height: 28px;
+}
+
+.banner_box { margin-bottom: 40px; overflow: hidden;}
+.catalog-product-view .main-container {max-width: 1800px;}
+
+.main { background: #fafafa; min-height: 400px;}
+.col-main {width: 86%; margin: 0 auto; } 
+.cms-home .col-main { padding-bottom: 80px; width: 100%; margin: 0; padding-top: 0;}
+.main .col-main .main {
+  width: 86%; margin: 0 auto; padding-top: 0;
+}
+.main > section#news { }
+.main > section .tiles { margin-bottom: 15px; clear: both; /*height: 453px;*/}
+.main > section .tiles .tile { padding-left: 1%; float: left; height: 100%; position: relative;}
+.main > section .tiles .tile p { height: 100%; width: 100%; margin: 0;}
+.main > section .tiles .tile:first-child { padding-left: 0;}
+.main > section img { max-width: 100%; width: 100%; height: 100%;}
+
+.tile:hover .news-link { opacity: 1;}
+
+.order01 { width: 66%;}
+.order02 { width: 34%;}
+
+
+.warp { height: 100%; float: left;}
+.warp-section02 { width: 15%;}
+.order03 { width: 100%; height: 50% !important; margin-bottom: 4%;}
+.order04 { width: 100%; height: 48% !important; padding-left: 0 !important;}
+.order05 { width: 34%;}
+.order06 { width: 51%;}
+
+.warp-section03 { width: 33%; padding-left: 1%;}
+.order07 { width: 33%;}
+.order08 { width: 100%; height: 50% !important; margin-bottom: 4%;}
+.order09 { width: 100%; height: 48% !important; padding-left: 0 !important;}
+.order10 { width: 34%;}
+
+.warp-section04 { width: 17%; padding-left: 1%;}
+.order11 { width: 50%;}
+.order12 { width: 33%;}
+.order13 { width: 100%; height: 50% !important; margin-bottom: 4%;}
+.order14 { width: 100%; height: 48% !important; padding-left: 0 !important;}
+
+.warp-section05 { width: 33%;}
+.order15 { width: 100%; height: 50% !important; margin-bottom: 4%;}
+.order16 { width: 100%; height: 48% !important; padding-left: 0 !important;}
+.order17 { width: 33%;}
+.order18 { width: 34%;}
+
+.warp-section06 { width: 33%;}
+.order19 { width: 100%; height: 50% !important; margin-bottom: 4%;}
+.order20 { width: 100%; height: 48% !important; padding-left: 0 !important;}
+.order21 { width: 50%;}
+.warp-section06-02 { width: 17%; padding-left: 1%;}
+.order22 { width: 100%; height: 50% !important; margin-bottom: 4%;}
+.order23 { width: 100%; height: 48% !important; padding-left: 0 !important;}
+
+
+.warp-section07 { width: 66%;}
+.order24 { width: 25%; height: 50% !important; margin-bottom: 1%; float: left;}
+.order25 { width: 25%; height: 50% !important; margin-bottom: 1%; float: left;}
+.order26 { width: 50%; height: 50% !important; margin-bottom: 1%; float: left;}
+.order27 { width: 25%; height: 48% !important; padding-left: 0 !important; float: left;}
+.order28 { width: 50%; height: 48% !important; float: left;}
+.order29 { width: 25%; height: 48% !important; float: left;}
+
+.order30 { width: 34%;}
+
+
+
+/*
+| ---------------------------------------------------------------------
+| =SHOP-CATEGORY
+| ---------------------------------------------------------------------
+*/
+
+.shop-sub-cate { text-align: center;}
+.shop-sub-cate li .sub-name a { font-weight: 500; font-size: 1rem;}
+.shop-sub-cate li .sub-img { 
+  position: relative;
+}
+.sub-img .sub-overlay { 
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  padding-top: 60%;
+  background: rgba(249,249,249,0.6);
+  -webkit-transition: opacity 0.35s ease-out 0s;
+  -moz-transition: opacity 0.35s ease-out 0s;
+  -ms-transition: opacity 0.35s ease-out 0s;
+  -o-transition: opacity 0.35s ease-out 0s;
+  transition: opacity 0.35s ease-out 0s;
+}
+.sub-img .sub-overlay span {
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.shop-sub-cate li .sub-img:hover .sub-overlay { opacity: 1;}
+
+.shop-top p { float: left;}
+
+.header-container { background: #000; color: #fff; text-transform: uppercase; font-size: 0.75em; letter-spacing: 2px; height: 60px;line-height: 60px;}
+.header-wrap { margin: 0 auto;}
+.header-category { float: left;}
+.header-top-link { float: right;}
+.header-category ul li { float: left;}
+.header-top-link ul li { float: right;}
+.header-container div ul li a { padding: 0 20px;}
+
+.child-cate ul li { float: left; padding-right: 20px; text-transform: uppercase; letter-spacing: 1px; font-size: 12px}
+.child-cate ul {padding-bottom: 20px; padding-left: 0;}
+.category-shop .child-cate ul { padding-left: 0.5355rem;}
+
+.catalog-product-view .child-cate { width: 90%; margin: 0 auto;}
+.catalog-product-view .child-cate .sub-cate { border-bottom: 1px solid #dedede; }
+
+.child-cate .sub-cate { border-top: 1px solid #dedede; padding: 25px 0; }
+.child-cate ul:first-child { margin-bottom: 5px;}
+.child-cate ul:first-child li a { font-size: 0.8125rem;}
+.child-cate ul li a { 
+  color: #959595; 
+  font-size: 0.7rem;
+  -webkit-transition: all 0.3s ease-out 0s;
+  -moz-transition: all 0.3s ease-out 0s;
+  -ms-transition: all 0.3s ease-out 0s;
+  -o-transition: all 0.3s ease-out 0s;
+  transition: all 0.3s ease-out 0s;
+}
+.child-cate ul li a.active { color: #222;}
+.child-cate ul li a:hover { color: #222;}
+
+.header-lala-logo a {display: block}
+.header-lala-logo a img{
+  max-width: 100%;
+}
+
+
+.breadcrumbs { display: none;}
+
+.product-view { margin: 0 auto;}
+
+
+/*
+| ---------------------------------------------------------------------
+| = PRODUCT LIST
+| ---------------------------------------------------------------------
+*/
+
+ul.products-grid li { text-align: center; padding-bottom: 2.1875rem; }
+ul.products-grid li a.product-image { display: block; margin: 0 auto; height: 22rem; /*border: 1px solid red;*/}
+ul.products-grid li a.product-image:hover img.base-img {
+  opacity: 0;
+  display: none;
+}
+ul.products-grid li a.product-image:hover img.full-img {
+  opacity: 1;
+  display: inline;
+}
+ul.products-grid li a.product-image img { 
+  /*margin-top: 2.8125rem;*/
+  -webkit-transition: all 0.35s ease-out 0s;
+  -moz-transition: all 0.35s ease-out 0s;
+  -ms-transition: all 0.35s ease-out 0s;
+  -o-transition: all 0.35s ease-out 0s;
+  transition: all 0.35s ease-out 0s;
+}
+ul.products-grid li a.product-image img.full-img { margin-top: -30px; opacity: 0; display: none;}
+ul.products-grid li h2.product-name { margin: 0 0 5px; font-size: 1rem; font-weight: bold;}
+ul.products-grid li .price-box { font-size: 0.75rem; font-style: italic;}
+ul.products-grid li .prod_bot { margin-top: 1.125rem; }
+
+.product-top { background: #f9f9f9; float: left; width: 100%; padding-bottom: 45px; margin-bottom: 90px; margin-top: 25px;}
+.product-top .top { float: left; width: 100%;}
+
+.product-img-box { float: left; width: 47%; margin-left: 15%; padding-top: 10px; }
+
+.product-img-box .more-views { text-align: center;}
+.product-img-box .more-views ul li { margin-bottom: 90px;}
+.product-img-box .more-views ul li:last-child { margin-bottom: 0;}
+
+.product-shop { 
+  float: right; 
+  width: 38%;
+  padding-top: 40px;
+}
+.product-shop.fixed { right: 1.8%;}
+.must-hide { opacity: 0;}
+.must-left { margin-left: 15%;}
+
+.product-shop.relative { position: relative;}
+.product-share.relative { position: relative;}
+
+
+.product-shop .availability { display: none}
+.product-shop .product-name h1 {
+  font-size: 1.375rem;
+  font-weight: 600;
+}
+.product-shop .price-box { margin-bottom: 30px;}
+.product-shop .price-box span.price { font-size: 17px; font-style: italic; }
+
+.product-shop .short-description { font-size: 0.875rem;}
+.short-description .std { padding-left: 20px;}
+
+#product-options-wrapper { /*margin-top: 30px;*/}
+#product-options-wrapper label.required { margin-bottom: 0; font-weight: normal;}
+#product-options-wrapper label.required em { display: none;}
+.product-shop .product-options-bottom .add-to-links { display: none;}
+.product-shop .product-options-bottom .add-to-cart #qty { width: 165px;}
+.product-share { 
+  float: left;
+  margin: 0 0 0 20px;
+  padding-top: 20px;
+}
+.product-share a {
+  border: 1px solid #585858;
+  display: block;
+  font-size: 11px;
+  height: 22px;
+  line-height: 19px;
+  text-align: center;
+  width: 60px;
+}
+
+
+#product-next-prev { font-size: 12px; color: #959595; float: right; margin: 0 20px 0 0; padding-top: 20px;}
+#product-next-prev a:first-child{ margin-right: 10px; display: inline-block; padding-left: 30px; background: url(../img/prod_prv-icon.png) no-repeat left 3px;}
+#product-next-prev a:last-child { margin-left: 10px; display: inline-block; padding-right: 30px; background: url(../img/prod-next-icon.png) no-repeat right 3px;}
+
+.product-essential { /*margin-top: 130px;*/}
+.product-upsell { float: left; width: 100%;}
+.box-up-sell { width: 75%; margin: 0 auto 50px; text-align: center;}
+.box-up-sell h2 { margin-bottom: 75px; font-size: 18px; font-weight: bold;}
+#upsell-product-table ul li h3.product-name { font-size: 1rem; margin-bottom: 5px; margin-top: 50px;}
+#upsell-product-table ul li .price-box { font-style: italic;}
+
+.zoom-loader { position: absolute; z-index: 999; top: 10%; left: 50%;}
+
+.images-zoom-wrap {
+  display: none;
+  position: absolute;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255,255,255,.3);
+}
+.images-zoom-wrap ul li { 
+  display: none;
+  position: absolute;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+.images-zoom-wrap ul li img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  /*-webkit-transition: all 0.3s ease-out 0s;
+  -moz-transition: all 0.3s ease-out 0s;
+  -ms-transition: all 0.3s ease-out 0s;
+  -o-transition: all 0.3s ease-out 0s;
+  transition: all 0.3s ease-out 0s;*/
+}
+li.img-zoom-item { 
+  float: left;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.btn-handler {
+  position: absolute;
+  right: 30px;
+  top: 25px;
+  z-index: 999;
+  display: none;
+}
+
+.btn-handler span { width: 36px; height: 36px; display: block; float: left; margin-right: 5px; cursor: pointer;}
+.btn-handler #view-prev-zoom { background: url(../img/zoom-prv.png) no-repeat 0 0;}
+.btn-handler .close-icon { background: url(../img/zoom-close.png) no-repeat 0 0;}
+.btn-handler #view-next-zoom { background: url(../img/zoom-nxt.png) no-repeat 0 0;}
+
+
+
+/*
+| ---------------------------------------------------------------------
+| = JOURNAL PAGE
+| ---------------------------------------------------------------------
+*/
+
+.postWrapper { width: 90%; margin: 0 auto; padding-top: 50px;}
+
+.lookbook_wrap { float: left; width: 100%;}
+
+.items { 
+  float: left;
+  padding: 0 10px 0 0;
+}
+
+.wrap { position: relative; float: left; width: 100%;}
+
+.wrap .item15 { position: absolute; bottom: 0; left: 0;}
+
+.wrap .item18 { position: absolute; bottom: 0; left: 0;}
+
+.wrap .item19 { position: absolute; top: 0; right: 0;}
+.wrap .item20 { position: absolute; bottom: 0; right: 0;}
+/*.item12, .item13, .item14, .item15 { display: inline-block; float: none; }*/
+
+#product-info { font-weight: normal; font-size: 0.875rem;}
+#product-info .prd-info-wrap { padding-bottom: 10px;}
+#product-info .prd-info-wrap:last-child { padding: 0;}
+#product-info .prd-info-wrap > h2 { margin: 0; padding-left: 18px; padding-bottom: 5px; background: url(../img/des-icon.png) no-repeat left 4px; cursor: pointer;}
+#product-info .prd-info-wrap > h2.active { background: url(../img/des-icon-active.png) no-repeat left 4px;}
+#product-info .prd-info-wrap > .prd-info { 
+  margin-left: 18px; 
+  display: none;
+  margin-bottom: 10px;
+}
+#product-info .prd-info-wrap > .prd-info.active { display: block;}
+.product-colour { margin-top: 30px; margin-bottom: 20px; font-size: 0.875rem; color: #2f2f2f;}
+.product-colour span { display: inline-block;}
+.product-colour span:first-child { text-transform: uppercase; letter-spacing: 1px; font-size: 13px;}
+.product-colour span:last-child { padding: 15px 0 0 9px; font-size: 16px; }
+
+.blog-load { float: left; width: 100%; position: relative;}
+.blog-load img {
+  display: none;
+  position: absolute;
+  left: 50%;
+  top: -30px;
+}
+.blog-load button {
+  display:block; 
+  width:340px; 
+  height: 40px;
+  line-height: 40px;
+  margin:0 auto;
+}
+
+#advice-validate-email-newsletter { color: #5D5D5D;}
+li.divider { display: none;}
+
+
+#product-options-wrapper .custom-attr { margin-bottom: 20px;}
+#product-options-wrapper .custom-attr > span { text-transform: uppercase; font-size: 13px; letter-spacing: 1px;}
+
+.custom-attr .attr-option span {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  margin-right: 5px;
+  border: 1px solid #f9f9f9;
+  text-align: center;
+  cursor: pointer;
+}
+
+.custom-attr .attr-option { margin-top: 15px;}
+
+.custom-attr .attr-option span.active {
+  border: 1px solid #cecece;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

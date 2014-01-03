@@ -1,0 +1,29 @@
+
+
+<?php $post = $this->getPost(); ?>
+<?php 
+    $dumpMedia = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . $post->getFeatureMedia();
+    $dt = explode(' ', $post->getCreatedTime());
+?>
+<div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+<div class="postWrapper">
+    <div class="postTop">
+        <img src=" <?php echo $dumpMedia ?>" alt="">
+        <h2><?php echo $post->getTitle(); ?></h2>
+        <p><span><?php echo $dt[0] ?></span><span> | </span><span>By <?php echo $post->getUser(); ?></span></p>
+        <div class="separation-line"></div>
+    </div>
+
+    <div class="postContent"><?php echo $post->getPostContent(); ?></div>
+    <?php echo $this->getBookmarkHtml($post) ?>
+    <div class="tags"><?php echo Mage::getBlockSingleton('blog/blog')->getTagsHtml($post) ?></div>
+</div>
+
+<?php
+    // $postCats = $post->getCats();
+    // foreach ($postCats as $title => $url) {
+    //     # code...
+    // }
+?>
+
+

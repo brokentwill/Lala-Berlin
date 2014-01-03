@@ -1,0 +1,358 @@
+
+
+<?php  
+
+	$collection = Mage::getModel('cms/block')->getCollection()
+    				->addFieldToFilter('identifier', array('like'=>'home_'.'%'))
+    				->addFieldToFilter('is_active', 1)
+    				->setOrder('position', 'ASC')
+    				->getData();
+
+   	$basMedia = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);
+
+?>
+
+
+
+
+<div class="main home-main" role="main">
+
+	<section id="news" class="news">
+
+		<div class="tiles section01 count2">
+			<div class="tile order01">
+				<p class=""><img src="<?php echo $basMedia.$collection[0]['feature_img'] ?>"/></p>
+				<?php if ($collection[0]['link_to']): ?>
+					<a class="block-link news-link centroid-wrap" href="<?php echo $collection[0]['link_to'] ?>">
+						<div class="news-excerpt centroid">
+							<h3 class="news-title"><?php echo trim(strip_tags($collection[0]['content']),'<br />') ?></h3>
+						</div>
+					</a>
+				<?php endif ?>
+			</div>
+			<div class="tile order02">
+				<p class=""><img src="<?php echo $basMedia.$collection[1]['feature_img'] ?>"/></p>
+				<?php if ($collection[1]['link_to']): ?>
+					<a class="block-link news-link centroid-wrap" href="<?php echo $collection[1]['link_to'] ?>">
+						<div class="news-excerpt centroid">
+							<h3 class="news-title"><?php echo trim(strip_tags($collection[1]['content']),'<br />') ?></h3>
+						</div>
+					</a>
+				<?php endif ?>
+			</div>
+		</div>
+
+		<div class="tiles section02 count4">
+			<div class="warp warp-section02">
+				<div class="tile order03">
+					<p class=""><img src="<?php echo $basMedia.$collection[2]['feature_img'] ?>"/></p>
+					<?php if ($collection[2]['link_to']): ?>
+					<a class="block-link news-link centroid-wrap" href="<?php echo $collection[2]['link_to'] ?>">
+						<div class="news-excerpt centroid">
+							<h3 class="news-title"><?php echo trim(strip_tags($collection[2]['content']),'<br />') ?></h3>
+						</div>
+					</a>
+				<?php endif ?>
+				</div>
+				<div class="tile order04">
+					<p class=""><img src="<?php echo $basMedia.$collection[3]['feature_img'] ?>" /></p>
+					<?php if ($collection[3]['link_to']): ?>
+					<a class="block-link news-link centroid-wrap" href="<?php echo $collection[3]['link_to'] ?>">
+						<div class="news-excerpt centroid">
+							<h3 class="news-title"><?php echo trim(strip_tags($collection[3]['content']),'<br />') ?></h3>
+						</div>
+					</a>
+				<?php endif ?>
+				</div>
+			</div>
+			<div class="tile order05">
+				<p class=""><img src="<?php echo $basMedia.$collection[4]['feature_img'] ?>" /></p>
+				<?php if ($collection[4]['link_to']): ?>
+					<a class="block-link news-link centroid-wrap" href="<?php echo $collection[4]['link_to'] ?>">
+						<div class="news-excerpt centroid">
+							<h3 class="news-title"><?php echo trim(strip_tags($collection[4]['content']),'<br />') ?></h3>
+						</div>
+					</a>
+				<?php endif ?>
+			</div>
+			<div class="tile order06">
+				<p class=""><img src="<?php echo $basMedia.$collection[5]['feature_img'] ?>" /></p>
+				<?php if ($collection[5]['link_to']): ?>
+					<a class="block-link news-link centroid-wrap" href="<?php echo $collection[5]['link_to'] ?>">
+						<div class="news-excerpt centroid">
+							<h3 class="news-title"><?php echo trim(strip_tags($collection[5]['content']),'<br />') ?></h3>
+						</div>
+					</a>
+				<?php endif ?>
+			</div>
+		</div>
+
+		<div class="tiles section03 count4">
+			<div class="tile order07">
+				<p class=""><img src="<?php echo $basMedia.$collection[6]['feature_img'] ?>"/></p>
+				<?php if ($collection[6]['link_to']): ?>
+					<a class="block-link news-link centroid-wrap" href="<?php echo $collection[6]['link_to'] ?>">
+						<div class="news-excerpt centroid">
+							<h3 class="news-title"><?php echo trim(strip_tags($collection[6]['content']),'<br />') ?></h3>
+						</div>
+					</a>
+				<?php endif ?>
+			</div>
+			<div class="warp warp-section03">
+				<div class="tile order08">
+					<p class=""><img src="<?php echo $basMedia.$collection[7]['feature_img'] ?>" /></p>
+					<?php if ($collection[7]['link_to']): ?>
+					<a class="block-link news-link centroid-wrap" href="<?php echo $collection[7]['link_to'] ?>">
+						<div class="news-excerpt centroid">
+							<h3 class="news-title"><?php echo trim(strip_tags($collection[7]['content']),'<br />') ?></h3>
+						</div>
+					</a>
+				<?php endif ?>
+				</div>
+				<div class="tile order09">
+					<p class=""><img src="<?php echo $basMedia.$collection[8]['feature_img'] ?>" /></p>
+					<?php if ($collection[8]['link_to']): ?>
+					<a class="block-link news-link centroid-wrap" href="<?php echo $collection[8]['link_to'] ?>">
+						<div class="news-excerpt centroid">
+							<h3 class="news-title"><?php echo trim(strip_tags($collection[8]['content']),'<br />') ?></h3>
+						</div>
+					</a>
+				<?php endif ?>
+				</div>
+			</div>
+			<div class="tile order10">
+				<p class=""><img src="<?php echo $basMedia.$collection[9]['feature_img'] ?>" /></p>
+				<?php if ($collection[9]['link_to']): ?>
+					<a class="block-link news-link centroid-wrap" href="<?php echo $collection[9]['link_to'] ?>">
+						<div class="news-excerpt centroid">
+							<h3 class="news-title"><?php echo trim(strip_tags($collection[9]['content']),'<br />') ?></h3>
+						</div>
+					</a>
+				<?php endif ?>
+			</div>
+		</div>
+
+		<div class="tiles section04 count4">
+			<div class="tile order11">
+				<p class=""><img src="<?php echo $basMedia.$collection[10]['feature_img'] ?>"/></p>
+				<?php if ($collection[10]['link_to']): ?>
+					<a class="block-link news-link centroid-wrap" href="<?php echo $collection[10]['link_to'] ?>">
+						<div class="news-excerpt centroid">
+							<h3 class="news-title"><?php echo trim(strip_tags($collection[10]['content']),'<br />') ?></h3>
+						</div>
+					</a>
+				<?php endif ?>
+			</div>
+			<div class="tile order12">
+				<p class=""><img src="<?php echo $basMedia.$collection[11]['feature_img'] ?>" /></p>
+				<?php if ($collection[11]['link_to']): ?>
+					<a class="block-link news-link centroid-wrap" href="<?php echo $collection[11]['link_to'] ?>">
+						<div class="news-excerpt centroid">
+							<h3 class="news-title"><?php echo trim(strip_tags($collection[11]['content']),'<br />') ?></h3>
+						</div>
+					</a>
+				<?php endif ?>
+			</div>
+			<div class="warp warp-section04">
+				<div class="tile order13">
+					<p class=""><img src="<?php echo $basMedia.$collection[12]['feature_img']?>" /></p>
+					<?php if ($collection[12]['link_to']): ?>
+					<a class="block-link news-link centroid-wrap" href="<?php echo $collection[12]['link_to'] ?>">
+						<div class="news-excerpt centroid">
+							<h3 class="news-title"><?php echo trim(strip_tags($collection[12]['content']),'<br />') ?></h3>
+						</div>
+					</a>
+				<?php endif ?>
+				</div>
+				<div class="tile order14">
+					<p class=""><img src="<?php echo $basMedia.$collection[13]['feature_img'] ?>" /></p>
+					<?php if ($collection[13]['link_to']): ?>
+					<a class="block-link news-link centroid-wrap" href="<?php echo $collection[13]['link_to'] ?>">
+						<div class="news-excerpt centroid">
+							<h3 class="news-title"><?php echo trim(strip_tags($collection[13]['content']),'<br />') ?></h3>
+						</div>
+					</a>
+				<?php endif ?>
+				</div>
+			</div>
+		</div>
+
+		<div class="tiles section05 count4">
+			<div class="warp warp-section05">
+				<div class="tile order15">
+					<p class=""><img src="<?php echo $basMedia.$collection[14]['feature_img'] ?>"/></p>
+					<?php if ($collection[14]['link_to']): ?>
+					<a class="block-link news-link centroid-wrap" href="<?php echo $collection[14]['link_to'] ?>">
+						<div class="news-excerpt centroid">
+							<h3 class="news-title"><?php echo trim(strip_tags($collection[14]['content']),'<br />') ?></h3>
+						</div>
+					</a>
+				<?php endif ?>
+				</div>
+				<div class="tile order16">
+					<p class=""><img src="<?php echo $basMedia.$collection[15]['feature_img'] ?>" /></p>
+					<?php if ($collection[15]['link_to']): ?>
+					<a class="block-link news-link centroid-wrap" href="<?php echo $collection[15]['link_to'] ?>">
+						<div class="news-excerpt centroid">
+							<h3 class="news-title"><?php echo trim(strip_tags($collection[15]['content']),'<br />') ?></h3>
+						</div>
+					</a>
+				<?php endif ?>
+				</div>
+			</div>
+			<div class="tile order17">
+				<p class=""><img src="<?php echo $basMedia.$collection[16]['feature_img'] ?>" /></p>
+				<?php if ($collection[16]['link_to']): ?>
+					<a class="block-link news-link centroid-wrap" href="<?php echo $collection[16]['link_to'] ?>">
+						<div class="news-excerpt centroid">
+							<h3 class="news-title"><?php echo trim(strip_tags($collection[16]['content']),'<br />') ?></h3>
+						</div>
+					</a>
+				<?php endif ?>
+			</div>
+			<div class="tile order18">
+				<p class=""><img src="<?php echo $basMedia.$collection[17]['feature_img'] ?>" /></p>
+				<?php if ($collection[17]['link_to']): ?>
+					<a class="block-link news-link centroid-wrap" href="<?php echo $collection[17]['link_to'] ?>">
+						<div class="news-excerpt centroid">
+							<h3 class="news-title"><?php echo trim(strip_tags($collection[17]['content']),'<br />') ?></h3>
+						</div>
+					</a>
+				<?php endif ?>
+			</div>
+		</div>
+
+		<div class="tiles section06 count5">
+			<div class="warp warp-section06">
+				<div class="tile order19">
+					<p class=""><img src="<?php echo $basMedia.$collection[18]['feature_img'] ?>"/></p>
+					<?php if ($collection[18]['link_to']): ?>
+					<a class="block-link news-link centroid-wrap" href="<?php echo $collection[18]['link_to'] ?>">
+						<div class="news-excerpt centroid">
+							<h3 class="news-title"><?php echo trim(strip_tags($collection[18]['content']),'<br />') ?></h3>
+						</div>
+					</a>
+				<?php endif ?>
+				</div>
+				<div class="tile order20">
+					<p class=""><img src="<?php echo $basMedia.$collection[19]['feature_img'] ?>" /></p>
+					<?php if ($collection[19]['link_to']): ?>
+					<a class="block-link news-link centroid-wrap" href="<?php echo $collection[19]['link_to'] ?>">
+						<div class="news-excerpt centroid">
+							<h3 class="news-title"><?php echo trim(strip_tags($collection[19]['content']),'<br />') ?></h3>
+						</div>
+					</a>
+				<?php endif ?>
+				</div>
+			</div>
+			<div class="tile order21">
+				<p class=""><img src="<?php echo $basMedia.$collection[20]['feature_img'] ?>" /></p>
+				<?php if ($collection[20]['link_to']): ?>
+					<a class="block-link news-link centroid-wrap" href="<?php echo $collection[20]['link_to'] ?>">
+						<div class="news-excerpt centroid">
+							<h3 class="news-title"><?php echo trim(strip_tags($collection[20]['content']),'<br />') ?></h3>
+						</div>
+					</a>
+				<?php endif ?>
+			</div>
+			<div class="warp warp-section06-02">
+				<div class="tile order22">
+					<p class=""><img src="<?php echo $basMedia.$collection[21]['feature_img'] ?>" /></p>
+					<?php if ($collection[21]['link_to']): ?>
+					<a class="block-link news-link centroid-wrap" href="<?php echo $collection[21]['link_to'] ?>">
+						<div class="news-excerpt centroid">
+							<h3 class="news-title"><?php echo trim(strip_tags($collection[21]['content']),'<br />') ?></h3>
+						</div>
+					</a>
+				<?php endif ?>
+				</div>
+				<div class="tile order23">
+					<p class=""><img src="<?php echo $basMedia.$collection[22]['feature_img'] ?>" /></p>
+					<?php if ($collection[22]['link_to']): ?>
+					<a class="block-link news-link centroid-wrap" href="<?php echo $collection[22]['link_to'] ?>">
+						<div class="news-excerpt centroid">
+							<h3 class="news-title"><?php echo trim(strip_tags($collection[22]['content']),'<br />') ?></h3>
+						</div>
+					</a>
+				<?php endif ?>
+				</div>
+			</div>
+		</div>
+
+		<div class="tiles section07 count7">
+			<div class="warp warp-section07">
+				<div class="tile order24">
+					<p class=""><img src="<?php echo $basMedia.$collection[23]['feature_img'] ?>"/></p>
+					<?php if ($collection[23]['link_to']): ?>
+					<a class="block-link news-link centroid-wrap" href="<?php echo $collection[23]['link_to'] ?>">
+						<div class="news-excerpt centroid">
+							<h3 class="news-title"><?php echo trim(strip_tags($collection[23]['content']),'<br />') ?></h3>
+						</div>
+					</a>
+				<?php endif ?>
+				</div>
+				<div class="tile order25">
+					<p class=""><img src="<?php echo $basMedia.$collection[24]['feature_img'] ?>" /></p>
+					<?php if ($collection[24]['link_to']): ?>
+					<a class="block-link news-link centroid-wrap" href="<?php echo $collection[24]['link_to'] ?>">
+						<div class="news-excerpt centroid">
+							<h3 class="news-title"><?php echo trim(strip_tags($collection[24]['content']),'<br />') ?></h3>
+						</div>
+					</a>
+				<?php endif ?>
+				</div>
+				<div class="tile order26">
+					<p class=""><img src="<?php echo $basMedia.$collection[25]['feature_img']?>" /></p>
+					<?php if ($collection[25]['link_to']): ?>
+					<a class="block-link news-link centroid-wrap" href="<?php echo $collection[25]['link_to'] ?>">
+						<div class="news-excerpt centroid">
+							<h3 class="news-title"><?php echo trim(strip_tags($collection[25]['content']),'<br />') ?></h3>
+						</div>
+					</a>
+				<?php endif ?>
+				</div>
+				<div class="tile order27">
+					<p class=""><img src="<?php echo $basMedia.$collection[26]['feature_img'] ?>" /></p>
+					<?php if ($collection[26]['link_to']): ?>
+					<a class="block-link news-link centroid-wrap" href="<?php echo $collection[26]['link_to'] ?>">
+						<div class="news-excerpt centroid">
+							<h3 class="news-title"><?php echo trim(strip_tags($collection[26]['content']),'<br />') ?></h3>
+						</div>
+					</a>
+				<?php endif ?>
+				</div>
+				<div class="tile order28">
+					<p class=""><img src="<?php echo $basMedia.$collection[27]['feature_img'] ?>" /></p>
+					<?php if ($collection[27]['link_to']): ?>
+					<a class="block-link news-link centroid-wrap" href="<?php echo $collection[27]['link_to'] ?>">
+						<div class="news-excerpt centroid">
+							<h3 class="news-title"><?php echo trim(strip_tags($collection[27]['content']),'<br />') ?></h3>
+						</div>
+					</a>
+				<?php endif ?>
+				</div>
+				<div class="tile order29">
+					<p class=""><img src="<?php echo $basMedia.$collection[28]['feature_img'] ?>" /></p>
+					<?php if ($collection[28]['link_to']): ?>
+					<a class="block-link news-link centroid-wrap" href="<?php echo $collection[28]['link_to'] ?>">
+						<div class="news-excerpt centroid">
+							<h3 class="news-title"><?php echo trim(strip_tags($collection[28]['content']),'<br />') ?></h3>
+						</div>
+					</a>
+				<?php endif ?>
+				</div>
+			</div>
+			<div class="tile order30">
+				<p class=""><img src="<?php echo $basMedia.$collection[29]['feature_img'] ?>" /></p>
+				<?php if ($collection[29]['link_to']): ?>
+					<a class="block-link news-link centroid-wrap" href="<?php echo $collection[29]['link_to'] ?>">
+						<div class="news-excerpt centroid">
+							<h3 class="news-title"><?php echo trim(strip_tags($collection[29]['content']),'<br />') ?></h3>
+						</div>
+					</a>
+				<?php endif ?>
+			</div>
+		</div>
+
+	</section>
+</div>

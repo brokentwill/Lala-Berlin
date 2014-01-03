@@ -1,0 +1,74 @@
+/* line 5, src/clickdummy.scss */
+body {
+  margin: 0;
+  padding: 0;
+  background: #fafafa;
+}
+
+/* line 11, src/clickdummy.scss */
+.block-link {
+  display: block;
+  color: inherit;
+  text-decoration: inherit;
+}
+
+/* line 17, src/clickdummy.scss */
+.img-fit img {
+  display: table;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* line 23, src/clickdummy.scss */
+.scroll-collapse {
+  -webkit-transform: translate3d(0, -100%, 0);
+  -moz-transform: translate3d(0, -100%, 0);
+  -ms-transform: translate3d(0, -100%, 0);
+  -o-transform: translate3d(0, -100%, 0);
+  transform: translate3d(0, -100%, 0);
+  -webkit-transition: all 0.25s ease-out;
+  -moz-transition: all 0.25s ease-out;
+  -o-transition: all 0.25s ease-out;
+  transition: all 0.25s ease-out;
+}
+/* line 28, src/clickdummy.scss */
+.scroll-collapse.active {
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+/* line 34, src/clickdummy.scss */
+#navbar {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 0 0 20px 0;
+  height: 60px;
+  -webkit-transform: translate3d(0, -63px, 0);
+  -moz-transform: translate3d(0, -63px, 0);
+  -ms-transform: translate3d(0, -63px, 0);
+  -o-transform: translate3d(0, -63px, 0);
+  transform: translate3d(0, -63px, 0);
+}
+/* line 44, src/clickdummy.scss */
+#navbar.active {
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+/* line 48, src/clickdummy.scss */
+#navbar .nav-main {
+  background-color: #000000;
+}
+
+/* line 53, src/clickdummy.scss */
+#main {
+  margin-top: 60px;
+}

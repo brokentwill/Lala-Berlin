@@ -1,0 +1,148 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+/**
+ * Product list template
+ *
+ * @see Mage_Catalog_Block_Product_List
+ */
+?>
+<?php $_helper = $this->helper('igallery'); ?>
+<?php $bannerCollection = Mage::getModel('igallery/banner')->getCollection()->setOrder('sort_order', 'ASC');
+?>
+<?php $_gallery = $this->_getGallery(); ?>
+<?php $currentUrl = $_gallery->getFriendlyUrl() ?>
+<ul class="collection-selector">
+	<?php foreach($bannerCollection as $banner): ?>
+		<?php if($banner->getIsParent() == 1) continue ?>
+		<li class="<?php echo $banner->getFriendlyUrl() == $currentUrl ? 'active current':'' ?>"><a href="<?php echo Mage::getBaseUrl().$banner->getFriendlyUrl(); ?>"><?php echo $banner->getName(); ?></a></li>
+	<?php endforeach ?>
+</ul>
+
+<div class="gallery-container <?php echo $_gallery->getIsParent() == 1 ? 'parent-gallery' : ''?>">
+	<?php if ($_gallery) : ?>
+		<div class="page-title igallery-title">
+			<h1><?php echo $this->stripTags($_gallery->getName(), null, true) ?></h1>
+		</div>
+		<!--	--><?php //if($_description = $_gallery->getDescription()): ?>
+		<!--		<div class="igallery-description std">-->
+		<!--			--><?php //echo $_description; ?>
+		<!--		</div>-->
+		<!--	--><?php //endif; ?>
+	<?php endif; ?>
+	<?php $_imageCollection = $this->_getCollection(); ?>
+	<dl class="radius tabs" data-tab="">
+		<dd class="active"><a href="#panel1"><?php echo $this->__('LOOKBOOK') ?></a></dd>
+		<dd><a href="#panel2"><?php echo $this->__('SHOW') ?></a></dd>
+		<dd><a href="#panel3"><?php echo $this->__('INFO') ?></a></dd>
+	</dl>
+	<div class="tabs-content">
+		<div class="content active" id="panel1">
+			<?php if(!$_imageCollection->count()): ?>
+				<p class="note-msg"><?php echo $this->__('There are no images matching the selection.') ?></p>
+			<?php else: ?>
+				<div class="toolbar-top">
+					<?php echo $this->getToolbarHtml(); ?>
+				</div>
+				<div class="category-products igallery-images" id="container">
+
+					<?php $_collectionSize = $_imageCollection->count() ?>
+					<?php $_columnCount = $this->_getColumnCount(); ?>
+					<?php $i=0; foreach ($_imageCollection as $_image): ?>
+						<?php if ($i++%$_columnCount==0): ?>
+						<?php endif ?>
+						<?php
+						$class ='';
+						if($_image->getImageWidth()){
+							$class = ' cols-'.$_image->getImageWidth();
+						} else {}
+						if($_image->getImageHeight()){
+							$class .= ' rows-'.$_image->getImageHeight();
+						} else {}
+						?>
+						<?php $_size = $_helper->getImageSize($_image, 144, 100); ?>
+						<?php if ($_size) : ?>
+							<li class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?> <?php echo $class ?>">
+								<?php if (is_object($_gallery)) : ?>
+									<a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" class="igallery-image" href="<?php echo $_image->getImageUrl() > '' ? $this->stripTags($_image->getImageUrl(), null, true) : $_helper->getImageUrl($_image->getFile()) ?>" <?php echo $_image->getImageUrl() > '' ? '':"rel=\"prettyPhoto[gallery][{$_gallery->getId()}]\"" ?> >
+										<img src="<?php echo $this->helper('igallery/image')->init($_image->getFile())?>" width="" height="" alt="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" />
+										<div class="overlay"><span><?php echo $this->stripTags($_image->getLabel(), null, true) ?></span></div>
+									</a>
+								<?php else : ?>
+									<a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" class="igallery-image" href="<?php echo $_helper->getImageUrl($_image->getFile()); ?>" rel="prettyPhoto[gallery]"><img src="<?php echo $this->helper('igallery/image')->init($_image->getFile())->resize($_size->getWidth(), $_size->getHeight()); ?>" alt="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" /></a>
+								<?php endif; ?>
+								<?php if($_gallery->getIsParent() == 1): ?>
+								<?php else: ?>
+									<div class="button-group">
+										<a class="button link <?php echo $_image->getImageUrl()?'':'hidden' ?>" href="<?php echo $this->stripTags($_image->getImageUrl(), null, true) ?>"><?php echo $this->__('View Product') ?></a>
+										<?php if($_image->getImageUrl()): ?>
+											<a class="button image fi-arrows-out" href="<?php echo $_helper->getImageUrl($_image->getFile()); ?>" rel="prettyPhoto[gallery][<?php echo $_gallery->getId() ?>]"></a>
+										<?php endif; ?>
+									</div>
+								<?php endif; ?>
+							</li>
+						<?php endif; ?>
+						<?php if ($i%$_columnCount==0 || $i==$_collectionSize): ?>
+						<?php endif ?>
+					<?php endforeach ?>
+					<script type="text/javascript">decorateGeneric($$('ul.my-igallery-grid'), ['odd','even','first','last'])</script>
+
+					<div class="toolbar-bottom">
+						<?php echo $this->getToolbarHtml(); ?>
+					</div>
+				</div>
+			<?php endif; ?>
+		</div>
+		<div class="content" id="panel2">
+			<?php if($_description = $_gallery->getDescription()): ?>
+				<div class=" std">
+					<?php echo $_description; ?>
+				</div>
+			<?php endif; ?>
+		</div>
+		<div class="content" id="panel3">
+			<?php
+			if($cmsBlockId = $_gallery->getCmsBlock()){
+				echo "<div class=\"std\">".$this->getLayout()->createBlock('cms/block')->setBlockId($cmsBlockId)->toHtml()."</div>";
+			}
+			?>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+
+	jQuery(window).bind("load", function() {
+		jQuery('#container').masonry({
+			itemSelector: '.item',
+			// set columnWidth a fraction of the container width
+			columnWidth: function( containerWidth ) {
+				return containerWidth / 6;
+			}
+		});
+	});
+</script>
+<script type="text/javascript">decorateGeneric($$('ul.collection-selector li'), ['odd','even','first','last'])</script>

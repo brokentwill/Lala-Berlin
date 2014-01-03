@@ -1,0 +1,55 @@
+<?php $posts = $this->getPosts(); ?>
+<div id="messages_product_view">
+    <?php Mage::app()->getLayout()->getMessagesBlock()->setMessages(Mage::getSingleton('customer/session')->getMessages(true)); ?>
+    <?php echo Mage::app()->getLayout()->getMessagesBlock()->getGroupedHtml(); ?>
+</div>
+
+<?php 
+
+    $cats = Mage::getModel('blog/cat')
+                ->getCollection()
+                ->addStoreFilter(Mage::app()->getStore()->getId())
+                ->setOrder('sort_order', 'asc');
+
+?>
+
+<div class="child-cate row columns">
+    <ul class="large-12 columns">
+        <?php foreach ($cats as $cat): $url = $cat->getIdentifier() ?>
+            <li><a href="<?php echo $this->getBlogUrl('cat/' . $url) ?>"><?php echo $cat->getTitle() ?></a></li>
+        <?php endforeach ?>
+    </ul>
+</div>
+
+<?php if (count($posts) > 0): ?>
+    <ul class="blog-posts">
+    <?php foreach ($posts as $post): $dumpMedia = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . $post->getFeatureMedia(); ?>
+        <li class="postWrapper">
+            <div class="postTitle">
+                <?php  
+                    $dt = explode(' ', $post->getCreatedTime());
+                ?>
+                <h3><?php echo $dt[0]; ?></h3>
+                <img src="<?php echo $dumpMedia ?>" alt="">
+            </div>
+            <div class="postContent">
+                <h2><a href="<?php echo $post->getAddress(); ?>" ><?php echo $post->getTitle(); ?></a></h2>
+                <div class="content"><?php echo $post->getPostContent(); ?></div> 
+            </div>
+
+            <?php echo $this->getBookmarkHtml($post) ?>
+            <div class="tags"><?php echo $this->getTagsHtml($post) ?></div>
+            <div class="postDetails">
+                <?php if ($this->getCommentsEnabled()): ?>
+                    <?php echo $post->getCommentCount(); ?> <a href="<?php echo $post->getAddress(); ?>#commentBox" >Comments</a> |
+                <?php endif; ?>
+                <?php $postCats = $post->getCats(); ?>
+            </div>
+        </li>
+    <?php endforeach; ?>
+    </ul>
+<?php else: ?>
+    <p class="note-msg">There are no post matching the selection.</p>
+<?php endif; ?>
+
+

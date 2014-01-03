@@ -1,0 +1,436 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     default_modern
+ * @copyright   Copyright (c) 2013 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+
+/**
+ * Product view template
+ *
+ * @see Mage_Catalog_Block_Product_View
+ * @see Mage_Review_Block_Product_View
+ */
+?>
+<?php $_helper = $this->helper('catalog/output'); ?>
+<?php $_product = $this->getProduct(); ?>
+
+
+<?php
+    //$_curCate = Mage::getModel('catalog/layer')->getCurrentCategory();
+    //$_parentId = $_curCate->getParentCategory()->getId();
+
+    $_category = Mage::getModel('catalog/category')->load(3);
+    $_subCate = $_category->getChildrenCategories();
+
+    foreach ($_subCate as $_sub) {
+        if ($_sub->getId() == $_parentId) {
+            $_subSub = $_sub->getChildrenCategories();
+            foreach ($_subSub as $_xsub) {
+
+            }
+        }
+    }
+
+?> 
+
+
+<?php 
+     
+    if(!$_product->getCategoryIds())
+        return; 
+     
+    $cat_ids = $_product->getCategoryIds(); 
+    $cat = Mage::getModel('catalog/category')->load( $cat_ids[0] );
+
+     
+    $order = Mage::getStoreConfig('catalog/frontend/default_sort_by');
+    $direction = 'asc';
+     
+    $category_products = $cat->getProductCollection()->addAttributeToSort($order, $direction);
+    $category_products->addAttributeToFilter('status',1); 
+    $category_products->addAttributeToFilter('visibility',4);
+     
+    $cat_prod_ids = $category_products->getAllIds();
+    $_product_id = $_product->getId();
+     
+    $_pos = array_search($_product_id, $cat_prod_ids);
+    $_next_pos = $_pos+1;
+    $_prev_pos = $_pos-1;
+     
+    // get the next product url
+    if( isset($cat_prod_ids[$_next_pos]) ) {
+        $_next_prod = Mage::getModel('catalog/product')->load( $cat_prod_ids[$_next_pos] );
+    } else {
+        $_next_prod = Mage::getModel('catalog/product')->load( reset($cat_prod_ids) );
+    }
+    // get the previous product url
+    if( isset($cat_prod_ids[$_prev_pos]) ) {
+        $_prev_prod = Mage::getModel('catalog/product')->load( $cat_prod_ids[$_prev_pos] );
+    } else {
+        $_prev_prod = Mage::getModel('catalog/product')->load( end($cat_prod_ids) );
+    }
+?>
+
+
+<div class="child-cate row">
+    <ul class="large-12 columns">
+        <?php foreach ($_subCate as $_sub): ?>
+            <?php if ( in_array($_sub->getId(), $cat_ids)): ?>
+                <li><a class="active"><?php echo $_sub->getName() ?></a></li>
+            <?php else: ?>
+                <li><a href="<?php echo $_sub->getUrl() ?>"><?php echo $_sub->getName() ?></a></li>
+            <?php endif; ?>
+        <?php endforeach; ?>
+    </ul>
+    <ul class="large-12 columns sub-cate">
+        <?php foreach ($_subCate as $_sub): ?>
+            <?php if (in_array($_sub->getId(), $cat_ids)): $_subSub = $_sub->getChildrenCategories(); ?>
+                <?php foreach ($_subSub as $_xsub): ?>
+                    <?php if (in_array($_xsub->getId(), $cat_ids)): ?>
+                        <li><a class="active"><?php echo $_xsub->getName() ?></a></li>
+                    <?php else: ?>
+                        <li><a href="<?php echo $_xsub->getUrl() ?>"><?php echo $_xsub->getName() ?></a></li>
+                    <?php endif; ?>
+                <?php endforeach ?>
+            <?php endif; ?>
+         <?php endforeach; ?>
+    </ul>
+</div>
+
+
+<script type="text/javascript">
+    var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
+</script>
+
+<div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+<div class="product-view">
+    <div class="product-essential row">
+        <form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
+            <?php echo $this->getBlockHtml('formkey') ?>
+
+            <div class="no-display">
+                <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
+                <input type="hidden" name="related_product" id="related-products-field" value="" />
+            </div>
+
+            
+
+            <div class="product-top" id="product-top">
+
+                <div class="top">
+
+                    <div class="product-share">
+                        <a class="share-btn">SHARE</a>
+                    </div>
+
+                    <div class="product-next-prev" id="product-next-prev">
+                        <?php if($_prev_prod != NULL): ?>
+                            <a href="<?php print $_prev_prod->getUrlPath(); if($search_parameter):?>?search=1<?php endif;?>"><span><?php echo $this->__('Prev') ?></span></a>
+                        <?php endif; ?>
+                        <span> | </span>
+                        <?php if($_next_prod != NULL): ?>
+                            <a href="<?php print $_next_prod->getUrlPath(); if($search_parameter):?>?search=1<?php endif;?>"><span><?php echo $this->__('Next') ?></span></a>
+                        <?php endif; ?>
+                    </div>
+
+                </div>
+                
+                <div class="product-img-box">
+                    <?php echo $this->getChildHtml('media') ?>
+                </div>
+
+
+
+                <div class="product-shop">
+                    <div class="product-name">
+                        <h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
+                    </div>
+
+                    <?php if ($this->canEmailToFriend()): ?>
+                        <p class="email-friend"><a href="<?php echo $this->helper('catalog/product')->getEmailToFriendUrl($_product) ?>"><?php echo $this->__('Email to a Friend') ?></a></p>
+                    <?php endif; ?>
+
+                    <?php echo $this->getReviewsSummaryHtml($_product, false, true)?>
+                    <?php echo $this->getChildHtml('alert_urls') ?>
+                    <?php echo $this->getChildHtml('product_type_data') ?>
+                    <?php echo $this->getTierPriceHtml() ?>
+                    <?php //echo $this->getChildHtml('extrahint') ?>
+
+                    <?php if (!$this->hasOptions()):?>
+                        <div class="add-to-box">
+                            <?php if($_product->isSaleable()): ?>
+                                <?php echo $this->getChildHtml('addtocart') ?>
+                            <?php endif; ?>
+                            <?php //echo $this->getChildHtml('addto') ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php //if ($_product->getShortDescription()):?>
+                        <div id="product-info">
+                            <div class="prd-info-wrap">
+                                <h2 class="active"><?php echo $this->__('Description') ?></h2>
+                                <div class="prd-info prd-info-des active">
+                                    <?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?>
+                                </div>
+                            </div>
+                            <div class="prd-info-wrap">
+                                <h2><?php echo $this->__('Care') ?></h2>
+                                <div class="prd-info prd-info-care">
+                                    <?php echo $_product->getCare() ?>
+                                </div>
+                            </div>
+                            <div class="prd-info-wrap">
+                                <h2><?php echo $this->__('Delivery') ?></h2>
+                                <div class="prd-info prd-info-deli">
+                                    <?php echo $_product->getDelivery() ?>
+                                </div>
+                            </div>
+                        </div>
+                    <?php //endif;?>
+
+                    <div class="product-colour"><span>Colour </span><br /><span><?php echo $_product->getColour() ?></span></div>
+
+                    <?php if ($_product->isSaleable() && $this->hasOptions()):?>
+                        <?php echo $this->getChildChildHtml('container1', '', true, true) ?>
+                    <?php endif;?>
+                    <?php if ($_product->isSaleable() && $this->hasOptions()):?>
+                        <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
+                    <?php endif;?>
+
+                    <?php echo $this->getChildHtml('other');?>
+
+                </div>
+
+            </div>
+
+            <div class="product-upsell">
+                <?php echo $this->getChildHtml('upsell_products') ?>
+            </div>
+        </form>
+        <script type="text/javascript">
+        //<![CDATA[
+            var productAddToCartForm = new VarienForm('product_addtocart_form');
+            productAddToCartForm.submit = function(button, url) {
+                if (this.validator.validate()) {
+                    var form = this.form;
+                    var oldUrl = form.action;
+
+                    if (url) {
+                       form.action = url;
+                    }
+                    var e = null;
+                    try {
+                        this.form.submit();
+                    } catch (e) {
+                    }
+                    this.form.action = oldUrl;
+                    if (e) {
+                        throw e;
+                    }
+
+                    if (button && button != 'undefined') {
+                        button.disabled = true;
+                    }
+                }
+            }.bind(productAddToCartForm);
+
+            productAddToCartForm.submitLight = function(button, url){
+                if(this.validator) {
+                    var nv = Validation.methods;
+                    delete Validation.methods['required-entry'];
+                    delete Validation.methods['validate-one-required'];
+                    delete Validation.methods['validate-one-required-by-name'];
+                    // Remove custom datetime validators
+                    for (var methodName in Validation.methods) {
+                        if (methodName.match(/^validate-datetime-.*/i)) {
+                            delete Validation.methods[methodName];
+                        }
+                    }
+
+                    if (this.validator.validate()) {
+                        if (url) {
+                            this.form.action = url;
+                        }
+                        this.form.submit();
+                    }
+                    Object.extend(Validation.methods, nv);
+                }
+            }.bind(productAddToCartForm);
+        //]]>
+        </script>
+    </div>
+
+    <div class="product-collateral">
+        <?php //echo $this->getChildHtml('info_tabs') ?>
+        <?php echo $this->getChildHtml('product_additional_data') ?>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    jQuery(window).load(function() {
+        var limit = jQuery('#more-views ul li:last-child').offset().top - 50;
+        jQuery('.product-shop').scrollToFixed({ 
+            zIndex: 99,
+            limit: limit,
+        });
+        jQuery('.product-share').scrollToFixed({ 
+            zIndex: 99,
+            limit: limit,
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $j = jQuery.noConflict();
+
+    var wH = $j(window).height();
+    var wW = $j(window).width();
+    var wRatio = wW / wH;
+
+    jQuery(document).ready(function() {
+
+        $j('.more-views > ul > li').click(function() {
+            var itemClass = $j(this).attr('class');
+            var item = $j('.images-zoom-wrap ul li.'+itemClass);
+
+            
+            $j('.images-zoom-wrap').show();
+            $j('.zoom-loader').show();
+
+            
+            var url = item.find('img').attr('data-src');
+            item.find('img').attr('src', url);
+            item.find('img').load(function() {
+
+                $j(window).scrollTop(0);
+                $j('.zoom-loader').hide();
+                $j('.page').css('margin-top', '0');
+                $j('body').css('overflow', 'hidden');
+                $j(this).css('width', $j(window).width());
+                item.fadeIn('slow');
+                $j('.btn-handler').fadeIn('slow');
+            });
+            
+
+            $j('.product-next-prev').css('position', 'normal');
+            $j('.product-shop').css('position', 'normal');
+
+        });
+
+        function moveBox(e, img) {
+
+            var imgH = img.height();
+            var wH = $j(window).height();
+            var range = imgH - wH;
+            var ratio = range / wH;
+            var speed = e.clientY * ratio;
+
+            // TweenLite.to(img, 1.2, { css: { top: '-' + speed, ease : Cubic.easeOut }});
+            TweenLite.to(img, 1, { css: { transform:'translate3d(0px,' + '-'+speed+'px' + ', 0px)', ease:Cubic.easeOut }});
+        }
+
+
+        $j('.images-zoom-wrap ul li img').mousemove(function(ev) {
+            moveBox(ev, $j(this));
+        });
+
+        $j(window).resize(function(){
+            $j('.images-zoom-wrap ul li img').each(function() {
+                $j(this).css('width', $j(window).width());
+                // if ( $j(this).height() < $j(window).height() ) {
+                //     $j(this).css('height', $j(window).height());
+                // };
+            });  
+        });
+
+        $j('.close-icon').click(function() {
+            $j('.page').css('margin-top', '45px');
+            $j('body').css('overflow', 'visible');
+
+            $j('.images-zoom-wrap ul li').hide();
+            $j('.btn-handler').hide();
+            $j('.images-zoom-wrap').fadeOut('2000');
+        });
+
+        $j('#view-next-zoom').click(function(ev) {
+            //alert('next');
+            $j('.zoom-loader').show();
+            var curShow = $j('.images-zoom li:visible');
+            var curNext = curShow.next();
+
+            if (curNext.length == 0) {
+                curNext = curShow.prevAll().last();
+            };
+
+            if (curNext) {
+                var nxtImg = curNext.find('img');
+                nxtImg.attr('src', nxtImg.attr('data-src'));
+                nxtImg.load(function() {
+                    $j('.zoom-loader').hide();
+                    nxtImg.css('width', $j(window).width());
+                    curShow.fadeOut('slow');
+                    curNext.fadeIn('slow');
+                });
+            };
+            
+        });
+
+        $j('#view-prev-zoom').click(function(ev) {
+            //alert('prev');
+            $j('.zoom-loader').show();
+            var curShow = $j('.images-zoom li:visible');
+            var curPrev = curShow.prev();
+
+            if(curPrev.length == 0) {
+                curPrev = curShow.nextAll().last();
+            }
+
+            if ( curPrev ) {
+                var prevImg = curPrev.find('img');
+                prevImg.attr('src', prevImg.attr('data-src'));
+                prevImg.load(function() {
+                    $j('.zoom-loader').hide();
+                    prevImg.css('width', $j(window).width());
+                    curShow.fadeOut('slow');
+                    curPrev.fadeIn('slow');
+                });
+            };
+        });
+
+    });
+</script>
+
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        jQuery('#product-info .prd-info-wrap h2').click(function() {
+            jQuery(this).toggleClass('active');
+            jQuery(this).closest('.prd-info-wrap').find('.prd-info').slideToggle('500');
+            jQuery(this).closest('#product-info').find('.prd-info-wrap h2').not(this).removeClass('active');
+            jQuery(this).closest('#product-info').find('.prd-info-wrap h2').not(this).closest('.prd-info-wrap').find('.prd-info').slideUp('500');
+        });
+    });
+</script>
+
+

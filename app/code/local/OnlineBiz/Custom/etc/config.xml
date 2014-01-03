@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <OnlineBiz_Custom>
+            <version>0.1.1</version>
+        </OnlineBiz_Custom>
+    </modules>
+	
+    <frontend>
+        <routers>
+            <custom>
+                <use>standard</use>
+                <args>
+                    <module>OnlineBiz_Custom</module>
+                    <frontName>custom</frontName>
+                </args>
+            </custom>
+        </routers>
+
+        <events>
+
+        </events>
+
+        <layout>
+            
+        </layout>
+    </frontend>
+
+    <global>
+        <blocks>
+            <custom>
+                <class>OnlineBiz_Custom_Block</class>
+            </custom>
+            <adminhtml>
+                <rewrite>
+                    <cms_block_edit_form>OnlineBiz_Custom_Block_Adminhtml_Cms_Block_Edit_Form</cms_block_edit_form>
+                </rewrite>
+            </adminhtml>
+        </blocks>
+		<models>
+			<custom>
+                <class>OnlineBiz_Custom_Model</class>
+				<resourceModel>custom_mysql4</resourceModel>
+            </custom>
+            <custom_mysql4>
+                <class>OnlineBiz_Custom_Model_Mysql4</class>
+            </custom_mysql4>
+		</models>
+        <resources>
+            <custom_setup>
+                <setup>
+                    <module>OnlineBiz_Custom</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </custom_setup>
+            <custom_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </custom_write>
+            <custom_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </custom_read>
+        </resources>
+		<helpers>
+			<custom>
+                <class>OnlineBiz_Custom_Helper</class>
+            </custom>
+        </helpers>
+    </global>
+
+    <default>
+        
+    </default>
+</config>

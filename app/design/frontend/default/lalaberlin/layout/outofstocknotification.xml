@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+	     <reference name="head">
+	        <action method="addJs" ifconfig="Outofstocknotification/general/activate_apptha_outofstock_enable"><script>outofstocknotification/outofstocknotification.js</script></action>
+	        <action method="addCss" ifconfig="Outofstocknotification/general/activate_apptha_outofstock_enable"><stylesheet>outofstocknotification/outofstocknotification.css</stylesheet></action>
+	     </reference>
+    </default>
+    
+   
+    
+   <PRODUCT_TYPE_simple>
+   		<update handle="product.info.simple"/>
+        <reference name="product.info">
+            <block type="outofstocknotification/view" name="view" as="view"  />
+        </reference>
+    </PRODUCT_TYPE_simple>
+    
+<!--    <PRODUCT_TYPE_configurable>
+   		<update handle="product.info.configurable"/>
+        <reference name="product.info">
+            <block type="outofstocknotification/view" name="view" as="view" />
+        </reference>
+    </PRODUCT_TYPE_configurable>-->
+    <PRODUCT_TYPE_configurable translate="label" module="catalog">
+        <label>Catalog Product View (Configurable)</label>
+        <update handle="product.info.configurable"/>
+        <reference name="product.info">
+            <block type="outofstocknotification/view" name="view" as="view" />
+        </reference>
+        <reference name="product.info.options.wrapper">
+            <block type="catalog/product_view_type_configurable" name="product.info.options.configurable" as="options_configurable" before="-">
+                <action method="setTemplate" ifconfig="Outofstocknotification/general/activate_apptha_outofstock_enable">
+                <template>outofstocknotification/catalog/product/view/type/options/configurable.phtml</template>
+            </action>
+            </block>
+        </reference>
+    </PRODUCT_TYPE_configurable>
+    
+    <PRODUCT_TYPE_grouped>
+   		<update handle="product.info.grouped"/>
+        <reference name="product.info">
+            <block type="outofstocknotification/grouped" name="grouped" as="grouped" />
+        </reference>
+    </PRODUCT_TYPE_grouped>
+    
+    <PRODUCT_TYPE_virtual>
+   		<update handle="product.info.virtual"/>
+        <reference name="product.info">
+            <block type="outofstocknotification/view" name="view" as="view" />
+        </reference>
+    </PRODUCT_TYPE_virtual>
+    
+    <PRODUCT_TYPE_downloadable >
+    	<update handle="product.info.downloadable" />
+               <reference name="product.info.downloadable">
+       		    	 <block type="outofstocknotification/downloadable" name="downloadable"  as="view" />
+        	  </reference>
+       
+    </PRODUCT_TYPE_downloadable>
+    
+    <!-- for bundle products -->
+    <PRODUCT_TYPE_bundle>
+    		<update handle="product.info.bundle" />
+               <reference name="product.info.bundle">
+       		    	 <block type="outofstocknotification/bundle" name="bundle"  as="view" />
+        	  </reference>
+    
+    </PRODUCT_TYPE_bundle>
+    
+    <outofstocknotification_index_index>
+        <reference name="content">
+            <block type="outofstocknotification/outofstocknotification" name="outofstocknotification" template="outofstocknotification/outofstocknotification.phtml" />
+        </reference>
+    </outofstocknotification_index_index>
+
+</layout> 

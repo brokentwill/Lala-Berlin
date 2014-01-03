@@ -1,0 +1,183 @@
+
+
+
+<?php  
+
+	$collection = Mage::getModel('cms/block')->getCollection()
+    				->addFieldToFilter('identifier', array('like'=>'fw14_'.'%'))
+    				->addFieldToFilter('is_active', 1)
+    				->setOrder('position', 'ASC')
+    				->getData();
+
+    foreach ($collection as $cms) {
+    	//echo '<pre>';
+    	//var_dump($cms);
+    }
+
+?>
+
+
+<div class="child-cate row columns">
+	<ul class="large-12 columns">
+		<li>LOOKBOOK</li>
+		<li><a href="#">SHOW</a></li>
+		<li><a href="#">INFO</a></li>
+	</ul>
+</div>
+
+<div class="main home-main" role="main">
+	<section id="news" class="news">
+		<?php foreach ($variable as $key => $value): ?>
+			<div class="tiles section01 count2">
+				<div class="tile order01">
+					<p class=""><img src="<?php echo $this->getSkinUrl('images/img/1.png') ?>"/></p>
+				</div>
+				<div class="tile order02">
+					<p class=""><img src="<?php echo $this->getSkinUrl('images/img/2.png') ?>"/></p>
+				</div>
+			</div>
+		<?php endforeach ?>
+	</section>
+</div>
+
+
+<!-- <div class="main home-main" role="main">
+
+	<section id="news" class="news">
+
+		<div class="tiles section01 count2">
+			<div class="tile order01">
+				<p class=""><img src="<?php echo $this->getSkinUrl('images/img/1.png') ?>"/></p>
+			</div>
+			<div class="tile order02">
+				<p class=""><img src="<?php echo $this->getSkinUrl('images/img/2.png') ?>"/></p>
+			</div>
+		</div>
+
+		<div class="tiles section02 count4">
+			<div class="warp warp-section02">
+				<div class="tile order03">
+					<p class=""><img src="<?php echo $this->getSkinUrl('images/img/3.png') ?>"/></p>
+				</div>
+				<div class="tile order04">
+					<p class=""><img src="<?php echo $this->getSkinUrl('images/img/5.png') ?>" /></p>
+				</div>
+			</div>
+			<div class="tile order05">
+				<p class=""><img src="<?php echo $this->getSkinUrl('images/img/4.png') ?>" /></p>
+				<a class="block-link news-link centroid-wrap" href="#">
+					<div class="news-excerpt centroid">
+						<h3 class="news-title">Shop <br />S/S Collection 2014</h3>
+					</div>
+				</a>
+			</div>
+			<div class="tile order06">
+				<p class=""><img src="<?php echo $this->getSkinUrl('images/img/6.png') ?>" /></p>
+			</div>
+		</div>
+
+		<div class="tiles section03 count4">
+			<div class="tile order07">
+				<p class=""><img src="<?php echo $this->getSkinUrl('images/img/7.png') ?>"/></p>
+				<a class="block-link news-link centroid-wrap" href="#">
+					<div class="news-excerpt centroid">
+						<h3 class="news-title">About</h3>
+					</div>
+				</a>
+			</div>
+			<div class="warp warp-section03">
+				<div class="tile order08">
+					<p class=""><img src="<?php echo $this->getSkinUrl('images/img/8.png') ?>" /></p>
+				</div>
+				<div class="tile order09">
+					<p class=""><img src="<?php echo $this->getSkinUrl('images/img/9.png') ?>" /></p>
+				</div>
+			</div>
+			<div class="tile order10">
+				<p class=""><img src="<?php echo $this->getSkinUrl('images/img/10.png') ?>" /></p>
+			</div>
+		</div>
+
+		<div class="tiles section04 count4">
+			<div class="tile order11">
+				<p class=""><img src="<?php echo $this->getSkinUrl('images/img/11.png') ?>"/></p>
+			</div>
+			<div class="tile order12">
+				<p class=""><img src="<?php echo $this->getSkinUrl('images/img/12.png') ?>" /></p>
+			</div>
+			<div class="warp warp-section04">
+				<div class="tile order13">
+					<p class=""><img src="<?php echo $this->getSkinUrl('images/img/13.png') ?>" /></p>
+				</div>
+				<div class="tile order14">
+					<p class=""><img src="<?php echo $this->getSkinUrl('images/img/14.png') ?>" /></p>
+				</div>
+			</div>
+		</div>
+
+		<div class="tiles section05 count4">
+			<div class="warp warp-section05">
+				<div class="tile order15">
+					<p class=""><img src="<?php echo $this->getSkinUrl('images/img/15.png') ?>"/></p>
+				</div>
+				<div class="tile order16">
+					<p class=""><img src="<?php echo $this->getSkinUrl('images/img/18.png') ?>" /></p>
+				</div>
+			</div>
+			<div class="tile order17">
+				<p class=""><img src="<?php echo $this->getSkinUrl('images/img/17.png') ?>" /></p>
+			</div>
+			<div class="tile order18">
+				<p class=""><img src="<?php echo $this->getSkinUrl('images/img/16.png') ?>" /></p>
+			</div>
+		</div>
+
+		<div class="tiles section06 count5">
+			<div class="warp warp-section06">
+				<div class="tile order19">
+					<p class=""><img src="<?php echo $this->getSkinUrl('images/img/19.png') ?>"/></p>
+				</div>
+				<div class="tile order20">
+					<p class=""><img src="<?php echo $this->getSkinUrl('images/img/20.png') ?>" /></p>
+				</div>
+			</div>
+			<div class="tile order21">
+				<p class=""><img src="<?php echo $this->getSkinUrl('images/img/21.png') ?>" /></p>
+			</div>
+			<div class="warp warp-section06-02">
+				<div class="tile order22">
+					<p class=""><img src="<?php echo $this->getSkinUrl('images/img/22.png') ?>" /></p>
+				</div>
+				<div class="tile order23">
+					<p class=""><img src="<?php echo $this->getSkinUrl('images/img/23.png') ?>" /></p>
+				</div>
+			</div>
+		</div>
+
+		<div class="tiles section07 count7">
+			<div class="warp warp-section07">
+				<div class="tile order24">
+					<p class=""><img src="<?php echo $this->getSkinUrl('images/img/24.png') ?>"/></p>
+				</div>
+				<div class="tile order25">
+					<p class=""><img src="<?php echo $this->getSkinUrl('images/img/25.png') ?>" /></p>
+				</div>
+				<div class="tile order26">
+					<p class=""><img src="<?php echo $this->getSkinUrl('images/img/26.png') ?>" /></p>
+				</div>
+				<div class="tile order27">
+					<p class=""><img src="<?php echo $this->getSkinUrl('images/img/28.png') ?>" /></p>
+				</div>
+				<div class="tile order28">
+					<p class=""><img src="<?php echo $this->getSkinUrl('images/img/29.png') ?>" /></p>
+				</div>
+				<div class="tile order29">
+					<p class=""><img src="<?php echo $this->getSkinUrl('images/img/30.png') ?>" /></p>
+				</div>
+			</div>
+			<div class="tile order30">
+				<p class=""><img src="<?php echo $this->getSkinUrl('images/img/27.png') ?>" /></p>
+			</div>
+		</div>
+	</section>
+</div> -->

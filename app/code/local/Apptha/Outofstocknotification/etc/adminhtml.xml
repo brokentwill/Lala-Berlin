@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <Outofstocknotification translate="title" module="outofstocknotification">
+                                        <title>out of stock notification</title>
+                                        <sort_order>1123</sort_order>
+                                    </Outofstocknotification>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                 </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

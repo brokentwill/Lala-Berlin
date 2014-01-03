@@ -1,0 +1,107 @@
+<?php $posts = $this->getPosts(); ?>
+<div id="messages_product_view">
+    <?php Mage::app()->getLayout()->getMessagesBlock()->setMessages(Mage::getSingleton('customer/session')->getMessages(true)); ?>
+    <?php echo Mage::app()->getLayout()->getMessagesBlock()->getGroupedHtml(); ?>
+</div>
+
+<?php //echo $this->getChildHtml('aw_blog_comments_toolbar'); ?>
+<?php 
+
+    $cats = Mage::getModel('blog/cat')
+                ->getCollection()
+                ->addStoreFilter(Mage::app()->getStore()->getId())
+                ->setOrder('sort_order', 'asc');
+
+?>
+
+
+<!-- <iframe width="560" height="315" src="//www.youtube.com/embed/4z9TdDCWN7g" frameborder="0" allowfullscreen></iframe> -->
+<!-- <video src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.webm" controls autobuffer preload></video> -->
+<div class="child-cate row columns">
+    <ul class="large-12 columns">
+        <?php foreach ($cats as $cat): $url = $cat->getIdentifier() ?>
+            <li><a href="<?php echo $this->getBlogUrl('cat/' . $url) ?>"><?php echo $cat->getTitle() ?></a></li>
+        <?php endforeach ?>
+    </ul>
+</div>
+
+<ul class="blog-posts">
+<?php foreach ($posts as $post): ?>
+    <?php  
+        $dumpMedia = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . $post->getFeatureMedia();
+        $dumpId[] = $post->getPostId();
+    ?>
+    <li class="postWrapper">
+        <div class="postTitle">
+            <?php  
+                $dt = explode(' ', $post->getCreatedTime());
+
+            ?>
+            <h3><?php echo $dt[0]; ?></h3>
+            <img src="<?php echo $dumpMedia ?>" alt="">
+        </div>
+        <div class="postContent">
+            <h2><a href="<?php echo $post->getAddress(); ?>" ><?php echo $post->getTitle(); ?></a></h2>
+            <div class="content"><?php echo $post->getPostContent(); ?></div> 
+        </div>
+
+        <?php echo $this->getBookmarkHtml($post) ?>
+        <div class="tags"><?php echo $this->getTagsHtml($post) ?></div>
+        <div class="postDetails">
+            <?php if ($this->getCommentsEnabled()): ?>
+                <?php echo $post->getCommentCount(); ?> <a href="<?php echo $post->getAddress(); ?>#commentBox" >Comments</a> |
+            <?php endif; ?>
+            <?php $postCats = $post->getCats(); ?>
+        </div>
+    </li>
+<?php endforeach; ?>
+</ul>
+
+<p class="blog-load">
+    <input class="id-hidden" type="hidden">
+    <img src="<?php echo $this->getSkinUrl('img/loading.gif') ?>">
+    <button class="button" onclick="layzyLoad(); return false;">View More</button>
+</p>
+
+<?php //echo $this->getChildHtml('aw_blog_comments_toolbar'); ?>
+
+
+<?php 
+    $jsonId = json_encode($dumpId);
+?>
+
+
+<script type="text/javascript">
+    $j = jQuery.noConflict();
+
+    function layzyLoad() {
+
+        var data;
+        jQuery('.blog-load img').show();
+        var Url = '<?php echo $this->getUrl() ?>' + 'custom/layzy/load/';
+        if (jQuery('.id-hidden').val()) {
+            data = 'mergeId=' + jQuery('.id-hidden').val(); 
+        } else {
+            data = 'ids=' + '<?php echo $jsonId ?>' ; 
+        }
+
+        jQuery.ajax({  
+            type: 'POST',  
+            url: Url,  
+            data: data, 
+            success: function(reponse){
+                jQuery('.blog-load img').hide();
+                if (reponse) {
+                    var res = jQuery.parseJSON(reponse);
+                    jQuery('.blog-posts').append(res.html);
+                    jQuery('.id-hidden').val(res.newId);
+                } else {
+                    jQuery('.blog-load button').text('No more post')
+                }
+            },
+            error: function(){
+                alert('error');
+            }
+        });
+    }
+</script>
