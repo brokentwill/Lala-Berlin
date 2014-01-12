@@ -33,8 +33,29 @@
 <?php $_categories   = $_helper->getStoreCategories() ?>
 
 <?php
-Mage::getSingleton('core/session', array('name' => 'frontend'));
-$sessionCustomer = Mage::getSingleton("customer/session");
+	Mage::getSingleton('core/session', array('name' => 'frontend'));
+	$sessionCustomer = Mage::getSingleton("customer/session");
+?>
+<?php
+	$cms = Mage::getSingleton('cms/page')->getIdentifier();
+	$router = Mage::app()->getFrontController()->getRequest()->getRouteName();
+	$ig = false;
+	$sh = false;
+	$ab = false;
+	$bl = false;
+	if ($router == 'catalog') {
+		$sh = true;
+	}
+	if ($router == 'igallery') {
+		$ig = true;
+	}
+	if ($router == 'cms') {
+		$ab = true;
+	}
+	if ($router == 'blog') {
+		$bl = true;
+	}
+	
 ?>
 <div id="navbar" class="header-container scroll-collapse hover-collapse active contain-to-grid">
 	<nav class="top-bar" data-topbar>
@@ -47,19 +68,15 @@ $sessionCustomer = Mage::getSingleton("customer/session");
 			<?php if (count($_categories) > 0): ?>
 				<ul class="left">
 					<li class="divider"></li>
-					<?php foreach($_categories as $_category): ?>
-						<li>
-							<a href="<?php echo $_helper->getCategoryUrl($_category) ?>">
-								<?php echo $_category->getName() ?>
-							</a>
-						</li>
-						<li class="divider"></li>
-					<?php endforeach; ?>
-					<li><a href="<?php echo $this->getUrl('journal') ?>"><?php echo $this->__('Journal') ?></a></li>
+					<li><a class="<?php if($ig) echo 'active' ?>" href="<?php echo $this->getUrl('collections') ?>"><?php echo $this->__('Collections') ?></a></li>
 					<li class="divider"></li>
-					<li><a href="<?php echo $this->getUrl('about') ?>"><?php echo $this->__('About') ?></a></li>
+					<li><a class="<?php if($sh) echo 'active' ?>" href="<?php echo $this->getUrl('shop.html') ?>"><?php echo $this->__('Shop') ?></a></li>
 					<li class="divider"></li>
-					<li class="contact"><a href="<?php echo $this->getUrl('contact') ?>"><?php echo $this->__('Contact') ?></a></li>
+					<li><a class="<?php if($ab && $cms == 'about') echo 'active' ?>" href="<?php echo $this->getUrl('about') ?>"><?php echo $this->__('About') ?></a></li>
+					<li class="divider"></li>
+					<li><a class="<?php if($bl) echo 'active' ?>" href="<?php echo $this->getUrl('journal') ?>"><?php echo $this->__('#Lalaberlin') ?></a></li>
+					<li class="divider"></li>
+					<li class="contact"><a class="<?php if($ab && $cms == 'contact') echo 'active' ?>" href="<?php echo $this->getUrl('contact') ?>"><?php echo $this->__('Contact') ?></a></li>
 					<li class="divider contact"></li>
 				</ul>
 			<?php endif; ?>
@@ -67,6 +84,7 @@ $sessionCustomer = Mage::getSingleton("customer/session");
 			<ul class="right">
 				<?php echo $this->getChildHtml('store_language') ?>
 				<li class="divider"></li>
+				<li><a style="padding:0;"><span class="divi-span"></span></a></li>
 				<li class="account-link"><a href="<?php echo $this->getUrl('customer/account') ?>"><?php echo $this->__('Account') ?></a></li>
 			<?php if ($sessionCustomer->isLoggedIn()): ?>
 				<li class="divider"></li>

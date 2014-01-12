@@ -175,7 +175,7 @@ div.facebook .pp_bottom .pp_right{background:url(../images/prettyPhoto/facebook/
 div.pp_pic_holder a:focus{outline:none}
 div.pp_overlay{background:#191919;display:none;left:0;position:absolute;top:0;width:100%;z-index:9500}
 div.pp_pic_holder{display:none;position:absolute;width:100px;z-index:10000; min-width: 400px; overflow: visible !important;}
-.pp_content{height:40px;min-width:400px}
+.pp_content{height:40px;min-width:400px;/* overflow: hidden;*/}
 * html .pp_content{width:40px}
 .pp_content_container{position:relative;text-align:left;width:100%}
 .pp_content_container .pp_left{padding-left:20px}
@@ -184,7 +184,7 @@ div.pp_pic_holder{display:none;position:absolute;width:100px;z-index:10000; min-
 .pp_description{display:none;margin:0}
 .pp_social{float:left;margin:0; clear: both; position: absolute; bottom: 35px;}
 .pp_social .facebook{cursor: pointer; float:left;width:185px;overflow:hidden; padding: 5px 10px; text-align: center; border: 1px solid #474747; text-transform: uppercase; font-size: 11px; color: #fff;}
-.pp_social .facebook:hover a { color: #0079a1;}
+.pp_social .facebook:hover a { color: #000;}
 .pp_social .twitter{float:left}
 .pp_nav{clear:left;float:left;margin:5px 0 0; position: absolute;bottom: 0; width: 195px;}
 .pp_nav p{float:left;white-space:nowrap;margin:2px 4px}

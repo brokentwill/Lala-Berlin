@@ -10,9 +10,9 @@
 	display: block;
 	text-indent: -9999px;
 	background: url(../images/easyslider/circle.png) no-repeat center center;
-	width: 15px;
-	height: 16px;
-	margin-right: 5px;
+	width: 17px;
+	height: 17px;
+	margin-right: 10px;
 }
 .divSimpleSliderRotate a:hover {background: url(../images/easyslider/circle-active.png) no-repeat center center; }
 .divSimpleSliderRotate a.activeSlide {background: url(../images/easyslider/circle-active.png) no-repeat center center;}

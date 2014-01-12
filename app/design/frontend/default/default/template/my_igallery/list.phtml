@@ -90,7 +90,9 @@
 								<?php if (is_object($_gallery)) : ?>
 									<a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" alt="<?php echo $this->stripTags($_image->getImageDesc(), null, true) ?>" class="igallery-image" href="<?php echo $_image->getImageUrl() > '' ? $this->stripTags($_image->getImageUrl(), null, true) : $_helper->getImageUrl($_image->getFile()) ?>" <?php echo $_image->getImageUrl() > '' ? '':"rel=\"prettyPhoto[gallery][{$_gallery->getId()}]\"" ?> >
 										<img src="<?php echo $this->helper('igallery/image')->init($_image->getFile())?>" width="" height="" alt="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" />
-										<div class="overlay"><span><?php echo $this->stripTags($_image->getLabel(), null, true) ?></span></div>
+										<?php if ($_gallery->getIsParent() != 1): ?>
+											<div class="overlay"><span><?php echo $this->stripTags($_image->getLabel(), null, true) ?></span></div>
+										<?php endif ?>
 									</a>
 								<?php else : ?>
 									<a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" alt="<?php echo $this->stripTags($_image->getImageDesc(), null, true) ?>" class="igallery-image" href="<?php echo $_helper->getImageUrl($_image->getFile()); ?>" rel="prettyPhoto[gallery]"><img src="<?php echo $this->helper('igallery/image')->init($_image->getFile())->resize($_size->getWidth(), $_size->getHeight()); ?>" alt="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" /></a>
@@ -99,9 +101,9 @@
 								<?php else: ?>
 									<div class="button-group">
 										<?php if($_image->getImageUrl()): ?>
-											<a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" alt="<?php echo $this->stripTags($_image->getImageDesc(), null, true) ?>" class="a_view" href="<?php echo $_helper->getImageUrl($_image->getFile()); ?>" rel="prettyPhoto[gallery][<?php echo $_gallery->getId() ?>]"></a>
+											<a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" alt="<?php echo $this->stripTags($_image->getImageDesc(), null, true) ?>" class="a_view" href="<?php echo $_helper->getImageUrl($_image->getFile()); ?>" rel="prettyPhoto[gallery][<?php echo $_gallery->getId() ?>]"><span class="txt">Open Slideshow</span><span class="icon"></span></a>
 										<?php endif; ?>
-										<a class="a_zoom link <?php echo $_image->getImageUrl()?'':'hidden' ?>" href="<?php echo $this->stripTags($_image->getImageUrl(), null, true) ?>"></a>
+										<a class="a_zoom link <?php echo $_image->getImageUrl()?'':'hidden' ?>" href="<?php echo $this->stripTags($_image->getImageUrl(), null, true) ?>"><span class="txt">View Product</span><span class="icon"></span></a>
 									</div>
 								<?php endif; ?>
 							</li>
@@ -133,16 +135,28 @@
 		</div>
 	</div>
 </div>
-<script type="text/javascript">
 
-	jQuery(window).bind("load", function() {
-		jQuery('#container').masonry({
-			itemSelector: '.item',
-			// set columnWidth a fraction of the container width
-			columnWidth: function( containerWidth ) {
-				return containerWidth / 6;
-			}
+<?php if ($_gallery->getIsParent() != 1): ?>
+	<script type="text/javascript">
+
+		jQuery(window).bind("load", function() {
+			jQuery('#container').masonry({
+				itemSelector: '.item',
+				// set columnWidth a fraction of the container width
+				columnWidth: function( containerWidth ) {
+					return containerWidth / 6;
+				}
+			});
+		});
+	</script>	
+<?php endif ?>
+<script type="text/javascript">decorateGeneric($$('ul.collection-selector li'), ['odd','even','first','last'])</script>
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		jQuery('.a_view, .a_zoom').hover(function() {
+			jQuery(this).find('.txt').animate({left: '0%'}, 300);
+		}, function() {
+			jQuery(this).find('.txt').animate({left: '78%'}, 300);
 		});
 	});
 </script>
-<script type="text/javascript">decorateGeneric($$('ul.collection-selector li'), ['odd','even','first','last'])</script>

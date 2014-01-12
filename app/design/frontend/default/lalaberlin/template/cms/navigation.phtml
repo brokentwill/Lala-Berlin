@@ -1,0 +1,16 @@
+
+
+
+<?php 
+	$cms = Mage::getSingleton('cms/page')->getIdentifier();
+	$router = Mage::app()->getFrontController()->getRequest()->getRouteName();
+?>
+
+
+<div class="child-cate row columns">
+	<ul class="large-12 columns">
+	<li><a class="<?php if($cms == 'about') echo 'active' ?>" href="<?php echo $this->getUrl('about') ?>">Our Story</a></li>
+	<li><a class="<?php if($cms == 'leyla') echo 'active' ?>"  href="<?php echo $this->getUrl('leyla') ?>">Leyla</a></li>
+	<li><a class="<?php if($cms == 'boutique') echo 'active' ?>"  href="<?php echo $this->getUrl('boutique') ?>">Boutique</a></li>
+	</ul>
+</div>
