@@ -88,20 +88,20 @@
 						<?php if ($_size) : ?>
 							<li class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?> <?php echo $class ?>">
 								<?php if (is_object($_gallery)) : ?>
-									<a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" class="igallery-image" href="<?php echo $_image->getImageUrl() > '' ? $this->stripTags($_image->getImageUrl(), null, true) : $_helper->getImageUrl($_image->getFile()) ?>" <?php echo $_image->getImageUrl() > '' ? '':"rel=\"prettyPhoto[gallery][{$_gallery->getId()}]\"" ?> >
+									<a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" alt="<?php echo $this->stripTags($_image->getImageDesc(), null, true) ?>" class="igallery-image" href="<?php echo $_image->getImageUrl() > '' ? $this->stripTags($_image->getImageUrl(), null, true) : $_helper->getImageUrl($_image->getFile()) ?>" <?php echo $_image->getImageUrl() > '' ? '':"rel=\"prettyPhoto[gallery][{$_gallery->getId()}]\"" ?> >
 										<img src="<?php echo $this->helper('igallery/image')->init($_image->getFile())?>" width="" height="" alt="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" />
 										<div class="overlay"><span><?php echo $this->stripTags($_image->getLabel(), null, true) ?></span></div>
 									</a>
 								<?php else : ?>
-									<a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" class="igallery-image" href="<?php echo $_helper->getImageUrl($_image->getFile()); ?>" rel="prettyPhoto[gallery]"><img src="<?php echo $this->helper('igallery/image')->init($_image->getFile())->resize($_size->getWidth(), $_size->getHeight()); ?>" alt="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" /></a>
+									<a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" alt="<?php echo $this->stripTags($_image->getImageDesc(), null, true) ?>" class="igallery-image" href="<?php echo $_helper->getImageUrl($_image->getFile()); ?>" rel="prettyPhoto[gallery]"><img src="<?php echo $this->helper('igallery/image')->init($_image->getFile())->resize($_size->getWidth(), $_size->getHeight()); ?>" alt="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" /></a>
 								<?php endif; ?>
 								<?php if($_gallery->getIsParent() == 1): ?>
 								<?php else: ?>
 									<div class="button-group">
-										<a class="button link <?php echo $_image->getImageUrl()?'':'hidden' ?>" href="<?php echo $this->stripTags($_image->getImageUrl(), null, true) ?>"><?php echo $this->__('View Product') ?></a>
 										<?php if($_image->getImageUrl()): ?>
-											<a class="button image fi-arrows-out" href="<?php echo $_helper->getImageUrl($_image->getFile()); ?>" rel="prettyPhoto[gallery][<?php echo $_gallery->getId() ?>]"></a>
+											<a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" alt="<?php echo $this->stripTags($_image->getImageDesc(), null, true) ?>" class="a_view" href="<?php echo $_helper->getImageUrl($_image->getFile()); ?>" rel="prettyPhoto[gallery][<?php echo $_gallery->getId() ?>]"></a>
 										<?php endif; ?>
+										<a class="a_zoom link <?php echo $_image->getImageUrl()?'':'hidden' ?>" href="<?php echo $this->stripTags($_image->getImageUrl(), null, true) ?>"></a>
 									</div>
 								<?php endif; ?>
 							</li>

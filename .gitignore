@@ -1,0 +1,14 @@
+/app/etc/local.xml
+/var/
+/media/
+/puppet/
+/sql/
+/phpMyAdmin/
+/TOBEDELETED/
+/.git-key/
+/*.zip
+/*.gz
+/*.gzip
+/*.tar
+/*.rar
+/*.sql

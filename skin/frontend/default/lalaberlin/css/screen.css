@@ -284,9 +284,9 @@ sub {
  */
 /* line 231, src/base/_normalize.scss */
 .cms-home .col-main img {
-  border: 0;
+  /*border: 0;
   max-width: 100%;
-  width: 100%;
+  width: 100%;*/
 }
 
 /*.cms-home .main-container { max-width: 112.5rem;}

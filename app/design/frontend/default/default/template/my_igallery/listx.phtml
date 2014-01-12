@@ -56,11 +56,13 @@
                         ?>
                         <?php $_size = $_helper->getImageSize($_image, 144, 100); ?>
                         <?php if ($_size) : ?>
-                            <li class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?> <?php echo $class ?>">
+                            <li class="on-home item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?> <?php echo $class ?>">
                                 <?php if (is_object($_gallery)) : ?>
-                                    <a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" class="igallery-image" href="<?php echo $_image->getImageUrl() > '' ? $this->stripTags($_image->getImageUrl(), null, true) : $_helper->getImageUrl($_image->getFile()) ?>" <?php echo $_image->getImageUrl() > '' ? '':"rel=\"prettyPhoto[gallery][{$_gallery->getId()}]\"" ?> >
+                                    <a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" class="igallery-image a-on-home" href="<?php echo $_image->getImageUrl() > '' ? $this->stripTags($_image->getImageUrl(), null, true) : 'javascript:void(0);' ?>"?>
                                         <img src="<?php echo $this->helper('igallery/image')->init($_image->getFile())?>" width="" height="" alt="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" />
-                                        <div class="overlay"><span><?php echo $this->stripTags($_image->getLabel(), null, true) ?></span></div>
+                                        <?php if ($_image->getImageUrl()): ?>
+                                            <div class="overlay"><span><?php echo $this->stripTags($_image->getLabel(), null, true) ?></span></div>
+                                        <?php endif ?>
                                     </a>
                                 <?php else : ?>
                                     <a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" class="igallery-image" href="<?php echo $_helper->getImageUrl($_image->getFile()); ?>" rel="prettyPhoto[gallery]"><img src="<?php echo $this->helper('igallery/image')->init($_image->getFile())->resize($_size->getWidth(), $_size->getHeight()); ?>" alt="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" /></a>
@@ -68,9 +70,9 @@
                                 <?php if($_gallery->getIsParent() == 1): ?>
                                     <?php else: ?>
                                         <div class="button-group">
-                                            <a class="button link <?php echo $_image->getImageUrl()?'':'hidden' ?>" href="<?php echo $this->stripTags($_image->getImageUrl(), null, true) ?>"><?php echo $this->__('View Product') ?></a>
+                                            <a class="a-on-home a_view button link <?php echo $_image->getImageUrl()?'':'hidden' ?>" href="<?php echo $this->stripTags($_image->getImageUrl(), null, true) ?>"></a>
                                             <?php if($_image->getImageUrl()): ?>
-                                                <a class="button image fi-arrows-out" href="<?php echo $_helper->getImageUrl($_image->getFile()); ?>" rel="prettyPhoto[gallery][<?php echo $_gallery->getId() ?>]"></a>
+                                                <a class="button image a_zoom" href="<?php echo $_helper->getImageUrl($_image->getFile()); ?>" rel="prettyPhoto[gallery][<?php echo $_gallery->getId() ?>]"></a>
                                             <?php endif; ?>
                                         </div>
                                 <?php endif; ?>
@@ -84,13 +86,17 @@
 </div>
 
 <script type="text/javascript">
-
     jQuery(window).bind("load", function() {
         jQuery('#container').masonry({
             itemSelector: '.item',
+            // isResizable: false,
             // set columnWidth a fraction of the container width
             columnWidth: function( containerWidth ) {
-                return containerWidth / 6;
+                if (jQuery(window).width() <= 700) {
+                    return containerWidth;
+                } else {
+                    return containerWidth / 6;
+                }
             }
         });
     });

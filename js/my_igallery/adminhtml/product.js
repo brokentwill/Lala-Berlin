@@ -143,6 +143,8 @@ Product.Igallery.prototype = {
                 .getFileElement(file, 'cell-label input').value;
         this.images[index].image_url = this
             .getFileElement(file, 'cell-image-url input').value;
+        this.images[index].image_desc = this
+            .getFileElement(file, 'cell-image-desc textarea').value;
 //        this.images[index].image_width = this
 //            .getFileElement(file, 'cell-image-width input').value;
 
@@ -193,6 +195,9 @@ Product.Igallery.prototype = {
         this.getFileElement(file, 'cell-label input').value = image.label;
         if(image.image_url > ''){
             this.getFileElement(file, 'cell-image-url input').value = image.image_url;
+        }
+        if(image.image_desc > ''){
+            this.getFileElement(file, 'cell-image-desc textarea').value = image.image_desc;
         }
         if(image.image_width > ''){
             this.getFileElement(file, 'cell-image-width option[value='+image.image_width+']').selected =1;
