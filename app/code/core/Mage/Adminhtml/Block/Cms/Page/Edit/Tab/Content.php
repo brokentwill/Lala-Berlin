@@ -87,10 +87,35 @@ class Mage_Adminhtml_Block_Cms_Page_Edit_Tab_Content
             'config'    => $wysiwygConfig
         ));
 
+        $fieldset = $form->addFieldset('content_fieldset_left', array('legend'=>Mage::helper('cms')->__('Content Extra One'),'class'=>'fieldset-wide'));
+
+        $contentField02 = $fieldset->addField('content_two', 'editor', array(
+            'name'      => 'content_two',
+            'style'     => 'height:18em;',
+            'required'  => true,
+            'wysiwyg'   => true,
+            'disabled'  => $isElementDisabled,
+            'config'    => $wysiwygConfig
+        ));
+
+        $fieldset = $form->addFieldset('content_fieldset_right', array('legend'=>Mage::helper('cms')->__('Content Extra Two'),'class'=>'fieldset-wide'));
+
+        $contentField03 = $fieldset->addField('content_three', 'editor', array(
+            'name'      => 'content_three',
+            'style'     => 'height:18em;',
+            'required'  => true,
+            'wysiwyg'   => true,
+            'disabled'  => $isElementDisabled,
+            'config'    => $wysiwygConfig
+        ));
+
         // Setting custom renderer for content field to remove label column
         $renderer = $this->getLayout()->createBlock('adminhtml/widget_form_renderer_fieldset_element')
                     ->setTemplate('cms/page/edit/form/renderer/content.phtml');
         $contentField->setRenderer($renderer);
+        $contentField02->setRenderer($renderer);
+        $contentField03->setRenderer($renderer);
+
 
         $form->setValues($model->getData());
         $this->setForm($form);

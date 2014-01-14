@@ -26,4 +26,18 @@ class Mgt_DeveloperToolbar_Model_Observer
     {
         Mage::app()->getLayout()->removeOutputBlock('core_profiler');
     }
+	public function addHandleUpdateLayout(Varien_Event_Observer $observer)
+	{
+		if(!Varien_Profiler::isEnabled())
+			return $this;
+		$update = $observer->getEvent()->getLayout()->getUpdate();
+        $handles = $update->getHandles();
+		$update->resetHandles();
+        foreach ($handles as $handle) {
+			$update->addHandle($handle);
+            if($handle =='default')
+				$update->addHandle('mgt_toolbar');
+        }
+		return $this;
+	}
 }

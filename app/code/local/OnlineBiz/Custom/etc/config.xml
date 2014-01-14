@@ -31,6 +31,11 @@
             <custom>
                 <class>OnlineBiz_Custom_Block</class>
             </custom>
+            <cms>
+                <rewrite>
+                    <page>OnlineBiz_Custom_Block_Page</page>
+                </rewrite>
+            </cms>
             <adminhtml>
                 <rewrite>
                     <cms_block_edit_form>OnlineBiz_Custom_Block_Adminhtml_Cms_Block_Edit_Form</cms_block_edit_form>
@@ -66,6 +71,17 @@
                 </connection>
             </custom_read>
         </resources>
+        <!-- <events>
+            <adminhtml_cms_page_edit_tab_content_prepare_form>
+                <observers>
+                    <custom_page_edit_tab_content>
+                        <type>singleton</type>
+                        <class>OnlineBiz_Custom_Model_Observer</class>
+                        <method>cmsField</method>
+                    </custom_page_edit_tab_content>
+                </observers>
+            </adminhtml_cms_page_edit_tab_content_prepare_form>
+        </events> -->
 		<helpers>
 			<custom>
                 <class>OnlineBiz_Custom_Helper</class>

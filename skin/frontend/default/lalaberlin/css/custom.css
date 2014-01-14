@@ -706,19 +706,19 @@ button.button:hover{background: #333;}
     .top-bar-section li .dropdown a:not(.button){line-height: 1em;}
     .top-bar-section ul li.account-link > a,
     .top-bar-section ul li.has-dropdown > a{font-size: .6em;padding: 0 15px;}
-    .top-bar-section ul li.has-dropdown > a span{opacity: .5;}
-    .top-bar-section ul li.has-dropdown > a span.active{opacity: 1;}
+    .top-bar-section ul li.has-dropdown > a span{color: #000;}
+    .top-bar-section ul li.has-dropdown > a span.active{color: #8d8d8d;}
     .top-bar-section ul li:hover > a.top-link-cart span{color: #000;}
-    .top-bar-section li a:not(.button):hover{color: #000;}
+    .top-bar-section li a:not(.button):hover{color: #8d8d8d;}
     .top-bar-section .right li a:not(.button):hover{color: #000;}
     .top-bar-section .has-dropdown.language > a{padding-right: 15px !important;}
-    .top-bar-section .has-dropdown.language > a span:hover { color: #000; opacity: 1;}
+    .top-bar-section .has-dropdown.language > a span:hover { color: #8d8d8d; opacity: 1;}
     .top-bar-section ul li > a.top-link-cart{ padding-right: 35px;}
     .top-bar-section ul li > a.top-link-cart span{border: 1px solid #000;padding: 10px 35px; color: #000;}
     .top-bar .name,
     .top-bar-section > ul > .divider, .top-bar-section > ul > [role="separator"]{}
-    .top-bar-section .left li a{min-width: 90px;text-align: center;padding: 0;}
-    .top-bar-section .left li a.active { color: #000;}
+    .top-bar-section .left li:not(.new_devi) a{min-width: 90px;text-align: center;padding: 0;}
+    .top-bar-section .left li a.active { color: #8d8d8d;}
     .top-bar-section ul{background: #000;}
     .top-bar-section ul.links{float: right;}
 }
@@ -737,8 +737,13 @@ button.button:hover{background: #333;}
 .col2-left-layout .col-left .block-content li { line-height: 1.6em; }
 .col2-set .col-1, .col2-set .col-2 {
     float: left;
-    margin: 0 10px;
     width: 580px;
+}
+.col2-set .col-2 {
+    margin: 0 0 0 50px;
+}
+.col2-set .col-1 {
+    margin: 0 10px;
 }
 .customer-account-index .dashboard .welcome-msg h2 {
     color: #666;
@@ -1107,7 +1112,7 @@ table thead, table tfoot{background: #f7f7f7;}
 /* Large Displays: 1024px and up */
 @media only screen and (min-width: 64.063em) {
     .top-bar .title-area,
-    .top-bar-section ul.left li:not(.divider){width: 11%}
+    .top-bar-section ul.left li:not(.new_devi){width: 11%}
     .top-bar li.name{text-align: center}
     /*.top-bar-section ul.right li:hover > a,
     .top-link-cart:hover{background: #333333 !important;}*/
@@ -1133,11 +1138,11 @@ b, strong{font-family: Brown-Bold, 'Trebuchet MS', Verdana, sans-serif;font-weig
 /*.cms-page-view .main-container,*/
 /*.cms-no-route .main-container,*/
 /*.cms-about .main-container{max-width: 64.063em}*/
-.cms-about .std{padding-top: 2em;padding-bottom: 5em;}
+.cms-about .std{padding-top: 2em;padding-bottom: 5em; font-size: 20px;}
 .cms-about .col1,
 .cms-about .col2{width: 45%;float: left;}
 .cms-about .col1{margin-right: 10%;}
-.cms-page-view .std p{font-size: 14px; line-height: 21px;}
+.cms-page-view .std p{font-size: 20px; line-height: 28px;}
 .checkout-cart-index .btn-continue{float: left;}
 .checkout-cart-index .btn-update{border: none;}
 .checkout-cart-index .btn-update:hover{background: none;}
@@ -1244,20 +1249,20 @@ b, strong{font-family: Brown-Bold, 'Trebuchet MS', Verdana, sans-serif;font-weig
 
     #container .item {
         float: left;
-        width: 32%;
-        margin: 0 0 10px;
+        width: 32.2%;
+        margin: 0 .5% 1%;
     }
     #container .item.cols-1 {
-        width: 16%;
+        width: 15.6%;
     }
     #container .item.cols-3 {
-        width: 48%;
+        width: 48.8%;
     }
     #container .item.cols-4 {
-        width: 64%;
+        width: 65.4%;
     }
     #container .item.cols-5 {
-        width: 80%;
+        width: 82%;
     }
     #container .item.cols-6 {
         width: 100%;
@@ -1323,8 +1328,7 @@ button, .button{font-family: Brown, 'Trebuchet MS', Verdana, sans-serif;}
 .parent-gallery .button-group{display: none !important;}
 
 .igallery-images .item .overlay {
-    background: #e8e8e8;
-    background: rgba(255,255,255,0.7);
+    /*background: rgba(255,255,255,0.7);*/
     height: 100%;
     left: 0;
     position: absolute;
@@ -1394,7 +1398,7 @@ html, body, .wrapper, .page { height: 100%; }
     font-size: 11px;
     float: left;
     padding-left: 10px;
-    width: 125px;
+    width: 90px;
     float: left;
     position: relative;
     z-index: 99;
@@ -1423,10 +1427,4 @@ html, body, .wrapper, .page { height: 100%; }
 .checkout-cart-index .main-container { margin-top: 70px;}
 .customer-account-login .main-container { margin-top: 70px;}
 .cms-page-view .col-main { margin-top: 70px;}
-
-
-
-
-
-
 

@@ -30,6 +30,7 @@
  *
  * @see Mage_Catalog_Block_Product_List
  */
+$timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
 ?>
 <?php $_helper = $this->helper('igallery'); ?>
 <?php $_gallery = $this->getGallery(); ?>
@@ -40,28 +41,67 @@
         <div class="content active" id="panel1">
                 <div class="category-products igallery-images" id="container">
 
-                    <?php $_collectionSize = $_imageCollection->count() ?>
-                    <?php $_columnCount = $this->_getColumnCount(); ?>
-                    <?php $i=0; foreach ($_imageCollection as $_image): ?>
-                        <?php if ($i++%$_columnCount==0): ?>
-                        <?php endif ?>
-                        <?php
-                        $class ='';
-                        if($_image->getImageWidth()){
-                            $class = ' cols-'.$_image->getImageWidth();
-                        } else {}
-                        if($_image->getImageHeight()){
-                            $class .= ' rows-'.$_image->getImageHeight();
-                        } else {}
-                        ?>
+					<?php $_collectionSize = $_imageCollection->count() ?>
+					<?php $_columnCount = $this->_getColumnCount(); ?>
+					<?php $i=0; foreach ($_imageCollection as $_image): ?>
+						<?php if ($i++%$_columnCount==0): ?>
+						<?php endif ?>
+						<?php
+						$class ='';
+						if($_image->getImageWidth()){
+							$class = ' cols-'.$_image->getImageWidth();
+						} else {}
+						if($_image->getImageHeight()){
+							$class .= ' rows-'.$_image->getImageHeight();
+						} else {}
+
+						$width = $_image->getImageWidth();
+						$height = $_image->getImageHeight();
+
+						$hPadding = 17;
+						$vPadding = 15;
+						$hUnit = 200;
+						$vUnit = 251;
+
+						switch($width){
+							case 1: $width = $hUnit;
+								break;
+							case 2: $width = $hUnit*2 + $hPadding;
+								break;
+							case 3: $width = $hUnit*3 + $hPadding*2;
+								break;
+							case 4: $width = $hUnit*4 + $hPadding*3;
+								break;
+							case 5: $width = $hUnit*5 + $hPadding*4;
+								break;
+							case 6: $width = $hUnit*6 + $hPadding*5;
+								break;
+							default: $width = $hUnit*2 + $hPadding;
+						}
+
+						switch($height){
+							case 1: $height = $vUnit;
+								break;
+							case 2: $height = $vUnit*2 + $vPadding;
+								break;
+							case 3: $height = $vUnit*3 + $vPadding*2;
+								break;
+							default: $height = $vUnit*2 + $vPadding;
+						}
+
+						?>
+
                         <?php $_size = $_helper->getImageSize($_image, 144, 100); ?>
                         <?php if ($_size) : ?>
                             <li class="on-home item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?> <?php echo $class ?>">
                                 <?php if (is_object($_gallery)) : ?>
-                                    <a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" class="igallery-image a-on-home" href="<?php echo $_image->getImageUrl() > '' ? $this->stripTags($_image->getImageUrl(), null, true) : 'javascript:void(0);' ?>"?>
-                                        <img src="<?php echo $this->helper('igallery/image')->init($_image->getFile())?>" width="" height="" alt="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" />
+                                    <a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" class="igallery-image a-on-home <?php if ( !$_image->getImageUrl() ) echo 'cur-default' ?>" <?php if ( $_image->getImageUrl() ) echo 'href="'. $this->stripTags($_image->getImageUrl(), null, true) . '"' ?> >
+                                        <img src="<?php echo $timthumb.'?src='. $this->helper('igallery/image')->init($_image->getFile()).'&w='.$width.'&h='.$height ?>" width="" height="" alt="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" />
                                         <?php if ($_image->getImageUrl()): ?>
-                                            <div class="overlay"><span><?php echo $this->stripTags($_image->getLabel(), null, true) ?></span></div>
+                                            <div class="overlay">
+                                                <span><?php echo $this->stripTags($_image->getLabel(), null, true) ?></span><br />
+                                                <span class="img_desc"><?php echo $this->stripTags($_image->getImageDesc(), null, true) ?></span>
+                                            </div>
                                         <?php endif ?>
                                     </a>
                                 <?php else : ?>

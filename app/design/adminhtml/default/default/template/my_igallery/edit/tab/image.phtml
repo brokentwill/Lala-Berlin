@@ -17,8 +17,8 @@
                 <tr class="headings">
                     <th><?php echo Mage::helper('igallery')->__('Image') ?></th>
                     <th><?php echo Mage::helper('igallery')->__('Image Label') ?></th>
-					<th><?php echo Mage::helper('igallery')->__('Image URL') ?></th>
                     <th><?php echo Mage::helper('igallery')->__('Image Description') ?></th>
+					<th><?php echo Mage::helper('igallery')->__('Image URL') ?></th>
 					<th><?php echo Mage::helper('igallery')->__('Columns') ?></th>
 					<th><?php echo Mage::helper('igallery')->__('Rows') ?></th>
 					<th><?php echo Mage::helper('igallery')->__('Sort Order') ?></th>
@@ -32,8 +32,8 @@
                 <tr id="<?php echo $_block->getHtmlId() ?>_template" class="template no-display">
                     <td class="cell-image"><div class="place-holder" onmouseover="<?php echo $_block->getJsObjectName(); ?>.loadImage('__file__')"><span><?php echo Mage::helper('igallery')->__('Roll Over for preview') ?></span></div><img src="<?php echo $this->getSkinUrl('images/spacer.gif')?>" width="100" style="display:none;" alt="" /></td>
                     <td class="cell-label"><input type="text" class="input-text" onkeyup="<?php echo $_block->getJsObjectName(); ?>.updateImage('__file__')" onchange="<?php echo $_block->getJsObjectName(); ?>.updateImage('__file__')" /></td>
-					<td class="cell-image-url"><input type="text" class="input-text" onkeyup="<?php echo $_block->getJsObjectName(); ?>.updateImage('__file__')" onchange="<?php echo $_block->getJsObjectName(); ?>.updateImage('__file__')" /></td>
-                    <td class="cell-image-desc"><textarea class="input-text" onkeyup="<?php echo $_block->getJsObjectName(); ?>.updateImage('__file__')" onchange="<?php echo $_block->getJsObjectName(); ?>.updateImage('__file__')"></textarea></td>
+					<td class="cell-image-desc"><textarea class="input-text" onkeyup="<?php echo $_block->getJsObjectName(); ?>.updateImage('__file__')" onchange="<?php echo $_block->getJsObjectName(); ?>.updateImage('__file__')"></textarea></td>
+                    <td class="cell-image-url"><input type="text" class="input-text" onkeyup="<?php echo $_block->getJsObjectName(); ?>.updateImage('__file__')" onchange="<?php echo $_block->getJsObjectName(); ?>.updateImage('__file__')" /></td>
 <!--					<td class="cell-image-width"><input type="text" class="input-text" onkeyup="--><?php //echo $_block->getJsObjectName(); ?><!--.updateImage('__file__')" onchange="--><?php //echo $_block->getJsObjectName(); ?><!--.updateImage('__file__')" /></td>-->
 					<td class="cell-image-width">
 						<select onchange="<?php echo $_block->getJsObjectName(); ?>.updateImage('__file__')" name="" id="">

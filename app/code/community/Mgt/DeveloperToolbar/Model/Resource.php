@@ -24,6 +24,8 @@ class Mgt_DeveloperToolbar_Model_Resource extends Mage_Core_Model_Resource
 {
     public function getConnection($name)
     {
+		if(!Varien_Profiler::isEnabled())
+			return parent::getConnection($name);
         if (isset($this->_connections[$name])) {
             return $this->_connections[$name];
         }

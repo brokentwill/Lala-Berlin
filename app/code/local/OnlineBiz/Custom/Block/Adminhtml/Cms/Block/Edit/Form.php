@@ -55,22 +55,22 @@ class OnlineBiz_Custom_Block_Adminhtml_Cms_Block_Edit_Form extends Mage_Adminhtm
             'class'     => 'validate-xml-identifier',
         ));
  
-	    $fieldset->addField('feature_img', 'image', array(
-	        'name' => 'feature_img',
-            //'multiple'  => 'multiple',
-	        'label' => 'Feature image',
-	        'title' => 'Feature image',
-	        'required'  => false,
-            'disabled'  => $isElementDisabled
-	    ));
+	    // $fieldset->addField('feature_img', 'image', array(
+	    //     'name' => 'feature_img',
+     //        //'multiple'  => 'multiple',
+	    //     'label' => 'Feature image',
+	    //     'title' => 'Feature image',
+	    //     'required'  => false,
+     //        'disabled'  => $isElementDisabled
+	    // ));
 
-        $fieldset->addField('link_to', 'text', array(
-            'name'      => 'link_to',
-            'label'     => Mage::helper('cms')->__('Link to Page'),
-            'title'     => Mage::helper('cms')->__('Link to Page'),
-            'required'  => false,
-            'class'     => 'link_to',
-        ));
+        // $fieldset->addField('link_to', 'text', array(
+        //     'name'      => 'link_to',
+        //     'label'     => Mage::helper('cms')->__('Link to Page'),
+        //     'title'     => Mage::helper('cms')->__('Link to Page'),
+        //     'required'  => false,
+        //     'class'     => 'link_to',
+        // ));
 
         // $fieldset->addField('block_order', 'text', array(
         //     'name'      => 'block_order',
@@ -80,55 +80,55 @@ class OnlineBiz_Custom_Block_Adminhtml_Cms_Block_Edit_Form extends Mage_Adminhtm
         //     'class'     => 'block_order',
         // ));
 
-        $fieldset->addField('position', 'select', array(
-            'label'     => Mage::helper('cms')->__('Select Position'),
-            'title'     => Mage::helper('cms')->__('Select Position'),
-            'name'      => 'position',
-            'required'  => false,
-            'options'   => array(
-            	'0' => Mage::helper('cms')->__(''),
-                '1' => Mage::helper('cms')->__('1'),
-                '2' => Mage::helper('cms')->__('2'),
-                '3' => Mage::helper('cms')->__('3'),
-                '4' => Mage::helper('cms')->__('4'),
-                '5' => Mage::helper('cms')->__('5'),
-                '6' => Mage::helper('cms')->__('6'),
-                '7' => Mage::helper('cms')->__('7'),
-                '8' => Mage::helper('cms')->__('8'),
-                '9' => Mage::helper('cms')->__('9'),
-                '10' => Mage::helper('cms')->__('10'),
-                '11' => Mage::helper('cms')->__('11'),
-                '12' => Mage::helper('cms')->__('12'),
-                '13' => Mage::helper('cms')->__('13'),
-                '14' => Mage::helper('cms')->__('14'),
-                '15' => Mage::helper('cms')->__('15'),
-                '16' => Mage::helper('cms')->__('16'),
-                '17' => Mage::helper('cms')->__('17'),
-                '18' => Mage::helper('cms')->__('18'),
-                '19' => Mage::helper('cms')->__('19'),
-                '20' => Mage::helper('cms')->__('20'),
-                '21' => Mage::helper('cms')->__('21'),
-                '22' => Mage::helper('cms')->__('22'),
-                '23' => Mage::helper('cms')->__('23'),
-                '24' => Mage::helper('cms')->__('24'),
-                '25' => Mage::helper('cms')->__('25'),
-                '26' => Mage::helper('cms')->__('26'),
-                '27' => Mage::helper('cms')->__('27'),
-                '28' => Mage::helper('cms')->__('28'),
-                '29' => Mage::helper('cms')->__('29'),
-                '30' => Mage::helper('cms')->__('30'),
-                '31' => Mage::helper('cms')->__('31'),
-                '32' => Mage::helper('cms')->__('32'),
-                '33' => Mage::helper('cms')->__('33'),
-                '34' => Mage::helper('cms')->__('34'),
-                '35' => Mage::helper('cms')->__('35'),
-                '36' => Mage::helper('cms')->__('36'),
-                '37' => Mage::helper('cms')->__('37'),
-                '38' => Mage::helper('cms')->__('38'),
-                '39' => Mage::helper('cms')->__('39'),
-                '40' => Mage::helper('cms')->__('40'),
-            ),
-        ));
+        // $fieldset->addField('position', 'select', array(
+        //     'label'     => Mage::helper('cms')->__('Select Position'),
+        //     'title'     => Mage::helper('cms')->__('Select Position'),
+        //     'name'      => 'position',
+        //     'required'  => false,
+        //     'options'   => array(
+        //     	'0' => Mage::helper('cms')->__(''),
+        //         '1' => Mage::helper('cms')->__('1'),
+        //         '2' => Mage::helper('cms')->__('2'),
+        //         '3' => Mage::helper('cms')->__('3'),
+        //         '4' => Mage::helper('cms')->__('4'),
+        //         '5' => Mage::helper('cms')->__('5'),
+        //         '6' => Mage::helper('cms')->__('6'),
+        //         '7' => Mage::helper('cms')->__('7'),
+        //         '8' => Mage::helper('cms')->__('8'),
+        //         '9' => Mage::helper('cms')->__('9'),
+        //         '10' => Mage::helper('cms')->__('10'),
+        //         '11' => Mage::helper('cms')->__('11'),
+        //         '12' => Mage::helper('cms')->__('12'),
+        //         '13' => Mage::helper('cms')->__('13'),
+        //         '14' => Mage::helper('cms')->__('14'),
+        //         '15' => Mage::helper('cms')->__('15'),
+        //         '16' => Mage::helper('cms')->__('16'),
+        //         '17' => Mage::helper('cms')->__('17'),
+        //         '18' => Mage::helper('cms')->__('18'),
+        //         '19' => Mage::helper('cms')->__('19'),
+        //         '20' => Mage::helper('cms')->__('20'),
+        //         '21' => Mage::helper('cms')->__('21'),
+        //         '22' => Mage::helper('cms')->__('22'),
+        //         '23' => Mage::helper('cms')->__('23'),
+        //         '24' => Mage::helper('cms')->__('24'),
+        //         '25' => Mage::helper('cms')->__('25'),
+        //         '26' => Mage::helper('cms')->__('26'),
+        //         '27' => Mage::helper('cms')->__('27'),
+        //         '28' => Mage::helper('cms')->__('28'),
+        //         '29' => Mage::helper('cms')->__('29'),
+        //         '30' => Mage::helper('cms')->__('30'),
+        //         '31' => Mage::helper('cms')->__('31'),
+        //         '32' => Mage::helper('cms')->__('32'),
+        //         '33' => Mage::helper('cms')->__('33'),
+        //         '34' => Mage::helper('cms')->__('34'),
+        //         '35' => Mage::helper('cms')->__('35'),
+        //         '36' => Mage::helper('cms')->__('36'),
+        //         '37' => Mage::helper('cms')->__('37'),
+        //         '38' => Mage::helper('cms')->__('38'),
+        //         '39' => Mage::helper('cms')->__('39'),
+        //         '40' => Mage::helper('cms')->__('40'),
+        //     ),
+        // ));
 
         /**
          * Check is single store mode

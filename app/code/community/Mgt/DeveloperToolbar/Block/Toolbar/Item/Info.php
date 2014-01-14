@@ -25,7 +25,7 @@ class Mgt_DeveloperToolbar_Block_Toolbar_Item_Info extends Mgt_DeveloperToolbar_
     public function __construct($name, $label = '')
     {
         parent::__construct($name, $label);
-        $this->setIcon(Mage::helper('mgt_developertoolbar')->getMediaUrl().'mgt_developertoolbar/info.png');
+        $this->setIcon($this->getSkinUrl().'mgt_developertoolbar/info.png');
         $this->_content = new Mgt_DeveloperToolbar_Block_TabContainer_Info('info');
     }
 }

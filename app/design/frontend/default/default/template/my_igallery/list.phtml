@@ -30,6 +30,10 @@
  *
  * @see Mage_Catalog_Block_Product_List
  */
+//include(Mage::getBaseDir('lib') . '/timthumb.php');
+//$timthumb = Mage::getBaseDir('lib') . '/timthumb.php';
+$timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
+echo $timthumb;
 ?>
 <?php $_helper = $this->helper('igallery'); ?>
 <?php $bannerCollection = Mage::getModel('igallery/banner')->getCollection()->setOrder('sort_order', 'ASC');
@@ -83,13 +87,48 @@
 						if($_image->getImageHeight()){
 							$class .= ' rows-'.$_image->getImageHeight();
 						} else {}
+
+						$width = $_image->getImageWidth();
+						$height = $_image->getImageHeight();
+
+						$hPadding = 18;
+						$vPadding = 10;
+						$hUnit = 196;
+						$vUnit = 295;
+
+						switch($width){
+							case 1: $width = $hUnit;
+								break;
+							case 2: $width = $hUnit*2 + $hPadding;
+								break;
+							case 3: $width = $hUnit*3 + $hPadding*2;
+								break;
+							case 4: $width = $hUnit*4 + $hPadding*3;
+								break;
+							case 5: $width = $hUnit*5 + $hPadding*4;
+								break;
+							case 6: $width = $hUnit*6 + $hPadding*5;
+								break;
+							default: $width = $hUnit*2 + $hPadding;
+						}
+
+						switch($height){
+							case 1: $height = $vUnit;
+								break;
+							case 2: $height = $vUnit*2 + $vPadding;
+								break;
+							case 3: $height = $vUnit*3 + $vPadding*2;
+								break;
+							default: $height = $vUnit*2 + $vPadding;
+						}
+
 						?>
 						<?php $_size = $_helper->getImageSize($_image, 144, 100); ?>
 						<?php if ($_size) : ?>
 							<li class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?> <?php echo $class ?>">
 								<?php if (is_object($_gallery)) : ?>
 									<a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" alt="<?php echo $this->stripTags($_image->getImageDesc(), null, true) ?>" class="igallery-image" href="<?php echo $_image->getImageUrl() > '' ? $this->stripTags($_image->getImageUrl(), null, true) : $_helper->getImageUrl($_image->getFile()) ?>" <?php echo $_image->getImageUrl() > '' ? '':"rel=\"prettyPhoto[gallery][{$_gallery->getId()}]\"" ?> >
-										<img src="<?php echo $this->helper('igallery/image')->init($_image->getFile())?>" width="" height="" alt="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" />
+										<img src="<?php echo $timthumb.'?src='. $this->helper('igallery/image')->init($_image->getFile()).'&w='.$width.'&h='.$height ?>" width="" height="" alt="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" />
 										<?php if ($_gallery->getIsParent() != 1): ?>
 											<div class="overlay"><span><?php echo $this->stripTags($_image->getLabel(), null, true) ?></span></div>
 										<?php endif ?>
@@ -101,9 +140,9 @@
 								<?php else: ?>
 									<div class="button-group">
 										<?php if($_image->getImageUrl()): ?>
-											<a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" alt="<?php echo $this->stripTags($_image->getImageDesc(), null, true) ?>" class="a_view" href="<?php echo $_helper->getImageUrl($_image->getFile()); ?>" rel="prettyPhoto[gallery][<?php echo $_gallery->getId() ?>]"><span class="txt">Open Slideshow</span><span class="icon"></span></a>
+											<!-- <a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" alt="<?php echo $this->stripTags($_image->getImageDesc(), null, true) ?>" class="a_view" href="<?php echo $_helper->getImageUrl($_image->getFile()); ?>" rel="prettyPhoto[gallery][<?php echo $_gallery->getId() ?>]"><span class="txt">Open Slideshow</span><span class="icon"></span></a> -->
 										<?php endif; ?>
-										<a class="a_zoom link <?php echo $_image->getImageUrl()?'':'hidden' ?>" href="<?php echo $this->stripTags($_image->getImageUrl(), null, true) ?>"><span class="txt">View Product</span><span class="icon"></span></a>
+										<a class="a_zoom link <?php echo $_image->getImageUrl()?'':'hidden' ?>" href="<?php echo $this->stripTags($_image->getImageUrl(), null, true) ?>"><span class="txt">Share Look</span><span class="icon"></span></a>
 									</div>
 								<?php endif; ?>
 							</li>

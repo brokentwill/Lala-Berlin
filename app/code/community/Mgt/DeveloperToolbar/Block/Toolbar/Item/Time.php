@@ -25,7 +25,7 @@ class Mgt_DeveloperToolbar_Block_Toolbar_Item_Time extends Mgt_DeveloperToolbar_
     public function __construct($name, $label = '')
     {
         parent::__construct($name, $label);
-        $this->setIcon(Mage::helper('mgt_developertoolbar')->getMediaUrl().'/mgt_developertoolbar/time.png');
+        $this->setIcon($this->getSkinUrl().'/mgt_developertoolbar/time.png');
     }
     
     public function getLabel()

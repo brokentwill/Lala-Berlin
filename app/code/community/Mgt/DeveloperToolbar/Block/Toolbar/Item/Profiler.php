@@ -25,7 +25,7 @@ class Mgt_DeveloperToolbar_Block_Toolbar_Item_Profiler extends Mgt_DeveloperTool
     public function __construct($name, $label = '')
     {
         parent::__construct($name, $label);
-        $this->setIcon(Mage::helper('mgt_developertoolbar')->getMediaUrl().'mgt_developertoolbar/profiler.png');
+        $this->setIcon($this->getSkinUrl().'mgt_developertoolbar/profiler.png');
         $this->_content = new Mgt_DeveloperToolbar_Block_TabContainer_Profiler('profiler');
     }
 }

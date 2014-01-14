@@ -13,36 +13,22 @@
             <mgt_developertoolbar_item>
                 <class>Mgt_DeveloperToolbar_Block_Toolbar_Item</class>
             </mgt_developertoolbar_item>
-            <core>
-                <rewrite>
-                    <profiler>Mgt_DeveloperToolbar_Block_Profiler</profiler>
-                </rewrite>
-            </core>
         </blocks>
         <helpers>
             <mgt_developertoolbar>
-                <rewrite>
-                    <data>Mgt_DeveloperToolbar_Helper_Data</data>
-                </rewrite>
+				<class>Mgt_DeveloperToolbar_Helper</class>
             </mgt_developertoolbar>
         </helpers>
         <models>
+			<mgt_developer>
+				<class>Mgt_DeveloperToolbar_Model</class>
+			</mgt_developer>
             <core>
                 <rewrite>
                     <resource>Mgt_DeveloperToolbar_Model_Resource</resource>
                 </rewrite>
             </core>
         </models>
-        <events>
-            <controller_action_layout_render_before>
-                <observers>
-                    <mgt_developertoolbar>
-                        <class>Mgt_DeveloperToolbar_Model_Observer</class>
-                        <method>removeCoreProfilerBlock</method>
-                    </mgt_developertoolbar>
-                </observers>
-            </controller_action_layout_render_before>
-        </events>
     </global>
     <adminhtml>
         <acl>
@@ -74,6 +60,16 @@
                 </mgt_developertoolbar>
             </updates>
         </layout>
+		<events>
+			<controller_action_layout_load_before>
+				<observers>
+                    <mgt_add_layout>
+                        <class>Mgt_DeveloperToolbar_Model_Observer</class>
+                        <method>addHandleUpdateLayout</method>
+                    </mgt_add_layout>
+                </observers>
+			</controller_action_layout_load_before>
+		</events>
     </adminhtml>
     <frontend>
         <routers>
@@ -92,5 +88,15 @@
                 </mgt_developertoolbar>
             </updates>
         </layout>
+		<events>
+			<controller_action_layout_load_before>
+				<observers>
+                    <mgt_add_layout>
+                        <class>Mgt_DeveloperToolbar_Model_Observer</class>
+                        <method>addHandleUpdateLayout</method>
+                    </mgt_add_layout>
+                </observers>
+			</controller_action_layout_load_before>
+		</events>
     </frontend>
 </config>
