@@ -1504,40 +1504,8 @@ meta.foundation-mq-topbar {
     width: 50%;
     display: block;
     padding: 0 15px; }
-.top-bar .toggle-topbar {
-    position: absolute;
-    right: 0;
-    top: 0; }
-.top-bar .toggle-topbar a {
-    color: white;
-    text-transform: uppercase;
-    font-size: 0.8125rem;
-    font-weight: bold;
-    position: relative;
-    display: block;
-    padding: 0 15px;
-    height: 45px;
-    line-height: 45px; }
-.top-bar .toggle-topbar.menu-icon {
-    right: 15px;
-    top: 50%;
-    margin-top: -16px;
-    padding-left: 40px; }
-.top-bar .toggle-topbar.menu-icon a {
-    text-indent: -48px;
-    width: 34px;
-    height: 34px;
-    line-height: 33px;
-    padding: 0;
-    color: #333333; }
-.top-bar .toggle-topbar.menu-icon a span {
-    position: absolute;
-    right: 0;
-    display: block;
-    width: 16px;
-    height: 0;
-    -webkit-box-shadow: 0 10px 0 1px white, 0 16px 0 1px white, 0 22px 0 1px white;
-    box-shadow: 0 10px 0 1px #333333, 0 16px 0 1px #333333, 0 22px 0 1px #333333; }
+
+
 .top-bar.expanded {
     height: auto;
     background: transparent; }
@@ -1560,7 +1528,7 @@ meta.foundation-mq-topbar {
     width: 100%;
     height: auto;
     display: block;
-    background: #333333;
+    background: #fff;
     font-size: 16px;
     margin: 0; }
 .top-bar-section .divider,
@@ -1569,6 +1537,9 @@ meta.foundation-mq-topbar {
     clear: both;
     height: 1px;
     width: 100%; }
+.top-bar-section ul li.new_devi {
+    display: none;
+}
 .top-bar-section ul li > a {
     display: block;
     width: 100%;
@@ -1578,6 +1549,9 @@ meta.foundation-mq-topbar {
     font-size: 0.8125rem;
     font-weight: normal;
     background: #fff; }
+.top-bar-section ul li > a.active {
+    color: #8d8d8d;
+}
 .top-bar-section ul li > a.button {
     background: #008cba;
     font-size: 0.8125rem;
@@ -1598,8 +1572,7 @@ meta.foundation-mq-topbar {
 .top-bar-section ul li > a.button.alert:hover {
     background: #d32a0e; }
 .top-bar-section ul li:hover > a {
-    /*background: #f7f7f7;*/
-    color: #000; }
+    color: #8d8d8d; }
 .top-bar-section ul li.active > a {
     background: #008cba;
     color: white; }
@@ -1657,7 +1630,47 @@ meta.foundation-mq-topbar {
 .js-generated {
     display: block; }
 
-@media only screen and (min-width: 64.063em) {
+
+@media only screen and (max-width: 50em) {
+    .top-bar .toggle-topbar {
+        position: absolute;
+        right: 0;
+        top: 0; }
+    .top-bar .toggle-topbar a {
+        color: white;
+        text-transform: uppercase;
+        font-size: 0.8125rem;
+        font-weight: bold;
+        position: relative;
+        display: block;
+        padding: 0 15px;
+        height: 45px;
+        line-height: 45px; }
+    .top-bar .toggle-topbar.menu-icon {
+        right: 15px;
+        top: 50%;
+        margin-top: -16px;
+        padding-left: 40px; }
+    .top-bar .toggle-topbar.menu-icon a {
+        text-indent: -48px;
+        width: 34px;
+        height: 34px;
+        line-height: 33px;
+        padding: 0;
+        color: #333333; }
+    .top-bar .toggle-topbar.menu-icon a span {
+        position: absolute;
+        right: 0;
+        display: block;
+        width: 16px;
+        height: 0;
+        -webkit-box-shadow: 0 10px 0 1px white, 0 16px 0 1px white, 0 22px 0 1px white;
+        box-shadow: 0 10px 0 1px #333333, 0 16px 0 1px #333333, 0 22px 0 1px #333333; }
+}
+
+
+
+@media only screen and (min-width: 50em) {
     .top-bar {
         background: #fff;
         *zoom: 1;
@@ -1702,14 +1715,17 @@ meta.foundation-mq-topbar {
     .top-bar-section li.hover > a:not(.button) {
         background: #272727;
         color: white; }
+    .top-bar-section ul li.new_devi {
+        display: block;
+    }
     .top-bar-section li a:not(.button) {
-        padding: 0 15px;
+        padding: 0 25px;
         line-height: 70px;
         background: #fff; }
     .top-bar-section li a:not(.button):hover {
         }
     .top-bar-section .has-dropdown > a {
-        padding-right: 35px !important; }
+        padding-right: 0px !important; }
     .top-bar-section .has-dropdown > a:after {
         content: "";
         display: block;

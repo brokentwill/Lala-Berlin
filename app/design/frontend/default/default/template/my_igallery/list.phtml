@@ -30,10 +30,7 @@
  *
  * @see Mage_Catalog_Block_Product_List
  */
-//include(Mage::getBaseDir('lib') . '/timthumb.php');
-//$timthumb = Mage::getBaseDir('lib') . '/timthumb.php';
 $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
-echo $timthumb;
 ?>
 <?php $_helper = $this->helper('igallery'); ?>
 <?php $bannerCollection = Mage::getModel('igallery/banner')->getCollection()->setOrder('sort_order', 'ASC');
@@ -42,7 +39,7 @@ echo $timthumb;
 <?php $currentUrl = $_gallery->getFriendlyUrl() ?>
 <ul class="collection-selector">
 	<?php foreach($bannerCollection as $banner): ?>
-		<?php if($banner->getIsParent() == 1) continue ?>
+		<?php if($banner->getIsParent() == 1 || $banner->getIsActive() == 0) continue ?>
 		<li class="<?php echo $banner->getFriendlyUrl() == $currentUrl ? 'active current':'' ?>"><a href="<?php echo Mage::getBaseUrl().$banner->getFriendlyUrl(); ?>"><?php echo $banner->getName(); ?></a></li>
 	<?php endforeach ?>
 </ul>
@@ -52,11 +49,6 @@ echo $timthumb;
 		<div class="page-title igallery-title">
 			<h1><?php echo $this->stripTags($_gallery->getName(), null, true) ?></h1>
 		</div>
-		<!--	--><?php //if($_description = $_gallery->getDescription()): ?>
-		<!--		<div class="igallery-description std">-->
-		<!--			--><?php //echo $_description; ?>
-		<!--		</div>-->
-		<!--	--><?php //endif; ?>
 	<?php endif; ?>
 	<?php $_imageCollection = $this->_getCollection(); ?>
 	<dl class="radius tabs" data-tab="">
@@ -72,7 +64,7 @@ echo $timthumb;
 				<div class="toolbar-top">
 					<?php echo $this->getToolbarHtml(); ?>
 				</div>
-				<div class="category-products igallery-images" id="container">
+				<div class="category-products igallery-images masonry-container" id="container">
 
 					<?php $_collectionSize = $_imageCollection->count() ?>
 					<?php $_columnCount = $this->_getColumnCount(); ?>
@@ -80,6 +72,7 @@ echo $timthumb;
 						<?php if ($i++%$_columnCount==0): ?>
 						<?php endif ?>
 						<?php
+						if($_image->getDisplayInShowTab() == 1) continue;
 						$class ='';
 						if($_image->getImageWidth()){
 							$class = ' cols-'.$_image->getImageWidth();
@@ -127,7 +120,7 @@ echo $timthumb;
 						<?php if ($_size) : ?>
 							<li class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?> <?php echo $class ?>">
 								<?php if (is_object($_gallery)) : ?>
-									<a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" alt="<?php echo $this->stripTags($_image->getImageDesc(), null, true) ?>" class="igallery-image" href="<?php echo $_image->getImageUrl() > '' ? $this->stripTags($_image->getImageUrl(), null, true) : $_helper->getImageUrl($_image->getFile()) ?>" <?php echo $_image->getImageUrl() > '' ? '':"rel=\"prettyPhoto[gallery][{$_gallery->getId()}]\"" ?> >
+									<a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" alt="<?php echo $this->stripTags($_image->getImageDesc(), null, true) ?>" class="igallery-image"  >
 										<img src="<?php echo $timthumb.'?src='. $this->helper('igallery/image')->init($_image->getFile()).'&w='.$width.'&h='.$height ?>" width="" height="" alt="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" />
 										<?php if ($_gallery->getIsParent() != 1): ?>
 											<div class="overlay"><span><?php echo $this->stripTags($_image->getLabel(), null, true) ?></span></div>
@@ -159,11 +152,93 @@ echo $timthumb;
 			<?php endif; ?>
 		</div>
 		<div class="content" id="panel2">
-			<?php if($_description = $_gallery->getDescription()): ?>
 				<div class=" std">
-					<?php echo $_description; ?>
+					<div class="category-products igallery-images masonry-container" id="container">
+
+						<?php $_collectionSize = $_imageCollection->count() ?>
+						<?php $_columnCount = $this->_getColumnCount(); ?>
+						<?php $i=0; foreach ($_imageCollection as $_image): ?>
+							<?php if ($i++%$_columnCount==0): ?>
+							<?php endif ?>
+							<?php
+							if($_image->getDisplayInShowTab() != 1) continue;
+							$class ='';
+							if($_image->getImageWidth()){
+								$class = ' cols-'.$_image->getImageWidth();
+							} else {}
+							if($_image->getImageHeight()){
+								$class .= ' rows-'.$_image->getImageHeight();
+							} else {}
+
+							$width = $_image->getImageWidth();
+							$height = $_image->getImageHeight();
+
+							$hPadding = 18;
+							$vPadding = 10;
+							$hUnit = 196;
+							$vUnit = 295;
+
+							switch($width){
+								case 1: $width = $hUnit;
+									break;
+								case 2: $width = $hUnit*2 + $hPadding;
+									break;
+								case 3: $width = $hUnit*3 + $hPadding*2;
+									break;
+								case 4: $width = $hUnit*4 + $hPadding*3;
+									break;
+								case 5: $width = $hUnit*5 + $hPadding*4;
+									break;
+								case 6: $width = $hUnit*6 + $hPadding*5;
+									break;
+								default: $width = $hUnit*2 + $hPadding;
+							}
+
+							switch($height){
+								case 1: $height = $vUnit;
+									break;
+								case 2: $height = $vUnit*2 + $vPadding;
+									break;
+								case 3: $height = $vUnit*3 + $vPadding*2;
+									break;
+								default: $height = $vUnit*2 + $vPadding;
+							}
+
+							?>
+							<?php $_size = $_helper->getImageSize($_image, 144, 100); ?>
+							<?php if ($_size) : ?>
+								<li class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?> <?php echo $class ?>">
+									<?php if (is_object($_gallery)) : ?>
+										<a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" alt="<?php echo $this->stripTags($_image->getImageDesc(), null, true) ?>" class="igallery-image">
+											<img src="<?php echo $timthumb.'?src='. $this->helper('igallery/image')->init($_image->getFile()).'&w='.$width.'&h='.$height ?>" width="" height="" alt="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" />
+											<?php if ($_gallery->getIsParent() != 1): ?>
+												<div class="overlay"><span><?php echo $this->stripTags($_image->getLabel(), null, true) ?></span></div>
+											<?php endif ?>
+										</a>
+									<?php else : ?>
+										<a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" alt="<?php echo $this->stripTags($_image->getImageDesc(), null, true) ?>" class="igallery-image" ><img src="<?php echo $this->helper('igallery/image')->init($_image->getFile())->resize($_size->getWidth(), $_size->getHeight()); ?>" alt="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" /></a>
+									<?php endif; ?>
+									<?php if($_gallery->getIsParent() == 1): ?>
+									<?php else: ?>
+										<div class="button-group">
+											<?php if($_image->getImageUrl()): ?>
+												<!-- <a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" alt="<?php echo $this->stripTags($_image->getImageDesc(), null, true) ?>" class="a_view" href="<?php echo $_helper->getImageUrl($_image->getFile()); ?>" rel="prettyPhoto[gallery][<?php echo $_gallery->getId() ?>]"><span class="txt">Open Slideshow</span><span class="icon"></span></a> -->
+											<?php endif; ?>
+											<a class="a_zoom link <?php echo $_image->getImageUrl()?'':'hidden' ?>" href="<?php echo $this->stripTags($_image->getImageUrl(), null, true) ?>"><span class="txt">Share Look</span><span class="icon"></span></a>
+										</div>
+									<?php endif; ?>
+								</li>
+							<?php endif; ?>
+							<?php if ($i%$_columnCount==0 || $i==$_collectionSize): ?>
+							<?php endif ?>
+						<?php endforeach ?>
+						<script type="text/javascript">decorateGeneric($$('ul.my-igallery-grid'), ['odd','even','first','last'])</script>
+
+						<div class="toolbar-bottom">
+							<?php echo $this->getToolbarHtml(); ?>
+						</div>
+					</div>
 				</div>
-			<?php endif; ?>
 		</div>
 		<div class="content" id="panel3">
 			<?php
@@ -177,9 +252,9 @@ echo $timthumb;
 
 <?php if ($_gallery->getIsParent() != 1): ?>
 	<script type="text/javascript">
-
+	jQuery.noConflict();
 		jQuery(window).bind("load", function() {
-			jQuery('#container').masonry({
+			jQuery('.masonry-container').masonry({
 				itemSelector: '.item',
 				// set columnWidth a fraction of the container width
 				columnWidth: function( containerWidth ) {
@@ -187,7 +262,13 @@ echo $timthumb;
 				}
 			});
 		});
-	</script>	
+		jQuery("dl.tabs a").bind("mouseup", function() {
+			jQuery(this).click();
+		}).click(function() {
+				jQuery('.masonry-container').masonry();
+			});
+
+	</script>
 <?php endif ?>
 <script type="text/javascript">decorateGeneric($$('ul.collection-selector li'), ['odd','even','first','last'])</script>
 <script type="text/javascript">

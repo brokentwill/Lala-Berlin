@@ -2,7 +2,7 @@
 <config>
     <modules>
         <OnlineBiz_Custom>
-            <version>0.1.1</version>
+            <version>0.1.2</version>
         </OnlineBiz_Custom>
     </modules>
 	

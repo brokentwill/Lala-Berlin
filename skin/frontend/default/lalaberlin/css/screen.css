@@ -1660,12 +1660,14 @@ ul {
   
 }
 .footer-container .footer {
-  width: 86%;
+  width: 100%;
   margin: 0 auto;
   color: #fff;
   font-size: 12px;
-  max-width: 128.571rem;
+  max-width: 1304px;
+  padding: 0 0.9375rem;
 }
+.footer-container .footer ul.footnav { margin: 0 !important;}
 
 .footnav li h2.section-title {
   text-transform: uppercase;
@@ -1694,15 +1696,16 @@ ul {
 
 .footer-bottom { color: #000;}
 .footer-bottom address { float: left;}
-.footer-bottom address p { font-size: 14px;}
+.footer-bottom address p { font-size: 14px; line-height: 21px;}
 .footer-bottom p.copyright { float: right; line-height: 45px; font-size: 14px;}
 
 .footnav .subscribe-newsletter .form-subscribe input#newsletter {
   padding: 3px 5px 5px;
-  height: 28px;
-  width: 80%;
+  height: 40px;
+  /*width: 80%;*/
   border: none;
   color: #5d5d5d;
+  box-shadow: none;
   border: 1px solid #000;
   background: url(../img/btn_subscribe.png) no-repeat right center;
 }
@@ -1924,7 +1927,7 @@ ul.products-grid li .prod_bot { /*margin-top: 1.125rem;*/ }
 .product-shop .short-description { font-size: 0.875rem;}
 .short-description .std { padding-left: 20px;}
 
-#product-options-wrapper { /*margin-top: 30px;*/}
+#product-options-wrapper p.required { display: none;}
 #product-options-wrapper label.required { margin-bottom: 0; font-weight: normal;}
 #product-options-wrapper label.required em { display: none;}
 .product-shop .product-options-bottom .add-to-links { display: none;}
@@ -2119,7 +2122,10 @@ li.divider { display: none;}
 
 .top-bar-section ul.left li.divider.contact { display: none;}
 
-
+.top-bar-section .links.right { display: none;}
+.top-bar-section ul.right li.account-link, .top-bar-section ul.right li.new_devi { display: none;}
+.top-bar-section ul.right li.language { margin-right: 30px; }
+.prd-info-msn { float: left; clear: both; font-size: 14px; font-weight: normal; width: 100%; padding-bottom: 20px;}
 
 
 

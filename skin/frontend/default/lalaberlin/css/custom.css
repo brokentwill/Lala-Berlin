@@ -717,9 +717,9 @@ button.button:hover{background: #333;}
     .top-bar-section ul li > a.top-link-cart span{border: 1px solid #000;padding: 10px 35px; color: #000;}
     .top-bar .name,
     .top-bar-section > ul > .divider, .top-bar-section > ul > [role="separator"]{}
-    .top-bar-section .left li:not(.new_devi) a{min-width: 90px;text-align: center;padding: 0;}
+    .top-bar-section .left li:not(.new_devi) a{min-width: 155px; text-align: center;padding: 0 24px;}
     .top-bar-section .left li a.active { color: #8d8d8d;}
-    .top-bar-section ul{background: #000;}
+    .top-bar-section ul{background: #fff;}
     .top-bar-section ul.links{float: right;}
 }
 @media only screen and (min-width: 90.063em) {
@@ -1111,9 +1111,11 @@ table thead, table tfoot{background: #f7f7f7;}
 
 /* Large Displays: 1024px and up */
 @media only screen and (min-width: 64.063em) {
-    .top-bar .title-area,
-    .top-bar-section ul.left li:not(.new_devi){width: 11%}
+    .top-bar .title-area { width: 12% }
     .top-bar li.name{text-align: center}
+    .top-bar-section ul.left li:not(.new_devi) {
+
+    }
     /*.top-bar-section ul.right li:hover > a,
     .top-link-cart:hover{background: #333333 !important;}*/
     .top-bar-section ul.right .divider{display: none;}
@@ -1211,60 +1213,63 @@ b, strong{font-family: Brown-Bold, 'Trebuchet MS', Verdana, sans-serif;font-weig
 
 .sorter .sort-by > *,
 .pager .limiter > *{display: inline-block}
-.toolbar{display: none;}
-.igallery-category-view #container .item,
-.igallery-images#container .item{list-style: none;}
+.toolbar {display: none;}
+.igallery-category-view .masonry-container .item,
+.igallery-images.masonry-container .item {list-style: none;}
+
+.igallery-category-view .masonry-container .item > a,
+.igallery-images.masonry-container .item > a { cursor: default;}
 
 @media only screen and (max-width: 700px) {
-    #container .item {
+    .masonry-container .item {
         float: left;
         width: 100%;
         margin: 0 0 10px;
     }
-    #container .item > a > img {
+    .masonry-container .item > a > img {
         max-width: 100%;
         width: 100%;
     }
-    #container .item.cols-1 {
+    .masonry-container .item.cols-1 {
         width: 100%;
     }
-    #container .item.cols-3 {
+    .masonry-container .item.cols-3 {
         width: 100%;
     }
-    #container .item.cols-4 {
+    .masonry-container .item.cols-4 {
         width: 100%;
     }
-    #container .item.cols-5 {
+    .masonry-container .item.cols-5 {
         width: 100%;
     }
-    #container .item.cols-6 {
+    .masonry-container .item.cols-6 {
         width: 100%;
     }
 }
 @media only screen and (min-width: 700px){
     
-    .parent-gallery #container .item {
+    .parent-gallery .masonry-container .item {
         margin-bottom: 16px;
     }
 
-    #container .item {
+    .masonry-container .item {
         float: left;
         width: 32.2%;
         margin: 0 .5% 1%;
     }
-    #container .item.cols-1 {
+    .masonry-container .item.cols-1 {
         width: 15.6%;
     }
-    #container .item.cols-3 {
+    .masonry-container .item.cols-3 {
         width: 48.8%;
     }
-    #container .item.cols-4 {
+    .masonry-container .item.cols-4 {
         width: 65.4%;
     }
-    #container .item.cols-5 {
+    .masonry-container .item.cols-5 {
         width: 82%;
     }
-    #container .item.cols-6 {
+    .masonry-container .item.cols-6 {
         width: 100%;
     }
 }
@@ -1273,7 +1278,7 @@ b, strong{font-family: Brown-Bold, 'Trebuchet MS', Verdana, sans-serif;font-weig
 
 .add-to-cart button.btn-cart { padding: 0 55px;}
 .add-to-cart button.btn-cart span span { font-size: 14px; letter-spacing: 1px;}
-.top-bar-section .has-dropdown > a { color: #000;}
+.top-bar-section .has-dropdown > a { color: #000; font-size: 0.6em;}
 .divi-span { 
     background: #000000;
     display: inline-block;
@@ -1282,9 +1287,9 @@ b, strong{font-family: Brown-Bold, 'Trebuchet MS', Verdana, sans-serif;font-weig
 }
 
 .igallery-category-view .col-main{}
-#container{clear: both;}
+.masonry-container{clear: both;}
 
-.cms-home .tabs-content { max-width: 1304px; margin: 0 auto;}
+.cms-home .tabs-content { max-width: 1304px; margin: 0 auto; padding: 0 0.9375rem;}
 
 .tabs-content > .content.active {width: 100%;
     -webkit-transition: all ease-out 0.2s 0.1s;
@@ -1297,7 +1302,7 @@ b, strong{font-family: Brown-Bold, 'Trebuchet MS', Verdana, sans-serif;font-weig
 .igallery-category-view .tabs dd > a:hover,
 .igallery-category-view .tabs dd.active a{background: none;color: #000;/*font-family: Brown-Bold, 'Trebuchet MS', Verdana, sans-serif;margin-right: 28px;*/}
 .igallery-category-view .page-title{display: none;}
-#container .item .button-group {
+.masonry-container .item .button-group {
     /*display: none;*/
     opacity: 0;
     position: absolute; 
@@ -1308,13 +1313,13 @@ b, strong{font-family: Brown-Bold, 'Trebuchet MS', Verdana, sans-serif;font-weig
     -o-transition: all 0.3s ease-out 0s;
     transition: all 0.3s ease-out 0s;
 }
-#container .item:hover .button-group {opacity: 1;}
-#container .item .button-group .link {text-transform: uppercase; font-size: 11px;margin-right: 5px;}
-#container .item .button-group .button {background: #666;padding: 0 20px;height: 35px;line-height: 35px;}
-#container .item .button-group .button:hover {background: #000;}
+.masonry-container .item:hover .button-group {opacity: 1;}
+.masonry-container .item .button-group .link {text-transform: uppercase; font-size: 11px;margin-right: 5px;}
+.masonry-container .item .button-group .button {background: #666;padding: 0 20px;height: 35px;line-height: 35px;}
+.masonry-container .item .button-group .button:hover {background: #000;}
 button, .button{font-family: Brown, 'Trebuchet MS', Verdana, sans-serif;}
-.collection-selector{margin: 85px 0 0; padding-bottom: 25px;}
-.collection-selector li{display: inline-block;margin: 0 30px 0 0;color: #959595;font-size: 13px;text-transform: uppercase; letter-spacing: 1px;}
+.collection-selector{margin: 85px 0 0; padding-bottom: 15px;}
+.collection-selector li{display: inline-block;margin: 0 30px 10px 0;color: #959595;font-size: 13px;text-transform: uppercase; letter-spacing: 1px;}
 .collection-selector li a{ display: inline-block;font-family: Brown, 'Trebuchet MS', Verdana, sans-serif;}
 .collection-selector li a:hover,
 .collection-selector li.active a{color: #000;/*font-family: Brown-Bold, 'Trebuchet MS', Verdana, sans-serif;*/
@@ -1327,8 +1332,10 @@ button, .button{font-family: Brown, 'Trebuchet MS', Verdana, sans-serif;}
 .parent-gallery .tabs,
 .parent-gallery .button-group{display: none !important;}
 
+.igallery-images .item.on-home .overlay {
+   background: rgba(255,255,255,0.7); 
+}
 .igallery-images .item .overlay {
-    /*background: rgba(255,255,255,0.7);*/
     height: 100%;
     left: 0;
     position: absolute;

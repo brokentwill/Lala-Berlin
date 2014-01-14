@@ -39,7 +39,7 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
 <?php $_imageCollection = $this->_getCollection(); ?>
     <div class="tabs-content">
         <div class="content active" id="panel1">
-                <div class="category-products igallery-images" id="container">
+                <div class="category-products masonry-container igallery-images" id="container02">
 
 					<?php $_collectionSize = $_imageCollection->count() ?>
 					<?php $_columnCount = $this->_getColumnCount(); ?>
@@ -127,7 +127,7 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
 
 <script type="text/javascript">
     jQuery(window).bind("load", function() {
-        jQuery('#container').masonry({
+        jQuery('#container02').masonry({
             itemSelector: '.item',
             // isResizable: false,
             // set columnWidth a fraction of the container width

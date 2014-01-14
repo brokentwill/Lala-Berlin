@@ -228,6 +228,7 @@ class My_Igallery_Model_Mysql4_Banner extends Mage_Core_Model_Mysql4_Abstract {
                                 'image_desc' => $_item['image_desc'],
 								'image_width' => $_item['image_width'],
 								'image_height' => $_item['image_height'],
+								'display_in_show_tab' => $_item['display_in_show_tab'],
 								'file'      => $_item['file'],
                                 'position'  => $_item['position'],
                                 'disabled'  => $_item['disabled'],

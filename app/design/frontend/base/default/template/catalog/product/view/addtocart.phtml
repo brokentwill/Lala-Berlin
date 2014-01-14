@@ -26,6 +26,9 @@
 ?>
 <?php $_product = $this->getProduct(); ?>
 <?php $buttonTitle = $this->__('Add to Cart'); ?>
+					<div class="prd-info prd-info-des prd-info-msn">
+                        <?php echo $_product->getMsn() ?>
+                    </div>
 <?php if($_product->isSaleable()): ?>
     <div class="add-to-cart">
         <?php if(!$_product->isGrouped()): ?>
