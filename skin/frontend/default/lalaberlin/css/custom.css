@@ -1289,7 +1289,7 @@ b, strong{font-family: Brown-Bold, 'Trebuchet MS', Verdana, sans-serif;font-weig
 .igallery-category-view .col-main{}
 .masonry-container{clear: both;}
 
-.cms-home .tabs-content { max-width: 1304px; margin: 0 auto; padding: 0 0.9375rem;}
+.cms-home .tabs-content { max-width: 1304px; margin: 0 auto;/* padding: 0 0.9375rem;*/}
 
 .tabs-content > .content.active {width: 100%;
     -webkit-transition: all ease-out 0.2s 0.1s;

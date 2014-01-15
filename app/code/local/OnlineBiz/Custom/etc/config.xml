@@ -74,11 +74,11 @@
         <!-- <events>
             <adminhtml_cms_page_edit_tab_content_prepare_form>
                 <observers>
-                    <custom_page_edit_tab_content>
+                    <onlinebiz_custom_observer>
                         <type>singleton</type>
-                        <class>OnlineBiz_Custom_Model_Observer</class>
+                        <class>custom/observer</class>
                         <method>cmsField</method>
-                    </custom_page_edit_tab_content>
+                    </onlinebiz_custom_observer>
                 </observers>
             </adminhtml_cms_page_edit_tab_content_prepare_form>
         </events> -->

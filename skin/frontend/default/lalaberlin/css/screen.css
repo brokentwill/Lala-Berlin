@@ -1659,6 +1659,9 @@ ul {
   background: #fff;
   
 }
+.cms-home .footer-container .footer {
+  padding: 0;
+}
 .footer-container .footer {
   width: 100%;
   margin: 0 auto;

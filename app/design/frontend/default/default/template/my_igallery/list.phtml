@@ -121,7 +121,7 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
 							<li class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?> <?php echo $class ?>">
 								<?php if (is_object($_gallery)) : ?>
 									<a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" alt="<?php echo $this->stripTags($_image->getImageDesc(), null, true) ?>" class="igallery-image"  >
-										<img src="<?php echo $timthumb.'?src='. $this->helper('igallery/image')->init($_image->getFile()).'&w='.$width.'&h='.$height ?>" width="" height="" alt="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" />
+										<img src="<?php echo $timthumb.'?src='. $this->helper('igallery/image')->init($_image->getFile()).'&w='.$width.'&h='.$height ?>" width="<?php echo $width ?>" height="<?php echo $height ?>" alt="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" />
 										<?php if ($_gallery->getIsParent() != 1): ?>
 											<div class="overlay"><span><?php echo $this->stripTags($_image->getLabel(), null, true) ?></span></div>
 										<?php endif ?>
@@ -210,7 +210,7 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
 								<li class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?> <?php echo $class ?>">
 									<?php if (is_object($_gallery)) : ?>
 										<a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" alt="<?php echo $this->stripTags($_image->getImageDesc(), null, true) ?>" class="igallery-image">
-											<img src="<?php echo $timthumb.'?src='. $this->helper('igallery/image')->init($_image->getFile()).'&w='.$width.'&h='.$height ?>" width="" height="" alt="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" />
+											<img src="<?php echo $timthumb.'?src='. $this->helper('igallery/image')->init($_image->getFile()).'&w='.$width.'&h='.$height ?>" width="<?php echo $width ?>" height="<?php echo $height ?>" alt="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" />
 											<?php if ($_gallery->getIsParent() != 1): ?>
 												<div class="overlay"><span><?php echo $this->stripTags($_image->getLabel(), null, true) ?></span></div>
 											<?php endif ?>
@@ -252,16 +252,22 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
 
 <?php if ($_gallery->getIsParent() != 1): ?>
 	<script type="text/javascript">
-	jQuery.noConflict();
-		jQuery(window).bind("load", function() {
-			jQuery('.masonry-container').masonry({
-				itemSelector: '.item',
-				// set columnWidth a fraction of the container width
+		jQuery.noConflict();
+		var $container = jQuery('.masonry-container');
+		// initialize
+		$container.imagesLoaded( function() {
+			$container.masonry({
 				columnWidth: function( containerWidth ) {
-					return containerWidth / 6;
-				}
-			});
+					if (jQuery(window).width() <= 700) {
+						return containerWidth;
+					} else {
+						return containerWidth / 6;
+					}
+				},
+				itemSelector: '.item'
+			})
 		});
+
 		jQuery("dl.tabs a").bind("mouseup", function() {
 			jQuery(this).click();
 		}).click(function() {
