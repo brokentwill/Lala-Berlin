@@ -31,11 +31,13 @@
  * @see Mage_Catalog_Block_Product_List
  */
 $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
+//die(Mage::helper('core/url')->getCurrentUrl());
 ?>
 <?php $_helper = $this->helper('igallery'); ?>
 <?php $bannerCollection = Mage::getModel('igallery/banner')->getCollection()->setOrder('sort_order', 'ASC');
 ?>
 <?php $_gallery = $this->_getGallery(); ?>
+<?php $_check = $_gallery->getIsParent(); ?>
 <?php $currentUrl = $_gallery->getFriendlyUrl() ?>
 <ul class="collection-selector">
 	<?php foreach($bannerCollection as $banner): ?>
@@ -51,13 +53,36 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
 		</div>
 	<?php endif; ?>
 	<?php $_imageCollection = $this->_getCollection(); ?>
+	<?php  
+		$cmsBlockId = $_gallery->getCmsBlock(); 
+		$_noInfo = false;
+		$_noLookBook = false;
+		$_noShow = false;
+		if ($this->getLayout()->createBlock('cms/block')->setBlockId($cmsBlockId)->toHtml() == '') {
+			$_noInfo = true;
+		}
+		if (!$_imageCollection->count()) {
+			$_noLookBook = true;
+			$_noShow = true;
+		} else {
+			$_noLookBook = true;
+			$_noShow = true;
+			foreach ($_imageCollection as $_image) {
+				if ($_image->getDisplayInShowTab() == 1) {
+					$_noShow = false;
+				} else {
+					$_noLookBook = false;
+				}
+			}
+		}
+	?>
 	<dl class="radius tabs" data-tab="">
-		<dd class="active"><a href="#panel1"><?php echo $this->__('LOOKBOOK') ?></a></dd>
-		<dd><a href="#panel2"><?php echo $this->__('SHOW') ?></a></dd>
-		<dd><a href="#panel3"><?php echo $this->__('INFO') ?></a></dd>
+		<dd class="<?php if($_noLookBook) {echo 'hide';} else {echo 'active';}  ?>"><a href="#lookbook"><?php echo $this->__('LOOKBOOK') ?></a></dd>
+		<dd class="<?php if($_noShow) {echo 'hide';} if ($_noLookBook && !$_noShow) {echo 'active';}  ?>"><a href="#show"><?php echo $this->__('SHOW') ?></a></dd>
+		<dd class="<?php if($_noInfo) {echo 'hide';} if ($_noLookBook && $_noShow && !$_noInfo) {echo 'active';}   ?>"><a href="#info"><?php echo $this->__('INFO') ?></a></dd>
 	</dl>
 	<div class="tabs-content">
-		<div class="content active" id="panel1">
+		<div class="content <?php if($_noLookBook) {echo 'hide';} else {echo 'active';}  ?>" id="lookbook">
 			<?php if(!$_imageCollection->count()): ?>
 				<p class="note-msg"><?php echo $this->__('There are no images matching the selection.') ?></p>
 			<?php else: ?>
@@ -118,10 +143,14 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
 						?>
 						<?php $_size = $_helper->getImageSize($_image, 144, 100); ?>
 						<?php if ($_size) : ?>
-							<li class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?> <?php echo $class ?>">
+							<li class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?> <?php echo $class ?> <?php if($_check) echo 'is_parent_li' ?>">
 								<?php if (is_object($_gallery)) : ?>
-									<a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" alt="<?php echo $this->stripTags($_image->getImageDesc(), null, true) ?>" class="igallery-image"  >
-										<img src="<?php echo $timthumb.'?src='. $this->helper('igallery/image')->init($_image->getFile()).'&w='.$width.'&h='.$height ?>" width="<?php echo $width ?>" height="<?php echo $height ?>" alt="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" />
+									<a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" alt="<?php echo $this->stripTags($_image->getImageDesc(), null, true) ?>" class="igallery-image <?php if($_check) echo 'is_parent' ?>" <?php if ($_gallery->getIsParent() == 1) echo 'href="'. $_image->getImageUrl() .'"' ?> >
+										<?php if ($_gallery->getIsParent() != 1): ?>
+											<img src="<?php echo $timthumb.'?src='. $this->helper('igallery/image')->init($_image->getFile()).'&w='.$width.'&h='.$height ?>" width="<?php echo $width ?>" height="<?php echo $height ?>" alt="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" />
+										<?php else: ?>
+											<img src="<?php echo $this->helper('igallery/image')->init($_image->getFile())?>" width="" height="" alt="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" />
+										<?php endif ?>
 										<?php if ($_gallery->getIsParent() != 1): ?>
 											<div class="overlay"><span><?php echo $this->stripTags($_image->getLabel(), null, true) ?></span></div>
 										<?php endif ?>
@@ -135,7 +164,7 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
 										<?php if($_image->getImageUrl()): ?>
 											<!-- <a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" alt="<?php echo $this->stripTags($_image->getImageDesc(), null, true) ?>" class="a_view" href="<?php echo $_helper->getImageUrl($_image->getFile()); ?>" rel="prettyPhoto[gallery][<?php echo $_gallery->getId() ?>]"><span class="txt">Open Slideshow</span><span class="icon"></span></a> -->
 										<?php endif; ?>
-										<a class="a_zoom link <?php echo $_image->getImageUrl()?'':'hidden' ?>" href="<?php echo $this->stripTags($_image->getImageUrl(), null, true) ?>"><span class="txt">Share Look</span><span class="icon"></span></a>
+										<a class="a_zoom link <?php echo $_image->getImageUrl()?'':'hidden' ?>" href="<?php echo $this->stripTags($_image->getImageUrl(), null, true) ?>" <?php if($_image->getTargetUrl() == 2) echo 'target="_blank"' ?>><span class="txt">Shop Look</span><span class="icon"></span></a>
 									</div>
 								<?php endif; ?>
 							</li>
@@ -151,7 +180,7 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
 				</div>
 			<?php endif; ?>
 		</div>
-		<div class="content" id="panel2">
+		<div class="content <?php if($_noShow) {echo 'hide';} if ($_noLookBook && !$_noShow) {echo 'active';}  ?>" id="show">
 				<div class=" std">
 					<div class="category-products igallery-images masonry-container" id="container">
 
@@ -210,7 +239,7 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
 								<li class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?> <?php echo $class ?>">
 									<?php if (is_object($_gallery)) : ?>
 										<a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" alt="<?php echo $this->stripTags($_image->getImageDesc(), null, true) ?>" class="igallery-image">
-											<img src="<?php echo $timthumb.'?src='. $this->helper('igallery/image')->init($_image->getFile()).'&w='.$width.'&h='.$height ?>" width="<?php echo $width ?>" height="<?php echo $height ?>" alt="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" />
+											<img src="<?php echo $timthumb.'?src='. $this->helper('igallery/image')->init($_image->getFile()).'&w='.$width.'&h='.$height ?>" width="" height="" alt="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" />
 											<?php if ($_gallery->getIsParent() != 1): ?>
 												<div class="overlay"><span><?php echo $this->stripTags($_image->getLabel(), null, true) ?></span></div>
 											<?php endif ?>
@@ -224,7 +253,7 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
 											<?php if($_image->getImageUrl()): ?>
 												<!-- <a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" alt="<?php echo $this->stripTags($_image->getImageDesc(), null, true) ?>" class="a_view" href="<?php echo $_helper->getImageUrl($_image->getFile()); ?>" rel="prettyPhoto[gallery][<?php echo $_gallery->getId() ?>]"><span class="txt">Open Slideshow</span><span class="icon"></span></a> -->
 											<?php endif; ?>
-											<a class="a_zoom link <?php echo $_image->getImageUrl()?'':'hidden' ?>" href="<?php echo $this->stripTags($_image->getImageUrl(), null, true) ?>"><span class="txt">Share Look</span><span class="icon"></span></a>
+											<a class="a_zoom link <?php echo $_image->getImageUrl()?'':'hidden' ?>" href="<?php echo $this->stripTags($_image->getImageUrl(), null, true) ?>" <?php if($_image->getTargetUrl() == 2) echo 'target="_blank"' ?> ><span class="txt">Shop Look</span><span class="icon"></span></a>
 										</div>
 									<?php endif; ?>
 								</li>
@@ -240,7 +269,7 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
 					</div>
 				</div>
 		</div>
-		<div class="content" id="panel3">
+		<div class="content <?php if($_noInfo) {echo 'hide';} if ($_noLookBook && $_noShow && !$_noInfo) {echo 'active';}   ?>" id="info">
 			<?php
 			if($cmsBlockId = $_gallery->getCmsBlock()){
 				echo "<div class=\"std\">".$this->getLayout()->createBlock('cms/block')->setBlockId($cmsBlockId)->toHtml()."</div>";
@@ -252,22 +281,16 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
 
 <?php if ($_gallery->getIsParent() != 1): ?>
 	<script type="text/javascript">
-		jQuery.noConflict();
-		var $container = jQuery('.masonry-container');
-		// initialize
-		$container.imagesLoaded( function() {
-			$container.masonry({
+	jQuery.noConflict();
+		jQuery(window).bind("load", function() {
+			jQuery('.masonry-container').masonry({
+				itemSelector: '.item',
+				// set columnWidth a fraction of the container width
 				columnWidth: function( containerWidth ) {
-					if (jQuery(window).width() <= 700) {
-						return containerWidth;
-					} else {
-						return containerWidth / 6;
-					}
-				},
-				itemSelector: '.item'
-			})
+					return containerWidth / 6;
+				}
+			});
 		});
-
 		jQuery("dl.tabs a").bind("mouseup", function() {
 			jQuery(this).click();
 		}).click(function() {
@@ -284,5 +307,23 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
 		}, function() {
 			jQuery(this).find('.txt').animate({left: '78%'}, 300);
 		});
+		var hash = document.location.hash;
+		var id = hash.replace('#','');
+		if (jQuery('dl.tabs').length && hash != '') {
+
+			jQuery('dl.tabs').find('dd').removeClass('active');
+			jQuery('dl.tabs').find('dd > a').each(function() {
+				if ( jQuery(this).attr('href') == hash ) {
+					jQuery(this).closest('dd').addClass('active');
+				}
+			})
+
+			jQuery('.tabs-content > div').removeClass('active');
+			jQuery('.tabs-content > div').each(function() {
+				if ( jQuery(this).attr('id') == id ) {
+					jQuery(this).addClass('active');
+				}
+			});
+		}
 	});
 </script>

@@ -9,6 +9,7 @@
             <col />
             <col />
             <col />
+            <col />
             <col width="60" />
             <?php foreach ($_block->getImageTypes() as $typeId=>$type): ?>
             <?php endforeach; ?>
@@ -20,6 +21,7 @@
                     <th><?php echo Mage::helper('igallery')->__('Image Label') ?></th>
                     <th><?php echo Mage::helper('igallery')->__('Image Description') ?></th>
 					<th><?php echo Mage::helper('igallery')->__('Image URL') ?></th>
+                    <th><?php echo Mage::helper('igallery')->__('Target For URL') ?></th>
 					<th><?php echo Mage::helper('igallery')->__('Columns') ?></th>
 					<th><?php echo Mage::helper('igallery')->__('Rows') ?></th>
 					<th><?php echo Mage::helper('igallery')->__('Display In Show Tab') ?></th>
@@ -36,7 +38,14 @@
                     <td class="cell-label"><input type="text" class="input-text" onkeyup="<?php echo $_block->getJsObjectName(); ?>.updateImage('__file__')" onchange="<?php echo $_block->getJsObjectName(); ?>.updateImage('__file__')" /></td>
 					<td class="cell-image-desc"><textarea class="input-text" onkeyup="<?php echo $_block->getJsObjectName(); ?>.updateImage('__file__')" onchange="<?php echo $_block->getJsObjectName(); ?>.updateImage('__file__')"></textarea></td>
                     <td class="cell-image-url"><input type="text" class="input-text" onkeyup="<?php echo $_block->getJsObjectName(); ?>.updateImage('__file__')" onchange="<?php echo $_block->getJsObjectName(); ?>.updateImage('__file__')" /></td>
-					<td class="cell-image-width">
+					<td class="cell-target-url">
+                        <select onchange="<?php echo $_block->getJsObjectName(); ?>.updateImage('__file__')" name="" id="">
+                            <option value="0"><?php echo $this->__('Please Select') ?></option>
+                            <option value="1"><?php echo $this->__('Current Window') ?></option>
+                            <option value="2"><?php echo $this->__('New Window') ?></option>
+                        </select>
+                    </td>
+                    <td class="cell-image-width">
 						<select onchange="<?php echo $_block->getJsObjectName(); ?>.updateImage('__file__')" name="" id="">
 							<option value=""><?php echo $this->__('Please Select') ?></option>
 							<option value="1">1</option>
@@ -76,6 +85,7 @@
                     <td class="cell-label"><input type="hidden" />&nbsp;</td>
                     <td class="cell-position"><input type="hidden" />&nbsp;</td>
 					<td class=""><input type="hidden" />&nbsp;</td>
+                    <td class=""><input type="hidden" />&nbsp;</td>
 					<td class=""><input type="hidden" />&nbsp;</td>
 					<td class=""><input type="hidden" />&nbsp;</td>
 					<td class=""><input type="hidden" />&nbsp;</td>
@@ -84,7 +94,7 @@
                     <td class="cell-<?php echo $typeId ?> a-center" style="display:none;">
                         <input type="hidden" disabled="disabled" name="<?php echo $type['field'] ?>" onclick="<?php echo $_block->getJsObjectName(); ?>.setProductImages('no_selection')" value="no_selection" /></td>
                     <?php endforeach; ?>
-					                    <td class="cell-disable"><input type="hidden" />&nbsp;</td>
+					<td class="cell-disable"><input type="hidden" />&nbsp;</td>
                     <td class="cell-remove"><input type="hidden" />&nbsp;</td>
                 </tr>
             </tbody>

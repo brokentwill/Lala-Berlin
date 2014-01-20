@@ -19,22 +19,25 @@
  * needs please refer to http://www.magentocommerce.com for more information.
  *
  * @category    design
- * @package     default_modern
+ * @package     base_default
  * @copyright   Copyright (c) 2013 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
-<div class="footer-container">
-    <div class="footer">
-        <div class="footer-top">
-            <?php echo $this->getChildHtml('cms_footer_links') ?>
-            <?php //echo $this->getChildHtml('footer_links') ?>
-            <?php //echo $this->getChildHtml('newsletter') ?>
-                
-        </div>
-        <div class="footer-bottom">
-            <address><?php echo $this->getCopyright() ?></address>
-            <p class="copyright">© 2014 lala Berlin/Site by <a href="http://moresleep.net">MoreSleep</a></p>
-        </div>
+<?php $_product = $this->getProduct(); ?>
+<?php $buttonTitle = $this->__('Add to Cart'); ?>
+<?php if ($_product->getMsn()): ?>
+    <div class="prd-info prd-info-des prd-info-msn">
+        <?php echo $_product->getMsn() ?>
     </div>
-</div>
+<?php endif ?>			
+<?php if($_product->isSaleable()): ?>
+    <div class="add-to-cart">
+        <?php if(!$_product->isGrouped()): ?>
+        <label for="qty"><?php echo $this->__('Qty:') ?></label>
+        <input type="text" name="qty" id="qty" maxlength="12" value="<?php echo $this->getProductDefaultQty() * 1 ?>" title="<?php echo $this->__('Qty') ?>" class="input-text qty" />
+        <?php endif; ?>
+        <button type="button" title="<?php echo $buttonTitle ?>" class="button btn-cart" onclick="productAddToCartForm.submit(this)"><span><span><?php echo $buttonTitle ?></span></span></button>
+        <?php echo $this->getChildHtml('', true, true) ?>
+    </div>
+<?php endif; ?>

@@ -95,12 +95,11 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
                         <?php if ($_size) : ?>
                             <li class="on-home item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?> <?php echo $class ?>">
                                 <?php if (is_object($_gallery)) : ?>
-                                    <a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" class="igallery-image a-on-home <?php if ( !$_image->getImageUrl() ) echo 'cur-default' ?>" <?php if ( $_image->getImageUrl() ) echo 'href="'. $this->stripTags($_image->getImageUrl(), null, true) . '"' ?> >
+                                    <a <?php if($_image->getTargetUrl() == 2) echo 'target="_blank"' ?> title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" class="igallery-image a-on-home <?php if ( !$_image->getImageUrl() ) echo 'cur-default' ?>" <?php if ( $_image->getImageUrl() ) echo 'href="'. $this->stripTags($_image->getImageUrl(), null, true) . '"' ?> >
                                         <img src="<?php echo $timthumb.'?src='. $this->helper('igallery/image')->init($_image->getFile()).'&w='.$width.'&h='.$height ?>" width="<?php echo $width ?>" height="<?php echo $height ?>" alt="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" />
                                         <?php if ($_image->getImageUrl()): ?>
                                             <div class="overlay">
-                                                <span><?php echo $this->stripTags($_image->getLabel(), null, true) ?></span><br />
-                                                <span class="img_desc"><?php echo $this->stripTags($_image->getImageDesc(), null, true) ?></span>
+                                                <p><?php echo $this->stripTags($_image->getLabel(), null, true) ?><br /><span class="img_desc"><?php echo $this->stripTags($_image->getImageDesc(), null, true) ?></span></p>
                                             </div>
                                         <?php endif ?>
                                     </a>
@@ -126,19 +125,18 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
 </div>
 
 <script type="text/javascript">
-	var $container = jQuery('#container02');
-	// initialize
-	$container.imagesLoaded( function() {
-		$container.masonry({
-			columnWidth: function( containerWidth ) {
-				if (jQuery(window).width() <= 700) {
-					return containerWidth;
-				} else {
-					return containerWidth / 6;
-				}
-			},
-			itemSelector: '.item'
-		})
-	});
-
+    jQuery(window).bind("load", function() {
+        jQuery('#container02').masonry({
+            itemSelector: '.item',
+            // isResizable: false,
+            // set columnWidth a fraction of the container width
+            columnWidth: function( containerWidth ) {
+                if (jQuery(window).width() <= 700) {
+                    return containerWidth;
+                } else {
+                    return containerWidth / 6;
+                }
+            }
+        });
+    });
 </script>

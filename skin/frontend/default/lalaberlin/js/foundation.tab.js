@@ -17,7 +17,7 @@
 
     events : function () {
       $(this.scope).off('.tab').on('click.fndtn.tab', '[data-tab] > dd > a', function (e) {
-        e.preventDefault();
+        //e.preventDefault();
 
         var tab = $(this).parent(),
             target = $('#' + this.href.split('#')[1]),

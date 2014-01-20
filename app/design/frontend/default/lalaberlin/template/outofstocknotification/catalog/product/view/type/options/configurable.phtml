@@ -13,14 +13,42 @@
  * */
 ?>
 <?php
-$_product = $this->getProduct();
-$_attributes = Mage::helper('core')->decorateArray($this->getAllowAttributes());
-$notifyRequest = '';
-$notifyRequest = Mage::getStoreConfig('Outofstocknotification/general/activate_apptha_outofstock_notifymes');
-$enableOutOfStock = Mage::getStoreConfig('Outofstocknotification/general/activate_apptha_outofstock_enable');
-$enableOutOfStock = intval($enableOutOfStock);
-if ($_product->isSaleable() && count($_attributes) && ($enableOutOfStock)):
-    ?>
+    $_product = $this->getProduct();
+    $_attributes = Mage::helper('core')->decorateArray($this->getAllowAttributes());
+    $notifyRequest = '';
+    $notifyRequest = Mage::getStoreConfig('Outofstocknotification/general/activate_apptha_outofstock_notifymes');
+    $enableOutOfStock = Mage::getStoreConfig('Outofstocknotification/general/activate_apptha_outofstock_enable');
+    $enableOutOfStock = intval($enableOutOfStock);
+    if ($_product->isSaleable() && count($_attributes) && ($enableOutOfStock)):
+?>
+
+<?php  
+    $dump = json_decode($this->getJsonConfig(), true); 
+    // foreach ($dump as $val) {
+    //     foreach ($val as $v) {
+    //         if (is_array($v)) {
+    //             echo '<pre>';
+    //             print_r($v);
+    //         }
+    //     }
+    // }
+    // die();
+    foreach ($_product->getTypeInstance(true)->getUsedProducts( null, $_product) as $simple) {
+        $stock = Mage::getModel('cataloginventory/stock_item')->loadByProduct($simple)->getQty();
+        //echo '<pre>';
+        //print_r($simple->getData());
+        $_id = $simple->getId();
+        if ($stock == 0) {
+            $_text = '(out of stock)';
+        } else {
+            $_text = '(in stock)';
+        }
+        $_dumArr[] = array($_id => $_text);
+    }
+    //echo '<pre>';
+    //print_r(json_encode($_dumArr));
+    //die();
+?>
 
     <dl style="display:none">
         <?php foreach ($_attributes as $_attribute): ?>
@@ -36,16 +64,38 @@ if ($_product->isSaleable() && count($_attributes) && ($enableOutOfStock)):
         <?php endforeach; ?>
     </dl>
 
-    <?php $confAttributes = $_product->getTypeInstance(true)->getConfigurableAttributesAsArray($_product); ?>
-    <?php foreach ($confAttributes as $v): ?>
-        <div id="<?php echo $v['attribute_id'] ?>" class="custom-attr">
+    <?php //$confAttributes = $_product->getTypeInstance(true)->getConfigurableAttributesAsArray($_product); ?>
+    <?php //foreach ($confAttributes as $v): ?>
+        <!-- <div id="<?php echo $v['attribute_id'] ?>" class="custom-attr">
             <span>Choose <?php echo $v['store_label'] ?></span>
             <div class="attr-option">
                 <?php foreach ($v['values'] as $val): ?>
                     <span id="<?php echo $val['value_index'] ?>"><?php echo $val['label'] ?></span>
                 <?php endforeach ?>
             </div>
-        </div>
+            <input class="opt-hidden" type="hidden" name="super_attribute[<?php echo $v['attribute_id'] ?>]" value="">
+        </div> -->
+    <?php //endforeach ?>
+
+    <?php foreach ($dump as $valx): ?>
+        <?php foreach ($valx as $v): ?>
+            <?php if (is_array($v)): ?>
+            
+            <div id="<?php echo $v['id'] ?>" class="custom-attr">
+                <span>Choose <?php echo $v['label'] ?></span>
+                <div class="attr-option">
+                    <?php foreach ($v['options'] as $val): ?>
+
+                        <?php $dumpText = explode('(', trim($val['label']))  ?>
+                        <span class="<?php if(count($valx) == 1) { echo 'one'; } else { echo 'span_'.$v['code']; } ?>" alt='<?php echo json_encode($val['products']) ?>' id="<?php echo $val['id'] ?>" title="<?php echo trim($val['label']) ?>"><?php echo trim($dumpText[0]) ?></span>
+                    
+                    <?php endforeach ?>
+                </div>
+                <input class="opt-hidden" type="hidden" name="super_attribute[<?php echo $v['id'] ?>]" value="">
+            </div>
+
+        <?php endif ?>
+        <?php endforeach ?>
     <?php endforeach ?>
 
     <div class="block-body apptha-outofstock-block-body line" id='responceMesPlace1' style="padding-top:10px;">   
@@ -54,7 +104,8 @@ if ($_product->isSaleable() && count($_attributes) && ($enableOutOfStock)):
         <button disabled class="button" id="notify_btn" type="button" style="display:none; background:#fff; opacity:.7; color:#2f2f2f; border: 1px solid #cecece; width:200px; height:45px; line-height:45px; "><span><span>SOLD OUT</span></span></button>
         <span id="notify_message1" style="display:none; cursor: pointer;"><?php echo $notifyRequest; ?></span>
         <div id="padding_div1" style="margin-top: 4px;" >
-            <span id="notify_error1" class="line notify_error1"></span></div>
+            <span id="notify_error1" class="line notify_error1"></span>
+        </div>
         <input type="hidden" value="<?php echo $productId; ?>" id='productId1' name ='productId' />
 
         <span id="notify_submit1" style="display:none;"> <b><?php echo $this->__('Email') ?>:</b>
@@ -79,6 +130,7 @@ spConfig.getIdOfSelectedProduct = function()  // function for get child product 
     for (var i = this.settings.length - 1; i >= 0; i--)
     {
         var selected = this.settings[i].options[this.settings[i].selectedIndex];
+        console.log(selected);
         if (selected.config)
         {
             for (var iproducts = 0; iproducts < selected.config.products.length; iproducts++)
@@ -121,9 +173,13 @@ spConfig.getIdOfSelectedProduct = function()  // function for get child product 
 
 }
 
-function notifyMe(val, sel)
+function notifyMe(val, sel, prodId)
 {
-    var stockNotifyConfigure = spConfig.getIdOfSelectedProduct();
+
+    
+
+    //var stockNotifyConfigure = spConfig.getIdOfSelectedProduct();
+    var stockNotifyConfigure = prodId;
     if (sel.indexOf('(') != -1) {
         var outstockArr = sel.split('(');
         var stockstatus = outstockArr[1].slice(0, outstockArr[1].lastIndexOf(")"));
@@ -185,18 +241,66 @@ Translator.add('AlreadyNotified', '<?php echo $this->__('This Mail Id Already No
 
 <script type="text/javascript">
     jQuery(document).ready(function() {
+        var prodId, proO, proC, proS, objO, objC, objS, object ;
         jQuery('.custom-attr .attr-option span').click(function() {
             jQuery(this).closest('.attr-option').find('span').removeClass('active');
             jQuery(this).addClass('active');
 
-            var id = jQuery(this).closest('.custom-attr').attr('id');
-            var val = jQuery(this).attr('id');
+            var id   = jQuery(this).closest('.custom-attr').attr('id');
+            var val  = jQuery(this).attr('id');
+            var txt  = jQuery(this).attr('title');
+            
 
-            var select = jQuery('#attribute' + id);
+            if (jQuery(this).hasClass('span_color')) {
+                proC = jQuery(this).attr('alt');
+                objC = jQuery.parseJSON(proC);
+                //console.log(objC);
+            }
+            if (jQuery(this).hasClass('span_size')) {
+                proS = jQuery(this).attr('alt');
+                objS = jQuery.parseJSON(proS);
+                //console.log(objS);
+            }
+            if (jQuery(this).hasClass('one')) {
+                proO = jQuery(this).attr('alt');
+                objO = jQuery.parseJSON(proO);
+                prodId = objO[0];
+                //console.log(prodId);
+                
+            } else {
+                if (objC !== undefined && objS !== undefined) {
+                    object = objC.concat(objS);
+                    //console.log(object);
+                    var uniqueVals = [];
+                    jQuery.each(object, function(i, el){
+                        if(jQuery.inArray(el, uniqueVals) === -1) {
+                            uniqueVals.push(el);
+                        } else {
+                            prodId = el;
+                            
+                        }
+                    })
+                }   
+            }
+            
+            console.log(prodId);
+            var dumArr = <?php echo json_encode($_dumArr) ?>;
+            //console.log(dumArr);
+            if (prodId !== undefined) {
+                jQuery.each(dumArr, function(i, el){
+                    if (el[prodId] !== undefined) {
+                        txt = el[prodId];              
+                    }
+                })
+            }
+            if (prodId == null) {
+                txt = '(out of stock)';
+            }
 
-            select.val(val);
-            var selectTxt = jQuery('#attribute' + id + ' option:selected').text();
-            notifyMe(val, selectTxt);
+            console.log(txt);
+            jQuery(this).closest('.attr-option').next('input.opt-hidden').val(val);
+            notifyMe(prodId, txt, prodId);
+            prodId = null;
         });
 
         jQuery('span#notify_message1').click(function() {

@@ -67,25 +67,21 @@
 		<section class="top-bar-section">
 			<?php if (count($_categories) > 0): ?>
 				<ul class="left">
-					<li class="divider"></li>
 
 					<li><a class="<?php if($ig) echo 'active' ?>" href="<?php echo $this->getUrl('collections') ?>"><?php echo $this->__('Collections') ?></a></li>
 					
-					<li class="divider"></li>
 					<li><a class="<?php if($sh) echo 'active' ?>" href="http://www.lalaberlin-onlineshop.de/"><?php echo $this->__('Shop') ?></a></li>
 					
-					<li class="divider"></li>
 					<li><a class="<?php if($ab && $cms == 'about') echo 'active' ?>" href="<?php echo $this->getUrl('about') ?>"><?php echo $this->__('About') ?></a></li>
 					
-					<li class="divider"></li>
 					<li><a class="<?php if($bl) echo 'active' ?>" href="http://lalaberlinlive.tumblr.com/"><?php echo $this->__('#Lalaberlin') ?></a></li>
-					<li class="divider"></li>
 					<!-- <li class="contact"><a class="<?php if($ab && $cms == 'contact') echo 'active' ?>" href="<?php echo $this->getUrl('contact') ?>"><?php echo $this->__('Contact') ?></a></li>
 					<li class="divider contact"></li> -->
 				</ul>
 			<?php endif; ?>
 			<?php //echo $this->getChildHtml('topLinks') ?>
 			<ul class="right">
+				<li class="new_devi"><a style="padding:0;"><span class="divi-span"></span></a></li>
 				<?php echo $this->getChildHtml('store_language') ?>
 				<li class="divider"></li>
 				
