@@ -27,7 +27,7 @@
 <config>
     <modules>
         <My_Igallery>
-            <version>1.0.7</version>
+            <version>1.0.9</version>
         </My_Igallery>
     </modules>
     <frontend>

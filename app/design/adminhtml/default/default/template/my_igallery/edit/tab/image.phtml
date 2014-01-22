@@ -10,6 +10,7 @@
             <col />
             <col />
             <col />
+            <col />
             <col width="60" />
             <?php foreach ($_block->getImageTypes() as $typeId=>$type): ?>
             <?php endforeach; ?>
@@ -21,13 +22,15 @@
                     <th><?php echo Mage::helper('igallery')->__('Image Label') ?></th>
                     <th><?php echo Mage::helper('igallery')->__('Image Description') ?></th>
 					<th><?php echo Mage::helper('igallery')->__('Image URL') ?></th>
+                    <th><?php echo Mage::helper('igallery')->__('Shop URL') ?></th>
                     <th><?php echo Mage::helper('igallery')->__('Target For URL') ?></th>
 					<th><?php echo Mage::helper('igallery')->__('Columns') ?></th>
 					<th><?php echo Mage::helper('igallery')->__('Rows') ?></th>
-					<th><?php echo Mage::helper('igallery')->__('Display In Show Tab') ?></th>
+					<th><?php echo Mage::helper('igallery')->__('Display Tab') ?></th>
 					<th><?php echo Mage::helper('igallery')->__('Sort Order') ?></th>
                     <?php foreach ($_block->getImageTypes() as $typeId=>$type): ?>
                     <?php endforeach; ?>
+                    <th><?php echo Mage::helper('igallery')->__('Edit') ?></th>
                     <th><?php echo Mage::helper('igallery')->__('Disable') ?></th>
                     <th class="last"><?php echo Mage::helper('igallery')->__('Remove') ?></th>
                 </tr>
@@ -38,6 +41,7 @@
                     <td class="cell-label"><input type="text" class="input-text" onkeyup="<?php echo $_block->getJsObjectName(); ?>.updateImage('__file__')" onchange="<?php echo $_block->getJsObjectName(); ?>.updateImage('__file__')" /></td>
 					<td class="cell-image-desc"><textarea class="input-text" onkeyup="<?php echo $_block->getJsObjectName(); ?>.updateImage('__file__')" onchange="<?php echo $_block->getJsObjectName(); ?>.updateImage('__file__')"></textarea></td>
                     <td class="cell-image-url"><input type="text" class="input-text" onkeyup="<?php echo $_block->getJsObjectName(); ?>.updateImage('__file__')" onchange="<?php echo $_block->getJsObjectName(); ?>.updateImage('__file__')" /></td>
+                    <td class="cell-shop-url"><input type="text" class="input-text" onkeyup="<?php echo $_block->getJsObjectName(); ?>.updateImage('__file__')" onchange="<?php echo $_block->getJsObjectName(); ?>.updateImage('__file__')" /></td>
 					<td class="cell-target-url">
                         <select onchange="<?php echo $_block->getJsObjectName(); ?>.updateImage('__file__')" name="" id="">
                             <option value="0"><?php echo $this->__('Please Select') ?></option>
@@ -67,8 +71,9 @@
 					<td class="display-in-show-tab">
 						<select onchange="<?php echo $_block->getJsObjectName(); ?>.updateImage('__file__')" name="" id="">
 							<option value=""><?php echo $this->__('Please Select') ?></option>
-							<option value="0"><?php echo $this->__('No') ?></option>
-							<option value="1"><?php echo $this->__('Yes') ?></option>
+							<option value="0"><?php echo $this->__('Lookbook') ?></option>
+							<option value="1"><?php echo $this->__('Show') ?></option>
+                            <option value="2"><?php echo $this->__('Backstage') ?></option>
 						</select>
 					</td>
 					<td class="cell-position"><input type="text" class="input-text validate-number" onkeyup="<?php echo $_block->getJsObjectName(); ?>.updateImage('__file__')" onchange="<?php echo $_block->getJsObjectName(); ?>.updateImage('__file__')" /></td>
@@ -76,6 +81,11 @@
                     <td class="cell-<?php echo $typeId ?> a-center" style="display:none;">
                         <input type="hidden" name="<?php echo $type['field'] ?>" onclick="<?php echo $_block->getJsObjectName(); ?>.setProductImages('__file__')" value="__file__" /></td>
                     <?php endforeach; ?>
+                    <td class="cell-edit a-center">
+                        <input type="checkbox" onclick="" />
+                        <input alt="<?php echo $_block->getJsObjectName(); ?>.updateImage('__file__')" id="forUrl" type="hidden" value=""  />
+                        <input id="forFile" type="hidden" value=""  />
+                    </td>
                     <td class="cell-disable a-center"><input type="checkbox" onclick="<?php echo $_block->getJsObjectName(); ?>.updateImage('__file__')" /></td>
                     <td class="cell-remove a-center last"><input type="checkbox" onclick="<?php echo $_block->getJsObjectName(); ?>.updateImage('__file__')" /></td>
                 </tr>
@@ -94,6 +104,7 @@
                     <td class="cell-<?php echo $typeId ?> a-center" style="display:none;">
                         <input type="hidden" disabled="disabled" name="<?php echo $type['field'] ?>" onclick="<?php echo $_block->getJsObjectName(); ?>.setProductImages('no_selection')" value="no_selection" /></td>
                     <?php endforeach; ?>
+                    <td class="cell-edit"><input type="hidden" />&nbsp;</td>
 					<td class="cell-disable"><input type="hidden" />&nbsp;</td>
                     <td class="cell-remove"><input type="hidden" />&nbsp;</td>
                 </tr>
@@ -114,5 +125,18 @@
 <script type="text/javascript">
     //<![CDATA[
     var <?php echo $_block->getJsObjectName(); ?> = new Product.Igallery('<?php echo $_block->getHtmlId() ?>', <?php echo $_block->getUploader()->getJsObjectName() ?>, <?php echo $_block->getImageTypesJson() ?>);
+    // var media_gallery_contentJsObject = new Product.Igallery('media_gallery_content', id_f4bddae9dca1b4cc80589dbce8108843_UploaderJsObject, {"gallery":{"label":"igallery","field":"igallery"}}); 
     //]]>
+</script>
+
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        jQuery('td.cell-edit input').click(function() {
+            if (jQuery(this).is(':checked')) {
+                jQuery('input#forCheck').val('true');
+            } else {
+                jQuery('input#forCheck').val('false');
+            }
+        })
+    })
 </script>

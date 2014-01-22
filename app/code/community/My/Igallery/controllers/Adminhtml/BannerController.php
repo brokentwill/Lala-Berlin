@@ -253,28 +253,43 @@ class My_Igallery_Adminhtml_BannerController extends Mage_Adminhtml_Controller_A
     public function imageAction()
     {
         $result = array();
+        $_param = $this->getRequest()->getParams();
         try {
             $uploader = new My_Igallery_Media_Uploader('image');
             $uploader->setAllowedExtensions(array('jpg', 'jpeg', 'gif', 'png'));
             $uploader->setAllowRenameFiles(true);
             $uploader->setFilesDispersion(true);
             $result = $uploader->save(
-                    Mage::getSingleton('igallery/config')->getBaseMediaPath()
+                Mage::getSingleton('igallery/config')->getBaseMediaPath()
             );
 
-            $result['url'] = Mage::getSingleton('igallery/config')->getMediaUrl($result['file']);
-            $result['cookie'] = array(
-                'name' => session_name(),
-                'value' => $this->_getSession()->getSessionId(),
-                'lifetime' => $this->_getSession()->getCookieLifetime(),
-                'path' => $this->_getSession()->getCookiePath(),
-                'domain' => $this->_getSession()->getCookieDomain()
-            );
+            if ($_param['forCheck']    == 'true') {
+                $respond['url']        = Mage::getSingleton('igallery/config')->getMediaUrl($result['file']);
+                $respond['file']       = $result['file'];
+                $respond['forCheck']   = true;
+                $respond['error']      = 0;
+            } else {
+                $result['url'] = Mage::getSingleton('igallery/config')->getMediaUrl($result['file']);
+                $result['cookie'] = array(
+                    'name' => session_name(),
+                    'value' => $this->_getSession()->getSessionId(),
+                    'lifetime' => $this->_getSession()->getCookieLifetime(),
+                    'path' => $this->_getSession()->getCookiePath(),
+                    'domain' => $this->_getSession()->getCookieDomain()
+                );
+            }
+     
         } catch (Exception $e) {
             $result = array('error' => $e->getMessage(), 'errorcode' => $e->getCode());
         }
 
-        $this->getResponse()->setBody(Zend_Json::encode($result));
+        if ($_param['forCheck'] == 'true') {
+            $this->getResponse()->setBody(Zend_Json::encode($respond));
+        } else {
+            $this->getResponse()->setBody(Zend_Json::encode($result));
+        }
+
+        
     }
 
     public function categoriesJsonAction()

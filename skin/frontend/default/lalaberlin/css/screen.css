@@ -1690,10 +1690,10 @@ ul {
 
 .footnav li h2.section-title {
   text-transform: uppercase;
-  font-size: 16px;
+  font-size: 18px;
   letter-spacing: 2px;
-  margin-bottom: 30px;
-  color: #333;
+  margin-bottom: 35px;
+  color: #000;
   font-weight: 600;
 }
 
@@ -1703,7 +1703,7 @@ ul {
 
 .footer .footer-top { border-bottom: 1px solid #e7e7e7; padding-bottom: 30px; margin-bottom: 50px;}
 .footer .footer-top .footnav ul.leveled-list { color: #000;}
-.footer .footer-top .footnav ul.leveled-list li { margin-bottom: 10px; font-size: 14px;}
+.footer .footer-top .footnav ul.leveled-list li { margin-bottom: 15px; font-size: 14px;}
 .footer .footer-top .footnav ul.leveled-list li a {
  -webkit-transition: all 0.35s ease-out 0s;
  -moz-transition: all 0.35s ease-out 0s;
@@ -1714,6 +1714,8 @@ ul {
 .footer .footer-top .footnav ul.leveled-list li a:hover { color: #5d5d5d;}
 
 .footer-bottom { color: #000; float: left; width: 100%; padding: 0 0.625rem;}
+.footer-bottom a { text-decoration: underline;}
+.footer-bottom a:hover { text-decoration: inherit;}
 .footer-bottom address { float: left;}
 .footer-bottom address p { font-size: 14px; line-height: 21px;}
 .footer-bottom p.copyright { float: right; line-height: 45px; font-size: 14px;}
@@ -1741,6 +1743,36 @@ ul {
 
 .banner_box { margin-bottom: 40px; overflow: hidden;}
 .banner_box .divSimpleSlider a img { width: 100%;}
+.banner_box .divSimpleSlider .banner_overlay { 
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  color: #fff;
+  display: none;
+}
+.banner_box .divSimpleSlider .banner_overlay > p {
+  position: absolute;
+  top: 36%;
+  text-align: center;
+  width: 100%;
+  margin: 0;
+}
+.banner_box .divSimpleSlider .banner_overlay > p .headline { font-size: 110px; line-height: 125px; font-family: Brown-Bold; text-transform: uppercase;}
+.banner_box .divSimpleSlider .banner_overlay > p .subline { font-size: 34px; font-family: ACP;}
+.banner_box .divSimpleSlider .banner_overlay > p .btn-text {
+  display: inline-block;
+  width: 215px;
+  height: 45px;
+  line-height: 45px;
+  margin-top: 32px;
+  font-size: 18px;
+  border: 1px solid #fff;
+  text-align: center;
+  text-transform: uppercase;
+}
 .catalog-product-view .main-container {max-width: 1800px;}
 
 .main { background: #fafafa; min-height: 400px;}

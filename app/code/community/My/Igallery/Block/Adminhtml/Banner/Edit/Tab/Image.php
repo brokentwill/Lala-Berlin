@@ -76,7 +76,7 @@ class My_Igallery_Block_Adminhtml_Banner_Edit_Tab_Image extends Mage_Adminhtml_B
         if (is_array($_data) and sizeof($_data) > 0) {
             $_result = array();
             foreach ($_data as &$_item) {
-				$_result[] = array("value_id" => $_item["image_id"], "url" => Mage::getSingleton("igallery/config")->getBaseMediaUrl() . $_item["file"], "file" => $_item["file"], "label" => $_item["label"], "image_url" => $_item["image_url"], "target_url" => $_item["target_url"], "image_desc" => $_item["image_desc"], "image_width" => $_item["image_width"], "image_height" => $_item["image_height"], "position" => $_item["position"], "display_in_show_tab" => $_item["display_in_show_tab"], "disabled" => $_item["disabled"]);
+				$_result[] = array("value_id" => $_item["image_id"], "url" => Mage::getSingleton("igallery/config")->getBaseMediaUrl() . $_item["file"], "file" => $_item["file"], "label" => $_item["label"], "image_url" => $_item["image_url"], "shop_url" => $_item["shop_url"], "target_url" => $_item["target_url"], "image_desc" => $_item["image_desc"], "image_width" => $_item["image_width"], "image_height" => $_item["image_height"], "position" => $_item["position"], "display_in_show_tab" => $_item["display_in_show_tab"], "disabled" => $_item["disabled"]);
             }return Zend_Json::encode($_result);
         }return "[]";
     }

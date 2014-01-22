@@ -114,9 +114,9 @@ with 13 supported sliders.</span></div><br/>',
 
       $fieldset->addField('content', 'editor', array(
           'name'      => 'content',
-          'label'     => Mage::helper('easybanner')->__('Content'),
-          'title'     => Mage::helper('easybanner')->__('Content'),
-          'style'     => 'width:600px; height:300px;',
+          'label'     => Mage::helper('easybanner')->__('Button Text'),
+          'title'     => Mage::helper('easybanner')->__('Button Text'),
+          'style'     => 'width:275px; height:16px;',
           'wysiwyg'   => false,
           'required'  => false,
       ));

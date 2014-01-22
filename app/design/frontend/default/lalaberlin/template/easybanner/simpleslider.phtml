@@ -21,7 +21,19 @@ if ($_banner && $_banner->getStatus()==1):?>
   		  <?php elseif ($_banner_item->getImageUrl()): ?>
           <img src="<?php echo $_banner_item->getImageUrl() ?>" alt="<?php echo $_banner_item->getContent()?>" />
   		  <?php endif; ?>
-      </a>    
+        <?php  
+          $_title = $this->stripTags($_banner_item->getTitle(), null, true);
+          $_dump = explode('_', $_title);
+          $_btnTxt = $this->stripTags($_banner_item->getContent(), null, true);
+        ?>
+        <div class="banner_overlay">
+          <p>
+            <span class="headline"><?php if($_title) echo $_dump[0]; ?></span><br />
+            <span class="subline"><?php if($_title) echo $_dump[1]; ?></span><br />
+            <span class="btn-text"><?php if($_btnTxt) echo $_btnTxt; ?></span>
+          </p>
+        </div> 
+      </a> 
     <?php endforeach ?>
     </div>
 </div>

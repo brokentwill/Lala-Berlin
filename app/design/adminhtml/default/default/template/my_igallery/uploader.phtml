@@ -9,6 +9,7 @@
                     <input type="hidden" name="Filename"/>
                     <input type="hidden" name="form_key" value="{{formKey}}"/>
                     <input type="hidden" name="Upload" value="Submit Query"/>
+                    <input type="hidden" name="forCheck" id="forCheck" value="false"/>
                 </form>
                 <iframe name="uploadBlockIframe-{{id}}" style="display:none;"></iframe>
             </div></div>
@@ -25,6 +26,8 @@
         </div>
     </div>
 </div>
+
+
 <script type="text/javascript">
 //<![CDATA[
 <?php echo $this->getJsObjectName() ?> = new JsUploader('<?php echo $this->getHtmlId() ?>', <?php echo $this->getConfigJson() ?>);

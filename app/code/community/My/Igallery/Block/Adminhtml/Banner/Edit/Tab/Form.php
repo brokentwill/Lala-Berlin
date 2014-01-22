@@ -104,13 +104,13 @@ class My_Igallery_Block_Adminhtml_Banner_Edit_Tab_Form extends Mage_Adminhtml_Bl
 			'values'    => Mage::getSingleton('adminhtml/system_config_source_yesno')->toOptionArray(),
 			'value'     => $_model->getIsParent()
         ));
-        $layoutFieldset->addField('description', 'textarea', array(
-            'name'      => 'description',
-            'label'     => Mage::helper('cms')->__('SHOW Tab Content'),
-            'title'     => Mage::helper('cms')->__('SHOW Tab Content'),
-            'required'  => false,
-            'value'     => $_model->getDescription()
-        ));
+        // $layoutFieldset->addField('description', 'textarea', array(
+        //     'name'      => 'description',
+        //     'label'     => Mage::helper('cms')->__('SHOW Tab Content'),
+        //     'title'     => Mage::helper('cms')->__('SHOW Tab Content'),
+        //     'required'  => false,
+        //     'value'     => $_model->getDescription()
+        // ));
 
 		$blockData = Mage::getResourceModel('cms/block_collection')->load()->getData();
 		foreach($blockData as $k => $v){
@@ -124,6 +124,13 @@ class My_Igallery_Block_Adminhtml_Banner_Edit_Tab_Form extends Mage_Adminhtml_Bl
 			'values'   => $blockOptions,
 			'value'    => $_model->getCmsBlock()
 		));
+
+        $layoutFieldset->addField('cms_block_video', 'select', array(
+            'name'     => 'cms_block_video',
+            'label'    => Mage::helper('igallery')->__('Video Tab Content'),
+            'values'   => $blockOptions,
+            'value'    => $_model->getCmsBlockVideo()
+        ));
 
         if( Mage::getSingleton('adminhtml/session')->getBannerData() ) {
             $form->setValues(Mage::getSingleton('adminhtml/session')->getBannerData());
