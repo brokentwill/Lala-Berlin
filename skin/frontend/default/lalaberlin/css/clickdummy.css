@@ -42,21 +42,38 @@ body {
 
 /* line 34, src/clickdummy.scss */
 #navbar {
-  position: fixed;
   z-index: 999;
-  top: 0;
-  left: 0;
   width: 100%;
   padding: 0 0 20px 0;
   height: 105px;
-  -webkit-transform: translate3d(0, -105px, 0);
-  -moz-transform: translate3d(0, -105px, 0);
-  -ms-transform: translate3d(0, -105px, 0);
-  -o-transform: translate3d(0, -105px, 0);
-  transform: translate3d(0, -105px, 0);
+}
+#navbar02 {
+  width: 100%;
+  padding: 0 0 20px 0;
+  height: 55px;
+  background-color: #FFFFFF;
+  left: 0;
+  opacity: 0;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  
+  -webkit-transform: translate3d(0, -100%, 0);
+  -moz-transform: translate3d(0, -100%, 0);
+  -ms-transform: translate3d(0, -100%, 0);
+  -o-transform: translate3d(0, -100%, 0);
+  transform: translate3d(0, -100%, 0);
+
+  -webkit-transition: all 0.35s ease-out 0s;
+  -moz-transition: all 0.35s ease-out 0s;
+  -ms-transition: all 0.35s ease-out 0s;
+  -o-transition: all 0.35s ease-out 0s;
+  transition: all 0.35s ease-out 0s;
 }
 /* line 44, src/clickdummy.scss */
-#navbar.active {
+#navbar02.active {
+  opacity: 1;
   -webkit-transform: translate3d(0, 0, 0);
   -moz-transform: translate3d(0, 0, 0);
   -ms-transform: translate3d(0, 0, 0);
@@ -67,6 +84,11 @@ body {
 #navbar .nav-main {
   background-color: #000000;
 }
+
+#navbar02 .nav-main {
+  background-color: #000000;
+}
+
 
 /* line 53, src/clickdummy.scss */
 #main {

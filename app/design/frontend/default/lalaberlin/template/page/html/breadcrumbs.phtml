@@ -24,23 +24,48 @@
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
+
+
+<?php
+    $router = Mage::app()->getFrontController()->getRequest()->getRouteName();
+    $ig = false;
+    if ($router == 'igallery') {
+        $ig = true;
+    }
+?>
+
+
 <?php if($crumbs && is_array($crumbs)): ?>
-<div class="breadcrumbs">
+<div class="breadcrumbs" id="bdc">
     <ul>
+        <li class="name header-lala-logo"><a href="<?php echo $this->getUrl('') ?>"><img src="<?php echo $this->getSkinUrl('img/lala-logo-small.png') ?> " alt=""></a></li>
         <?php foreach($crumbs as $_crumbName=>$_crumbInfo): ?>
             <li class="<?php echo $_crumbName ?>">
             <?php if($_crumbInfo['link']): ?>
                 <a href="<?php echo $_crumbInfo['link'] ?>" title="<?php echo $this->escapeHtml($_crumbInfo['title']) ?>"><?php echo $this->escapeHtml($_crumbInfo['label']) ?></a>
             <?php elseif($_crumbInfo['last']): ?>
-                <strong><?php echo $this->escapeHtml($_crumbInfo['label']) ?></strong>
+                <a class="blast"><?php echo $this->escapeHtml($_crumbInfo['label']) ?></a>
             <?php else: ?>
                 <?php echo $this->escapeHtml($_crumbInfo['label']) ?>
             <?php endif; ?>
             <?php if(!$_crumbInfo['last']): ?>
-                <span>/ </span>
+                <span> > </span>
             <?php endif; ?>
             </li>
         <?php endforeach; ?>
+        <li class="to-top">Top <i class="fi-arrow-up"></i></li>
     </ul>
 </div>
 <?php endif; ?>
+
+
+
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+        jQuery('li.to-top').click(function () {
+            jQuery('body,html').animate({
+                scrollTop: 0
+            }, 500);
+        });
+    });
+</script>

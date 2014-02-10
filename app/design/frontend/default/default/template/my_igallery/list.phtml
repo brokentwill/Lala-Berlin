@@ -39,12 +39,32 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
 <?php $_gallery = $this->_getGallery(); ?>
 <?php $_check = $_gallery->getIsParent(); ?>
 <?php $currentUrl = $_gallery->getFriendlyUrl() ?>
-<ul class="collection-selector">
+<ul class="collection-selector <?php echo $_gallery->getIsParent() == 1 ? 'child-cate' : ''?>">
 	<?php foreach($bannerCollection as $banner): ?>
 		<?php if($banner->getIsParent() == 1 || $banner->getIsActive() == 0) continue ?>
 		<li class="<?php echo $banner->getFriendlyUrl() == $currentUrl ? 'active current':'' ?>"><a href="<?php echo Mage::getBaseUrl().$banner->getFriendlyUrl(); ?>"><?php echo $banner->getName(); ?></a></li>
 	<?php endforeach ?>
 </ul>
+
+<?php  
+
+	$breadcrumbs = $this->getLayout()->getBlock('breadcrumbs');
+	$breadcrumbs->addCrumb('home', array('label'=>Mage::helper('cms')->__('Home'), 'title'=>Mage::helper('cms')->__('Home Page'), 'link'=>Mage::getBaseUrl()));
+	if ($_gallery->getIsParent() == 1) {
+		$breadcrumbs->addCrumb('collection', array('label'=>Mage::helper('cms')->__('Collections'), 'title'=>Mage::helper('cms')->__('Collections')));
+	} else {
+		$breadcrumbs->addCrumb('collection', array('label'=>Mage::helper('cms')->__('Collections'), 'title'=>Mage::helper('cms')->__('Collections'), 'link'=>$this->getUrl('collections')));
+		foreach ($bannerCollection as $banner) {
+			if($banner->getIsParent() == 1 || $banner->getIsActive() == 0) continue;
+			if ($banner->getFriendlyUrl() == $currentUrl) {
+				$breadcrumbs->addCrumb('col-sub', array('label'=>$banner->getName(), 'title'=>$banner->getName(), 'link'=>Mage::getBaseUrl().$banner->getFriendlyUrl()));
+				$breadcrumbs->addCrumb('col-sub-tab', array('label'=>Mage::helper('cms')->__('LookBook'), 'title'=>Mage::helper('cms')->__('LookBook')));
+			}
+		}	
+	}
+
+	echo $this->getLayout()->getBlock('breadcrumbs')->toHtml();
+?>
 
 <div class="gallery-container <?php echo $_gallery->getIsParent() == 1 ? 'parent-gallery' : ''?>">
 	<?php if ($_gallery) : ?>
@@ -80,7 +100,7 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
 			}
 		}
 	?>
-	<dl class="radius tabs" data-tab="">
+	<dl class="radius tabs child-cate" data-tab="">
 		<dd class="<?php if($_noLookBook) {echo 'hide';} else {echo 'active';}  ?>"><a href="#lookbook"><?php echo $this->__('LOOKBOOK') ?></a></dd>
 		<dd class="<?php if($_noShow) {echo 'hide';} if ($_noLookBook && !$_noShow) {echo 'active';}  ?>"><a href="#show"><?php echo $this->__('SHOW') ?></a></dd>
 		<dd class="<?php if($_noBackstage) {echo 'hide';} if ($_noLookBook && $_noShow && !$_noBackstage) {echo 'active';}  ?>"><a href="#backstage"><?php echo $this->__('BACKSTAGE') ?></a></dd>
@@ -412,6 +432,8 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
 		});
 		jQuery("dl.tabs a").bind("mouseup", function() {
 			jQuery(this).click();
+			var txt = jQuery(this).text();
+			jQuery(this).closest('.col-main').find('#bdc ul li.col-sub-tab a').text(txt);
 		}).click(function() {
 				jQuery('.masonry-container').masonry();
 			});
@@ -433,6 +455,8 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
 			jQuery('dl.tabs').find('dd').removeClass('active');
 			jQuery('dl.tabs').find('dd > a').each(function() {
 				if ( jQuery(this).attr('href') == hash ) {
+					var txt = jQuery(this).text();
+					jQuery(this).closest('.col-main').find('#bdc ul li.col-sub-tab a').text(txt);
 					jQuery(this).closest('dd').addClass('active');
 				}
 			})

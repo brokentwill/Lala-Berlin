@@ -72,7 +72,7 @@
 						<select onchange="<?php echo $_block->getJsObjectName(); ?>.updateImage('__file__')" name="" id="">
 							<option value=""><?php echo $this->__('Please Select') ?></option>
 							<option value="0"><?php echo $this->__('Lookbook') ?></option>
-							<option value="1"><?php echo $this->__('Show') ?></option>
+							<option value="1"><?php echo $this->__('Show-Tab') ?></option>
                             <option value="2"><?php echo $this->__('Backstage') ?></option>
 						</select>
 					</td>
@@ -83,7 +83,7 @@
                     <?php endforeach; ?>
                     <td class="cell-edit a-center">
                         <input type="checkbox" onclick="" />
-                        <input alt="<?php echo $_block->getJsObjectName(); ?>.updateImage('__file__')" id="forUrl" type="hidden" value=""  />
+                        <input alt="__file__" id="forUrl" type="hidden" value=""  />
                         <input id="forFile" type="hidden" value=""  />
                     </td>
                     <td class="cell-disable a-center"><input type="checkbox" onclick="<?php echo $_block->getJsObjectName(); ?>.updateImage('__file__')" /></td>
@@ -133,9 +133,12 @@
     jQuery(document).ready(function() {
         jQuery('td.cell-edit input').click(function() {
             if (jQuery(this).is(':checked')) {
+                var file = jQuery(this).next('#forUrl').attr('alt');
                 jQuery('input#forCheck').val('true');
+                jQuery('input#fileUpdate').val(file);
             } else {
                 jQuery('input#forCheck').val('false');
+                jQuery('input#fileUpdate').val('');
             }
         })
     })

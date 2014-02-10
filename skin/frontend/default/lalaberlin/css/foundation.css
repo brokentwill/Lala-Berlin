@@ -1469,6 +1469,10 @@ meta.foundation-mq-topbar {
     position: relative;
     background: #fff;
     margin-bottom: 0; }
+#navbar02 .top-bar {
+    height: 55px;
+    line-height: 55px;
+}
 .top-bar ul {
     margin-bottom: 0;
     list-style: none; }
@@ -1492,6 +1496,10 @@ meta.foundation-mq-topbar {
     margin: 0; }
 .top-bar .name {
     height: 105px;
+    margin: 0;
+    font-size: 15px; }
+#navbar02 .top-bar .name {
+    height: 55px;
     margin: 0;
     font-size: 15px; }
 .top-bar .name h1 {
@@ -1724,11 +1732,21 @@ meta.foundation-mq-topbar {
     .top-bar-section li a:not(.button) {
         padding: 0 32px;
         line-height: 105px;
+        background: #fff;
+        -webkit-transition: all 0.35s ease-out 0s;
+        -moz-transition: all 0.35s ease-out 0s;
+        -ms-transition: all 0.35s ease-out 0s;
+        -o-transition: all 0.35s ease-out 0s;
+        transition: all 0.35s ease-out 0s;
+    }
+    #navbar02 .top-bar-section li a:not(.button) {
+        padding: 0 32px;
+        line-height: 55px;
         background: #fff; }
     .top-bar-section li a:not(.button):hover {
         }
     .top-bar-section .has-dropdown > a {
-        padding-right: 0px !important; }
+        padding: 0px !important; }
     .top-bar-section .has-dropdown > a:after {
         content: "";
         display: block;
@@ -1795,53 +1813,11 @@ meta.foundation-mq-topbar {
         display: block; } }
 .breadcrumbs {
     display: block;
-    padding: 0.5625rem 0.875rem 0.5625rem;
     overflow: hidden;
     margin-left: 0;
-    list-style: none;
-    border-style: solid;
-    border-width: 1px;
-    background-color: #f4f4f4;
-    border-color: #dadada;
-    -webkit-border-radius: 3px;
-    border-radius: 3px; }
-.breadcrumbs > * {
-    margin: 0;
-    float: left;
-    font-size: 0.6875rem;
-    text-transform: uppercase; }
-.breadcrumbs > *:hover a, .breadcrumbs > *:focus a {
-    text-decoration: underline; }
-.breadcrumbs > * a,
-.breadcrumbs > * span {
-    text-transform: uppercase;
-    color: #008cba; }
-.breadcrumbs > *.current {
-    cursor: default;
-    color: #333333; }
-.breadcrumbs > *.current a {
-    cursor: default;
-    color: #333333; }
-.breadcrumbs > *.current:hover, .breadcrumbs > *.current:hover a, .breadcrumbs > *.current:focus, .breadcrumbs > *.current:focus a {
-    text-decoration: none; }
-.breadcrumbs > *.unavailable {
-    color: #999999; }
-.breadcrumbs > *.unavailable a {
-    color: #999999; }
-.breadcrumbs > *.unavailable:hover, .breadcrumbs > *.unavailable:hover a, .breadcrumbs > *.unavailable:focus,
-.breadcrumbs > *.unavailable a:focus {
-    text-decoration: none;
-    color: #999999;
-    cursor: default; }
-.breadcrumbs > *:before {
-    content: "/";
-    color: #aaaaaa;
-    margin: 0 0.75rem;
-    position: relative;
-    top: 1px; }
-.breadcrumbs > *:first-child:before {
-    content: " ";
-    margin: 0; }
+    list-style: none; 
+}
+
 
 .alert-box {
     border-style: solid;

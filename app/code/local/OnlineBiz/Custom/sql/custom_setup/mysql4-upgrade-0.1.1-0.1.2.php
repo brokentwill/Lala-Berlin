@@ -1,6 +1,7 @@
 <?php
 
 $installer = new Mage_Catalog_Model_Resource_Eav_Mysql4_Setup('core_setup');
+$setup = new Mage_Eav_Model_Entity_Setup('core_setup');
 $installer->startSetup();
 
 

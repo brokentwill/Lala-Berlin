@@ -95,3 +95,43 @@
 	</nav>
 	<?php //echo $this->getChildHtml('topCart')?>
 </div>
+
+<div id="<?php if($ab && $cms == 'home') {echo 'navbar02';} else {echo 'must-hide';} ?>" class="header-container scroll-collapse hover-collapse contain-to-grid">
+	<nav class="top-bar" data-topbar>
+
+		<ul class="title-area">
+			<li class="name header-lala-logo"><a href="<?php echo $this->getUrl('') ?>"><img src="<?php echo $this->getSkinUrl('img/lala-logo-small.png') ?> " alt=""></a></li>
+			<li class="toggle-topbar menu-icon"><a href=""><span>Menu</span></a></li>
+		</ul>
+		<section class="top-bar-section">
+			<?php if (count($_categories) > 0): ?>
+				<ul class="left">
+
+					<li><a class="<?php if($ig) echo 'active' ?>" href="<?php echo $this->getUrl('collections') ?>"><?php echo $this->__('Collections') ?></a></li>
+					
+					<li><a class="<?php if($sh) echo 'active' ?>" href="http://www.lalaberlin-onlineshop.de/"><?php echo $this->__('Shop') ?></a></li>
+					
+					<li><a class="<?php if($ab && $cms == 'about') echo 'active' ?>" href="<?php echo $this->getUrl('about') ?>"><?php echo $this->__('About') ?></a></li>
+					
+					<li><a class="<?php if($bl) echo 'active' ?>" href="http://lalaberlinlive.tumblr.com/"><?php echo $this->__('#Lalaberlin') ?></a></li>
+					<!-- <li class="contact"><a class="<?php if($ab && $cms == 'contact') echo 'active' ?>" href="<?php echo $this->getUrl('contact') ?>"><?php echo $this->__('Contact') ?></a></li>
+					<li class="divider contact"></li> -->
+				</ul>
+			<?php endif; ?>
+			<?php //echo $this->getChildHtml('topLinks') ?>
+			<ul class="right">
+				<li class="to-top">Top <i class="fi-arrow-up"></i></li>
+				<!-- <li class="new_devi"><a style="padding:0;"><span class="divi-span"></span></a></li> -->
+				<?php //echo $this->getChildHtml('store_language') ?>
+				<li class="divider"></li>
+				
+				<li class="account-link"><a href="<?php echo $this->getUrl('customer/account') ?>"><?php echo $this->__('Account') ?></a></li>
+			<?php if ($sessionCustomer->isLoggedIn()): ?>
+				<li class="divider"></li>
+				<li class="account-link logout"><a href="<?php echo $this->getUrl('customer/account/logout') ?>"><?php echo $this->__('Log Out') ?></a></li>
+			<?php endif; ?>
+			</ul>
+		</section>
+	</nav>
+	<?php //echo $this->getChildHtml('topCart')?>
+</div>

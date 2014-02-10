@@ -424,11 +424,21 @@
 
 <script type="text/javascript">
     jQuery(document).ready(function() {
+        var prodH = jQuery('#product-top').height();
         jQuery('#product-info .prd-info-wrap h2').click(function() {
             jQuery(this).toggleClass('active');
             jQuery(this).closest('.prd-info-wrap').find('.prd-info').slideToggle('500');
             jQuery(this).closest('#product-info').find('.prd-info-wrap h2').not(this).removeClass('active');
-            jQuery(this).closest('#product-info').find('.prd-info-wrap h2').not(this).closest('.prd-info-wrap').find('.prd-info').slideUp('500');
+            jQuery(this).closest('#product-info').find('.prd-info-wrap h2').not(this).closest('.prd-info-wrap').find('.prd-info').slideUp('500', function() {
+                // var top = jQuery('#product-top > .product-shop').offset().top;
+                // var sh = jQuery('#product-top > .product-shop').height();
+                // var dump = (top + sh) - prodH - 200;
+                // //if (dump>0) {
+                //     jQuery('#product-top').css('padding-bottom', dump);
+                // //};
+                
+                // console.log(dump);
+            });
         });
     });
 </script>

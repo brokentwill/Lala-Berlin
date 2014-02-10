@@ -98,10 +98,16 @@
         <?php endforeach ?>
     <?php endforeach ?>
 
+    <?php if ($_product->getMsn()): ?>
+        <div class="prd-info prd-info-des prd-info-msn">
+            <?php echo $_product->getMsn() ?>
+        </div>
+    <?php endif ?>
+
     <div class="block-body apptha-outofstock-block-body line" id='responceMesPlace1' style="padding-top:10px;">   
 
         <div id="notify_conform1" class="notify_conform"></div>
-        <button disabled class="button" id="notify_btn" type="button" style="display:none; background:#fff; opacity:.7; color:#2f2f2f; border: 1px solid #cecece; width:200px; height:45px; line-height:45px; "><span><span>SOLD OUT</span></span></button>
+        <button disabled class="button" id="notify_btn" type="button" style="display:none; background:#fff; opacity:.7; color:#2f2f2f; border: 1px solid #cecece; width:200px; height:40px; line-height:40px; "><span><span>SOLD OUT</span></span></button>
         <span id="notify_message1" style="display:none; cursor: pointer;"><?php echo $notifyRequest; ?></span>
         <div id="padding_div1" style="margin-top: 4px;" >
             <span id="notify_error1" class="line notify_error1"></span>

@@ -695,6 +695,7 @@ button.button:hover{background: #333;}
 .header-container{background: none;}
 .page{/*margin: 45px auto 0;*/}
 #navbar{height: 105px;padding: 0}
+#navbar02{height: 55px;padding: 0}
 @media only screen and (min-width: 40.063em){
     /*.top-bar-section > ul > .divider, .top-bar-section > ul > [role="separator"],*/
     /*#navbar{height: 63px;}*/
@@ -1171,10 +1172,10 @@ b, strong{font-family: Brown-Bold, 'Trebuchet MS', Verdana, sans-serif;font-weig
     background-color: #008cba;
     border-color: #0079a1;
     color: white; }
-.child-cate{padding-left: 0;padding-right: 0; margin-top: 125px;}
+.child-cate{padding-left: 0;padding-right: 0; margin-top: 20px;}
+.gallery-container .child-cate { margin-top: 0;}
 .std strong{}
 .breadcrumbs ul > *{
-    margin-right: .5em;
     float: left;
     text-transform: uppercase;}
 
@@ -1226,7 +1227,77 @@ b, strong{font-family: Brown-Bold, 'Trebuchet MS', Verdana, sans-serif;font-weig
 .igallery-category-view .masonry-container .item > a.has_link,
 .igallery-images.masonry-container .item > a.has_link { cursor: pointer;}
 
+@media only screen and (max-width: 950px) { 
+    .banner_box .divSimpleSlider .banner_overlay > p {
+      position: absolute;
+      top: 36%;
+      text-align: center;
+      width: 100%;
+      margin: 0;
+    }
+    .banner_box .divSimpleSlider .banner_overlay > p .headline { font-size: 60px; line-height: 70px; font-family: Brown-Bold; text-transform: uppercase;}
+    .banner_box .divSimpleSlider .banner_overlay > p .subline { font-size: 24px; font-family: ACP; font-style: italic;}
+    .banner_box .divSimpleSlider .banner_overlay > p .btn-text {
+      display: inline-block;
+      width: 170px;
+      height: 40px;
+      line-height: 40px;
+      margin-top: 32px;
+      font-size: 12px;
+      border: 1px solid #fff;
+      text-align: center;
+      text-transform: uppercase;
+    }
+}
+
+
+@media only screen and (min-width: 950px){
+    .banner_box .divSimpleSlider .banner_overlay > p {
+      position: absolute;
+      top: 36%;
+      text-align: center;
+      width: 100%;
+      margin: 0;
+    }
+    .banner_box .divSimpleSlider .banner_overlay > p .headline { font-size: 110px; line-height: 125px; font-family: Brown-Bold; text-transform: uppercase;}
+    .banner_box .divSimpleSlider .banner_overlay > p .subline { font-size: 34px; font-family: ACP; font-style: italic;}
+    .banner_box .divSimpleSlider .banner_overlay > p .btn-text {
+      display: inline-block;
+      width: 215px;
+      height: 45px;
+      line-height: 45px;
+      margin-top: 25px;
+      font-size: 16px;
+      border: 1px solid #fff;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+}
+
 @media only screen and (max-width: 700px) {
+
+    .banner_box .divSimpleSlider .banner_overlay > p {
+      position: absolute;
+      top: 36%;
+      text-align: center;
+      width: 100%;
+      margin: 0;
+    }
+    .banner_box .divSimpleSlider .banner_overlay > p .headline { font-size: 44px; line-height: 50px; font-family: Brown-Bold; text-transform: uppercase;}
+    .banner_box .divSimpleSlider .banner_overlay > p .subline { font-size: 20px; font-family: ACP; font-style: italic;}
+    .banner_box .divSimpleSlider .banner_overlay > p .btn-text {
+      display: inline-block;
+      width: 140px;
+      height: 30px;
+      line-height: 30px;
+      margin-top: 25px;
+      font-size: 10px;
+      border: 1px solid #fff;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
     .masonry-container .item {
         float: left;
         width: 100%;
@@ -1253,7 +1324,7 @@ b, strong{font-family: Brown-Bold, 'Trebuchet MS', Verdana, sans-serif;font-weig
     }
 }
 @media only screen and (min-width: 700px){
-    
+
     .parent-gallery .masonry-container .item {
         margin-bottom: 16px;
     }
@@ -1288,9 +1359,33 @@ b, strong{font-family: Brown-Bold, 'Trebuchet MS', Verdana, sans-serif;font-weig
     }
 }
 
-.header-lala-logo a { line-height: 100px; } 
+@media only screen and (max-width: 495px) { 
+    .banner_box .divSimpleSlider .banner_overlay > p {
+      position: absolute;
+      top: 36%;
+      text-align: center;
+      width: 100%;
+      margin: 0;
+    }
+    .banner_box .divSimpleSlider .banner_overlay > p .headline { font-size: 34px; line-height: 32px; font-family: Brown-Bold; text-transform: uppercase;}
+    .banner_box .divSimpleSlider .banner_overlay > p .subline { font-size: 16px; font-family: ACP; font-style: italic;}
+    .banner_box .divSimpleSlider .banner_overlay > p .btn-text {
+      display: inline-block;
+      width: 115px;
+      height: 25px;
+      line-height: 25px;
+      margin-top: 15px;
+      font-size: 9px;
+      border: 1px solid #fff;
+      text-align: center;
+      text-transform: uppercase;
+    }
+}
 
-.add-to-cart button.btn-cart { padding: 0 55px;}
+.header-lala-logo a { line-height: 100px; } 
+#navbar02 .header-lala-logo a { line-height: 48px; }
+
+.add-to-cart button.btn-cart { padding: 0 55px; float: left; clear: both; margin-bottom: 0;}
 .add-to-cart button.btn-cart span span { font-size: 14px; letter-spacing: 1px;}
 .top-bar-section .has-dropdown > a { color: #000; font-size: 0.6em;}
 .divi-span { 
@@ -1329,7 +1424,7 @@ b, strong{font-family: Brown-Bold, 'Trebuchet MS', Verdana, sans-serif;font-weig
 .masonry-container .item .button-group .button {background: #666;padding: 0 20px;height: 35px;line-height: 35px;}
 .masonry-container .item .button-group .button:hover {background: #000;}
 button, .button{font-family: Brown, 'Trebuchet MS', Verdana, sans-serif;}
-.collection-selector{margin: 125px 0 0; padding-bottom: 15px;}
+.collection-selector{margin: 20px 0 0; padding-bottom: 15px;}
 .collection-selector li{display: inline-block;margin: 0 30px 10px 0;color: #000;font-size: 13px;text-transform: uppercase; letter-spacing: 1px;}
 .collection-selector li a{ display: inline-block;font-family: Brown, 'Trebuchet MS', Verdana, sans-serif;}
 .collection-selector li a:hover,
@@ -1395,7 +1490,7 @@ button, .button{font-family: Brown, 'Trebuchet MS', Verdana, sans-serif;}
 .pp_pic_holder .product-link-container .link{padding: 10px 15px;background: #666;}
 .pp_pic_holder .product-link-container .link:hover{background: #000;}
 html, body, .wrapper, .page { height: 100%; }
-.cms-home .main-container { max-width: 128.571rem; margin-top: 105px;}
+.cms-home .main-container { max-width: 128.571rem;}
 .cms-home .col-main { padding: 0;}
 .main-container { min-height: 100%; height: auto !important; height: 100%;}
 .footer-container, .push {  }
@@ -1445,5 +1540,11 @@ html, body, .wrapper, .page { height: 100%; }
 .checkout-onepage-index .main-container { margin-top: 70px;}
 .checkout-cart-index .main-container { margin-top: 70px;}
 .customer-account-login .main-container { margin-top: 70px;}
-.cms-page-view .col-main { margin-top: 105px;}
+.cms-page-view .col-main { }
+#must-hide{ display: none;}
+
+
+
+
+
 
