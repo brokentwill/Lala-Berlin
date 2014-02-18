@@ -1516,7 +1516,7 @@ meta.foundation-mq-topbar {
 
 .top-bar.expanded {
     height: auto;
-    background: transparent; }
+    background: #fff; }
 .top-bar.expanded .title-area {
     background: #fff; }
 .top-bar.expanded .toggle-topbar a {
@@ -1674,11 +1674,47 @@ meta.foundation-mq-topbar {
         height: 0;
         -webkit-box-shadow: 0 10px 0 1px white, 0 16px 0 1px white, 0 22px 0 1px white;
         box-shadow: 0 10px 0 1px #333333, 0 16px 0 1px #333333, 0 22px 0 1px #333333; }
+
+
+    .bcd-menu-icon { display: block; position: absolute; top: 0; right: 0;}
+    .breadcrumbs ul.bcd-section { width: 100%; height: auto;}
+    .breadcrumbs ul.bcd-section li { float: none; text-align: left; line-height: 40px;}
+    .breadcrumbs ul { height: auto;line-height: 55px; text-align: center;} 
+    .breadcrumbs ul li > span { display: none; }
+    .breadcrumbs .header-lala-logo { width: 12%;}
+    li.to-top {
+        float: left;
+        padding-left: 20px;
+        height: auto;
+        width: 80px;
+        cursor: pointer;
+    }
+
+
 }
 
-
-
 @media only screen and (min-width: 50em) {
+
+    .breadcrumbs ul li span { display: inline-block; height: 100%;}
+    .breadcrumbs .header-lala-logo { width: 11%;}
+    .breadcrumbs .header-lala-logo a img{
+      max-width: 60%;
+    }
+
+
+    li.to-top { 
+        float: right !important; 
+        margin-right: 35px; 
+        color: #000; cursor: pointer; 
+        letter-spacing: 2px; height: 55px; 
+        line-height: 55px;
+        -webkit-transition: all 0.35s ease-out 0s;
+        -moz-transition: all 0.35s ease-out 0s;
+        -ms-transition: all 0.35s ease-out 0s;
+        -o-transition: all 0.35s ease-out 0s;
+        transition: all 0.35s ease-out 0s;
+    }
+
     .top-bar {
         background: #fff;
         *zoom: 1;
@@ -1810,14 +1846,19 @@ meta.foundation-mq-topbar {
         background: #008cba;
         color: white; }
     .no-js .top-bar-section .has-dropdown:hover > .dropdown {
-        display: block; } }
+        display: block; }
+
+    .bcd-menu-icon { display: none;}
+    .breadcrumbs ul.bcd-section { width: 89%;}
+    .breadcrumbs ul { height: 55px;line-height: 55px; text-align: center;} 
+}
+
 .breadcrumbs {
     display: block;
     overflow: hidden;
     margin-left: 0;
     list-style: none; 
 }
-
 
 .alert-box {
     border-style: solid;

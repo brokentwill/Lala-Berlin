@@ -11,6 +11,7 @@
             <col />
             <col />
             <col />
+            <col />
             <col width="60" />
             <?php foreach ($_block->getImageTypes() as $typeId=>$type): ?>
             <?php endforeach; ?>
@@ -30,6 +31,7 @@
 					<th><?php echo Mage::helper('igallery')->__('Sort Order') ?></th>
                     <?php foreach ($_block->getImageTypes() as $typeId=>$type): ?>
                     <?php endforeach; ?>
+                    <th><?php echo Mage::helper('igallery')->__('Video embeded') ?></th>
                     <th><?php echo Mage::helper('igallery')->__('Edit') ?></th>
                     <th><?php echo Mage::helper('igallery')->__('Disable') ?></th>
                     <th class="last"><?php echo Mage::helper('igallery')->__('Remove') ?></th>
@@ -39,7 +41,7 @@
                 <tr id="<?php echo $_block->getHtmlId() ?>_template" class="template no-display">
                     <td class="cell-image"><div class="place-holder" onmouseover="<?php echo $_block->getJsObjectName(); ?>.loadImage('__file__')"><span><?php echo Mage::helper('igallery')->__('Roll Over for preview') ?></span></div><img src="<?php echo $this->getSkinUrl('images/spacer.gif')?>" width="100" style="display:none;" alt="" /></td>
                     <td class="cell-label"><input type="text" class="input-text" onkeyup="<?php echo $_block->getJsObjectName(); ?>.updateImage('__file__')" onchange="<?php echo $_block->getJsObjectName(); ?>.updateImage('__file__')" /></td>
-					<td class="cell-image-desc"><textarea class="input-text" onkeyup="<?php echo $_block->getJsObjectName(); ?>.updateImage('__file__')" onchange="<?php echo $_block->getJsObjectName(); ?>.updateImage('__file__')"></textarea></td>
+					<td class="cell-image-desc"><textarea style="width:100px" class="input-text" onkeyup="<?php echo $_block->getJsObjectName(); ?>.updateImage('__file__')" onchange="<?php echo $_block->getJsObjectName(); ?>.updateImage('__file__')"></textarea></td>
                     <td class="cell-image-url"><input type="text" class="input-text" onkeyup="<?php echo $_block->getJsObjectName(); ?>.updateImage('__file__')" onchange="<?php echo $_block->getJsObjectName(); ?>.updateImage('__file__')" /></td>
                     <td class="cell-shop-url"><input type="text" class="input-text" onkeyup="<?php echo $_block->getJsObjectName(); ?>.updateImage('__file__')" onchange="<?php echo $_block->getJsObjectName(); ?>.updateImage('__file__')" /></td>
 					<td class="cell-target-url">
@@ -81,6 +83,7 @@
                     <td class="cell-<?php echo $typeId ?> a-center" style="display:none;">
                         <input type="hidden" name="<?php echo $type['field'] ?>" onclick="<?php echo $_block->getJsObjectName(); ?>.setProductImages('__file__')" value="__file__" /></td>
                     <?php endforeach; ?>
+                    <td class="cell-is-video a-center"><input type="checkbox" value="" onclick="<?php echo $_block->getJsObjectName(); ?>.updateImage('__file__')"  /></td>
                     <td class="cell-edit a-center">
                         <input type="checkbox" onclick="" />
                         <input alt="__file__" id="forUrl" type="hidden" value=""  />

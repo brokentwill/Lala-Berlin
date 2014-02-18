@@ -227,6 +227,7 @@ class My_Igallery_Model_Mysql4_Banner extends Mage_Core_Model_Mysql4_Abstract {
 								'image_url' => $_item['image_url'],
                                 'shop_url' => $_item['shop_url'],
                                 'target_url' => $_item['target_url'],
+                                'is_video' => $_item['is_video'],
                                 'image_desc' => $_item['image_desc'],
 								'image_width' => $_item['image_width'],
 								'image_height' => $_item['image_height'],

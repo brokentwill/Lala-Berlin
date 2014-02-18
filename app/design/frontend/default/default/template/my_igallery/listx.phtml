@@ -93,30 +93,40 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
 
                         <?php $_size = $_helper->getImageSize($_image, 144, 100); ?>
                         <?php if ($_size) : ?>
-                            <li class="on-home item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?> <?php echo $class ?>">
-                                <?php if (is_object($_gallery)) : ?>
-                                    <a <?php if($_image->getTargetUrl() == 2) echo 'target="_blank"' ?> title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" class="igallery-image a-on-home <?php if ( !$_image->getImageUrl() ) echo 'cur-default' ?>" <?php if ( $_image->getImageUrl() ) echo 'href="'. $this->stripTags($_image->getImageUrl(), null, true) . '"' ?> >
-                                        <img src="<?php echo $timthumb.'?src='. $this->helper('igallery/image')->init($_image->getFile()).'&w='.$width.'&h='.$height ?>" width="<?php echo $width ?>" height="<?php echo $height ?>" alt="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" />
-                                        <?php if ($_image->getImageUrl()): ?>
-                                            <div class="overlay">
-                                                <p><?php echo $this->stripTags($_image->getLabel(), null, true) ?><br /><span class="img_desc"><?php echo $this->stripTags($_image->getImageDesc(), null, true) ?></span></p>
+                            <?php if ($_image->getIsVideo()): ?>
+                                <li class="on-home is-video item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?> <?php echo $class ?>">
+                                    <div class="overlay" style="">
+                                        <?php echo $_image->getImageDesc(); ?>
+                                    </div>
+                                </li>
+                            <?php else: ?>
+                                <li  class="on-home item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?> <?php echo $class ?>">
+                                    <?php if (is_object($_gallery)) : ?>
+                                        <a <?php if($_image->getTargetUrl() == 2) echo 'target="_blank"' ?> title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" class="igallery-image a-on-home <?php if ( !$_image->getImageUrl() ) echo 'cur-default' ?>" <?php if ( $_image->getImageUrl() ) echo 'href="'. $this->stripTags($_image->getImageUrl(), null, true) . '"' ?> >
+                                            <img src="<?php echo $timthumb.'?src='. $this->helper('igallery/image')->init($_image->getFile()).'&w='.$width.'&h='.$height ?>" width="<?php echo $width ?>" height="<?php echo $height ?>" alt="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" />
+                                            <?php if ($_image->getImageUrl()): ?>
+                                                <div class="overlay">
+                                                    <p><?php echo $this->stripTags($_image->getLabel(), null, true) ?><br /><span class="img_desc"><?php echo $this->stripTags($_image->getImageDesc(), null, true) ?></span></p>
+                                                </div>
+                                            <?php endif ?>
+                                        </a>
+                                    <?php else : ?>
+                                        <a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" class="igallery-image" href="<?php echo $_helper->getImageUrl($_image->getFile()); ?>" rel="prettyPhoto[gallery]"><img src="<?php echo $this->helper('igallery/image')->init($_image->getFile())->resize($_size->getWidth(), $_size->getHeight()); ?>" alt="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" /></a>
+                                        <?php endif; ?>
+                                    <?php if($_gallery->getIsParent() == 1): ?>
+                                        <?php else: ?>
+                                            <div class="button-group">
+                                                <a class="a-on-home a_view button link <?php echo $_image->getImageUrl()?'':'hidden' ?>" href="<?php echo $this->stripTags($_image->getImageUrl(), null, true) ?>"></a>
+                                                <?php if($_image->getImageUrl()): ?>
+                                                    <a class="button image a_zoom" href="<?php echo $_helper->getImageUrl($_image->getFile()); ?>" rel="prettyPhoto[gallery][<?php echo $_gallery->getId() ?>]"></a>
+                                                <?php endif; ?>
                                             </div>
-                                        <?php endif ?>
-                                    </a>
-                                <?php else : ?>
-                                    <a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" class="igallery-image" href="<?php echo $_helper->getImageUrl($_image->getFile()); ?>" rel="prettyPhoto[gallery]"><img src="<?php echo $this->helper('igallery/image')->init($_image->getFile())->resize($_size->getWidth(), $_size->getHeight()); ?>" alt="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" /></a>
                                     <?php endif; ?>
-                                <?php if($_gallery->getIsParent() == 1): ?>
-                                    <?php else: ?>
-                                        <div class="button-group">
-                                            <a class="a-on-home a_view button link <?php echo $_image->getImageUrl()?'':'hidden' ?>" href="<?php echo $this->stripTags($_image->getImageUrl(), null, true) ?>"></a>
-                                            <?php if($_image->getImageUrl()): ?>
-                                                <a class="button image a_zoom" href="<?php echo $_helper->getImageUrl($_image->getFile()); ?>" rel="prettyPhoto[gallery][<?php echo $_gallery->getId() ?>]"></a>
-                                            <?php endif; ?>
-                                        </div>
-                                <?php endif; ?>
-                            </li>
+                                </li>
+                            <?php endif; ?>
+                            
                         <?php endif; ?>
+
                     <?php endforeach ?>
 
             <script type="text/javascript">decorateGeneric($$('ul.my-igallery-grid'), ['odd','even','first','last'])</script>
@@ -139,4 +149,46 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
             }
         });
     });
+</script>
+
+<script type="text/javascript">
+    $j = jQuery.noConflict();
+    $j(document).ready(function() {
+        
+    });
+
+    function getH() {
+        $j('li.on-home.is-video').each(function(){
+
+            if ( $j(this).hasClass('rows-2') ) {
+                var hx = 0;
+                $j('.item.rows-2').each(function(){
+                    if($j(this).height() != 0) {
+                        hx = $j(this).height();
+                        return false;
+                    }
+                })
+                console.log(hx);
+                var h = $j(this).closest('div').find('.rows-2').not(this).height();
+                $j(this).height(h);
+            }
+
+            if ( $j(this).hasClass('rows-3') ) {
+                var h = $j(this).closest('div').find('.rows-3').not(this).height();
+                $j(this).height(h);
+            }
+            if ( $j(this).hasClass('rows-1') ) {
+                var h = $j(this).closest('div').find('.rows-1').not(this).height();
+                $j(this).height(h);
+            }
+        })
+    }
+
+    $j(window).load(function() {
+        getH();
+        jQuery('#container02').masonry();
+    });
+
+    $j(window).on('resize', getH);
+
 </script>

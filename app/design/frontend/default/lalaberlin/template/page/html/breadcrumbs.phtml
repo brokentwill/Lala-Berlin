@@ -39,21 +39,27 @@
 <div class="breadcrumbs" id="bdc">
     <ul>
         <li class="name header-lala-logo"><a href="<?php echo $this->getUrl('') ?>"><img src="<?php echo $this->getSkinUrl('img/lala-logo-small.png') ?> " alt=""></a></li>
-        <?php foreach($crumbs as $_crumbName=>$_crumbInfo): ?>
-            <li class="<?php echo $_crumbName ?>">
-            <?php if($_crumbInfo['link']): ?>
-                <a href="<?php echo $_crumbInfo['link'] ?>" title="<?php echo $this->escapeHtml($_crumbInfo['title']) ?>"><?php echo $this->escapeHtml($_crumbInfo['label']) ?></a>
-            <?php elseif($_crumbInfo['last']): ?>
-                <a class="blast"><?php echo $this->escapeHtml($_crumbInfo['label']) ?></a>
-            <?php else: ?>
-                <?php echo $this->escapeHtml($_crumbInfo['label']) ?>
-            <?php endif; ?>
-            <?php if(!$_crumbInfo['last']): ?>
-                <span> > </span>
-            <?php endif; ?>
-            </li>
-        <?php endforeach; ?>
-        <li class="to-top">Top <i class="fi-arrow-up"></i></li>
+        
+        <ul class="bcd-section">
+            <?php foreach($crumbs as $_crumbName=>$_crumbInfo): ?>
+                <li class="<?php echo $_crumbName ?>">
+                <?php if($_crumbInfo['link']): ?>
+                    <a href="<?php echo $_crumbInfo['link'] ?>" title="<?php echo $this->escapeHtml($_crumbInfo['title']) ?>"><?php echo $this->escapeHtml($_crumbInfo['label']) ?></a>
+                <?php elseif($_crumbInfo['last']): ?>
+                    <a class="blast"><?php echo $this->escapeHtml($_crumbInfo['label']) ?></a>
+                <?php else: ?>
+                    <?php echo $this->escapeHtml($_crumbInfo['label']) ?>
+                <?php endif; ?>
+                <?php if(!$_crumbInfo['last']): ?>
+                    <span> > </span>
+                <?php endif; ?>
+                </li>
+            <?php endforeach; ?>
+            <li class="to-top">Top <i class="fi-arrow-up"></i></li>
+        </ul>
+        <li class="bcd-menu-icon">
+            <a><span>Menu</span><i class="fi-list"></i></a>
+        </li>
     </ul>
 </div>
 <?php endif; ?>
@@ -67,5 +73,18 @@
                 scrollTop: 0
             }, 500);
         });
+
+        jQuery(".bcd-menu-icon a:not('.a-home')").on('click',function (e) {
+            console.log('xx');
+            jQuery(this).closest('#bdc').toggleClass('expland');
+            e.stopImmediatePropagation();
+        });
+
+        jQuery(".bcd-menu-icon a.a-home").on('click',function (e) {
+            console.log('xx');
+            jQuery(this).closest('#navbar02').toggleClass('home-expland');
+            e.stopImmediatePropagation();
+        });
+
     });
 </script>

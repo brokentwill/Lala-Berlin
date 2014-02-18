@@ -80,6 +80,7 @@
 				</ul>
 			<?php endif; ?>
 			<?php //echo $this->getChildHtml('topLinks') ?>
+			<?php echo $this->getChildHtml('topCart')?>
 			<ul class="right">
 				<!-- <li class="new_devi"><a style="padding:0;"><span class="divi-span"></span></a></li> -->
 				<?php echo $this->getChildHtml('store_language') ?>
@@ -93,7 +94,7 @@
 			</ul>
 		</section>
 	</nav>
-	<?php //echo $this->getChildHtml('topCart')?>
+	
 </div>
 
 <div id="<?php if($ab && $cms == 'home') {echo 'navbar02';} else {echo 'must-hide';} ?>" class="header-container scroll-collapse hover-collapse contain-to-grid">
@@ -101,7 +102,7 @@
 
 		<ul class="title-area">
 			<li class="name header-lala-logo"><a href="<?php echo $this->getUrl('') ?>"><img src="<?php echo $this->getSkinUrl('img/lala-logo-small.png') ?> " alt=""></a></li>
-			<li class="toggle-topbar menu-icon"><a href=""><span>Menu</span></a></li>
+			<li class="bcd-menu-icon li-home"><a class="a-home"><span>Menu</span><i class="fi-list"></i></a></li>
 		</ul>
 		<section class="top-bar-section">
 			<?php if (count($_categories) > 0): ?>

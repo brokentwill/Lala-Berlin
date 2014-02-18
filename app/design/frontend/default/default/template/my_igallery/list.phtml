@@ -169,34 +169,42 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
 						?>
 						<?php $_size = $_helper->getImageSize($_image, 144, 100); ?>
 						<?php if ($_size) : ?>
-							<li class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?> <?php echo $class ?> <?php if($_check) echo 'is_parent_li' ?>">
-								<?php if (is_object($_gallery)) : ?>
-									<a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" alt="<?php echo $this->stripTags($_image->getImageDesc(), null, true) ?>" class="igallery-image <?php if($_check) echo 'is_parent'; ?> <?php if($_image->getShopUrl()) echo 'has_link'; ?>" <?php if ($_image->getShopUrl()) echo 'href="'. $_image->getShopUrl() .'"' ?> <?php if ($_gallery->getIsParent() == 1) echo 'href="'. $_image->getImageUrl() .'"' ?> >
-										<?php if ($_gallery->getIsParent() != 1): ?>
-											<img src="<?php echo $timthumb.'?src='. $this->helper('igallery/image')->init($_image->getFile()).'&w='.$width.'&h='.$height ?>" width="<?php echo $width ?>" height="<?php echo $height ?>" alt="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" />
-										<?php else: ?>
-											<img src="<?php echo $this->helper('igallery/image')->init($_image->getFile())?>" alt="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" />
-										<?php endif ?>
-										<?php if ($_gallery->getIsParent() != 1): ?>
-											<div class="overlay"><span><?php echo $this->stripTags($_image->getLabel(), null, true) ?></span></div>
-										<?php endif ?>
-									</a>
-								<?php else : ?>
-									<a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" alt="<?php echo $this->stripTags($_image->getImageDesc(), null, true) ?>" class="igallery-image" href="<?php echo $_helper->getImageUrl($_image->getFile()); ?>" rel="prettyPhoto[gallery]"><img src="<?php echo $this->helper('igallery/image')->init($_image->getFile())->resize($_size->getWidth(), $_size->getHeight()); ?>" alt="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" /></a>
-								<?php endif; ?>
-								<?php if($_gallery->getIsParent() == 1): ?>
-								<?php else: ?>
-									<div class="button-group">
-										<!-- <a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" alt="<?php echo $this->stripTags($_image->getImageDesc(), null, true) ?>" class="a_view" href="<?php echo $_helper->getImageUrl($_image->getFile()); ?>" rel="prettyPhoto[gallery][<?php echo $_gallery->getId() ?>]"><span class="txt">Open Slideshow</span><span class="icon"></span></a> -->
-										<?php if($_image->getImageUrl()): ?>
-											<a class="a_zoom link" href="<?php echo $this->stripTags($_image->getImageUrl(), null, true) ?>" <?php if($_image->getTargetUrl() == 2) echo 'target="_blank"' ?>><span class="txt">Share Look</span><span class="icon"></span></a>
-										<?php endif; ?>
-										<?php if ($_image->getShopUrl()): ?>
-											<a class="a_shop link" href="<?php echo $this->stripTags($_image->getShopUrl(), null, true) ?>"><span class="txt">Shop Look</span><span class="icon"></span></a>
-										<?php endif ?>
-									</div>
-								<?php endif; ?>
-							</li>
+							<?php if ($_image->getIsVideo()): ?>
+                                <li class="is-video item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?> <?php echo $class ?> <?php if($_check) echo 'is_parent_li' ?>">
+                                    <div class="overlay" style="">
+                                        <?php echo $_image->getImageDesc(); ?>
+                                    </div>
+                                </li>
+                            <?php else: ?>
+								<li class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?> <?php echo $class ?> <?php if($_check) echo 'is_parent_li' ?>">
+									<?php if (is_object($_gallery)) : ?>
+										<a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" alt="<?php echo $this->stripTags($_image->getImageDesc(), null, true) ?>" class="igallery-image <?php if($_check) echo 'is_parent'; ?> <?php if($_image->getShopUrl()) echo 'has_link'; ?>" <?php if ($_image->getShopUrl()) echo 'href="'. $_image->getShopUrl() .'"' ?> <?php if ($_gallery->getIsParent() == 1) echo 'href="'. $_image->getImageUrl() .'"' ?> >
+											<?php if ($_gallery->getIsParent() != 1): ?>
+												<img src="<?php echo $timthumb.'?src='. $this->helper('igallery/image')->init($_image->getFile()).'&w='.$width.'&h='.$height ?>" width="<?php echo $width ?>" height="<?php echo $height ?>" alt="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" />
+											<?php else: ?>
+												<img src="<?php echo $this->helper('igallery/image')->init($_image->getFile())?>" alt="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" />
+											<?php endif ?>
+											<?php if ($_gallery->getIsParent() != 1): ?>
+												<div class="overlay"><span><?php echo $this->stripTags($_image->getLabel(), null, true) ?></span></div>
+											<?php endif ?>
+										</a>
+									<?php else : ?>
+										<a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" alt="<?php echo $this->stripTags($_image->getImageDesc(), null, true) ?>" class="igallery-image" href="<?php echo $_helper->getImageUrl($_image->getFile()); ?>" rel="prettyPhoto[gallery]"><img src="<?php echo $this->helper('igallery/image')->init($_image->getFile())->resize($_size->getWidth(), $_size->getHeight()); ?>" alt="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" /></a>
+									<?php endif; ?>
+									<?php if($_gallery->getIsParent() == 1): ?>
+									<?php else: ?>
+										<div class="button-group">
+											<a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" alt="<?php echo $this->stripTags($_image->getImageDesc(), null, true) ?>" class="a_view" href="<?php echo $_helper->getImageUrl($_image->getFile()); ?>" rel="prettyPhoto[gallery][<?php echo $_gallery->getId() ?>]"><span class="txt">Open Slideshow</span><span class="icon"></span></a>
+											<?php if($_image->getImageUrl()): ?>
+												<a class="a_zoom link" href="<?php echo $this->stripTags($_image->getImageUrl(), null, true) ?>" <?php if($_image->getTargetUrl() == 2) echo 'target="_blank"' ?>><span class="txt">Share Look</span><span class="icon"></span></a>
+											<?php endif; ?>
+											<?php if ($_image->getShopUrl()): ?>
+												<a class="a_shop link" href="<?php echo $this->stripTags($_image->getShopUrl(), null, true) ?>"><span class="txt">Shop Look</span><span class="icon"></span></a>
+											<?php endif ?>
+										</div>
+									<?php endif; ?>
+								</li>
+							<?php endif; ?>
 						<?php endif; ?>
 						<?php if ($i%$_columnCount==0 || $i==$_collectionSize): ?>
 						<?php endif ?>
@@ -265,6 +273,13 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
 							?>
 							<?php $_size = $_helper->getImageSize($_image, 144, 100); ?>
 							<?php if ($_size) : ?>
+							<?php if ($_image->getIsVideo()): ?>
+                                <li class="is-video item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?> <?php echo $class ?>">
+                                    <div class="overlay" style="">
+                                        <?php echo $_image->getImageDesc(); ?>
+                                    </div>
+                                </li>
+                            <?php else: ?>
 								<li class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?> <?php echo $class ?>">
 									<?php if (is_object($_gallery)) : ?>
 										<a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" alt="<?php echo $this->stripTags($_image->getImageDesc(), null, true) ?>" class="igallery-image <?php if($_check) echo 'is_parent'; ?> <?php if($_image->getShopUrl()) echo 'has_link'; ?>" <?php if ($_image->getShopUrl()) echo 'href="'. $_image->getShopUrl() .'"' ?> <?php if ($_image->getShopUrl()) echo 'href="'. $_image->getShopUrl() .'"' ?>>
@@ -283,7 +298,7 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
 									<?php if($_gallery->getIsParent() == 1): ?>
 									<?php else: ?>
 										<div class="button-group">
-											<!-- <a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" alt="<?php echo $this->stripTags($_image->getImageDesc(), null, true) ?>" class="a_view" href="<?php echo $_helper->getImageUrl($_image->getFile()); ?>" rel="prettyPhoto[gallery][<?php echo $_gallery->getId() ?>]"><span class="txt">Open Slideshow</span><span class="icon"></span></a> -->
+											<a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" alt="<?php echo $this->stripTags($_image->getImageDesc(), null, true) ?>" class="a_view" href="<?php echo $_helper->getImageUrl($_image->getFile()); ?>" rel="prettyPhoto[gallery][<?php echo $_gallery->getId() ?>]"><span class="txt">Open Slideshow</span><span class="icon"></span></a>
 											<?php if($_image->getImageUrl()): ?>
 												<a class="a_zoom link" href="<?php echo $this->stripTags($_image->getImageUrl(), null, true) ?>" <?php if($_image->getTargetUrl() == 2) echo 'target="_blank"' ?>><span class="txt">Share Look</span><span class="icon"></span></a>
 											<?php endif; ?>
@@ -293,6 +308,7 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
 										</div>
 									<?php endif; ?>
 								</li>
+							<?php endif; ?>
 							<?php endif; ?>
 							<?php if ($i%$_columnCount==0 || $i==$_collectionSize): ?>
 							<?php endif ?>
@@ -361,6 +377,13 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
 							?>
 							<?php $_size = $_helper->getImageSize($_image, 144, 100); ?>
 							<?php if ($_size) : ?>
+							<?php if ($_image->getIsVideo()): ?>
+                                <li class="is-video item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?> <?php echo $class ?>">
+                                    <div class="overlay" style="">
+                                        <?php echo $_image->getImageDesc(); ?>
+                                    </div>
+                                </li>
+                            <?php else: ?>
 								<li class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?> <?php echo $class ?>">
 									<?php if (is_object($_gallery)) : ?>
 										<a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" alt="<?php echo $this->stripTags($_image->getImageDesc(), null, true) ?>" class="igallery-image <?php if($_check) echo 'is_parent'; ?> <?php if($_image->getShopUrl()) echo 'has_link'; ?>" <?php if ($_image->getShopUrl()) echo 'href="'. $_image->getShopUrl() .'"' ?> <?php if ($_image->getShopUrl()) echo 'href="'. $_image->getShopUrl() .'"' ?>>
@@ -379,7 +402,7 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
 									<?php if($_gallery->getIsParent() == 1): ?>
 									<?php else: ?>
 										<div class="button-group">
-											<!-- <a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" alt="<?php echo $this->stripTags($_image->getImageDesc(), null, true) ?>" class="a_view" href="<?php echo $_helper->getImageUrl($_image->getFile()); ?>" rel="prettyPhoto[gallery][<?php echo $_gallery->getId() ?>]"><span class="txt">Open Slideshow</span><span class="icon"></span></a> -->
+											<a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" alt="<?php echo $this->stripTags($_image->getImageDesc(), null, true) ?>" class="a_view" href="<?php echo $_helper->getImageUrl($_image->getFile()); ?>" rel="prettyPhoto[gallery][<?php echo $_gallery->getId() ?>]"><span class="txt">Open Slideshow</span><span class="icon"></span></a>
 											<?php if($_image->getImageUrl()): ?>
 												<a class="a_zoom link" href="<?php echo $this->stripTags($_image->getImageUrl(), null, true) ?>" <?php if($_image->getTargetUrl() == 2) echo 'target="_blank"' ?>><span class="txt">Share Look</span><span class="icon"></span></a>
 											<?php endif; ?>
@@ -389,6 +412,7 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
 										</div>
 									<?php endif; ?>
 								</li>
+							<?php endif; ?>
 							<?php endif; ?>
 							<?php if ($i%$_columnCount==0 || $i==$_collectionSize): ?>
 							<?php endif ?>
@@ -435,6 +459,25 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
 			var txt = jQuery(this).text();
 			jQuery(this).closest('.col-main').find('#bdc ul li.col-sub-tab a').text(txt);
 		}).click(function() {
+
+				function getH() {
+			        jQuery('li.is-video').each(function(){
+			            if ( jQuery(this).hasClass('rows-2') ) {
+			                var h = jQuery(this).closest('div').find('.rows-2').not(this).height();
+			                jQuery(this).height(h);
+			            }
+			            if ( jQuery(this).hasClass('rows-3') ) {
+			                var h = jQuery(this).closest('div').find('.rows-3').not(this).height();
+			                jQuery(this).height(h);
+			            }
+			            if ( jQuery(this).hasClass('rows-1') ) {
+			                var h = jQuery(this).closest('div').find('.rows-1').not(this).height();
+			                jQuery(this).height(h);
+			            }
+			        })
+			    }
+			    
+			    getH();
 				jQuery('.masonry-container').masonry();
 			});
 
@@ -469,4 +512,36 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
 			});
 		}
 	});
+</script>
+
+<script type="text/javascript">
+    $j = jQuery.noConflict();
+    $j(document).ready(function() {
+        
+    });
+
+    function getH() {
+        $j('li.is-video').each(function(){
+            if ( $j(this).hasClass('rows-2') ) {
+                var h = $j(this).closest('div').find('.rows-2').not(this).height();
+                $j(this).height(h);
+            }
+            if ( $j(this).hasClass('rows-3') ) {
+                var h = $j(this).closest('div').find('.rows-3').not(this).height();
+                $j(this).height(h);
+            }
+            if ( $j(this).hasClass('rows-1') ) {
+                var h = $j(this).closest('div').find('.rows-1').not(this).height();
+                $j(this).height(h);
+            }
+        })
+    }
+
+    $j(window).load(function() {
+        getH();
+        $j('.masonry-container').masonry();
+    });
+
+    $j(window).on('resize', getH);
+
 </script>
