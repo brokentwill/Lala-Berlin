@@ -2206,7 +2206,7 @@ li.divider { display: none;}
     font-family: ACP;
     font-size: 22px;
     font-style: italic;
-    text-transform: capitalize;
+    text-transform: none;
 }
 
 .igallery-images .on-home.item.cols-2.rows-1 .overlay p span.img_desc {

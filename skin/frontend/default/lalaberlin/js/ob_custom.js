@@ -25,33 +25,46 @@ jQuery(function () {
 
 
 jQuery(window).load(function() {
-  var wHeight = jQuery('.home-top-slider .divSimpleSlider a:first-child').height() + 20;
-  var orW = jQuery('#news').width();
-  var orH = orW / 2.426;
-  jQuery('.tiles').css('height', orH+'px');
-  jQuery('.home-top-slider').css('height', wHeight+'px');
-
-  var slideR = jQuery('.home-top-slider').width() / jQuery('.home-top-slider').height();
+  // var wHeight = jQuery('.home-top-slider .divSimpleSlider a:first-child').height() + 20;
+  // jQuery('.home-top-slider').height(wHeight);
+  
+  updateViewCovers();
 
   jQuery(window).on('resize', function() {
-    updateViewCovers(slideR);
+    updateViewCovers();
   });
 
 });
 
 
-function updateViewCovers(slideR) {
-
-  //console.log(slideR);
-  //console.log(jQuery('.home-top-slider').width());
-
-  var sH = Math.floor(jQuery('.home-top-slider').width() / slideR);
-  
-  var newW = jQuery('#news').width();
-  var newH = newW / 2.426;
-  jQuery('.tiles').css('height', newH+'px');
-  jQuery('.home-top-slider').css('height', sH+'px');
+function updateViewCovers() {
+  var sH = jQuery(window).height() - 105;
+  jQuery('.home-top-slider').height(sH);
 }
+
+/* **********************************************
+     Begin jquery.img-cover.js
+********************************************** */
+
+(function($, window, undefined) {
+
+  var $w = $(window);
+
+  function init() {
+    $('.home-top-slider .divSimpleSlider > a').each(function() {
+      var $cover = $(this),
+        $img = $cover.find('img');
+
+      //$img.addClass('sr-only');
+      $cover.css('background-image', 'url(' + $img.attr('src') + ')');
+    });
+  }
+
+  $(document).ready(function() {
+       init();
+    })
+
+})(jQuery, window);
 
 
 

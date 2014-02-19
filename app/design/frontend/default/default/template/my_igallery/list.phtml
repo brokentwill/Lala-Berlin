@@ -30,6 +30,7 @@
  *
  * @see Mage_Catalog_Block_Product_List
  */
+$cUrl = Mage::helper('core/url')->getCurrentUrl();
 $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
 //die(Mage::helper('core/url')->getCurrentUrl());
 ?>
@@ -195,9 +196,12 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
 									<?php else: ?>
 										<div class="button-group">
 											<a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" alt="<?php echo $this->stripTags($_image->getImageDesc(), null, true) ?>" class="a_view" href="<?php echo $_helper->getImageUrl($_image->getFile()); ?>" rel="prettyPhoto[gallery][<?php echo $_gallery->getId() ?>]"><span class="txt">Open Slideshow</span><span class="icon"></span></a>
-											<?php if($_image->getImageUrl()): ?>
-												<a class="a_zoom link" href="<?php echo $this->stripTags($_image->getImageUrl(), null, true) ?>" <?php if($_image->getTargetUrl() == 2) echo 'target="_blank"' ?>><span class="txt">Share Look</span><span class="icon"></span></a>
-											<?php endif; ?>
+											<?php //if($_image->getImageUrl()): ?>
+												<a class="a_zoom link" href="<?php echo 'http://pinterest.com/pin/create/button/?url=' . $cUrl . '&media='. $this->helper('igallery/image')->init($_image->getFile()) ?>" <?php if($_image->getTargetUrl() == 2) echo 'target="_blank"' ?>>
+													<span class="txt">Share Look</span>
+													<span class="icon"></span>
+												</a>
+											<?php //endif; ?>
 											<?php if ($_image->getShopUrl()): ?>
 												<a class="a_shop link" href="<?php echo $this->stripTags($_image->getShopUrl(), null, true) ?>"><span class="txt">Shop Look</span><span class="icon"></span></a>
 											<?php endif ?>
@@ -299,9 +303,12 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
 									<?php else: ?>
 										<div class="button-group">
 											<a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" alt="<?php echo $this->stripTags($_image->getImageDesc(), null, true) ?>" class="a_view" href="<?php echo $_helper->getImageUrl($_image->getFile()); ?>" rel="prettyPhoto[gallery][<?php echo $_gallery->getId() ?>]"><span class="txt">Open Slideshow</span><span class="icon"></span></a>
-											<?php if($_image->getImageUrl()): ?>
-												<a class="a_zoom link" href="<?php echo $this->stripTags($_image->getImageUrl(), null, true) ?>" <?php if($_image->getTargetUrl() == 2) echo 'target="_blank"' ?>><span class="txt">Share Look</span><span class="icon"></span></a>
-											<?php endif; ?>
+											<?php //if($_image->getImageUrl()): ?>
+												<a class="a_zoom link" href="<?php echo 'http://pinterest.com/pin/create/button/?url=' . $cUrl . '&media='. $this->helper('igallery/image')->init($_image->getFile()) ?>" <?php if($_image->getTargetUrl() == 2) echo 'target="_blank"' ?>>
+													<span class="txt">Share Look</span>
+													<span class="icon"></span>
+												</a>
+											<?php //endif; ?>
 											<?php if ($_image->getShopUrl()): ?>
 												<a class="a_shop link" href="<?php echo $this->stripTags($_image->getShopUrl(), null, true) ?>"><span class="txt">Shop Look</span><span class="icon"></span></a>
 											<?php endif ?>
@@ -403,9 +410,12 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
 									<?php else: ?>
 										<div class="button-group">
 											<a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" alt="<?php echo $this->stripTags($_image->getImageDesc(), null, true) ?>" class="a_view" href="<?php echo $_helper->getImageUrl($_image->getFile()); ?>" rel="prettyPhoto[gallery][<?php echo $_gallery->getId() ?>]"><span class="txt">Open Slideshow</span><span class="icon"></span></a>
-											<?php if($_image->getImageUrl()): ?>
-												<a class="a_zoom link" href="<?php echo $this->stripTags($_image->getImageUrl(), null, true) ?>" <?php if($_image->getTargetUrl() == 2) echo 'target="_blank"' ?>><span class="txt">Share Look</span><span class="icon"></span></a>
-											<?php endif; ?>
+											<?php //if($_image->getImageUrl()): ?>
+												<a class="a_zoom link" href="<?php echo 'http://pinterest.com/pin/create/button/?url=' . $cUrl . '&media='. $this->helper('igallery/image')->init($_image->getFile()) ?>" <?php if($_image->getTargetUrl() == 2) echo 'target="_blank"' ?>>
+													<span class="txt">Share Look</span>
+													<span class="icon"></span>
+												</a>
+											<?php //endif; ?>
 											<?php if ($_image->getShopUrl()): ?>
 												<a class="a_shop link" href="<?php echo $this->stripTags($_image->getShopUrl(), null, true) ?>"><span class="txt">Shop Look</span><span class="icon"></span></a>
 											<?php endif ?>
