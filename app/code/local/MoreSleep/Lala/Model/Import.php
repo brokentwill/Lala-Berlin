@@ -138,7 +138,7 @@ class MoreSleep_Lala_Model_Import extends Varien_Object{
 			}
 		}
 
-		file_put_contents(Mage::getBaseDir('base') . '/var/import/catalog_product_' . date('Ymd') . '_' . date('hmi') . '.csv', join("\n", $csv));
+		file_put_contents(Mage::getBaseDir('base') . '/var/import/import.csv', join("\n", $csv));
 	}
 
 	protected function createImportRows($row){
