@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<MoreSleep_Lala>
+			<active>true</active>
+			<codePool>local</codePool>
+			<version>1.7.0.2</version>
+		</MoreSleep_Lala>
+	</modules>
+	<global>
+		<blocks>
+			<lala>
+				<class>MoreSleep_Lala_Block</class>
+			</lala>
+		</blocks>
+		<helpers>
+			<lala>
+				<class>MoreSleep_Lala_Helper</class>
+			</lala>
+		</helpers>
+		<models>
+			<lala>
+				<class>MoreSleep_Lala_Model</class>
+			</lala>
+		</models>
+	    <resources>
+	        <moresleep_lala_setup>
+	            <setup>
+	                <module>MoreSleep_Lala</module>
+	                <class>MoreSleep_Lala_Model_Resource_Setup</class>
+	            </setup>
+	        </moresleep_lala_setup>
+	    </resources>
+	</global>
+</config>

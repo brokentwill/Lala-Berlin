@@ -1,0 +1,163 @@
+﻿'_Nr'|'Bezeichnung'|'RGB'|'RGB2'
+'0000'|'Black'|'0'|'0'
+'0001'|'Red'|'255'|'255'
+'0002'|'White'|'16777215'|'16777215'
+'0003'|'Blue'|'16744448'|'16744448'
+'0004'|'Grey'|'8421504'|'8421504'
+'0005'|'Light Grey'|'12632256'|'12632256'
+'0006'|'Creme'|'16250871'|'16250871'
+'0007'|'Navy'|'10485760'|'10485760'
+'0008'|'Light Grey Melange'|'12632256'|'12632256'
+'0009'|'Dark Grey Melange'|'8421504'|'8421504'
+'0010'|'Anthracite'|'4934475'|'4934475'
+'0011'|'Coral'|'5329407'|'5329407'
+'0012'|'Beige'|'15921913'|'15921913'
+'0013'|'Light Blue'|'16763799'|'16763799'
+'0014'|'Lilac'|'16711808'|'16711808'
+'0015'|'Violet'|'16711808'|'16711808'
+'0016'|'Powder'|'15790335'|'15790335'
+'0017'|'City'|'12632256'|'12632256'
+'0018'|'Stradivari'|'21672'|'21672'
+'0019'|'Dune'|'13428479'|'13428479'
+'0020'|'Alabastro'|'15987699'|'15987699'
+'0021'|'Sky Blue'|'16113844'|'16113844'
+'0022'|'Ethno Bright'||
+'0023'|'Camouflage'||
+'0024'|'Milkyway/Creme'||
+'0025'|'Mix Black/Grey/White'||
+'0026'|'Milkyway'||
+'0027'|'Rose'||
+'0028'|'Creme/Darkgrey Silver Metallic'||
+'0029'|'Ethno Blue'||
+'0030'|'Mix'||
+'0031'|'Schwarzkupfer'||
+'0032'|'Silber Oxyd Matt'||
+'0033'|'Silber Matt'||
+'0034'|'Silber Oxyd'||
+'0035'|'Red Leaves'||
+'0036'|'Light Leaves'||
+'0037'|'Broken Glass'||
+'0038'|'Nude'|'15265791'|'15265791'
+'0039'|'Neon Coral'|'5329407'|'5329407'
+'0040'|'Ethno Red'||
+'0041'|'Dark Olive'||
+'0042'|'Grey Melange'||
+'0043'|'Ethno Shiny Black'||
+'0044'|'Arancio Fluo'||
+'0045'|'Fuxia Fluo'||
+'0046'|'Rosa Fluo'||
+'0047'|'Verde Fluo'||
+'0048'|'Pink'||
+'0049'|'Rosa'||
+'0050'|'Flow'||
+'0051'|'Leo Black/ Burgundy'||
+'0052'|'Ikat Grey/ Black/ Creme'||
+'0053'|'Burgundy'||
+'0054'|'Morano'||
+'0055'|'Scuba'||
+'0056'|'Wine Red'||
+'0057'|'Glitterbox'||
+'0058'|'Blue On City'||
+'0059'|'Orange On Dune'||
+'0060'|'Pink On Dune'||
+'0061'|'Peltro'||
+'0062'|'Stripes Berry'||
+'0063'|'Stripes Nature'||
+'0064'|'Arpa'||
+'0065'|'Candy'||
+'0066'|'Ceruleo'||
+'0067'|'Lacca'||
+'0068'|'Rosso'||
+'0069'|'Black Two'||
+'0070'|'Ethno Darkness Red/ Black'||
+'0071'|'Ethno Darkness Blue / Black'||
+'0072'|'Black/ White'||
+'0073'|'Neon Orange'||
+'0074'|'Neon Pink'||
+'0075'|'Gradient Black/ Nude'||
+'0076'|'Gradient Burgundy/ Nude'||
+'0077'|'Black/ Red'||
+'0078'|'Leo Gradient Blue'||
+'0079'|'Leo Gradient Pink'||
+'0080'|'Ethno Graphic'||
+'0081'|'Ethno Jacquard Nude Glim/ Grey'||
+'0082'|'Mix Burgundy/ Red/ Black'||
+'0083'|'Black/ Creme'||
+'0084'|'PLO Blue'||
+'0085'|'PLO Grey'||
+'0086'|'China/ 1 '||
+'0087'|'Germany/ 2'||
+'0088'|'Greece/ 3'||
+'0089'|'Turkey/ 4'||
+'0090'|'Europe/ 5'||
+'0091'|'Italy/ 6'||
+'0092'|'India/ 7'||
+'0093'|'Berlin/ 8'||
+'0094'|'Nepal/ 9'||
+'0095'|'Italy/ 100% Cashmere/ -3'||
+'0096'|'Italy/ 100% Modal/ -1 '||
+'0097'|'Italy/ 90%Modal 10%Cashm./ -4 '||
+'0098'|'India/ 100% Wool/- 6'||
+'0099'|'China/ 100% Silk/ -10 '||
+'0100'|'China/ 100% Wool/ -11'||
+'0101'|'Reinigung- 100% Silk'||
+'0102'|'Gobelin White'||
+'0103'|'Mix Leaves'||
+'0104'|'Mix Broken Glass'||
+'0105'|'Mint'|'15400938'|'15400938'
+'0106'|'Pastel'|'14286847'|'14286847'
+'0107'|'Black Parrot'||
+'0108'|'Black/Red'||
+'0109'|'Black Pineapple'||
+'0110'|'Blue/Yellow'||
+'0111'|'Black/White'||
+'0112'|'Black Rainbow'||
+'0113'|'Dark Blue'|'6435072'|'6435072'
+'0114'|'Grey/Brown'|'5395309'|'5395309'
+'0115'|'Dark Grey'|'3355443'|'3355443'
+'0116'|'Silver Grey'||
+'0117'|'Blue Grey'|'9915136'|'8421504'
+'0118'|'Dark Blue'|'4194304'|'4194304'
+'0119'|'Dark Blue/Grey'|'4194304'|'7566195'
+'0120'|'Rosa/Blue'|'15125759'|'16717591'
+'0121'|'Black/Blue'|'0'|'16711680'
+'0122'|'Golden Orchid'|'14531583'|'4227200'
+'0123'|'Light Lilac Melange'|'13077901'|'8750469'
+'0124'|'Tomato Red'|'1381887'|'1381887'
+'0125'|'Dark Mint'||
+'0126'|'Light Lilac'|'16757683'|'16757683'
+'0127'|'Night Blue'||
+'0128'|'Light Red'|'4737279'|'4737279'
+'0129'|'Dark Red Melange'||
+'0130'|'Light Blue Melange'||
+'0131'|'Lilac Blue'||
+'0132'|'Middle Grey Melange'||
+'0133'|'Fiery Red'||
+'0134'|'Mud'||
+'0135'|'Royal Blue'||
+'0136'|'Medium Blue'||
+'0137'|'Light Brown'||
+'0138'|'Glass Nude'||
+'0139'|'Sharks Light'||
+'0140'|'Gobelin Black/ White '||
+'0141'|'Off-White'||
+'0142'|'Grey Melange/ Shark'||
+'0143'|'Multicolour'||
+'0144'|'Dark Leaves'||
+'0145'|'Gobelin Red'||
+'0146'|'Icecracks Black / White'||
+'0147'|'Icecracks Creme'||
+'0148'|'Carpet blue'||
+'0149'|'Carpet Red'||
+'0150'|'Carpet Dark Blue'||
+'0151'|'Carpet Black'||
+'0152'|'Carpet Light'||
+'0153'|'Leo Silver'||
+'0154'|'Kufiya Red'||
+'0155'|'Kufiya Flowers'||
+'0156'|'Khaki'||
+'0157'|'Glossy Grey'||
+'0158'|'Aqua'||
+'0159'|'Fuchsia'||
+'0160'|'PLO Black/Creme'||
+'0161'|'PLO Black/White'||

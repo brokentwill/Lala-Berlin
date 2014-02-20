@@ -1,0 +1,2 @@
+﻿'_NR'|'Bezeichnung'|'Währung'|'Währung_empf_VK'|'Bruttopreisgruppe'
+'1'|'Verkaufspreisliste €'|'EUR'|'EUR'|'N'
