@@ -41,6 +41,7 @@
             <action method="addCss"><stylesheet>css/clickdummy.css</stylesheet></action>
             <action method="addCss"><stylesheet>css/screen.css</stylesheet></action>
             <action method="addCss"><stylesheet>css/custom.css</stylesheet></action>
+            <action method="addCss"><stylesheet>css/polyfill.object-fit.css</stylesheet></action>
 
             <action method="addItem"><type>skin_js</type><name>js/no-conflict.js</name></action>
             <!-- <action method="addItem"><type>skin_js</type><name>js/jquery.min.js</name></action> -->
@@ -58,6 +59,8 @@
             <!-- <action method="addItem"><type>skin_js</type><name>js/main.min.js</name></action> -->
             <action method="addItem"><type>skin_js</type><name>js/ob_custom.js</name></action>
             <action method="addJs"><script>jquery.masonry.min.js</script></action>
+            <action method="addJs"><script>jquery.fitvids.js</script></action>
+            <action method="addJs"><script>polyfill.object-fit.min.js</script></action>
 
         </reference>
 

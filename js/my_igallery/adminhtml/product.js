@@ -65,6 +65,8 @@ Product.Igallery.prototype = {
         this.getElement('uploader').show();
     },
     handleUploadComplete : function(files) {
+        console.log('6');
+        //console.log(files);
         files.each( function(item) {
             if (!item.response.isJSON()) {
                 try {
@@ -78,20 +80,28 @@ Product.Igallery.prototype = {
             if (response.error) {
                 return;
             }
-            var newImage = {};
-            newImage.url = response.url;
-            newImage.file = response.file;
-            newImage.label = '';
-            newImage.position = this.getNextPosition();
-            newImage.disabled = 0;
-            newImage.removed = 0;
-            this.images.push(newImage);
-            this.uploader.removeFile(item.id);
+            if (response.forCheck) {
+                console.log(response.fileEdit);
+                this.updateImage(response.fileEdit,response.forCheck,response.url,response.file);
+                this.uploader.removeFile(item.id);
+            } else {
+                var newImage = {};
+                newImage.url = response.url;
+                newImage.file = response.file;
+                newImage.label = '';
+                newImage.position = this.getNextPosition();
+                newImage.disabled = 0;
+                newImage.removed = 0;
+                this.images.push(newImage);
+                this.uploader.removeFile(item.id);   
+            }
+            
         }.bind(this));
         this.container.setHasChanges();
         this.updateImages();
     },
     updateImages : function() {
+        
         this.getElement('save').value = Object.toJSON(this.images);
         $H(this.imageTypes).each(
                 function(pair) {
@@ -137,12 +147,32 @@ Product.Igallery.prototype = {
         });
         return maxPosition + 1;
     },
-    updateImage : function(file) {
+    updateImage : function(file, check, forUrl, forFile) {
         var index = this.getIndexByFile(file);
+        var selec = index + 1;
+
+        if (check) {
+            $j = jQuery.noConflict();
+            $j('#media_gallery_content-image-' + selec + ' .cell-image > img').attr('src', forUrl);
+            this.images[index].url = forUrl;
+            this.images[index].file = forFile; 
+        } else {
+            console.log('normal');
+        }
+
         this.images[index].label = this
                 .getFileElement(file, 'cell-label input').value;
         this.images[index].image_url = this
             .getFileElement(file, 'cell-image-url input').value;
+        this.images[index].shop_url = this
+            .getFileElement(file, 'cell-shop-url input').value;
+
+        thisSelectedIndex = this.images[index].target_url = this
+            .getFileElement(file, 'cell-target-url select').selectedIndex;
+
+        var selector = '#' + this.prepareId(file) + ' .cell-target-url select';
+        this.images[index].target_url = $$(selector)[0][thisSelectedIndex].value;
+
         this.images[index].image_desc = this
             .getFileElement(file, 'cell-image-desc textarea').value;
 //        this.images[index].image_width = this
@@ -150,23 +180,34 @@ Product.Igallery.prototype = {
 
         thisSelectedIndex = this.images[index].image_width = this
             .getFileElement(file, 'cell-image-width select').selectedIndex;
+
         var selector = '#' + this.prepareId(file) + ' .cell-image-width select';
         this.images[index].image_width = $$(selector)[0][thisSelectedIndex].value;
 
-//        this.images[index].image_height = this
-//            .getFileElement(file, 'cell-image-height input').value;
-
         thisSelectedIndex = this.images[index].image_height = this
             .getFileElement(file, 'cell-image-height select').selectedIndex;
+
         var selector = '#' + this.prepareId(file) + ' .cell-image-height select';
         this.images[index].image_height = $$(selector)[0][thisSelectedIndex].value;
 
+        thisSelectedIndex = this.images[index].display_in_show_tab = this
+            .getFileElement(file, 'display-in-show-tab select').selectedIndex;
+
+        var selector = '#' + this.prepareId(file) + ' .display-in-show-tab select';
+        this.images[index].display_in_show_tab = $$(selector)[0][thisSelectedIndex].value;
+
         this.images[index].position = this.getFileElement(file,
                 'cell-position input').value;
+
+        this.images[index].is_video = (this.getFileElement(file,
+                'cell-is-video input').checked ? 1 : 0);
+
         this.images[index].removed = (this.getFileElement(file,
                 'cell-remove input').checked ? 1 : 0);
+
         this.images[index].disabled = (this.getFileElement(file,
                 'cell-disable input').checked ? 1 : 0);
+
         this.getElement('save').value = Object.toJSON(this.images);
         this.updateState(file);
         this.container.setHasChanges();
@@ -196,6 +237,12 @@ Product.Igallery.prototype = {
         if(image.image_url > ''){
             this.getFileElement(file, 'cell-image-url input').value = image.image_url;
         }
+        if(image.shop_url > ''){
+            this.getFileElement(file, 'cell-shop-url input').value = image.shop_url;
+        }
+        if(image.target_url > ''){
+            this.getFileElement(file, 'cell-target-url option[value='+image.target_url+']').selected =1;
+        }
         if(image.image_desc > ''){
             this.getFileElement(file, 'cell-image-desc textarea').value = image.image_desc;
         }
@@ -205,6 +252,10 @@ Product.Igallery.prototype = {
         if(image.image_height > ''){
             this.getFileElement(file, 'cell-image-height option[value='+image.image_height+']').selected =1;
         }
+        if(image.display_in_show_tab > ''){
+            this.getFileElement(file, 'display-in-show-tab option[value='+image.display_in_show_tab+']').selected =1;
+        }
+        this.getFileElement(file, 'cell-is-video input').checked = (image.is_video == 1);
         this.getFileElement(file, 'cell-position input').value = image.position;
         this.getFileElement(file, 'cell-remove input').checked = (image.removed == 1);
         this.getFileElement(file, 'cell-disable input').checked = (image.disabled == 1);

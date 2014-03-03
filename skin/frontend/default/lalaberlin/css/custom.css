@@ -1155,7 +1155,7 @@ b, strong{font-family: Brown-Bold, 'Trebuchet MS', Verdana, sans-serif;font-weig
 .cms-contact .std{padding-top: 2em;padding-bottom: 5em;}
 .cms-contact .col1,
 .cms-contact .col2{width: 50%;float: left;}
-.cms-about .std{padding-top: 2em;padding-bottom: 5em; font-size: 20px;}
+.cms-about .std{padding-top: 2em;padding-bottom: 170px; font-size: 20px;}
 .cms-about .col1,
 .cms-about .col2{width: 45%;float: left;}
 .cms-about .col1{margin-right: 10%;}
@@ -1262,7 +1262,6 @@ b, strong{font-family: Brown-Bold, 'Trebuchet MS', Verdana, sans-serif;font-weig
       line-height: 40px;
       margin-top: 32px;
       font-size: 12px;
-      border: 1px solid #fff;
       text-align: center;
       text-transform: uppercase;
     }
@@ -1286,7 +1285,6 @@ b, strong{font-family: Brown-Bold, 'Trebuchet MS', Verdana, sans-serif;font-weig
       line-height: 45px;
       margin-top: 25px;
       font-size: 16px;
-      border: 1px solid #fff;
       text-align: center;
       text-transform: uppercase;
     }
@@ -1311,7 +1309,6 @@ b, strong{font-family: Brown-Bold, 'Trebuchet MS', Verdana, sans-serif;font-weig
       line-height: 30px;
       margin-top: 25px;
       font-size: 10px;
-      border: 1px solid #fff;
       text-align: center;
       text-transform: uppercase;
     }
@@ -1394,7 +1391,6 @@ b, strong{font-family: Brown-Bold, 'Trebuchet MS', Verdana, sans-serif;font-weig
       line-height: 25px;
       margin-top: 15px;
       font-size: 9px;
-      border: 1px solid #fff;
       text-align: center;
       text-transform: uppercase;
     }
@@ -1473,12 +1469,24 @@ button, .button{font-family: Brown, 'Trebuchet MS', Verdana, sans-serif;}
     transition: opacity 0.4s;
 }
 .igallery-images .item.is-video .overlay {
+/*
     opacity: 1;
     position: static;
+*/
 }
 
-li.is-video {
-    height: 517px;
+li.item.is-video{ height: 517px; overflow: hidden; }
+
+li.item.is-video video {
+    /*width: 100%;
+    height: 100%;*/
+    display: block;
+    -webkit-object-fit: cover;
+    -moz-object-fit: cover;
+    -ms-object-fit: cover;
+    -o-object-fit: cover;
+    object-fit: cover;
+    overflow: hidden;
 }
 
 .igallery-images .item a:hover .overlay {
@@ -1505,7 +1513,8 @@ li.is-video {
     font-size: 26px;
     font-weight: normal;
 }
-.col-main > .parent-gallery { padding-bottom: 70px;}
+
+.col-main > .parent-gallery { }
 .igallery-images .parent-gallery .item .overlay span{font-size: 3em;}
 
 .pp_top,
@@ -1517,7 +1526,8 @@ li.is-video {
 .pp_pic_holder .product-link-container .link{padding: 10px 15px;background: #666;}
 .pp_pic_holder .product-link-container .link:hover{background: #000;}
 html, body, .wrapper, .page { height: 100%; background: #fafafa; }
-.cms-home .main-container { max-width: 128.571rem;}
+.catalog-category-view .main-container { padding-bottom: 140px;}
+.cms-home .main-container { max-width: 128.571rem; padding-bottom: 120px;}
 .cms-home .col-main { padding: 0;}
 .main-container { min-height: 100%; height: auto !important; height: 100%;}
 .footer-container, .push {  }
@@ -1593,6 +1603,8 @@ li.item.is-video iframe {
     display: block;
 }
 
+
+
 .block-cart { float: right; color: #000; padding-right: 20px; font-size: 0.9376rem;}
 .block-cart a { padding: 10px 20px; border: 1px solid #000;}
 
@@ -1601,13 +1613,10 @@ li.item.is-video iframe {
 .home-top-slider .divSimpleSlider > a { 
     height: 100%;
     background: none no-repeat scroll 0 0 / cover  rgba(0, 0, 0, 0);
+    text-decoration: none;
 }
 .home-top-slider .divSimpleSlider > a img { height: 100% !important; display: none; }
 
 
-/*li.on-home.item { height: 517px;}
-li.on-home.item.rows-3 { height: 783px;}
-li.on-home.item.rows-2 { height: 517px;}
-li.on-home.item.rows-1 { height: 251px;}*/
 
 

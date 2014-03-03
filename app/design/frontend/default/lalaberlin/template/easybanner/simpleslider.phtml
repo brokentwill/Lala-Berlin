@@ -12,30 +12,30 @@ if ($_banner && $_banner->getStatus()==1):?>
 <?php endif; ?>
 
 <div class="home-top-slider" id="top_banner_<?php echo $randnum;?>" style="width: 100%; padding:0px; background:none; position: relative; display:none;">
-    <div id="divSimpleSlider_<?php echo $randnum;?>" class="divSimpleSlider">   
+  <div id="divSimpleSlider_<?php echo $randnum;?>" class="divSimpleSlider">   
     <?php $_banner_items = $this->getBannerItems(); ?>
     <?php foreach ($_banner_items as $_banner_item): ?>
-      <a style="width:100%;" href="<?php echo $_banner_item->getLinkUrl(); ?>"> 
-        <?php if ($_banner_item->getImage()): ?>
-          <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).$_banner_item->getImage()?>"  alt="<?php echo $_banner_item->getContent()?>"/>
-  		  <?php elseif ($_banner_item->getImageUrl()): ?>
-          <img src="<?php echo $_banner_item->getImageUrl() ?>" alt="<?php echo $_banner_item->getContent()?>" />
-  		  <?php endif; ?>
-        <?php  
-          $_title = $this->stripTags($_banner_item->getTitle(), null, true);
-          $_dump = explode('_', $_title);
-          $_btnTxt = $this->stripTags($_banner_item->getContent(), null, true);
-        ?>
-        <div class="banner_overlay">
-          <p>
-            <span class="headline"><?php if($_title) echo $_dump[0]; ?></span><br />
-            <span class="subline"><?php if($_title) echo $_dump[1]; ?></span><br />
-            <span class="btn-text"><?php if($_btnTxt) echo $_btnTxt; ?></span>
-          </p>
-        </div> 
-      </a> 
-    <?php endforeach ?>
-    </div>
+    <a style="width:100%;" href="<?php echo $_banner_item->getLinkUrl(); ?>"> 
+      <?php if ($_banner_item->getImage()): ?>
+      <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).$_banner_item->getImage()?>"  alt="<?php echo $_banner_item->getContent()?>"/>
+    <?php elseif ($_banner_item->getImageUrl()): ?>
+    <img src="<?php echo $_banner_item->getImageUrl() ?>" alt="<?php echo $_banner_item->getContent()?>" />
+  <?php endif; ?>
+  <?php  
+  $_title = $this->stripTags($_banner_item->getTitle(), null, true);
+  $_dump = explode('_', $_title);
+  $_btnTxt = $this->stripTags($_banner_item->getContent(), null, true);
+  ?>
+  <div class="banner_overlay <?php if ( $_banner_item->getTitleColor() == 2 ) echo 'black' ?>" >
+    <p>
+      <span class="headline"><?php if($_title) echo $_dump[0]; ?></span><br />
+      <span class="subline"><?php if($_title) echo $_dump[1]; ?></span><br />
+      <span class="btn-text"><?php if($_btnTxt) echo $_btnTxt; ?></span>
+    </p>
+  </div> 
+</a> 
+<?php endforeach ?>
+</div>
 </div>
 <div id="divSimpleSliderRotate_<?php echo $randnum;?>" class="divSimpleSliderRotate"></div>
 

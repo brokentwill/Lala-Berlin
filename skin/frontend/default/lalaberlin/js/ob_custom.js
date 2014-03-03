@@ -25,14 +25,12 @@ jQuery(function () {
 
 
 jQuery(window).load(function() {
-  // var wHeight = jQuery('.home-top-slider .divSimpleSlider a:first-child').height() + 20;
-  // jQuery('.home-top-slider').height(wHeight);
   
-  updateViewCovers();
-
-  jQuery(window).on('resize', function() {
     updateViewCovers();
-  });
+
+    jQuery(window).on('resize', function() {
+        updateViewCovers();
+    });
 
 });
 
@@ -62,7 +60,7 @@ function updateViewCovers() {
 
   $(document).ready(function() {
        init();
-    })
+  })
 
 })(jQuery, window);
 

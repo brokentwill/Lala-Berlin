@@ -108,7 +108,9 @@ JsUploader.prototype = {
     
     handleComplete: function(files)
     {
+
         this.files = files;
+        console.log('5');
         this.updateFiles();
         
         if (this.onFilesComplete)

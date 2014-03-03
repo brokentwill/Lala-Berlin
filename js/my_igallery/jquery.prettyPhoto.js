@@ -30,7 +30,7 @@
             modal: false,
             deeplinking: true,
             overlay_gallery: true,
-            overlay_gallery_max: 100,
+            overlay_gallery_max: 86,
             keyboard_shortcuts: true,
             changepicturecallback: function () {},
             callback: function () {},

@@ -32,6 +32,6 @@ $conn->addColumn($installer->getTable('my_igallery_banner_image'),
         'image_desc',
         array(
             'type'      => Varien_Db_Ddl_Table::TYPE_TEXT,
-            'length'    => 255,
+            'length'    => 8000,
             'comment' => 'Image Description',
         ));

@@ -45,8 +45,10 @@ Uploader.prototype = {
         );
     },
     
+    //2
     createUploadFile: function(reference, frame, response)
     {
+        console.log('2');
         var frameId = reference.getId(frame.parentNode.id, reference.htmlIdBlock);
         var status = reference.statusError;
         var size = 0
@@ -56,7 +58,7 @@ Uploader.prototype = {
             status = reference.statusComplete;
             size = response.evalJSON().size;
         }
-        
+            
         var uploadFile = Object();
         uploadFile.id = reference.fileIdPrefix + frameId;
         uploadFile.progress = Object();
@@ -66,12 +68,14 @@ Uploader.prototype = {
         uploadFile.creator = null;
         uploadFile.http = 200;
         uploadFile.size = size;
-        
-        return uploadFile;
+            
+        return uploadFile;   
     },
     
+    //1
     setupUploadFiles: function(reference, parentReference, event)
     {
+        console.log('1');
         var frame;
             
         if (window.addEventListener)
@@ -85,6 +89,8 @@ Uploader.prototype = {
         --parentReference.unfinishedUploads;
     
         var response = frame.contentWindow.document.body.innerHTML;
+        //console.log(response);
+        
         var uploadFile = parentReference.createUploadFile(parentReference, frame, response);
         
         if (response.evalJSON().error != 0)
@@ -93,11 +99,13 @@ Uploader.prototype = {
             parentReference.errorMethod(uploadFile);
         } else
         {
+            //console.log(uploadFile);
             parentReference.uploadFiles.push(uploadFile);
         }
         
         if (parentReference.unfinishedUploads == 0)
         {
+            console.log('4');
             parentReference.completeMethod(parentReference.uploadFiles);
             parentReference.uploadFiles = [];
         }

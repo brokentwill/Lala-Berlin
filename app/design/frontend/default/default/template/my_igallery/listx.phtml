@@ -40,7 +40,7 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
     <div class="tabs-content">
         <div class="content active" id="panel1">
                 <div class="category-products masonry-container igallery-images" id="container02">
-
+                    
 					<?php $_collectionSize = $_imageCollection->count() ?>
 					<?php $_columnCount = $this->_getColumnCount(); ?>
 					<?php $i=0; foreach ($_imageCollection as $_image): ?>
@@ -90,14 +90,20 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
 						}
 
 						?>
-
+                        
                         <?php $_size = $_helper->getImageSize($_image, 144, 100); ?>
                         <?php if ($_size) : ?>
                             <?php if ($_image->getIsVideo()): ?>
-                                <li class="on-home is-video item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?> <?php echo $class ?>">
+                                <li class="on-home is-video item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?> <?php echo $class ?>">				
+                                    <a <?php if($_image->getTargetUrl() == 2) echo 'target="_blank"' ?> title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" class="igallery-image a-on-home <?php if ( !$_image->getImageUrl() ) echo 'cur-default' ?>" <?php if ( $_image->getImageUrl() ) echo 'href="'. $this->stripTags($_image->getImageUrl(), null, true) . '"' ?> >
+                                    	<video poster="<?php echo $timthumb.'?src='. $this->helper('igallery/image')->init($_image->getFile()).'&w='.$width.'&h='.$height ?>" autoplay loop muted><?php echo $_image->getImageDesc(); ?></video>
                                     <div class="overlay" style="">
-                                        <?php echo $_image->getImageDesc(); ?>
+                                        <p><?php echo $_image->getLabel() ?></p>
                                     </div>
+                                    </a>
+                                    <script type="text/javascript">
+                                        // objectFit.polyfill({ selector: 'video', fittype: 'cover' });
+                                    </script>
                                 </li>
                             <?php else: ?>
                                 <li  class="on-home item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?> <?php echo $class ?>">
@@ -138,28 +144,28 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
     jQuery(window).bind("load", function() {
         jQuery('#container02').masonry({
             itemSelector: '.item',
-            // isResizable: false,
-            // set columnWidth a fraction of the container width
             columnWidth: function( containerWidth ) {
                 if (jQuery(window).width() <= 700) {
                     return containerWidth;
                 } else {
                     return containerWidth / 6;
                 }
-            }
+            },
+            // layoutComplete: check(),
         });
+
     });
+
 </script>
 
 <script type="text/javascript">
     $j = jQuery.noConflict();
     $j(document).ready(function() {
-        
+
     });
 
     function getH() {
         $j('li.on-home.is-video').each(function(){
-
             if ( $j(this).hasClass('rows-2') ) {
                 var hx = 0;
                 $j('.item.rows-2').each(function(){
@@ -168,7 +174,6 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
                         return false;
                     }
                 })
-                //console.log(hx);
                 var h = $j(this).closest('div').find('.rows-2').not(this).height();
                 $j(this).height(h);
             }
@@ -181,6 +186,26 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
                 var h = $j(this).closest('div').find('.rows-1').not(this).height();
                 $j(this).height(h);
             }
+
+            // Video element fit container
+            if ($j(this).find('video')) {
+                var video = $j(this).find('video');
+                var w = $j(this).width();
+                var h = $j(this).height();
+                if ( w > h ) {
+                    console.log('w > h');
+                    video.css({
+                        width: 'auto',
+                        height: '100%'
+                    });
+                } else {
+                    console.log('w < h');
+                    video.css({
+                        width: 'auto',
+                        height: '100%'
+                    });
+                }
+            };
         })
     }
 

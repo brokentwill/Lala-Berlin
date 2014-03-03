@@ -6,6 +6,19 @@
         </OnlineBiz_Custom>
     </modules>
 	
+    <!-- <crontab>
+        <jobs>
+            <custom_cron>
+                <schedule>
+                    <cron_expr>* 1 * * * </cron_expr> 
+                </schedule>
+                <run>
+                    <model>custom/cron::importCsv</model>
+                </run>
+            </custom_cron>  
+        </jobs>
+    </crontab> -->
+
     <frontend>
         <routers>
             <custom>

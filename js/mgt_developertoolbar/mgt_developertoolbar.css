@@ -194,7 +194,7 @@ span.mgt-developer-toolbar-log-info {
 #mgt-developer-toolbar-tab-blocks-content ul li a, #mgt-developer-toolbar-tab-events-content ul li a {
   text-decoration:none;
   color:#666666;
-  background:url(/media/mgt_developertoolbar/bullet_toggle_plus.png) no-repeat 0 1px; 
+
   padding:0px 0px 0px 15px;
 }
 

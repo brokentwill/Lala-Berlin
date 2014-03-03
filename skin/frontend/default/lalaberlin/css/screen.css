@@ -1753,6 +1753,35 @@ ul {
   color: #fff;
 }
 
+
+.banner_box .divSimpleSlider .banner_overlay.black {
+  color: #000;
+}
+
+.banner_box .divSimpleSlider .banner_overlay > p .btn-text {
+  border: 1px solid #fff;
+  -webkit-transition: all 0.35s ease-out 0s;
+  -moz-transition: all 0.35s ease-out 0s;
+  -ms-transition: all 0.35s ease-out 0s;
+  -o-transition: all 0.35s ease-out 0s;
+  transition: all 0.35s ease-out 0s;
+}
+.banner_box .divSimpleSlider .banner_overlay > p .btn-text:hover {
+  color: #000;
+  background: #fff;
+}
+
+.banner_box .divSimpleSlider .banner_overlay.black > p .btn-text {
+  border: 1px solid #000;
+}
+
+.banner_box .divSimpleSlider .banner_overlay.black > p .btn-text:hover {
+  background: #000;
+  color: #fff;
+}
+
+#info .std > h5 { color: #000; font-weight: bold; font-size: 48px; margin-top: 20px;}
+
 .catalog-product-view .main-container {max-width: 1800px;}
 
 .main { background: #fafafa; min-height: 400px;}
@@ -1986,7 +2015,7 @@ span.price-label { display: none;}
 
 ul.products-grid li a.product-image img.full-img {opacity: 0; display: none;}
 ul.products-grid li h2.product-name { margin: 0 0 5px; font-size: 1rem;}
-ul.products-grid li .price-box { font-size: 1rem;}
+ul.products-grid li .price-box { font-size: 1rem; font-family: 'Brown'; font-weight: normal;}
 ul.products-grid li .price-box p { margin: 0 5px 0 0; display: inline-block; font-size: 16px;}
 ul.products-grid li .price-box p.old-price .price { color: #cacaca; text-decoration: line-through;}
 ul.products-grid li .prod_bot { font-family: Brown-Bold; }
