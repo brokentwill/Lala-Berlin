@@ -43,15 +43,6 @@
     $_category = Mage::getModel('catalog/category')->load(3);
     $_subCate = $_category->getChildrenCategories();
 
-    foreach ($_subCate as $_sub) {
-        if ($_sub->getId() == $_parentId) {
-            $_subSub = $_sub->getChildrenCategories();
-            foreach ($_subSub as $_xsub) {
-                //echo $_xsub->getName() . '<br />';
-            }
-        }
-    }
-
 ?> 
 
 <div class="child-cate row columns">
@@ -136,6 +127,14 @@
             <?php
                 //$_images = Mage::getModel('catalog/product')->load($_product->getId())->getMediaGalleryImages(2);
             ?>
+
+            <?php  
+                // print "<pre>"; var_export($_product->getData());
+                // die();
+                 
+                // print "<pre>"; var_export(get_class_methods(get_class($this)));
+                // die();
+            ?>
             
             <li class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?>">
                 <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image">
@@ -154,15 +153,27 @@
                     $specialPriceFromDate = Mage::getModel('catalog/product')->load($_product->getId())->getSpecialFromDate();
                     $specialPriceToDate = Mage::getModel('catalog/product')->load($_product->getId())->getSpecialToDate();
                     $today =  time();
-                 
-                    if ($specialprice):
-                        if($today >= strtotime( $specialPriceFromDate) && $today <= strtotime($specialPriceToDate) || $today >= strtotime( $specialPriceFromDate) && is_null($specialPriceToDate)):
+
+                    $newF = $_product->getNewFromDate();
+                    $newT = $_product->getNewToDate();
+                    // $newC = $_product->getCreatedAt();
                 ?>
+
+                <?php if ($specialprice): ?>
+                    <?php if ($today >= strtotime( $specialPriceFromDate) && $today <= strtotime($specialPriceToDate) || $today >= strtotime( $specialPriceFromDate) && is_null($specialPriceToDate)): ?>
                         <span class="item-sale">Sale</sale>
-                <?php  
-                        endif;
-                    endif;
-                ?>
+                    <?php endif ?>
+                <?php endif ?>
+
+                <?php if ($newF && !is_null($newF)): ?>
+                    <?php if ($today >= strtotime($newF) && $today <= strtotime($newT) || $today >= strtotime($newF) && is_null($newT)): ?>
+                        <span class="item-new">New</sale>
+                    <?php endif; ?>
+                <?php elseif($_product->getData('new') == 1): ?>
+                    <span class="item-new">New</sale>
+                <?php endif ?>
+
+
             </li>
         <?php endforeach ?>
         </ul>

@@ -1998,6 +1998,19 @@ ul.products-grid li span.item-sale {
   top: 0;
   width: 45px;
 }
+ul.products-grid li span.item-new { 
+  border-bottom: 2px solid #CACACA;
+  border-top: 2px solid #CACACA;
+  display: block;
+  font-size: 11px;
+  letter-spacing: 1px;
+  padding: 4px 0;
+  position: absolute;
+  right: 0;
+  text-transform: uppercase;
+  top: 0;
+  width: 45px;
+}
 ul.products-grid li a.product-image { display: block; margin: 0 auto; /*height: 20rem; *//*border: 1px solid red;*/}
 ul.products-grid li a.product-image:hover img.base-img {
   opacity: 0;

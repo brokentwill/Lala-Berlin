@@ -195,7 +195,7 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
 									<?php if($_gallery->getIsParent() == 1): ?>
 									<?php else: ?>
 										<div class="button-group">
-											<a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" alt="<?php echo $this->stripTags($_image->getImageDesc(), null, true) ?>" class="a_view" href="<?php echo $_helper->getImageUrl($_image->getFile()); ?>" rel="prettyPhoto[gallery][<?php echo $_gallery->getId() ?>]"><span class="txt">Open Slideshow</span><span class="icon"></span></a>
+											<!-- <a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" alt="<?php echo $this->stripTags($_image->getImageDesc(), null, true) ?>" class="a_view" href="<?php echo $_helper->getImageUrl($_image->getFile()); ?>" rel="prettyPhoto[gallery][<?php echo $_gallery->getId() ?>]"><span class="txt">Open Slideshow</span><span class="icon"></span></a> -->
 											<?php //if($_image->getImageUrl()): ?>
 												<?php $_url = "http://pinterest.com/pin/create/button/?url=" . $cUrl . "&media=". $this->helper('igallery/image')->init($_image->getFile()) ?>
 												<a class="a_zoom link" onclick='window.open(<?php echo '"' . $_url .'"' .', "_blank", "width=450, height=350, top=220, left=320"' ?>); return false;'>
@@ -303,7 +303,7 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
 									<?php if($_gallery->getIsParent() == 1): ?>
 									<?php else: ?>
 										<div class="button-group">
-											<a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" alt="<?php echo $this->stripTags($_image->getImageDesc(), null, true) ?>" class="a_view" href="<?php echo $_helper->getImageUrl($_image->getFile()); ?>" rel="prettyPhoto[gallery][<?php echo $_gallery->getId() ?>]"><span class="txt">Open Slideshow</span><span class="icon"></span></a>
+											<!-- <a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" alt="<?php echo $this->stripTags($_image->getImageDesc(), null, true) ?>" class="a_view" href="<?php echo $_helper->getImageUrl($_image->getFile()); ?>" rel="prettyPhoto[gallery][<?php echo $_gallery->getId() ?>]"><span class="txt">Open Slideshow</span><span class="icon"></span></a> -->
 											<?php //if($_image->getImageUrl()): ?>
 												<?php $_url = "http://pinterest.com/pin/create/button/?url=" . $cUrl . "&media=". $this->helper('igallery/image')->init($_image->getFile()) ?>
 												<a class="a_zoom link" onclick='window.open(<?php echo '"' . $_url .'"' .', "_blank", "width=450, height=350, top=220, left=320"' ?>); return false;'>
@@ -411,7 +411,7 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
 									<?php if($_gallery->getIsParent() == 1): ?>
 									<?php else: ?>
 										<div class="button-group">
-											<a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" alt="<?php echo $this->stripTags($_image->getImageDesc(), null, true) ?>" class="a_view" href="<?php echo $_helper->getImageUrl($_image->getFile()); ?>" rel="prettyPhoto[gallery][<?php echo $_gallery->getId() ?>]"><span class="txt">Open Slideshow</span><span class="icon"></span></a>
+											<!-- <a title="<?php echo $this->stripTags($_image->getLabel(), null, true) ?>" alt="<?php echo $this->stripTags($_image->getImageDesc(), null, true) ?>" class="a_view" href="<?php echo $_helper->getImageUrl($_image->getFile()); ?>" rel="prettyPhoto[gallery][<?php echo $_gallery->getId() ?>]"><span class="txt">Open Slideshow</span><span class="icon"></span></a> -->
 											<?php //if($_image->getImageUrl()): ?>
 												<?php $_url = "http://pinterest.com/pin/create/button/?url=" . $cUrl . "&media=". $this->helper('igallery/image')->init($_image->getFile()) ?>
 												<a class="a_zoom link" onclick='window.open(<?php echo '"' . $_url .'"' .', "_blank", "width=450, height=350, top=220, left=320"' ?>); return false;'>

@@ -36,20 +36,20 @@
 
 
 <?php
-    //$_curCate = Mage::getModel('catalog/layer')->getCurrentCategory();
-    //$_parentId = $_curCate->getParentCategory()->getId();
+    $_curCate = Mage::getModel('catalog/layer')->getCurrentCategory();
+    $_parentCate = $_curCate->getParentCategory();
 
     $_category = Mage::getModel('catalog/category')->load(3);
     $_subCate = $_category->getChildrenCategories();
 
-    foreach ($_subCate as $_sub) {
-        if ($_sub->getId() == $_parentId) {
-            $_subSub = $_sub->getChildrenCategories();
-            foreach ($_subSub as $_xsub) {
+    // foreach ($_subCate as $_sub) {
+    //     if ($_sub->getId() == $_parentId) {
+    //         $_subSub = $_sub->getChildrenCategories();
+    //         foreach ($_subSub as $_xsub) {
 
-            }
-        }
-    }
+    //         }
+    //     }
+    // }
 
 ?> 
 
@@ -95,7 +95,7 @@
 <div class="child-cate row">
     <ul class="large-12 columns">
         <?php foreach ($_subCate as $_sub): ?>
-            <?php if ( in_array($_sub->getId(), $cat_ids)): ?>
+            <?php if ( $_parentCate->getId() == $_sub->getId() ): ?>
                 <li><a class="active"><?php echo $_sub->getName() ?></a></li>
             <?php else: ?>
                 <li><a href="<?php echo $_sub->getUrl() ?>"><?php echo $_sub->getName() ?></a></li>
@@ -103,17 +103,13 @@
         <?php endforeach; ?>
     </ul>
     <ul class="large-12 columns sub-cate">
-        <?php foreach ($_subCate as $_sub): ?>
-            <?php if (in_array($_sub->getId(), $cat_ids)): $_subSub = $_sub->getChildrenCategories(); ?>
-                <?php foreach ($_subSub as $_xsub): ?>
-                    <?php if (in_array($_xsub->getId(), $cat_ids)): ?>
-                        <li><a class="active"><?php echo $_xsub->getName() ?></a></li>
-                    <?php else: ?>
-                        <li><a href="<?php echo $_xsub->getUrl() ?>"><?php echo $_xsub->getName() ?></a></li>
-                    <?php endif; ?>
-                <?php endforeach ?>
+        <?php foreach ($_parentCate->getChildrenCategories() as $_xsub): ?>
+            <?php if ( $_xsub->getId() == $_curCate->getId() ): ?>
+                <li><a class="active"><?php echo $_xsub->getName() ?></a></li>
+            <?php else: ?>
+                <li><a href="<?php echo $_xsub->getUrl() ?>"><?php echo $_xsub->getName() ?></a></li>
             <?php endif; ?>
-         <?php endforeach; ?>
+        <?php endforeach; ?>
     </ul>
 </div>
 
@@ -359,14 +355,10 @@
         $j(window).resize(function(){
             $j('.images-zoom-wrap ul li img').each(function() {
                 $j(this).css('width', $j(window).width());
-                // if ( $j(this).height() < $j(window).height() ) {
-                //     $j(this).css('height', $j(window).height());
-                // };
             });  
         });
 
         $j('.close-icon').click(function() {
-            // $j('.page').css('margin-top', '45px');
             $j('body').css('overflow', 'visible');
 
             $j('.images-zoom-wrap ul li').hide();
@@ -375,7 +367,6 @@
         });
 
         $j('#view-next-zoom').click(function(ev) {
-            //alert('next');
             $j('.zoom-loader').show();
             var curShow = $j('.images-zoom li:visible');
             var curNext = curShow.next();
@@ -398,7 +389,6 @@
         });
 
         $j('#view-prev-zoom').click(function(ev) {
-            //alert('prev');
             $j('.zoom-loader').show();
             var curShow = $j('.images-zoom li:visible');
             var curPrev = curShow.prev();
@@ -430,16 +420,10 @@
             jQuery(this).closest('.prd-info-wrap').find('.prd-info').slideToggle('500');
             jQuery(this).closest('#product-info').find('.prd-info-wrap h2').not(this).removeClass('active');
             jQuery(this).closest('#product-info').find('.prd-info-wrap h2').not(this).closest('.prd-info-wrap').find('.prd-info').slideUp('500', function() {
-                // var top = jQuery('#product-top > .product-shop').offset().top;
-                // var sh = jQuery('#product-top > .product-shop').height();
-                // var dump = (top + sh) - prodH - 200;
-                // //if (dump>0) {
-                //     jQuery('#product-top').css('padding-bottom', dump);
-                // //};
-                
-                // console.log(dump);
             });
         });
+
+        jQuery('.product-share').share();
     });
 </script>
 

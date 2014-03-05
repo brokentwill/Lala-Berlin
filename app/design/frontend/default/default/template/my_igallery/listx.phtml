@@ -190,19 +190,22 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
             // Video element fit container
             if ($j(this).find('video')) {
                 var video = $j(this).find('video');
+                var videocon = $j(this).find('video').closest('.is-video');
                 var w = $j(this).width();
                 var h = $j(this).height();
                 if ( w > h ) {
                     console.log('w > h');
                     video.css({
-                        width: 'auto',
-                        height: '100%'
+                        width: videocon.width(),
+                        height: '100%',
+                        marginTop: ((videocon.height() - video.height()) / 2)
                     });
                 } else {
                     console.log('w < h');
                     video.css({
                         width: 'auto',
-                        height: '100%'
+                        height: '100%',
+                        marginLeft: ((videocon.width() - video.width()) / 2)
                     });
                 }
             };

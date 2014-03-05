@@ -76,6 +76,8 @@ class Mage_Adminhtml_Block_Catalog_Category_Tab_Product extends Mage_Adminhtml_B
         $collection = Mage::getModel('catalog/product')->getCollection()
             ->addAttributeToSelect('name')
             ->addAttributeToSelect('sku')
+            ->addAttributeToSelect('type_id')
+            ->addAttributeToSelect('image')
             ->addAttributeToSelect('price')
             ->addStoreFilter($this->getRequest()->getParam('store'))
             ->joinField('position',
@@ -97,6 +99,7 @@ class Mage_Adminhtml_Block_Catalog_Category_Tab_Product extends Mage_Adminhtml_B
         return parent::_prepareCollection();
     }
 
+
     protected function _prepareColumns()
     {
         if (!$this->getCategory()->getProductsReadonly()) {
@@ -115,9 +118,23 @@ class Mage_Adminhtml_Block_Catalog_Category_Tab_Product extends Mage_Adminhtml_B
             'width'     => '60',
             'index'     => 'entity_id'
         ));
+        $this->addColumn('thumbnail', array(
+              'header'    => Mage::helper('catalog')->__('Thumbnail'),
+              'index'     => 'thumbnail',
+              'width'     => '100px',
+              'renderer'  => 'Mage_Adminhtml_Block_Catalog_Category_Tab_Image'
+        ));
         $this->addColumn('name', array(
             'header'    => Mage::helper('catalog')->__('Name'),
             'index'     => 'name'
+        ));
+        $this->addColumn('type',
+            array(
+                'header'=> Mage::helper('catalog')->__('Type'),
+                'width' => '100px',
+                'index' => 'type_id',
+                'type'  => 'options',
+                'options' => Mage::getSingleton('catalog/product_type')->getOptionArray(),
         ));
         $this->addColumn('sku', array(
             'header'    => Mage::helper('catalog')->__('SKU'),
