@@ -1,8 +1,8 @@
 /* ------------------------------------------------------------------------
-    Class: prettyPhoto
-    Use: Lightbox clone for jQuery
-    Author: Stephane Caron (http://www.no-margin-for-errors.com)
-    Version: 3.1.4
+  Class: prettyPhoto
+  Use: Lightbox clone for jQuery
+  Author: Stephane Caron (http://www.no-margin-for-errors.com)
+  Version: 3.1.4
 ------------------------------------------------------------------------- */
 (function ($) {
     $.prettyPhoto = {
@@ -15,10 +15,10 @@
             ajaxcallback: function () {},
             slideshow: 5000,
             autoplay_slideshow: false,
-            opacity: 1,
+            opacity: 0.80,
             show_title: true,
             allow_resize: true,
-            allow_expand: false,
+            allow_expand: true,
             default_width: 540,
             default_height: 680,
             counter_separator_label: '/',
@@ -36,38 +36,55 @@
             callback: function () {},
             ie6_fallback: true,
             markup: '<div class="pp_pic_holder"> \
-      <div class="ppt">&nbsp;</div> \
+      <div class="pp_x"><a class="pp_close" href="#"><i class="fi-x"></i></a></div> \
+      <div class="pp_top"> \
+       <div class="pp_left"></div> \
+       <div class="pp_middle"></div> \
+       <div class="pp_right"></div> \
+      </div> \
       <div class="pp_content_container"> \
-      <a class="show-all"><span class="txt">SHOW ALL</span><span class="icon"></span></a> \
-      <span class="s-plus"></span> \
-      <span class="s-minus"></span> \
-      <div class="images-zoom-wrap"><img src=""></div> \
-        <a href="#" class="pp_arrow_previous">Previous</a> \
-        <a href="#" class="pp_arrow_next">Next</a> \
-        <div class="pp_loaderIcon"></div> \
-        <div class="pp_details"> \
-           <div class="pp_nav"> \
-            <p class="currentTextHolder">0/0</p><br /> \
-            <p class="pp_description"></p> \
-           </div> \
-           <div class="pp_social">{pp_social}</div> \
-           <a class="pp_close" href="#">Close</a> \
-        </div> \
+       <div class="pp_left"> \
+       <div class="pp_right"> \
         <div class="pp_content"> \
+         <div class="pp_loaderIcon"></div> \
          <div class="pp_fade"> \
           <a href="#" class="pp_expand" title="Expand the image">Expand</a> \
+          <div class="pp_hoverContainer"> \
+           <a class="pp_next" href="#">next</a> \
+           <a class="pp_previous" href="#">previous</a> \
+          </div> \
           <div id="pp_full_res"></div> \
          </div> \
+         <div class="pp_details"> \
+            <p class="currentTextHolder">0/0</p> \
+            <div class="ppt">&nbsp;</div> \
+            <p class="pp_description"></p> \
+            <div class="pp_social">{pp_social}</div> \
+            <div class="pp_nav"> \
+              <a href="#" class="pp_arrow_previous"><i class="fi-arrow-left"></i>   Prev</a> \
+              <a href="#" class="pp_arrow_next">Next   <i class="fi-arrow-right"></i></a> \
+            </div> \
+          </div> \
+        </div> \
        </div> \
+       </div> \
+      </div> \
+      <div class="pp_bottom"> \
+       <div class="pp_left"></div> \
+       <div class="pp_middle"></div> \
+       <div class="pp_right"></div> \
       </div> \
      </div> \
      <div class="pp_overlay"></div>',
             gallery_markup: '<div class="pp_gallery"> \
+        <a href="#" class="pp_arrow_up fi-arrow-up"></a> \
         <div> \
          <ul> \
           {gallery} \
          </ul> \
         </div> \
+        <a href="#" class="pp_arrow_dow fi-arrow-down"></a> \
+        <a class="pp_close fi-thumbnails" href="#"></a> \
        </div>',
             image_markup: '<img id="fullResImage" src="{path}" />',
             flash_markup: '<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="{width}" height="{height}"><param name="wmode" value="{wmode}" /><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="movie" value="{path}" /><embed src="{path}" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="{width}" height="{height}" wmode="{wmode}"></embed></object>',
@@ -75,7 +92,7 @@
             iframe_markup: '<iframe src ="{path}" width="{width}" height="{height}" frameborder="no"></iframe>',
             inline_markup: '<div class="pp_inline">{content}</div>',
             custom_markup: '',
-            social_tools: "<a class='a_zoom link' onclick='window.open(\"{data-url}\", \"_blank\", \"width=450, height=350, top=220, left=320\"); return false;'><span class='txt'>Share Look</span><span class='icon'></span></a><br /><a class='a_shop link' href='{data-shop}'><span class='txt'>Shop Look</span><span class='icon'></span></a>"
+            social_tools: '<div onclick="window.open(\'http://www.facebook.com/sharer/sharer.php?s=100&p[url]={location_href}&p[images][0]={img}&p[title]={title}&p[summary]={summary}\', \'targetWindow\', \'top=180,left=430,toolbar=no,location=no,status=no,menubar=no,width=550,height=400\')" class="facebook"><a>Share</a></div>'
         }, pp_settings);
         var matchedObjects = this,
             percentBased = false,
@@ -117,36 +134,18 @@
             theRel = $(this).attr(settings.hook);
             galleryRegExp = /\[(?:.*)\]/;
             isSet = (galleryRegExp.exec(theRel)) ? true : false;
-
             pp_images = (isSet) ? jQuery.map(matchedObjects, function (n, i) {
                 if ($(n).attr(settings.hook).indexOf(theRel) != -1) return $(n).attr('href');
             }) : $.makeArray($(this).attr('href'));
-
             pp_titles = (isSet) ? jQuery.map(matchedObjects, function (n, i) {
-                if ($(n).attr(settings.hook).indexOf(theRel) != -1) return ($(n).find('img').attr('alt')) ? $(n).find('img').attr('alt') : "";
+                if ($(n).attr(settings.hook).indexOf(theRel) != -1) return ($(n).find('img').attr('title')) ? $(n).find('img').attr('title') : $(n).attr('title');
             }) : $.makeArray($(this).find('img').attr('alt'));
-
             pp_descriptions = (isSet) ? jQuery.map(matchedObjects, function (n, i) {
-                if ($(n).attr(settings.hook).indexOf(theRel) != -1) return ($(n).attr('title')) ? $(n).attr('title') : "";
-            }) : $.makeArray($(this).attr('title'));
-
+                if ($(n).attr(settings.hook).indexOf(theRel) != -1) return ($(n).attr('alt')) ? $(n).attr('alt') : "";
+            }) : $.makeArray($(this).attr('alt'));
             if (pp_images.length > settings.overlay_gallery_max) settings.overlay_gallery = false;
             set_position = jQuery.inArray($(this).attr('href'), pp_images);
             rel_index = (isSet) ? set_position : $("a[" + settings.hook + "^='" + theRel + "']").index($(this));
-
-            pp_dataUrl = (isSet) ? jQuery.map(matchedObjects, function (n, i) {
-                if ($(n).attr(settings.hook).indexOf(theRel) != -1) return ($(n).attr('data-url')) ? $(n).attr('data-url') : "";
-            }) : $.makeArray($(this).attr('data-url'));
-
-            pp_dataShop = (isSet) ? jQuery.map(matchedObjects, function (n, i) {
-                if ($(n).attr(settings.hook).indexOf(theRel) != -1) return ($(n).attr('data-shop')) ? $(n).attr('data-shop') : "";
-            }) : $.makeArray($(this).attr('data-shop'));
-
-            pp_small = (isSet) ? jQuery.map(matchedObjects, function (n, i) {
-                if ($(n).attr(settings.hook).indexOf(theRel) != -1) return $(n).attr('data-big');
-            }) : $.makeArray($(this).attr('data-big'));
-
-
             _build_overlay(this);
             if (settings.allow_resize)
                 $(window).bind('scroll.prettyphoto', function () {
@@ -164,9 +163,6 @@
                 pp_descriptions = (arguments[2]) ? $.makeArray(arguments[2]) : $.makeArray("");
                 isSet = (pp_images.length > 1) ? true : false;
                 set_position = (arguments[3]) ? arguments[3] : 0;
-                pp_dataUrl = (arguments[4]) ? $.makeArray(arguments[4]) : $.makeArray("");
-                pp_dataShop = (arguments[5]) ? $.makeArray(arguments[5]) : $.makeArray("");
-                pp_small = (arguments[6]) ? $.makeArray(arguments[6]) : $.makeArray("");
                 _build_overlay(event.target);
             }
             if ($.browser.msie && $.browser.version == 6) $('select').css('visibility', 'hidden');
@@ -176,34 +172,24 @@
             if (settings.deeplinking)
                 setHashtag();
             if (settings.social_tools) {
-                facebook_like_link = settings.social_tools.replace('{data-url}', pp_dataUrl[set_position]);
-                facebook_like_link = facebook_like_link.replace('{data-shop}', pp_dataShop[set_position]);
+                facebook_like_link = settings.social_tools.replace('{location_href}', encodeURIComponent(location.href));
+                facebook_like_link = facebook_like_link.replace('{img}',  pp_images[set_position]);
+                facebook_like_link = facebook_like_link.replace('{title}', pp_titles[set_position]);
+                facebook_like_link = facebook_like_link.replace('{summary}', pp_descriptions[set_position]);
                 $pp_pic_holder.find('.pp_social').html(facebook_like_link);
-
-                $pp_pic_holder.find('.pp_details .pp_social .a_shop').hover(function() {
-                    $(this).find('.txt').animate({'margin-right': '-33px'}, 500);
-                }, function() {
-                    $(this).find('.txt').animate({'margin-right': '-125px'}, 500);
-                });
-
-                $pp_pic_holder.find('.pp_details .pp_social .a_zoom').hover(function() {
-                    $(this).find('.txt').animate({'margin-right': '-33px'}, 500);
-                }, function() {
-                    $(this).find('.txt').animate({'margin-right': '-125px'}, 500);
-                });
             }
-            if (typeof pp_dataShop[set_position] != 'undefined' && pp_dataShop[set_position] != "") {
-                $pp_pic_holder.find('.pp_details .pp_social .a_shop').fadeIn();
+            //if ($ppt.is(':hidden')) $ppt.css('opacity', 0).show();
+            if (typeof pp_titles[set_position] != 'undefined' && pp_titles[set_position] != "") {
+                $pp_pic_holder.find('.ppt').fadeIn(settings.animation_speed);
             } else {
-                $pp_pic_holder.find('.pp_details .pp_social .a_shop').fadeOut();
+                $pp_pic_holder.find('.ppt').fadeOut(settings.animation_speed);
             }
-            if ($ppt.is(':hidden')) $ppt.css('opacity', 1).show();
             $pp_overlay.show().fadeTo(settings.animation_speed, settings.opacity);
-            $pp_pic_holder.find('.currentTextHolder').text((set_position + 1) + settings.counter_separator_label + $(pp_images).size());
+            $pp_pic_holder.find('.currentTextHolder').html('<span>' + (set_position + 1) + '</span>' + ' ' + settings.counter_separator_label + ' ' + $(pp_images).size());
             if (typeof pp_descriptions[set_position] != 'undefined' && pp_descriptions[set_position] != "") {
-                $pp_pic_holder.find('.pp_description').fadeIn().html(unescape(pp_descriptions[set_position]));
+                $pp_pic_holder.find('.pp_description').show().html(unescape(pp_descriptions[set_position]));
             } else {
-                $pp_pic_holder.find('.pp_description').fadeOut();
+                $pp_pic_holder.find('.pp_description').hide();
             }
             movie_width = (parseFloat(getParam('width', pp_images[set_position]))) ? getParam('width', pp_images[set_position]) : settings.default_width.toString();
             movie_height = (parseFloat(getParam('height', pp_images[set_position]))) ? getParam('height', pp_images[set_position]) : settings.default_height.toString();
@@ -349,9 +335,9 @@
                 currentGalleryPage = direction;
             };
             slide_speed = (direction == 'next' || direction == 'previous') ? settings.animation_speed : 0;
-            slide_to = currentGalleryPage * (itemsPerPage * itemWidth);
+            slide_to = currentGalleryPage * (itemsPerPage * 63);
             $pp_gallery.find('ul').animate({
-                left: -slide_to
+                top: -slide_to
             }, slide_speed);
         };
         $.prettyPhoto.startSlideshow = function () {
@@ -390,7 +376,6 @@
                 doresize = true;
                 pp_open = false;
                 delete settings;
-                $('body').css('overflow', 'visible');
             });
         };
 
@@ -398,19 +383,17 @@
             $('.pp_loaderIcon').hide();
             projectedTop = scroll_pos['scrollTop'] + ((windowHeight / 2) - (pp_dimensions['containerHeight'] / 2));
             if (projectedTop < 0) projectedTop = 0;
-            $ppt.fadeTo(settings.animation_speed, 1);
+            //$ppt.fadeTo(settings.animation_speed, 1);
             $pp_pic_holder.find('.pp_content').animate({
                 height: pp_dimensions['contentHeight'],
-                width: pp_dimensions['contentWidth'],
-                'left': ((windowWidth / 2) - (pp_dimensions['containerWidth'] / 2) < 0) ? 0 : (windowWidth / 2) - (pp_dimensions['containerWidth'] / 2),
-            }, settings.animation_speed, function() {
-                $pp_gallery.animate({'opacity': 1}, settings.animation_speed);
-            });
+                width: pp_dimensions['contentWidth']
+            }, settings.animation_speed);
             $pp_pic_holder.animate({
-                'top': 0,
-                'left': 0,
+                'top': projectedTop,
+                'left': ((windowWidth / 2) - (pp_dimensions['containerWidth'] / 2) < 0) ? 0 : (windowWidth / 2) - (pp_dimensions['containerWidth'] / 2),
+                width: pp_dimensions['containerWidth']
             }, settings.animation_speed, function () {
-                $pp_pic_holder.find('#fullResImage').height(pp_dimensions['height']).width(pp_dimensions['width']);
+                // $pp_pic_holder.find('.pp_hoverContainer,#fullResImage').height(pp_dimensions['height']).width(pp_dimensions['width']);
                 $pp_pic_holder.find('.pp_fade').fadeIn(settings.animation_speed);
                 // if (isSet && _getFileType(pp_images[set_position]) == "image") {
                 //     $pp_pic_holder.find('.pp_hoverContainer').show();
@@ -482,7 +465,7 @@
             width = parseFloat(width);
             height = parseFloat(height);
             $pp_details = $pp_pic_holder.find('.pp_details');
-            $pp_details.width(width);
+            // $pp_details.width(width);
             detailsHeight = parseFloat($pp_details.css('marginTop')) + parseFloat($pp_details.css('marginBottom'));
             $pp_details = $pp_details.clone().addClass(settings.theme).width(width).appendTo($('body')).css({
                 'position': 'absolute',
@@ -493,18 +476,19 @@
             if ($.browser.msie && $.browser.version == 7) detailsHeight += 8;
             $pp_details.remove();
             $pp_title = $pp_pic_holder.find('.ppt');
-            $pp_title.width(width);
+            //$pp_title.width(width);
             titleHeight = parseFloat($pp_title.css('marginTop')) + parseFloat($pp_title.css('marginBottom'));
             $pp_title = $pp_title.clone().appendTo($('body')).css({
                 'position': 'absolute',
                 'top': -10000
             });
             titleHeight += $pp_title.height();
-            $pp_title.remove();
-            pp_contentHeight = height;
-            pp_contentWidth = width;
-            pp_containerHeight = pp_contentHeight + titleHeight + $pp_pic_holder.find('.pp_top').height() + $pp_pic_holder.find('.pp_bottom').height();
-            pp_containerWidth = width;
+            //$pp_title.remove();
+            pp_contentHeight = 540;
+            pp_contentWidth = 680;
+            $('.pp_content').find('.pp_fade').css('max-width', '420');
+            pp_containerHeight = 540;
+            pp_containerWidth = 680;
         }
 
         function _getFileType(itemSrc) {
@@ -538,8 +522,8 @@
                 if (contentHeight > windowHeight)
                     return;
                 $pp_pic_holder.css({
-                    'top': 0,
-                    'left': 0
+                    'top': projectedTop,
+                    'left': (windowWidth / 2) + scroll_pos['scrollLeft'] - (contentwidth / 2)
                 });
             };
         };
@@ -570,20 +554,20 @@
 
         function _insert_gallery() {
             if (isSet && settings.overlay_gallery && _getFileType(pp_images[set_position]) == "image" && (settings.ie6_fallback && !($.browser.msie && parseInt($.browser.version) == 6))) {
-                itemWidth = 52 + 5;
+                itemWidth = 61;
                 navWidth = (settings.theme == "facebook" || settings.theme == "pp_default") ? 50 : 30;
-                itemsPerPage = Math.floor((pp_dimensions['containerWidth'] - 100 - navWidth) / itemWidth);
+                itemsPerPage = Math.floor((pp_dimensions['containerHeight'] - 110) / 61);
                 itemsPerPage = (itemsPerPage < pp_images.length) ? itemsPerPage : pp_images.length;
                 totalPage = Math.ceil(pp_images.length / itemsPerPage) - 1;
                 if (totalPage == 0) {
                     navWidth = 0;
-                    // $pp_gallery.find('.pp_arrow_next,.pp_arrow_previous').hide();
+                    $pp_gallery.find('.pp_arrow_dow,.pp_arrow_up').hide();
                 } else {
-                    // $pp_gallery.find('.pp_arrow_next,.pp_arrow_previous').show();
+                    $pp_gallery.find('.pp_arrow_dow,.pp_arrow_up').show();
                 };
                 galleryWidth = itemsPerPage * itemWidth;
                 fullGalleryWidth = pp_images.length * itemWidth;
-                $pp_gallery.css('margin-left', -((galleryWidth / 2))).find('div:first').width(galleryWidth + 5).find('ul').width(fullGalleryWidth).find('li.selected').removeClass('selected');
+                $pp_gallery.find('div:first').find('ul').find('li.selected').removeClass('selected');
                 goToPage = (Math.floor(set_position / itemsPerPage) < totalPage) ? Math.floor(set_position / itemsPerPage) : totalPage;
                 $.prettyPhoto.changeGalleryPage(goToPage);
                 $pp_gallery_li.filter(':eq(' + set_position + ')').addClass('selected');
@@ -594,78 +578,72 @@
 
         function _build_overlay(caller) {
             if (settings.social_tools)
-                facebook_like_link = settings.social_tools.replace('{data-url}', pp_dataUrl[set_position]);
-                facebook_like_link = facebook_like_link.replace('{data-shop}', pp_dataShop[set_position]);
+                facebook_like_link = settings.social_tools.replace('{location_href}', encodeURIComponent(location.href));
             settings.markup = settings.markup.replace('{pp_social}', '');
             $('body').append(settings.markup);
             $pp_pic_holder = $('.pp_pic_holder'), $ppt = $('.ppt'), $pp_overlay = $('div.pp_overlay');
             if (isSet && settings.overlay_gallery) {
                 currentGalleryPage = 0;
                 toInject = "";
-                for (var i = 0; i < pp_small.length; i++) {
-                    if (!pp_small[i].match(/\b(jpg|jpeg|png|gif)\b/gi)) {
+                for (var i = 0; i < pp_images.length; i++) {
+                    if (!pp_images[i].match(/\b(jpg|jpeg|png|gif)\b/gi)) {
                         classname = 'default';
                         img_src = '';
                     } else {
                         classname = '';
-                        img_src = pp_small[i];
+                        img_src = pp_images[i];
                     }
-                    toInject += "<li class='" + classname + "'><a><img src='" + img_src + "' width='50' alt='' /></a></li>";
+                    toInject += "<li class='" + classname + "'><a href='#'><img src='" + img_src + "' width='53' alt='' /></a></li>";
                 };
                 toInject = settings.gallery_markup.replace(/{gallery}/g, toInject);
-                $pp_pic_holder.find('.pp_fade').after(toInject);
-                $pp_gallery = $('.pp_pic_holder .pp_gallery'), $pp_gallery_li = $pp_gallery.find('li');
-
-                // $pp_gallery.find('.pp_arrow_next').click(function () {
-                //     $.prettyPhoto.changeGalleryPage('next');
-                //     $.prettyPhoto.stopSlideshow();
-                //     return false;
-                // });
-                // $pp_gallery.find('.pp_arrow_previous').click(function () {
-                //     $.prettyPhoto.changeGalleryPage('previous');
-                //     $.prettyPhoto.stopSlideshow();
-                //     return false;
-                // });
+                $('.pp_content').find('.pp_fade').before(toInject);
+                $pp_gallery = $('.pp_pic_holder .pp_gallery'), 
+                $pp_gallery_li = $pp_gallery.find('li');
+                $pp_gallery.find('.pp_arrow_dow').click(function () {
+                    $.prettyPhoto.changeGalleryPage('next');
+                    $.prettyPhoto.stopSlideshow();
+                    return false;
+                });
+                $pp_gallery.find('.pp_arrow_up').click(function () {
+                    $.prettyPhoto.changeGalleryPage('previous');
+                    $.prettyPhoto.stopSlideshow();
+                    return false;
+                });
                 // $pp_pic_holder.find('.pp_content').hover(function () {
                 //     $pp_pic_holder.find('.pp_gallery:not(.disabled)').fadeIn();
                 // }, function () {
                 //     $pp_pic_holder.find('.pp_gallery:not(.disabled)').fadeOut();
                 // });
-                 
-                itemWidth = 52 + 5;
+                itemWidth = 61;
                 $pp_gallery_li.each(function (i) {
                     $(this).find('a').click(function () {
+                        console.log('xx');
                         $.prettyPhoto.changePage(i);
                         $.prettyPhoto.stopSlideshow();
-
-                        if ($(this).parent().hasClass('check')) {
-                            $pp_pic_holder.find('.pp_gallery').animate({height: '76px', 'overflow': 'hidden', top: '104%', }, 'slow',function(){
-                                $(this).find('div ul').height(76);
-                                $pp_pic_holder.find('.pp_arrow_previous').fadeIn('slow');
-                                $pp_pic_holder.find('.pp_arrow_next').fadeIn('slow');
-                            });
-                        };
-
                         return false;
                     });
                 });
             };
-            // if (settings.slideshow) {
-            //     $pp_pic_holder.find('.pp_nav').prepend('<a href="#" class="pp_play">Play</a>')
-            //     $pp_pic_holder.find('.pp_nav .pp_play').click(function () {
-            //         $.prettyPhoto.startSlideshow();
-            //         return false;
-            //     });
-            // }
+            if (settings.slideshow) {
+                $pp_pic_holder.find('.pp_nav').prepend('<a href="#" class="pp_play">Play</a>')
+                $pp_pic_holder.find('.pp_nav .pp_play').click(function () {
+                    $.prettyPhoto.startSlideshow();
+                    return false;
+                });
+            }
             $pp_pic_holder.attr('class', 'pp_pic_holder ' + settings.theme);
             $pp_overlay.css({
-                'opacity': 1,
+                'opacity': 0,
                 'height': $(document).height(),
                 'width': $(window).width()
             }).bind('click', function () {
                 if (!settings.modal) $.prettyPhoto.close();
             });
             $('a.pp_close').bind('click', function () {
+                $.prettyPhoto.close();
+                return false;
+            });
+            $('a.pp_ax').bind('click', function () {
                 $.prettyPhoto.close();
                 return false;
             });
@@ -684,103 +662,18 @@
                     return false;
                 });
             }
-            $pp_pic_holder.find('.pp_previous, .pp_arrow_previous').bind('click', function () {
+            $pp_pic_holder.find('.pp_previous, .pp_nav .pp_arrow_previous').bind('click', function () {
                 $.prettyPhoto.changePage('previous');
                 $.prettyPhoto.stopSlideshow();
                 return false;
             });
-            $pp_pic_holder.find('.pp_next, .pp_arrow_next').bind('click', function () {
+            $pp_pic_holder.find('.pp_next, .pp_nav .pp_arrow_next').bind('click', function () {
                 $.prettyPhoto.changePage('next');
                 $.prettyPhoto.stopSlideshow();
                 return false;
             });
             _center_overlay();
-
-            //XX
-            $pp_pic_holder.find('.pp_content').click(function() {
-
-                // var baseUrl = window.location.protocol + "//" + window.location.host + "/skin/frontend/default/default/my_igallery/images/";
-                
-
-                var img = $(this).find('#pp_full_res img');
-                var url = img.attr('src');
-                var item = $('.images-zoom-wrap img');
-
-                $('.images-zoom-wrap').show();
-
-                item.attr('src', url);
-                item.load(function() {
-
-                    $(window).scrollTop(0);
-                    // $j('.zoom-loader').hide();
-                    $('body').css('overflow', 'hidden');
-                    $(this).css('width', $(window).width());
-                    $(this).fadeIn('slow');
-
-                });
-
-                item.mousemove(function(ev) {
-                    moveBox(ev, $(this));
-                });
-
-                item.click(function() {
-                    item.css('cursor', 'default');
-                    $('.images-zoom-wrap').fadeOut('slow');
-                    $(this).attr('src', '');
-                    $('body').css('overflow', 'visible');
-                    $(this).fadeOut('slow');
-                });
-
-            });
-
-            $pp_pic_holder.find('.pp_content_container .show-all').hover(function() {
-                $(this).find('.txt').animate({'margin-right': '-33px'}, 500);
-            }, function() {
-                $(this).find('.txt').animate({'margin-right': '-125px'}, 500);
-            });
-
-            $pp_pic_holder.find('.pp_content_container .show-all').click(function() {
-                $pp_pic_holder.find('.pp_arrow_previous').fadeOut('slow');
-                $pp_pic_holder.find('.pp_arrow_next').fadeOut('slow');
-                $pp_pic_holder.find('.pp_fade').fadeOut('slow', function() {
-                    $pp_pic_holder.find('.pp_gallery').animate({top: 0, bottom: 'auto'}, 'slow', function(){
-                        $(this).css({
-                            'margin-left': '-180px',
-                            'height': 'auto',
-                            'overflow-x': 'hidden'
-                        }, 'slow');
-                        $(this).find('div').width(360);
-                        $(this).find('div ul').animate({
-                            left: '0',
-                            width: '100%',
-                            height: '100%'
-                        }, 'slow');
-                    }) 
-                });
-                $pp_gallery_li.each(function() {
-                    $(this).addClass('check');
-                });
-            });
-
-            // $pp_pic_holder.find('.pp_content .pp_fade #pp_full_res').on('mouseenter', function(e){
-    
-            // });
-
-            // $pp_pic_holder.find('.pp_content .pp_fade').on('mousemove', function(e){
-
-            // });
-
-            // $pp_pic_holder.find('.pp_content .pp_fade').on('mouseout', function(e){
-
-            // });
-            
-
-            // $pp_pic_holder.find('.pp_content .pp_fade').on('mouseout', function(e){
-
-            // }); 
-            
         };
-
         if (!pp_alreadyInitialized && getHashtag()) {
             pp_alreadyInitialized = true;
             hashIndex = getHashtag();
@@ -793,19 +686,6 @@
         }
         return this.unbind('click.prettyphoto').bind('click.prettyphoto', $.prettyPhoto.initialize);
     };
-
-    //XX
-    function moveBox(e, img) {
-
-        var imgH = img.height();
-        var wH = $(window).height();
-        var range = imgH - wH;
-        var ratio = range / wH;
-        var speed = e.clientY * ratio;
-
-        // TweenLite.to(img, 1.2, { css: { top: '-' + speed, ease : Cubic.easeOut }});
-        TweenLite.to(img, 1, { css: { transform:'translate3d(0px,' + '-'+speed+'px' + ', 0px)', ease:Cubic.easeOut }});
-    }
 
     function getHashtag() {
         url = location.href;
@@ -829,6 +709,5 @@
         var results = regex.exec(url);
         return (results == null) ? "" : results[1];
     }
-
 })(jQuery);
 var pp_alreadyInitialized = false;

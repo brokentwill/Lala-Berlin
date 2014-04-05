@@ -45,10 +45,12 @@
 
 <?php  
     $collection = Mage::getModel('catalog/category')->getCategories($_category->entity_id);
-    $dump = $_category->getResource()->getChildren($_category, true);
-
+    $_id = $_category->getId();
+    $_cuCat = Mage::getModel('catalog/category')->load($_id);
+    $dump = $_cuCat->getChildrenCategories();
+    
     foreach($dump as $subs) {
-        $_subcate = Mage::getModel('catalog/category')->load($subs);
+        $_subcate = Mage::getModel('catalog/category')->load($subs->getId());
     }
 ?>
 
@@ -93,27 +95,27 @@
 <?php endif; ?>
 
 <ul class="small-block-grid-2 large-block-grid-3 wide max-grid shop-sub-cate">
-    <?php foreach ($dump as $subs): $_subcate = Mage::getModel('catalog/category')->load($subs); ?>
-        <?php if (!$_subcate->getChildrenCount()): ?>
-        <?php if ($_category->getName() == 'Collections'): ?>
-            <li style="width:100%;">
-                <div class="sub-img">
-                    <a href="<?php echo $_subcate->getUrl() ?>"><img src="<?php echo $_subcate->getImageUrl() ?>" alt=""></a>
-                </div>
-            </li>
-        <?php else: ?>
-            <li class="">
-                <div class="sub-img">
-                    <a href="<?php echo $_subcate->getUrl() ?>"><img src="<?php echo $_subcate->getImageUrl() ?>" alt=""></a>
-                    <a href="<?php echo $_subcate->getUrl() ?>" class="sub-overlay">
-                        <span><?php echo 'SHOP NOW' ?></span><br />
-                        <!-- <i><?php echo $_subcate->getName() ?></i> -->
-                    </a>
-                </div>
-                <p class="sub-name"><a href="<?php echo $_subcate->getUrl() ?>"><?php echo $_subcate->getName() ?></a></p>
-            </li>
-        <?php endif; ?>
-        <?php endif ?>
+    <?php foreach ($dump as $subs): $_subcate = Mage::getModel('catalog/category')->load($subs->getId()); ?>
+        <?php //if (!$_subcate->getChildrenCount()): ?>
+            <?php if ($_category->getName() == 'Collections'): ?>
+                <li style="width:100%;">
+                    <div class="sub-img">
+                        <a href="<?php echo $_subcate->getUrl() ?>"><img src="<?php echo $_subcate->getImageUrl() ?>" alt=""></a>
+                    </div>
+                </li>
+            <?php else: ?>
+                <li class="">
+                    <div class="sub-img">
+                        <a href="<?php echo $_subcate->getUrl() ?>"><img src="<?php echo $_subcate->getImageUrl() ?>" alt=""></a>
+                        <a href="<?php echo $_subcate->getUrl() ?>" class="sub-overlay">
+                            <span><?php echo 'SHOP NOW' ?></span><br />
+                            <!-- <i><?php echo $_subcate->getName() ?></i> -->
+                        </a>
+                    </div>
+                    <p class="sub-name"><a href="<?php echo $_subcate->getUrl() ?>"><?php echo $_subcate->getName() ?></a></p>
+                </li>
+            <?php endif; ?>
+        <?php //endif ?>
     <?php endforeach; ?>
 </ul>
 

@@ -708,19 +708,19 @@ button.button:hover{background: #333;}
     .top-bar-section ul li.account-link > a,
     .top-bar-section ul li.has-dropdown > a{font-size: .625em;padding: 0 15px;}
     .top-bar-section ul li.has-dropdown > a span{color: #000;}
-    .top-bar-section ul li.has-dropdown > a span.active{color: #8d8d8d;}
+    .top-bar-section ul li.has-dropdown > a span.active{color: #999;}
     .top-bar-section ul li:hover > a.top-link-cart span{color: #000;}
-    .top-bar-section li a:not(.button):hover{color: #8d8d8d;}
+    .top-bar-section li a:not(.button):hover{color: #999;}
     .top-bar-section .right li a:not(.button):hover{color: #000;}
     .top-bar-section .has-dropdown.language > a{padding-right: 15px !important;}
-    .top-bar-section .has-dropdown.language > a span:hover { color: #8d8d8d; opacity: 1;}
+    .top-bar-section .has-dropdown.language > a span:hover { color: #999; opacity: 1;}
     .top-bar-section ul li > a.top-link-cart{ padding-right: 35px;}
     .top-bar-section ul li > a.top-link-cart span{border: 1px solid #000;padding: 10px 35px; color: #000;}
     .top-bar .name,
     .top-bar-section > ul > .divider, .top-bar-section > ul > [role="separator"]{}
     .top-bar-section .left li:not(.new_devi) a {text-align: center;}
     .top-bar-section .left li:last-child a { padding-right: 0}
-    .top-bar-section .left li a.active { color: #8d8d8d;}
+    .top-bar-section .left li a.active { color: #999;}
     .top-bar-section ul{background: #fff;}
     .top-bar-section ul.links{float: right;}
 }
@@ -1080,7 +1080,7 @@ table thead, table tfoot{ background: #fff; }
     float: left;
 }
 .sidebar{padding-top: 32px !important;padding-bottom: 32px !important;}
-.product-view{width: 90%}
+.product-view{width: 100%}
 .top-bar .contact{display: none;}
 .top-bar ul.left{float: none !important;}
 .col2-left-layout{margin-bottom: 60px;}
@@ -1134,7 +1134,7 @@ table thead, table tfoot{ background: #fff; }
     .top-bar .title-area { width: 11% }
     .top-bar li.name{text-align: center}
     .top-bar-section ul.left li:not(.new_devi) a {
-        padding: 0 44px;
+        padding: 0 30px;
     }
     .top-bar-section ul.right .divider{display: none;}
     .col-main{padding-top: 10px;}
@@ -1179,17 +1179,14 @@ b, strong{font-family: Brown-Bold, 'Trebuchet MS', Verdana, sans-serif;font-weig
 .my-account .hello{font-size: 1.5em;}
 .top-bar .toggle-topbar a{font-weight: normal;font-family: Brown-Bold, 'Trebuchet MS', Verdana, sans-serif;}
 .messages {
-    border-style: solid;
-    border-width: 1px;
     display: block;
     font-weight: normal;
     margin-bottom: 1.25rem;
     position: relative;
     padding: 0.875rem 1.5rem 0.875rem 0.875rem;
     font-size: 0.8125rem;
-    background-color: #008cba;
-    border-color: #0079a1;
-    color: white; }
+    background-color: #fff;
+    color: #000; }
 .child-cate{padding-left: 0;padding-right: 0; margin-top: 20px;}
 .gallery-container .child-cate { margin-top: 0;}
 .std strong{}
@@ -1276,15 +1273,17 @@ b, strong{font-family: Brown-Bold, 'Trebuchet MS', Verdana, sans-serif;font-weig
       width: 100%;
       margin: 0;
     }
-    .banner_box .divSimpleSlider .banner_overlay > p .headline { font-size: 110px; line-height: 125px; font-family: Brown-Bold; text-transform: uppercase;}
-    .banner_box .divSimpleSlider .banner_overlay > p .subline { font-size: 34px; font-family: ACP; font-style: italic;}
+    .banner_box .divSimpleSlider .banner_overlay > p .headline { font-size: 122px; line-height: 125px; font-family: 'Domaine Display Condensed'; text-transform: uppercase; display: block; clear: both;}
+    .banner_box .divSimpleSlider .banner_overlay > p .subline { font-size: 22px; letter-spacing: 2px; font-family: 'Brown'; display: block; clear:  both; margin-top: -20px; margin-bottom: 30px;}
     .banner_box .divSimpleSlider .banner_overlay > p .btn-text {
       display: inline-block;
-      width: 215px;
-      height: 45px;
-      line-height: 45px;
+      width: 240px;
+      height: 50px;
+      line-height: 50px;
       margin-top: 25px;
-      font-size: 16px;
+      font-size: 14px;
+      font-family: 'Brown';
+      letter-spacing: 2px;
       text-align: center;
       text-transform: uppercase;
     }
@@ -1295,7 +1294,7 @@ b, strong{font-family: Brown-Bold, 'Trebuchet MS', Verdana, sans-serif;font-weig
 
     .banner_box .divSimpleSlider .banner_overlay > p {
       position: absolute;
-      top: 36%;
+      top: 40%;
       text-align: center;
       width: 100%;
       margin: 0;
@@ -1351,17 +1350,17 @@ b, strong{font-family: Brown-Bold, 'Trebuchet MS', Verdana, sans-serif;font-weig
     }
     .masonry-container .item.on-home {
         float: left;
-        width: 32.05%;
-        margin: 0 0.5% 1%;
+        /*width: 32.2%;
+        margin: 0 0.5% 1%;*/
     }
     .masonry-container .item.is_parent_li {
         margin: 0 0 1%;
     }
     .masonry-container .item.cols-1 {
-        width: 15.6%;
+        /*width: 15.4%;*/
     }
     .masonry-container .item.cols-3 {
-        width: 48.8%;
+        /*width: 48.8%;*/
     }
     .masonry-container .item.cols-4 {
         width: 65.4%;
@@ -1375,14 +1374,14 @@ b, strong{font-family: Brown-Bold, 'Trebuchet MS', Verdana, sans-serif;font-weig
 }
 
 @media only screen and (max-width: 495px) { 
-    .banner_box .divSimpleSlider .banner_overlay > p {
+    /*.banner_box .divSimpleSlider .banner_overlay > p {
       position: absolute;
-      top: 36%;
+      top: 40%;
       text-align: center;
       width: 100%;
       margin: 0;
     }
-    .banner_box .divSimpleSlider .banner_overlay > p .headline { font-size: 34px; line-height: 32px; font-family: Brown-Bold; text-transform: uppercase;}
+    .banner_box .divSimpleSlider .banner_overlay > p .headline { font-size: 38px; line-height: 32px; font-family: Brown-Bold; text-transform: uppercase;}
     .banner_box .divSimpleSlider .banner_overlay > p .subline { font-size: 16px; font-family: ACP; font-style: italic;}
     .banner_box .divSimpleSlider .banner_overlay > p .btn-text {
       display: inline-block;
@@ -1393,7 +1392,7 @@ b, strong{font-family: Brown-Bold, 'Trebuchet MS', Verdana, sans-serif;font-weig
       font-size: 9px;
       text-align: center;
       text-transform: uppercase;
-    }
+    }*/
 }
 
 .header-lala-logo a { line-height: 100px; } 
@@ -1486,7 +1485,7 @@ li.item.is-video video {
     -ms-object-fit: cover;
     -o-object-fit: cover;
     object-fit: cover;
-    overflow: hidden;
+    overflow: hidden;.igallery-images .on-home.item .overlay p
 }
 
 .igallery-images .item a:hover .overlay {
@@ -1494,9 +1493,10 @@ li.item.is-video video {
     opacity: 1;
 }
 .igallery-images .item .overlay p {
-    color: #111;
+    color: #181818;
     display: block;
-    font-family: Brown-Bold, 'Trebuchet MS', Verdana, sans-serif;
+    margin: 0;
+    font-family: 'Domaine Display Condensed', 'Trebuchet MS', Verdana, sans-serif;
     font-size: 2em;
     position: absolute;
     text-align: center;
@@ -1510,7 +1510,7 @@ li.item.is-video video {
 .igallery-images .on-home.item .overlay p {
     top: 46%;
     margin-top: 0;
-    font-size: 26px;
+    font-size: 38px;
     font-weight: normal;
 }
 
@@ -1608,7 +1608,7 @@ li.item.is-video iframe {
 .block-cart { float: right; color: #000; padding-right: 20px; font-size: 0.9376rem;}
 .block-cart a { padding: 10px 20px; border: 1px solid #000;}
 
-.home-top-slider { margin-bottom: 10px;}
+.home-top-slider { margin-bottom: 30px;}
 .home-top-slider .divSimpleSlider { height: 100%; }
 .home-top-slider .divSimpleSlider > a { 
     height: 100%;

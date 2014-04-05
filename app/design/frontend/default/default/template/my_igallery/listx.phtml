@@ -144,14 +144,13 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
     jQuery(window).bind("load", function() {
         jQuery('#container02').masonry({
             itemSelector: '.item',
-            columnWidth: function( containerWidth ) {
-                if (jQuery(window).width() <= 700) {
-                    return containerWidth;
-                } else {
-                    return containerWidth / 6;
-                }
-            },
-            // layoutComplete: check(),
+             columnWidth: function( containerWidth ) {
+                 if (jQuery(window).width() <= 700) {
+                     return containerWidth;
+                 } else {
+                     return containerWidth / 6;
+                 }
+             },
         });
 
     });
@@ -162,9 +161,102 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
     $j = jQuery.noConflict();
     $j(document).ready(function() {
 
+      var base = $j('#container02').width();
+      var mv = Math.floor(base/100);
+      var mh = Math.floor(mv/2);
+
+      var b32 = Math.ceil(base*32.2/100);
+      var b154 = Math.ceil(base*15.4/100);
+      var b488 = Math.ceil(base*48.8/100);
+
+      //console.log(b32);
+
+      $j('.masonry-container .item.on-home').each(function() {
+        $j(this).css({
+          'margin-top': '0px',
+          'margin-right': mh,
+          'margin-bottom': mv,
+          'margin-left': mh,
+          'width' : b32,
+        });
+
+      });
+      $j('.masonry-container .item.cols-1').each(function() {
+          $j(this).css('width', b154);
+      });
+
+      $j('.masonry-container .item.cols-3').each(function() {
+        $j(this).css('width', b488);
+      });
+
+      if (jQuery(window).width() <= 700) {
+          $j('.masonry-container .item.on-home').each(function() {
+              $j(this).css('width', '100%');
+          });
+          $j('.masonry-container .item.cols-1').each(function() {
+              $j(this).css('width', '100%');
+          });
+          
+          $j('.masonry-container .item.cols-3').each(function() {
+            $j(this).css('width', '100%');
+          });
+
+        }
+
     });
 
     function getH() {
+
+      var base = $j('#container02').width();
+        var mv = Math.floor(base/100);
+        var mh = Math.floor(mv/2);
+
+        var b32 = Math.ceil(base*32.2/100);
+        var b154 = Math.ceil(base*15.4/100);
+        var b488 = Math.ceil(base*48.8/100);
+
+        $j('.masonry-container .item.on-home').each(function() {
+          $j(this).css({
+            'margin-top': '0px',
+            'margin-right': mh,
+            'margin-bottom': mv,
+            'margin-left': mh,
+          });
+        });
+
+        $j('.masonry-container .item.on-home').each(function() {
+          $j(this).css({
+            'margin-top': '0px',
+            'margin-right': mh,
+            'margin-bottom': mv,
+            'margin-left': mh,
+            'width' : b32,
+          });
+
+        });
+        $j('.masonry-container .item.cols-1').each(function() {
+            $j(this).css('width', b154);
+        });
+        
+        $j('.masonry-container .item.cols-3').each(function() {
+          $j(this).css('width', b488);
+        });
+
+        if (jQuery(window).width() <= 700) {
+          $j('.masonry-container .item.on-home').each(function() {
+              $j(this).css('width', '100%');
+          });
+          $j('.masonry-container .item.cols-1').each(function() {
+              $j(this).css('width', '100%');
+          });
+          
+          $j('.masonry-container .item.cols-3').each(function() {
+            $j(this).css('width', '100%');
+          });
+
+        }
+
+
         $j('li.on-home.is-video').each(function(){
             if ( $j(this).hasClass('rows-2') ) {
                 var hx = 0;
@@ -194,14 +286,14 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
                 var w = $j(this).width();
                 var h = $j(this).height();
                 if ( w > h ) {
-                    console.log('w > h');
+                    // console.log('w > h');
                     video.css({
-                        width: videocon.width(),
+                        width: 'auto',
                         height: '100%',
                         marginTop: ((videocon.height() - video.height()) / 2)
                     });
                 } else {
-                    console.log('w < h');
+                    // console.log('w < h');
                     video.css({
                         width: 'auto',
                         height: '100%',
@@ -210,6 +302,7 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
                 }
             };
         })
+
     }
 
     $j(window).load(function() {

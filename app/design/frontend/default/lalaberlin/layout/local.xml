@@ -58,7 +58,8 @@
 
             <!-- <action method="addItem"><type>skin_js</type><name>js/main.min.js</name></action> -->
             <action method="addItem"><type>skin_js</type><name>js/ob_custom.js</name></action>
-            <action method="addJs"><script>jquery.masonry.min.js</script></action>
+            <!-- <action method="addJs"><script>jquery.masonry.min.js</script></action> -->
+            <action method="addJs"><script>jquery.masonry.js</script></action>
             <action method="addJs"><script>jquery.fitvids.js</script></action>
             <action method="addJs"><script>polyfill.object-fit.min.js</script></action>
             <action method="addJs"><script>share.js</script></action>

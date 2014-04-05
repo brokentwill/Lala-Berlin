@@ -1537,7 +1537,7 @@ meta.foundation-mq-topbar {
     height: auto;
     display: block;
     background: #fff;
-    font-size: 16px;
+    font-size: 15px;
     margin: 0; }
 .top-bar-section .divider,
 .top-bar-section [role="separator"] {
@@ -1551,10 +1551,11 @@ meta.foundation-mq-topbar {
 .top-bar-section ul li > a {
     display: block;
     width: 100%;
-    color: #000;
+    color: #181818;
     padding: 12px 0 12px 0;
     padding-left: 15px;
-    font-size: 0.9376rem;
+    font-size: 12px;
+    letter-spacing: 5px;
     font-weight: normal;
     background: #fff; }
 .top-bar-section ul li > a.active {
@@ -1580,9 +1581,9 @@ meta.foundation-mq-topbar {
 .top-bar-section ul li > a.button.alert:hover {
     background: #d32a0e; }
 .top-bar-section ul li:hover > a {
-    color: #8d8d8d; }
+    color: #999; }
 .top-bar-section ul li.active > a {
-    background: #008cba;
+    background: #999;
     color: white; }
 .top-bar-section ul li.active > a:hover {
     background: #0079a1; }
@@ -1769,8 +1770,8 @@ meta.foundation-mq-topbar {
     .top-bar-section ul li .js-generated {
         display: none; }
     .top-bar-section li.hover > a:not(.button) {
-        background: #272727;
-        color: white; }
+        /*background: #272727;*/
+        color: #000; }
     .top-bar-section ul li.new_devi {
         display: block;
         background: none repeat scroll 0 0 #000000;
@@ -1778,7 +1779,7 @@ meta.foundation-mq-topbar {
         width: 1px;
     }
     .top-bar-section li a:not(.button) {
-        padding: 0 32px;
+        padding: 0 30px;
         line-height: 105px;
         background: #fff;
         -webkit-transition: all 0.35s ease-out 0s;
@@ -1788,7 +1789,7 @@ meta.foundation-mq-topbar {
         transition: all 0.35s ease-out 0s;
     }
     #navbar02 .top-bar-section li a:not(.button) {
-        padding: 0 32px;
+        padding: 0 30px;
         line-height: 55px;
         background: #fff; }
     .top-bar-section li a:not(.button):hover {

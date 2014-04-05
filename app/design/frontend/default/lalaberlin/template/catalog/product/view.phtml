@@ -96,7 +96,7 @@
     <ul class="large-12 columns">
         <?php foreach ($_subCate as $_sub): ?>
             <?php if ( $_parentCate->getId() == $_sub->getId() ): ?>
-                <li><a class="active"><?php echo $_sub->getName() ?></a></li>
+                <li><a href="<?php echo $_sub->getUrl() ?>" class="active"><?php echo $_sub->getName() ?></a></li>
             <?php else: ?>
                 <li><a href="<?php echo $_sub->getUrl() ?>"><?php echo $_sub->getName() ?></a></li>
             <?php endif; ?>
@@ -105,7 +105,7 @@
     <ul class="large-12 columns sub-cate">
         <?php foreach ($_parentCate->getChildrenCategories() as $_xsub): ?>
             <?php if ( $_xsub->getId() == $_curCate->getId() ): ?>
-                <li><a class="active"><?php echo $_xsub->getName() ?></a></li>
+                <li><a href="<?php echo $_xsub->getUrl() ?>" class="active"><?php echo $_xsub->getName() ?></a></li>
             <?php else: ?>
                 <li><a href="<?php echo $_xsub->getUrl() ?>"><?php echo $_xsub->getName() ?></a></li>
             <?php endif; ?>
@@ -190,13 +190,13 @@
                                 </div>
                             </div>
                             <div class="prd-info-wrap">
-                                <h2><?php echo $this->__('Care') ?></h2>
+                                <h2><?php echo $_product->getResource()->getAttribute('care')->getFrontendLabel() ?></h2>
                                 <div class="prd-info prd-info-care">
                                     <?php echo $_product->getCare() ?>
                                 </div>
                             </div>
                             <div class="prd-info-wrap">
-                                <h2><?php echo $this->__('Delivery') ?></h2>
+                                <h2><?php echo $_product->getResource()->getAttribute('delivery')->getFrontendLabel() ?></h2>
                                 <div class="prd-info prd-info-deli">
                                     <?php echo $_product->getDelivery() ?>
                                 </div>
@@ -204,7 +204,7 @@
                         </div>
                     <?php //endif;?>
                     
-                    <div class="product-colour"><span>Colour </span><br /><span><?php echo $_product->getColour() ?></span></div>
+                    <div class="product-colour"><span><?php echo $_product->getResource()->getAttribute('colour')->getFrontendLabel() ?></span><br /><span><?php echo $_product->getColour() ?></span></div>
 
                     <?php if ($_product->isSaleable() && $this->hasOptions()):?>
                         <?php echo $this->getChildChildHtml('container1', '', true, true) ?>
@@ -364,6 +364,9 @@
             $j('.images-zoom-wrap ul li').hide();
             $j('.btn-handler').hide();
             $j('.images-zoom-wrap').fadeOut('2000');
+            $j('.images-zoom-wrap ul li img').each(function() {
+                $j(this).attr('src', '');
+            });
         });
 
         $j('#view-next-zoom').click(function(ev) {

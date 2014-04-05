@@ -49,7 +49,7 @@
     <ul class="large-12 columns">
         <?php foreach ($_subCate as $_sub): ?>
             <?php if ($_sub->getId() == $_parentId): ?>
-                <li><a class="active"><?php echo $_sub->getName() ?></a></li>
+                <li><a href="<?php echo $_sub->getUrl() ?>" class="active"><?php echo $_sub->getName() ?></a></li>
             <?php else: ?>
                 <li><a href="<?php echo $_sub->getUrl() ?>"><?php echo $_sub->getName() ?></a></li>
             <?php endif; ?>

@@ -48,6 +48,19 @@
   font-weight:  400;
 }
 
+@font-face {
+  font-family: 'Domaine Display Condensed';
+  src: url('../fonts/DomaineDisplayCondensed-Regular.eot'); /* IE9 Compat Modes */
+  src: url('../fonts/DomaineDisplayCondensed-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/DomaineDisplayCondensed-Regular.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/DomaineDisplayCondensed-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/DomaineDisplayCondensed-Regular.svg#87ef38439143e21c0555b142c25e044d') format('svg'); /* Legacy iOS */
+       
+  font-style:   normal;
+  font-weight:  400;
+}
+
+
 
 
 /*
@@ -1690,11 +1703,11 @@ ul {
 
 .footnav li h2.section-title {
   text-transform: uppercase;
-  font-size: 18px;
-  letter-spacing: 2px;
+  font-size: 20px;
+  letter-spacing: 1px;
   margin-bottom: 35px;
-  color: #000;
-  font-weight: 600;
+  color: #181818;
+  font-weight: bold;
 }
 
 .footnav .subscribe-newsletter .form-subscribe { 
@@ -1702,7 +1715,7 @@ ul {
 }
 
 .footer .footer-top { border-bottom: 1px solid #e7e7e7; padding-bottom: 30px; margin-bottom: 50px;}
-.footer .footer-top .footnav ul.leveled-list { color: #000;}
+.footer .footer-top .footnav ul.leveled-list { color: #181818;}
 .footer .footer-top .footnav ul.leveled-list li { margin-bottom: 15px; font-size: 14px;}
 .footer .footer-top .footnav ul.leveled-list li a {
  -webkit-transition: all 0.35s ease-out 0s;
@@ -1713,7 +1726,7 @@ ul {
 }
 .footer .footer-top .footnav ul.leveled-list li a:hover { color: #5d5d5d;}
 
-.footer-bottom { color: #000; float: left; width: 100%; padding: 0 0.625rem;}
+.footer-bottom { color: #181818; float: left; width: 100%; padding: 0 0.625rem;}
 .footer-bottom a { text-decoration: underline;}
 .footer-bottom a:hover { text-decoration: inherit;}
 .footer-bottom address { float: left;}
@@ -1741,7 +1754,7 @@ ul {
   margin: 0;
 }
 
-.banner_box { margin-bottom: 40px; overflow: hidden;}
+.banner_box { margin-bottom: 82px; overflow: hidden;}
 .banner_box .divSimpleSlider a img { width: 100%;}
 .banner_box .divSimpleSlider .banner_overlay { 
   position: absolute;
@@ -1782,7 +1795,7 @@ ul {
 
 #info .std > h5 { color: #000; font-weight: bold; font-size: 48px; margin-top: 20px;}
 
-.catalog-product-view .main-container {max-width: 1800px;}
+.catalog-product-view .main-container {max-width: 1304px;}
 
 .main { background: #fafafa; min-height: 400px;}
 .col-main {width: 86%; margin: 0 auto; } 
@@ -1897,7 +1910,7 @@ ul {
 .child-cate ul {padding-bottom: 20px; padding-left: 0;}
 .category-shop .child-cate ul { padding-left: 0.5355rem;}
 
-.catalog-product-view .child-cate { width: 90%; /*margin: 120px auto 0;*/ }
+.catalog-product-view .child-cate { width: 100%; }
 .catalog-product-view .child-cate .sub-cate { border-bottom: 1px solid #dedede; }
 
 .child-cate .sub-cate { border-top: 1px solid #dedede; padding: 25px 0; }
@@ -2103,6 +2116,8 @@ ul.products-grid li .prod_bot { font-family: Brown-Bold; }
 
 .zoom-loader { position: fixed; z-index: 999; top: 50%; left: 50%;}
 
+
+
 .images-zoom-wrap {
   display: none;
   position: fixed;
@@ -2115,6 +2130,20 @@ ul.products-grid li .prod_bot { font-family: Brown-Bold; }
   height: 100%;
   background: rgba(255,255,255,.3);
 }
+
+.pp_content_container .images-zoom-wrap {
+  background: rgba(255,255,255,1);
+  z-index: 99999;
+}
+.pp_content_container .images-zoom-wrap img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  max-width: 100%;
+  height: auto;
+  display: none;
+}
+
 .images-zoom-wrap ul li { 
   display: none;
   position: absolute;
@@ -2245,25 +2274,28 @@ li.divider { display: none;}
 .igallery-images .on-home.item > a.cur-default { cursor: default;}
 
 .igallery-images .on-home.item .overlay p span.img_desc {
-    font-family: ACP;
-    font-size: 22px;
-    font-style: italic;
+    font-family: 'Brown';
+    font-size: 15px;
+    letter-spacing: 2px;
     text-transform: none;
+    color: #181818;
+    display: block;
+    clear: both;
 }
 
 .igallery-images .on-home.item.cols-2.rows-1 .overlay p span.img_desc {
-  font-size: 20px;
+  font-size: 15px;
 }
 .igallery-images .on-home.item.cols-1.rows-1 .overlay p span.img_desc {
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .igallery-images .on-home.item.cols-2.rows-1 .overlay p {
-  font-size: 24px;
+  font-size: 32px;
 }
 
 .igallery-images .on-home.item.cols-1.rows-1 .overlay p {
-  font-size: 16px;
+  font-size: 28px;
   overflow: hidden;
 }
 .collection-selector li a { letter-spacing: 2px;}
