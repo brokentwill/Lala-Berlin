@@ -1273,8 +1273,8 @@ b, strong{font-family: Brown-Bold, 'Trebuchet MS', Verdana, sans-serif;font-weig
       width: 100%;
       margin: 0;
     }
-    .banner_box .divSimpleSlider .banner_overlay > p .headline { font-size: 122px; line-height: 125px; font-family: 'Domaine Display Condensed'; text-transform: uppercase; display: block; clear: both;}
-    .banner_box .divSimpleSlider .banner_overlay > p .subline { font-size: 22px; letter-spacing: 2px; font-family: 'Brown'; display: block; clear:  both; margin-top: -20px; margin-bottom: 30px;}
+    .banner_box .divSimpleSlider .banner_overlay > p .headline { font-size: 122px; line-height: 125px; font-family: 'Brown-Bold'; text-transform: uppercase; display: block; clear: both;}
+    .banner_box .divSimpleSlider .banner_overlay > p .subline { font-size: 28px; letter-spacing: 2px; font-family: 'ACP'; font-style: italic; display: block; clear:  both;/* margin-top: -20px;*/ margin-bottom: 30px;}
     .banner_box .divSimpleSlider .banner_overlay > p .btn-text {
       display: inline-block;
       width: 240px;
@@ -1496,7 +1496,7 @@ li.item.is-video video {
     color: #181818;
     display: block;
     margin: 0;
-    font-family: 'Domaine Display Condensed', 'Trebuchet MS', Verdana, sans-serif;
+    font-family: 'Brown-Bold', 'Trebuchet MS', Verdana, sans-serif;
     font-size: 2em;
     position: absolute;
     text-align: center;
@@ -1508,7 +1508,7 @@ li.item.is-video video {
     box-sizing: border-box;
 }
 .igallery-images .on-home.item .overlay p {
-    top: 46%;
+    /*top: 46%;*/
     margin-top: 0;
     font-size: 38px;
     font-weight: normal;
@@ -1614,6 +1614,8 @@ li.item.is-video iframe {
     height: 100%;
     background: none no-repeat scroll 0 0 / cover  rgba(0, 0, 0, 0);
     text-decoration: none;
+	background-size: cover !important; 
+	-webkit-background-size: cover !important; 
 }
 .home-top-slider .divSimpleSlider > a img { height: 100% !important; display: none; }
 

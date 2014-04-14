@@ -36,8 +36,14 @@ jQuery(window).load(function() {
 
 
 function updateViewCovers() {
-  var sH = jQuery(window).height() - 105;
-  jQuery('.home-top-slider').height(sH);
+    var sH = jQuery(window).height() - 105;
+    jQuery('.home-top-slider').height(sH);
+
+    jQuery('.igallery-images .on-home.item .overlay p').each(function() {
+        var pt = ( jQuery(this).closest('li.on-home').height() - jQuery(this).height() ) / 2;
+        jQuery(this).css('top', pt + 'px');
+    });
+
 }
 
 /* **********************************************
@@ -46,21 +52,21 @@ function updateViewCovers() {
 
 (function($, window, undefined) {
 
-  var $w = $(window);
+    var $w = $(window);
 
-  function init() {
-    $('.home-top-slider .divSimpleSlider > a').each(function() {
-      var $cover = $(this),
-        $img = $cover.find('img');
+    function init() {
+        $('.home-top-slider .divSimpleSlider > a').each(function() {
+            var $cover = $(this),
+            $img = $cover.find('img');
 
-      //$img.addClass('sr-only');
-      $cover.css('background-image', 'url(' + $img.attr('src') + ')');
-    });
-  }
+            //$img.addClass('sr-only');
+            $cover.css('background-image', 'url(' + $img.attr('src') + ')');
+        });
+    }
 
-  $(document).ready(function() {
-       init();
-  })
+    $(document).ready(function() {
+        init();
+    })
 
 })(jQuery, window);
 

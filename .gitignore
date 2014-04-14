@@ -1,11 +1,11 @@
 /app/etc/local.xml
-/var/cache/
-/var/report/
+/var/
 /media/
 /puppet/
 /sql/
 /phpMyAdmin/
 /TOBEDELETED/
+/videos/
 /.git-key/
 /*.zip
 /*.gz

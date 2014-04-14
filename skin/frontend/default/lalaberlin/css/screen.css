@@ -2274,8 +2274,9 @@ li.divider { display: none;}
 .igallery-images .on-home.item > a.cur-default { cursor: default;}
 
 .igallery-images .on-home.item .overlay p span.img_desc {
-    font-family: 'Brown';
-    font-size: 15px;
+    font-family: 'ACP';
+    font-style: italic;
+    font-size: 24px;
     letter-spacing: 2px;
     text-transform: none;
     color: #181818;
@@ -2284,10 +2285,10 @@ li.divider { display: none;}
 }
 
 .igallery-images .on-home.item.cols-2.rows-1 .overlay p span.img_desc {
-  font-size: 15px;
+  font-size: 24px;
 }
 .igallery-images .on-home.item.cols-1.rows-1 .overlay p span.img_desc {
-  font-size: 15px;
+  font-size: 18px;
 }
 
 .igallery-images .on-home.item.cols-2.rows-1 .overlay p {

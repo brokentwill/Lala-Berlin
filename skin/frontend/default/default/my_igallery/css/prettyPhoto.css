@@ -97,15 +97,60 @@ div.facebook .pp_expand{background:url(../images/prettyPhoto/facebook/sprite.png
 div.facebook .pp_expand:hover{background:url(../images/prettyPhoto/facebook/sprite.png) -31px -47px no-repeat;cursor:pointer}
 div.facebook .pp_contract{background:url(../images/prettyPhoto/facebook/sprite.png) 0 -26px no-repeat;cursor:pointer}
 div.facebook .pp_contract:hover{background:url(../images/prettyPhoto/facebook/sprite.png) 0 -47px no-repeat;cursor:pointer}
-div.facebook .pp_close{width:35px;height:35px;background:url(../images/close.png) 0 0 no-repeat;cursor:pointer}
-div.facebook .pp_description{margin:20px 37px 0 3px; font-weight: bold;}
+div.facebook .pp_close {
+	width:35px;
+	height:35px;
+	background:url(../images/close.png) 0 0 no-repeat;
+	cursor:pointer;
+	-webkit-transition: opacity 0.3s ease-out 0s;
+	-moz-transition: opacity 0.3s ease-out 0s;
+	-ms-transition: opacity 0.3s ease-out 0s;
+	-o-transition: opacity 0.3s ease-out 0s;
+	transition: opacity 0.3s ease-out 0s;
+}
+div.facebook .pp_close:hover {
+	opacity: .5;
+}
+div.facebook .pp_description{margin:20px 37px 0 3px; font-size: 20px !important; font-weight: bold;}
 div.facebook .pp_loaderIcon{background:url(../images/prettyPhoto/facebook/loader.gif) center center no-repeat}
-div.facebook .pp_arrow_previous{background:url(../images/prev.png) 0 0 no-repeat;height:35px;margin-top:0;width:35px; position: absolute; top: 40%; left: 30px}
+div.facebook .pp_arrow_previous{
+	background:url(../images/prev.png) 0 0 no-repeat;
+	height:35px;
+	margin-top:0;
+	width:35px;
+	position: absolute; 
+	top: 40%; 
+	left: 30px;
+	-webkit-transition: opacity 0.3s ease-out 0s;
+	-moz-transition: opacity 0.3s ease-out 0s;
+	-ms-transition: opacity 0.3s ease-out 0s;
+	-o-transition: opacity 0.3s ease-out 0s;
+	transition: opacity 0.3s ease-out 0s;
+}
+div.facebook .pp_arrow_previous:hover {
+	opacity: .5;
+}
 div.facebook .pp_arrow_previous.disabled{background-position:0 0;cursor:default}
-div.facebook .pp_arrow_next{background:url(../images/next.png) 0 0 no-repeat;height:35px;margin-top:0;width:35px; position: absolute; top: 40%; right: 30px;}
+div.facebook .pp_arrow_next{
+	background:url(../images/next.png) 0 0 no-repeat;
+	height:35px;
+	margin-top:0;
+	width:35px; 
+	position: absolute; 
+	top: 40%; 
+	right: 30px;
+	-webkit-transition: opacity 0.3s ease-out 0s;
+	-moz-transition: opacity 0.3s ease-out 0s;
+	-ms-transition: opacity 0.3s ease-out 0s;
+	-o-transition: opacity 0.3s ease-out 0s;
+	transition: opacity 0.3s ease-out 0s;
+}
+div.facebook .pp_arrow_next:hover {
+	opacity: .5;
+}
 div.facebook .pp_arrow_next.disabled{background-position:0 0;cursor:default}
 div.facebook .pp_nav{margin-top:0}
-div.facebook .pp_nav p{font-size:15px;padding:0 3px 0 4px; letter-spacing: 2px;}
+div.facebook .pp_nav p{font-size:14px;padding:0 3px 0 4px; letter-spacing: 2px;}
 div.facebook .pp_nav .pp_play{display: none; background:url(../images/prettyPhoto/facebook/sprite.png) -1px -123px no-repeat;height:22px;width:22px}
 div.facebook .pp_nav .pp_pause{background:url(../images/prettyPhoto/facebook/sprite.png) -32px -123px no-repeat;height:22px;width:22px}
 div.facebook .pp_next:hover{background:url(../images/prettyPhoto/facebook/btnNext.png) center right no-repeat;cursor:pointer}
@@ -121,7 +166,7 @@ div.pp_pic_holder{display:none;position:fixed;z-index:10000}
 .pp_content_container{position:relative;text-align:left;width:100%;height: 100%;}
 .pp_content_container .pp_left{padding-left:20px}
 .pp_content_container .pp_right{padding-right:20px}
-.pp_content_container .pp_details{float:left;margin:30px 0 0 23px}
+.pp_content_container .pp_details{float:left;margin:25px 0 0 23px}
 .pp_description{display:none;margin:0}
 .pp_social{float:left;margin:0; position: fixed; right: 30px; top: 80px;}
 .pp_social .facebook{float:left;margin-left:5px;width:55px;overflow:hidden}
@@ -131,23 +176,38 @@ div.pp_pic_holder{display:none;position:fixed;z-index:10000}
 .pp_nav .pp_play,.pp_nav .pp_pause{float:left;margin-right:4px;text-indent:-10000px}
 a.pp_arrow_previous,a.pp_arrow_next{display:block;float:left;height:15px;margin-top:3px;overflow:hidden;text-indent:-10000px;width:14px}
 .pp_hoverContainer{position:absolute;top:0;width:100%;z-index:2000}
-.pp_gallery{left:50%;position:absolute;z-index:10000; opacity: 0; top: 104%; max-height: 120%; }
+.pp_gallery{left:50%;position:absolute;z-index:10000; opacity: 0; top: 105%; max-height: 120%; }
 .pp_gallery div{float:left;overflow:hidden;position:relative}
-.pp_gallery ul{float:left;position:relative;white-space:nowrap;margin:0 0 0 5px;padding:0; height: 76px; overflow: hidden;}
+.pp_gallery ul{float:left;position:relative;white-space:nowrap;margin:0;padding:0; height: 140px; overflow: hidden;}
 .pp_gallery ul a{
 	border:1px rgba(255,255,255,1) solid;
 	display:block;
 	float:left;
 	overflow:hidden; 
-	height: 75px;
+	height: 140px;
+	padding: 4px;
 	-webkit-transition: all 0.3s ease 0s;
 	-moz-transition: all 0.3s ease 0s;
 	-ms-transition: all 0.3s ease 0s;
 	-o-transition: all 0.3s ease 0s;
 	transition: all 0.3s ease 0s;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
+
 .pp_gallery ul a img{border:0}
-.pp_gallery li{display:block;float:left;margin:0 5px 0 0;padding:0}
+
+.pp_gallery li{display:block;float:left;margin:0 30px 30px 0;padding:0}
+
+.pp_gallery li:first-child {
+	margin-left: 0;
+}
+
+.pp_gallery li:nth-child(6n).six {
+	margin-right: 0;
+}
+
 .pp_gallery li.default a{background:url(../images/prettyPhoto/facebook/default_thumbnail.gif) 0 0 no-repeat;display:block;height:33px;width:50px}
 .pp_gallery .pp_arrow_previous,.pp_gallery .pp_arrow_next{margin-top:7px!important}
 a.pp_next{background:url(../images/prettyPhoto/light_rounded/btnNext.png) 10000px 10000px no-repeat;display:block;float:right;height:100%;text-indent:-10000px;width:49%}
@@ -181,6 +241,15 @@ div.dark_rounded #pp_full_res .pp_inline,div.dark_square #pp_full_res .pp_inline
 .pp_fade,.pp_gallery li.default a img{display:none}
 
 
+.currentTextHolder {
+	color: #8D8D8D;
+}
+
+.currentTextHolder span {
+	color: #000;
+	font-weight: bold;
+}
+
 
 .pp_pic_holder {
 	width: 100%;
@@ -191,7 +260,7 @@ div.dark_rounded #pp_full_res .pp_inline,div.dark_square #pp_full_res .pp_inline
 
 .pp_content {
 	position: fixed;
-	top: 30px;
+	top: 25px;
 	overflow: visible !important;
 }
 
@@ -218,8 +287,12 @@ div.dark_rounded #pp_full_res .pp_inline,div.dark_square #pp_full_res .pp_inline
 	cursor: url(../images/plus.png), auto;
 }
 
-.images-zoom-wrap img {
+.images-zoom-wrap img.active {
 	cursor: url(../images/minus.png), auto;
+}
+
+.images-zoom-wrap img {
+	cursor: default;
 }
 
 .pp_social .a_shop, .pp_social .a_zoom, .show-all {
@@ -241,7 +314,7 @@ div.dark_rounded #pp_full_res .pp_inline,div.dark_square #pp_full_res .pp_inline
 .show-all {
 	margin-top: 0;
 	right: 49.5%;
-	bottom: 20px;
+	bottom: 15px;
 	font-size: 10px;
 	position: fixed;
 }
