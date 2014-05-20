@@ -92,7 +92,7 @@ class Mage_Adminhtml_Block_Cms_Page_Edit_Tab_Content
         $contentField02 = $fieldset->addField('content_two', 'editor', array(
             'name'      => 'content_two',
             'style'     => 'height:18em;',
-            'required'  => true,
+            'required'  => false,
             'wysiwyg'   => true,
             'disabled'  => $isElementDisabled,
             'config'    => $wysiwygConfig
@@ -103,7 +103,7 @@ class Mage_Adminhtml_Block_Cms_Page_Edit_Tab_Content
         $contentField03 = $fieldset->addField('content_three', 'editor', array(
             'name'      => 'content_three',
             'style'     => 'height:18em;',
-            'required'  => true,
+            'required'  => false,
             'wysiwyg'   => true,
             'disabled'  => $isElementDisabled,
             'config'    => $wysiwygConfig

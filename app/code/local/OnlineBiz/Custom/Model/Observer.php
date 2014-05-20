@@ -20,4 +20,27 @@ class OnlineBiz_Custom_Model_Observer
         ));
  
     }
+
+
+    public function initProductAfterCheckBreadcrumb($observer)
+    {
+        $currentStoreId = Mage::app()->getStore()->getId();
+        $_product = $observer->getEvent()->getProduct();
+        if(Mage::registry('current_category'))
+            return $this;
+        $categories = $_product->getCategoryCollection();
+        $rootCat = Mage::app()->getStore()->getRootCategoryId();
+        $categories->addIsActiveFilter();
+        $categories->addPathsFilter('1/'. $rootCat . '/');
+        $categories->addAttributeToSort('level', 'desc');
+        $category = $categories->getFirstItem();
+        if($category->getId()):
+            $category = Mage::getModel('catalog/category')->load($category->getId());
+            $_product->setCategory($category);
+            Mage::register('current_category', $category);
+        endif;
+        return $this;
+    }
+
+
 }

@@ -84,6 +84,8 @@ Product.Igallery.prototype = {
                 console.log(response.fileEdit);
                 this.updateImage(response.fileEdit,response.forCheck,response.url,response.file);
                 this.uploader.removeFile(item.id);
+                $j = jQuery.noConflict();
+                $j('#media_gallery_content_list > tr:last-child').hide();
             } else {
                 var newImage = {};
                 newImage.url = response.url;

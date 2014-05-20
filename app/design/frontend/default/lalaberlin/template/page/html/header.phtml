@@ -34,11 +34,14 @@
 
 <?php
 	Mage::getSingleton('core/session', array('name' => 'frontend'));
+	$language = Mage::getSingleton('core/layout')->createBlock('page/switch');
+    $language->setTemplate('page/switch/languages.phtml');
 	$sessionCustomer = Mage::getSingleton("customer/session");
 ?>
 <?php
 	$cms = Mage::getSingleton('cms/page')->getIdentifier();
 	$router = Mage::app()->getFrontController()->getRequest()->getRouteName();
+
 	$ig = false;
 	$sh = false;
 	$ab = false;
@@ -73,6 +76,8 @@
 					<li><a class="<?php if($sh) echo 'active' ?>" href="http://www.lalaberlin-onlineshop.de/"><?php echo $this->__('Shop') ?></a></li>
 					
 					<li><a class="<?php if($ab && $cms == 'about') echo 'active' ?>" href="<?php echo $this->getUrl('about') ?>"><?php echo $this->__('About') ?></a></li>
+
+					<li><a class="" href="<?php echo $this->getUrl('journal') ?>"><?php echo $this->__('Journal') ?></a></li>
 					
 					<li><a class="<?php if($bl) echo 'active' ?>" href="http://lalaberlinlive.tumblr.com/"><?php echo $this->__('#Lalaberlin') ?></a></li>
 					<!-- <li class="contact"><a class="<?php if($ab && $cms == 'contact') echo 'active' ?>" href="<?php echo $this->getUrl('contact') ?>"><?php echo $this->__('Contact') ?></a></li>
@@ -83,7 +88,7 @@
 			<?php //echo $this->getChildHtml('topCart')?>
 			<ul class="right">
 				<!-- <li class="new_devi"><a style="padding:0;"><span class="divi-span"></span></a></li> -->
-				<?php echo $this->getChildHtml('store_language') ?>
+				<?php echo $language->toHTML(); ?>
 				<li class="divider"></li>
 				
 				<li class="account-link"><a href="<?php echo $this->getUrl('customer/account') ?>"><?php echo $this->__('Account') ?></a></li>
@@ -97,7 +102,7 @@
 	
 </div>
 
-<div id="<?php if($ab && $cms == 'home') {echo 'navbar02';} else {echo 'must-hide';} ?>" class="header-container scroll-collapse hover-collapse contain-to-grid">
+<div id="<?php if( ($ab && $cms == 'home') || $router == 'checkout' ) {echo 'navbar02';} elseif (empty($router)) {echo 'navbar02';} else {echo 'must-hide';} ?>" class="header-container scroll-collapse hover-collapse contain-to-grid">
 	<nav class="top-bar" data-topbar>
 
 		<ul class="title-area">
@@ -113,6 +118,8 @@
 					<li><a class="<?php if($sh) echo 'active' ?>" href="http://www.lalaberlin-onlineshop.de/"><?php echo $this->__('Shop') ?></a></li>
 					
 					<li><a class="<?php if($ab && $cms == 'about') echo 'active' ?>" href="<?php echo $this->getUrl('about') ?>"><?php echo $this->__('About') ?></a></li>
+
+					<li><a class="" href="<?php echo $this->getUrl('journal') ?>"><?php echo $this->__('Journal') ?></a></li>
 					
 					<li><a class="<?php if($bl) echo 'active' ?>" href="http://lalaberlinlive.tumblr.com/"><?php echo $this->__('#Lalaberlin') ?></a></li>
 					<!-- <li class="contact"><a class="<?php if($ab && $cms == 'contact') echo 'active' ?>" href="<?php echo $this->getUrl('contact') ?>"><?php echo $this->__('Contact') ?></a></li>

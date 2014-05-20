@@ -22,12 +22,10 @@
             <block type="outofstocknotification/view" name="view" as="view" />
         </reference>
     </PRODUCT_TYPE_configurable>-->
+
     <PRODUCT_TYPE_configurable translate="label" module="catalog">
         <label>Catalog Product View (Configurable)</label>
         <update handle="product.info.configurable"/>
-        <reference name="product.info">
-            <block type="outofstocknotification/view" name="view" as="view" />
-        </reference>
         <reference name="product.info.options.wrapper">
             <block type="catalog/product_view_type_configurable" name="product.info.options.configurable" as="options_configurable" before="-">
                 <action method="setTemplate" ifconfig="Outofstocknotification/general/activate_apptha_outofstock_enable">
@@ -35,6 +33,11 @@
             </action>
             </block>
         </reference>
+
+        <reference name="product.info">
+            <block type="outofstocknotification/view" name="view" as="view" after="-" />
+        </reference>
+
     </PRODUCT_TYPE_configurable>
     
     <PRODUCT_TYPE_grouped>

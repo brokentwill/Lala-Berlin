@@ -36,13 +36,13 @@ jQuery(window).load(function() {
 
 
 function updateViewCovers() {
-    var sH = jQuery(window).height() - 105;
-    jQuery('.home-top-slider').height(sH);
+    // var sH = jQuery(window).height() - 105;
+    // jQuery('.home-top-slider').height(sH);
 
-    jQuery('.igallery-images .on-home.item .overlay p').each(function() {
-        var pt = ( jQuery(this).closest('li.on-home').height() - jQuery(this).height() ) / 2;
-        jQuery(this).css('top', pt + 'px');
-    });
+    // jQuery('.igallery-images .on-home.item .overlay p').each(function() {
+    //     var pt = ( jQuery(this).closest('li.on-home').height() - jQuery(this).height() ) / 2;
+    //     jQuery(this).css('top', pt + 'px');
+    // });
 
 }
 

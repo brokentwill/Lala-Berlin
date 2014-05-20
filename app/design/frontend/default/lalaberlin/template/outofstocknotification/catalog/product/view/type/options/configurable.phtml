@@ -82,7 +82,12 @@
             <?php if (is_array($v)): ?>
             
             <div id="<?php echo $v['id'] ?>" class="custom-attr">
-                <span>Choose <?php echo $v['label'] ?></span>
+                <?php if (Mage::app()->getStore()->getCode() == 'de'): ?>
+                    <span><?php echo 'Größe auswählen' ?></span>
+                <?php else: ?>
+                    <span><?php echo $this->__('Choose') . ' ' . $v['label'] ?></span>
+                <?php endif; ?>
+                
                 <div class="attr-option">
                     <?php foreach ($v['options'] as $val): ?>
 
@@ -249,6 +254,7 @@ Translator.add('AlreadyNotified', '<?php echo $this->__('This Mail Id Already No
     jQuery(document).ready(function() {
         var prodId, proO, proC, proS, objO, objC, objS, object ;
         jQuery('.custom-attr .attr-option span').click(function() {
+            jQuery(this).closest('#product-options-wrapper').addClass('on');
             jQuery(this).closest('.attr-option').find('span').removeClass('active');
             jQuery(this).addClass('active');
 

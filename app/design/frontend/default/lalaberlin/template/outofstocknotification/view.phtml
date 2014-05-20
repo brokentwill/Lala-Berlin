@@ -133,12 +133,12 @@ if (($_product->isAvailable() || $outofstock_instock == "1" )){
                 <span id='contentofnotification' >
                     <div id="notify_conform" class="notify_conform"></div>
                     <span id="notify_message"><?php echo $notifyRequest; ?></span>
-                    <div id="padding_div" style="margin-top: 4px;" >
+                    <div id="padding_div" style="margin-top: 4px; width:64%;" >
                         <span id="notify_error" class="line notify_error"></span>
 
 
                         <?php if(!empty($childProducts)){ ?>
-                            <span style="display:block; padding: 2px 0;"> <b><?php echo $this->__('Product') ?>:</b> 
+                            <span style="display:none; padding: 2px 0;"> <b><?php echo $this->__('Product') ?>:</b> 
                                 <select name="productIdName" id="productIdName" onChange="productNameSet(this.value);">
                                 <option value=""><?php echo $this->__('select') ?></option>
                                 <?php
@@ -158,8 +158,8 @@ if (($_product->isAvailable() || $outofstock_instock == "1" )){
                             </span>
                      <?php } ?>
                         <span id="notify_submit" style=""> <b><?php echo $this->__('Email')?>:</b>
-                            <input id="outofstock_email" type="text"  name="outofstock_email"  >
-                            <button class="button" id="ajaxButton" title="<?php echo $this->__('Subscribe')?>" type="submit" <?php if(!empty($childProducts)){ ?> onclick="return newfunctionVal();" <?php }else{ ?>onclick="return stockNotifyValidate('<?php echo $productId; ?>','');" <?php } ?> >
+                            <input id="outofstock_email" type="text"  name="outofstock_email" style="margin-top:10px;"  >
+                            <button class="button" id="ajaxButton" title="<?php echo $this->__('Subscribe')?>" type="submit" onclick="return stockNotifyValidate('<?php echo $productId; ?>','');" >
                                 <span><span><?php echo $this->__('Notify Me'); ?></span></span>
                             </button> <div id='ajaximageshowing' class="ajaxreloadimage" ></div>
                             <div style="display: none;color: red;font-size: 11px;" id="outofstock_notify_error" > <?php echo $this->__('Please specify a valid Email Address'); ?><br></div>

@@ -35,6 +35,8 @@
     $_helper    = $this->helper('catalog/output');
     $_category  = $this->getCurrentCategory();
     $_parent = $_category->getParentCategory()->getId();
+
+    $_store = Mage::app()->getStore()->getId();
     
     $_imgHtml   = '';
     if ($_imgUrl = $_category->getImageUrl()) {
@@ -44,13 +46,13 @@
 ?>
 
 <?php  
-    $collection = Mage::getModel('catalog/category')->getCategories($_category->entity_id);
+    $collection = Mage::getModel('catalog/category')->setStoreId($_store)->getCategories($_category->entity_id);
     $_id = $_category->getId();
-    $_cuCat = Mage::getModel('catalog/category')->load($_id);
+    $_cuCat = Mage::getModel('catalog/category')->setStoreId($_store)->load($_id);
     $dump = $_cuCat->getChildrenCategories();
     
     foreach($dump as $subs) {
-        $_subcate = Mage::getModel('catalog/category')->load($subs->getId());
+        $_subcate = Mage::getModel('catalog/category')->setStoreId($_store)->load($subs->getId());
     }
 ?>
 
@@ -61,7 +63,7 @@
     <?php if ($_parent != 2): ?>
         <div class="child-cate row columns">
             <ul class="large-12 columns">
-                <?php $_parentCate = Mage::getModel('catalog/category')->load($_parent); $_subparentCate = $_parentCate ->getChildrenCategories(); ?>
+                <?php $_parentCate = Mage::getModel('catalog/category')->setStoreId($_store)->load($_parent); $_subparentCate = $_parentCate ->getChildrenCategories(); ?>
                 <?php foreach ($_subparentCate as $_subPar): ?>
                     <?php if ($_category->getId() == $_subPar->getId() ): ?>
                         <li><a class="active"><?php echo $_subPar->getName() ?></a></li>
@@ -71,7 +73,7 @@
                 <?php endforeach ?>
             </ul>
             <ul class="large-12 columns sub-cate">
-                <?php foreach ($collection as $category): $sub = Mage::getModel('catalog/category')->load($category->getId()); ?>
+                <?php foreach ($collection as $category): $sub = Mage::getModel('catalog/category')->setStoreId($_store)->load($category->getId()); ?>
                     <li><a href="<?php echo $sub->getUrl() ?>"><?php echo $sub->getName() ?></a></li>
                 <?php endforeach; ?>
             </ul>
@@ -79,7 +81,7 @@
     <?php else: ?>
         <div class="child-cate row columns">
             <ul class="large-12 columns">
-                <?php foreach ($collection as $category): $sub = Mage::getModel('catalog/category')->load($category->getId()); ?>
+                <?php foreach ($collection as $category): $sub = Mage::getModel('catalog/category')->setStoreId($_store)->load($category->getId()); ?>
                     <li><a href="<?php echo $sub->getUrl() ?>"><?php echo $sub->getName() ?></a></li>
                 <?php endforeach; ?>
             </ul>
@@ -87,17 +89,21 @@
     <?php endif; ?>
 <?php endif ?>
 
-<?php if($_imgUrl && $_category->getId() == 3 ): ?>
+<?php if($_category->getId() == 3 ): ?>
     <div class="shop-top row">
-        <?php echo $_imgHtml ?>
-        <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('shop-sale')->toHTML()?>
+        <p class="category-image large-8 columns">
+            <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('shop-links')->toHTML() ?>
+        </p>
+        <p class="shop-sale large-4 columns">
+            <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('shop-recht')->toHTML() ?>
+        </p>
     </div>
-    <ul class="small-block-grid-2 large-block-grid-3 wide max-grid shop-sub-cate">
+    <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3 wide max-grid shop-sub-cate">
         <?php 
-            $catList = Mage::getStoreConfig('general/shoplanding/sub_cats', Mage::app()->getStore()->getId());
+            $catList = Mage::getStoreConfig('general/shoplanding/sub_cats', $_store);
             $dumpId = explode(',', $catList);
         ?>
-        <?php foreach ($dumpId as $val): $_subcate = Mage::getModel('catalog/category')->load($val); ?>
+        <?php foreach ($dumpId as $val): $_subcate = Mage::getModel('catalog/category')->setStoreId($_store)->load($val); ?>
             <li class="">
                 <div class="sub-img">
                     <a href="<?php echo $_subcate->getUrl() ?>"><img src="<?php echo $_subcate->getImageUrl() ?>" alt=""></a>
@@ -113,8 +119,8 @@
     </ul>
 <?php else: ?>
 
-<ul class="small-block-grid-2 large-block-grid-3 wide max-grid shop-sub-cate">
-    <?php foreach ($dump as $subs): $_subcate = Mage::getModel('catalog/category')->load($subs->getId()); ?>
+<ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3 wide max-grid shop-sub-cate">
+    <?php foreach ($dump as $subs): $_subcate = Mage::getModel('catalog/category')->setStoreId($_store)->load($subs->getId()); ?>
         <?php //if (!$_subcate->getChildrenCount()): ?>
             <li class="">
                 <div class="sub-img">

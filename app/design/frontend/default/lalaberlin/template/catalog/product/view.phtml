@@ -121,7 +121,7 @@
 <div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
 <div class="product-view">
     <div class="product-essential row">
-        <form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
+        <form action="<?php echo $this->getSubmitUrl($_product,array('_secure'=>true)) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
             <?php echo $this->getBlockHtml('formkey') ?>
 
             <div class="no-display">
@@ -155,9 +155,7 @@
                     <?php echo $this->getChildHtml('media') ?>
                 </div>
 
-
-
-                <div class="product-shop">
+                <div class="product-shop <?php if(!$_product->isSaleable()) echo 'prod-sold' ?>">
                     <div class="product-name">
                         <h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
                     </div>
@@ -168,7 +166,11 @@
 
                     <?php echo $this->getReviewsSummaryHtml($_product, false, true)?>
                     <?php echo $this->getChildHtml('alert_urls') ?>
-                    <?php echo $this->getChildHtml('product_type_data') ?>
+                    <?php if($_product->isSaleable()): ?>
+                        <?php echo $this->getChildHtml('product_type_data') ?>
+                    <?php else: ?>
+                        <?php echo $this->getPriceHtml($_product, true, true) ?>
+                    <?php endif; ?>
                     <?php echo $this->getTierPriceHtml() ?>
                     <?php //echo $this->getChildHtml('extrahint') ?>
 
@@ -182,7 +184,7 @@
                     <?php endif; ?>
 
                     <?php //if ($_product->getShortDescription()):?>
-                        <div id="product-info">
+                        <div id="product-info" class="">
                             <div class="prd-info-wrap">
                                 <h2 class="active"><?php echo $this->__('Description') ?></h2>
                                 <div class="prd-info prd-info-des active">
@@ -190,30 +192,96 @@
                                 </div>
                             </div>
                             <div class="prd-info-wrap">
-                                <h2><?php echo $_product->getResource()->getAttribute('care')->getFrontendLabel() ?></h2>
-                                <div class="prd-info prd-info-care">
-                                    <?php echo $_product->getCare() ?>
+                                <h2><?php echo $_product->getResource()->getAttribute('care')->getStoreLabel() ?></h2>
+                                <div class="prd-info prd-info-care<?php if($_product->getCare() != '' ) { echo ' prd-info-care-icon cat-' . $_product->getCare(); } ?>">
+                                    <?php 
+                                    
+                                    if($_product->getCare() != '' ) {
+                                    	
+                                    	echo '<div>';
+                                
+                                    	$language_settings = Mage::app()->getStore()->getCode(); 
+                                    	$language_settings = strtolower($language_settings);
+                                    	
+                                    	if ( $_product->getCare() == '1' ) {
+	                                	    if ( $language_settings == "de") { 
+		                            	    	echo "30° Schonwaschgang"; 
+		                            	    } else {
+			                        	        echo 'Delicate Cycle';
+			                        	    }
+                                    	} elseif ( $_product->getCare() == '2' ) {
+	                                	   	if ( $language_settings == "de") { 
+		                            	    	echo "30° Schonwaschgang"; 
+		                            	    } else {
+			                        	        echo 'Delicate Cycle';
+			                        	    }
+                                    	} elseif ( $_product->getCare() == '3' ) {
+	                                	    if ( $language_settings == "de") { 
+		                            	    	echo "Handwäsche & Reinigung"; 
+		                            	    } else {
+			                        	        echo "Hand Wash & Cleaner's";
+			                        	    }
+                                    	} elseif ( $_product->getCare() == '4' ) {
+	                                	    if ( $language_settings == "de") { 
+		                            	    	echo "Reinigung / nicht waschen"; 
+		                            	    } else {
+			                        	        echo "Cleaner's / do not wash";
+			                        	    }
+                                    	} elseif ( $_product->getCare() == '5' ) {
+	                                	    if ( $language_settings == "de") { 
+		                            	    	echo "Handwäsche / nicht waschen"; 
+		                            	    } else {
+			                        	        echo "Hand wash / do not wash";
+			                        	    }
+                                    	} elseif ( $_product->getCare() == '6' ) {
+	                                	    if ( $language_settings == "de") { 
+		                            	    	echo "Handwäsche/ nicht bügeln"; 
+		                            	    } else {
+			                        	        echo "Hand wash / do not iron";
+			                        	    }
+                                    	} else {
+	                                	    echo $_product->getCare();
+                                    	} 
+                                    	
+                                    	echo '</div>';
+                                    }
+                                    
+                                    ?>
                                 </div>
                             </div>
                             <div class="prd-info-wrap">
-                                <h2><?php echo $_product->getResource()->getAttribute('delivery')->getFrontendLabel() ?></h2>
+                                <h2><?php echo $_product->getResource()->getAttribute('delivery')->getStoreLabel() ?></h2>
                                 <div class="prd-info prd-info-deli">
                                     <?php echo $_product->getDelivery() ?>
                                 </div>
                             </div>
                         </div>
                     <?php //endif;?>
-                    
-                    <div class="product-colour"><span><?php echo $_product->getResource()->getAttribute('colour')->getFrontendLabel() ?></span><br /><span><?php echo $_product->getColour() ?></span></div>
+
+                    <?php if ($_product->getColour()): ?>
+                        <div class="product-colour">
+                            <span><?php echo $_product->getResource()->getAttribute('colour')->getStoreLabel() ?></span><br />
+                            <span><?php echo $_product->getColour() ?></span>
+                        </div> 
+                    <?php endif ?>
 
                     <?php if ($_product->isSaleable() && $this->hasOptions()):?>
                         <?php echo $this->getChildChildHtml('container1', '', true, true) ?>
                     <?php endif;?>
                     <?php if ($_product->isSaleable() && $this->hasOptions()):?>
                         <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
+
+                    <?php else: ?>
+                        <p class="p-sold">Sold Out</p>
                     <?php endif;?>
 
-                    <?php echo $this->getChildHtml('other');?>
+                    <?php if(!$_product->isSaleable()): ?>
+                        <div class="sold-data">
+                            <?php echo $this->getChildHtml('product_type_data') ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php echo $this->getChildHtml('other') ?>
 
                 </div>
 
@@ -286,15 +354,20 @@
 
 <script type="text/javascript">
     jQuery(window).load(function() {
-        var limit = jQuery('#more-views ul li:last-child').offset().top - 50;
-        jQuery('.product-shop').scrollToFixed({ 
-            zIndex: 99,
-            limit: limit,
-        });
-        jQuery('.product-share').scrollToFixed({ 
-            zIndex: 99,
-            limit: limit,
-        });
+        if (jQuery(window).width() > 642) {
+            var limit = jQuery('#more-views ul li:last-child').offset().top - 50;
+            jQuery('.product-shop').scrollToFixed({ 
+                zIndex: 99,
+                limit: limit,
+            });
+            jQuery('.product-share').scrollToFixed({ 
+                zIndex: 99,
+                limit: limit,
+            });
+        } else {
+            jQuery('.product-shop').trigger('detach.ScrollToFixed'); 
+        }
+        
     });
 </script>
 
@@ -355,7 +428,10 @@
         $j(window).resize(function(){
             $j('.images-zoom-wrap ul li img').each(function() {
                 $j(this).css('width', $j(window).width());
-            });  
+            });
+            if (jQuery(window).width() < 642) {
+                jQuery('.product-shop').trigger('detach.ScrollToFixed'); 
+            };
         });
 
         $j('.close-icon').click(function() {

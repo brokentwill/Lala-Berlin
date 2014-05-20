@@ -30,7 +30,7 @@
  *
  * @see Mage_Catalog_Block_Product_List
  */
-$timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
+$timthumb = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB) . 'lib/timthumb.php';
 ?>
 <?php $_helper = $this->helper('igallery'); ?>
 <?php $_gallery = $this->getGallery(); ?>

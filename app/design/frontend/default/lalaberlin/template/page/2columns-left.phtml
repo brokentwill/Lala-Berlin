@@ -55,8 +55,8 @@
     </div>
 </div>
 <?php echo $this->getAbsoluteFooter() ?>
-<script type="text/javascript" src="<?php echo Mage::getBaseUrl() ?>skin/frontend/default/lalaberlin/js/foundation.min.js"></script>
-<script type="text/javascript" src="<?php echo Mage::getBaseUrl() ?>skin/frontend/default/lalaberlin/js/foundation.tab.js"></script>
+<script type="text/javascript" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) ?>frontend/default/lalaberlin/js/foundation.min.js"></script>
+<script type="text/javascript" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) ?>frontend/default/lalaberlin/js/foundation.tab.js"></script>
 <script>
 	jQuery(document).foundation();
 </script>

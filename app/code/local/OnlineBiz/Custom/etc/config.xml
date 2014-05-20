@@ -31,12 +31,21 @@
         </routers>
 
         <events>
-
+            <catalog_controller_product_init_after>
+                <observers>
+                    <onlinebiz_custom_observer>
+                        <type>singleton</type>
+                        <class>custom/observer</class>
+                        <method>initProductAfterCheckBreadcrumb</method>
+                    </onlinebiz_custom_observer>
+                </observers>
+            </catalog_controller_product_init_after>
         </events>
 
         <layout>
             
         </layout>
+        
     </frontend>
 
     <global>
