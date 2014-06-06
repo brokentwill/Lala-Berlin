@@ -31,6 +31,7 @@
         </routers>
 
         <events>
+            
             <catalog_controller_product_init_after>
                 <observers>
                     <onlinebiz_custom_observer>
@@ -40,6 +41,16 @@
                     </onlinebiz_custom_observer>
                 </observers>
             </catalog_controller_product_init_after>
+
+            <checkout_type_onepage_save_order_after>
+                <observers>
+                    <onlinebiz_custom_observer>
+                        <class>custom/observer</class>
+                        <method>saveOrderAfter</method>
+                    </onlinebiz_custom_observer>    
+                </observers>
+            </checkout_type_onepage_save_order_after>
+
         </events>
 
         <layout>

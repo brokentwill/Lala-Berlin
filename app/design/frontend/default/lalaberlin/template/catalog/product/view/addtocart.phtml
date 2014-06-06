@@ -34,10 +34,20 @@
     </div>
 <?php endif; ?>
 
+<?php  
+	$_store = Mage::app()->getStore()->getCode(); 
+    $_store = strtolower($_store);
+
+?>
+
 
 <div class="noti-noSelect">
 	<h5><?php echo $this->__('Error') ?></h5>
-	<p><?php echo $this->__('Please choose a size') ?></p>
+	<?php if ($_store == 'de'): ?>
+		<p><?php echo $this->__('Bitte wählen Sie eine Größe') ?></p>
+	<?php else: ?>
+		<p><?php echo $this->__('Please choose a size') ?></p>
+	<?php endif; ?>
 	<a href=""><?php echo $this->__('OK') ?></a>
 </div>
 

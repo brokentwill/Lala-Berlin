@@ -63,13 +63,14 @@ if(class_exists('Mage')){
     $head->addJs('jquery.fitvids.js');
     $head->addJs('polyfill.object-fit.min.js');
 
-    $head->addItem('skin_js','js/EasePack.min.js');
+    $head->addItem('skin_js','js/CSSPlugin.min.js');
     $head->addItem('skin_js','js/EasePack.min.js');
     $head->addItem('skin_js','js/TweenLite.min.js');
     $head->addItem('skin_js','js/modernizr.min.js');
     $head->addItem('skin_js','js/clickdummy.min.js');
     $head->addItem('skin_js','js/jquery-scrolltofixed-min.js');
     $head->addItem('skin_js','js/ob_custom.js');
+
    /* $head->addItem('skin_js','js/foundation.min.js');
     $head->addItem('skin_js','js/foundation.tab.js');*/
 
@@ -107,7 +108,10 @@ if(class_exists('Mage')){
     <script src="<?php echo get_template_directory_uri(); ?>/js/html5.js"></script>
     <![endif]-->
     <?php echo (class_exists('Mage')) ? $head->getCssJsHtml() : '' ;?>
+    
     <link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri()?>/css/journal.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri()?>/css/flexslider.css" media="all" />
+
     <script type="text/javascript" src="<?php echo get_template_directory_uri()?>/js/site.js"></script>
     <script type="text/javascript" src="<?php echo get_template_directory_uri()?>/js/share.js"></script>
 </head>

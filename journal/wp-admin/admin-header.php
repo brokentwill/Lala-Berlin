@@ -156,6 +156,10 @@ if ( is_network_admin() )
 $admin_body_class .= ' no-customize-support no-svg';
 
 ?>
+<link href="<?php echo get_site_url()?>/wp-admin/css/bootstrap.modals.css" rel="stylesheet">
+<link href="<?php echo get_site_url()?>/wp-admin/css/token.css" rel="stylesheet">
+<script type="text/javascript"  src="<?php echo get_site_url()?>/wp-admin/js/bootstrap.modals.js"></script>
+
 </head>
 <?php
 /**
@@ -172,6 +176,7 @@ $admin_body_class .= ' no-customize-support no-svg';
 ?>
 <body class="wp-admin wp-core-ui no-js <?php echo apply_filters( 'admin_body_class', '' ) . " $admin_body_class"; ?>">
 <script type="text/javascript">
+	window.baseUrl = "<?php echo get_site_url()?>";
 	document.body.className = document.body.className.replace('no-js','js');
 </script>
 

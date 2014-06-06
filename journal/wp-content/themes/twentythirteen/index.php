@@ -24,4 +24,15 @@ get_header('magento'); ?>
 			?>
 		</div><!-- #content -->
 	</div><!-- #primary -->
+    <script type="text/javascript" async src="//assets.pinterest.com/js/pinit.js"></script>
+    <script type="text/javascript" src="<?php echo get_template_directory_uri()?>/js/jquery.flexslider.js"></script>
+    <script type="text/javascript">
+        jQuery(window).load(function() {
+            jQuery('.flexslider').flexslider({
+                controlsContainer: ".image-gallery",
+                prevText: "", //String: Set the text for the "previous" directionNav item
+                nextText: ""
+            });
+        });
+    </script>
 <?php get_footer('magento');?>

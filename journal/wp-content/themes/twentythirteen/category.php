@@ -1,84 +1,67 @@
 <?php
 /**
- * The template for displaying Category pages
- *
- * @link http://codex.wordpress.org/Template_Hierarchy
+ * The template for displaying all single posts
  *
  * @package WordPress
  * @subpackage Twenty_Thirteen
  * @since Twenty Thirteen 1.0
  */
 
-get_header(); ?>
-	<div class="main-container col1-layout">
-        <div class="main">
+get_header('magento'); ?>
+        <div class="main-container col1-layout">
+            <div class="main">
+<?php
+            $args = array(
+			    'posts_per_page' => 9,
+			    'offset' => 0,
+			    'category' => the_category_ID(FALSE),
+			    'orderby' => 'post_date',
+			    'order' => 'DESC',
+			    'post_type' => 'post',
+			    'post_status' => 'publish',
+			    'suppress_filters' => true
+			);
+			$posts = wp_get_recent_posts($args);
+			
+			/* ------------------------- Post last new ------------------------- */
 
-		<?php if ( have_posts() ) : ?>
-			<header class="archive-header row">
-				<div class="large-11 top-list-category">
-					<?php echo get_the_category_list(); ?>
-				</div>
-			</header><!-- .archive-header -->
-			<?php
-			$Slideshow = array();
-			$category_posts = get_posts(array('category'=>the_category_ID(FALSE)));
-			foreach ($category_posts as $post)
+			if ( !empty($posts) AND is_array($posts) AND count($posts) )
 			{
-				if ( get_field('slideshow_category', $post->ID) )
+				$category = get_the_category();
+				echo '
+				<div class="home-page-recent-articles page-category">
+					<div class="page-category-title">
+						<div class="category-label">'.__('Cateogry').'</div>
+						<div class="category-value">'.qtrans_use(mage_get_language(),$category[0]->name).'</div>
+					</div>
+					<div class="row">';
+				foreach ($posts as $post)
 				{
-					$caption = explode(' ', qtrans_use(mage_get_language(), $post->post_content));
-					$Slideshow[] = array(
-										'title'=>qtrans_use(mage_get_language(), $post->post_title),
-										'caption'=>strip_tags(implode(' ',array_slice($caption,0,10))),
-										'image'=>get_the_post_thumbnail($post->ID),
-										'link' => qtrans_convertURL(get_permalink($post->ID), mage_get_language())
-									);
-					unset($caption);
+					$caption = explode(' ', qtrans_use(mage_get_language(), $post['post_content']));
+
+					echo '
+					<div class="small-12 medium-4 large-4 large-recent-articles columns">
+						<div class="home-page-recent-articles-image">
+							<img src="'.(dirname(get_site_url()).'/lib/timthumb.php?src='.wp_get_attachment_url( get_post_thumbnail_id($post['ID']) ).'&w=412&h=252').'" />
+							<a class="a-view-more" href="'.qtrans_convertURL(get_permalink($post['ID']), mage_get_language()).'">'.__('View').'</a>
+						</div>
+						<div class="home-page-recent-articles-description">
+							<div class="title"><a href="'.qtrans_convertURL(get_permalink($post['ID']), mage_get_language()).'">'.qtrans_use(mage_get_language(),get_the_title($post['ID'])).'</a></div>
+							<div class="description">'.strip_tags(implode(' ',array_slice($caption,0,10))).'</div>
+							<div class="bottom">
+								<div class="bottom-view"><a href="'.qtrans_convertURL(get_permalink($post['ID']), mage_get_language()).'">'.__('View post').'</a></div>
+								<div class="bottom-date">['.date("d-m-Y", strtotime($post['post_date'])).']</div>
+							</div>
+						</div>
+					</div>';
 				}
+						
+				echo'
+					</div>
+				</div>
+				';
 			}
-			unset($category_posts);
-			if ( is_array($Slideshow) AND count($Slideshow) ):
-			?>
-			<div class="category-slideshow-gallery row">
-			    <div id="slider" class="category-slideshow large-11">
-			        <ul class="slides">
-			            <?php foreach( $Slideshow as $image ): ?>
-			                <li class="slide-item">
-			                    <?php echo $image['image']; ?>
-			                    <div class="info-slider">
-				                    <div class="item-title"><h5><?php echo $image['title']; ?></h5></div>
-				                    <div class="item-caption"><?php echo $image['caption']; ?></div>
-				                    <div class="item-bottom"><a href="<?php echo $image['link'];?>" class="button disabledBtn btn-read-move"><?php echo __('Read more'); ?></a></div>
-			                    </div>
-			                </li>
-			            <?php endforeach; ?>
-			        </ul>
-			    </div>
-			</div>
-			<?php endif?>
-			<?php /* The loop */ ?>
-			<?php while ( have_posts() ) : the_post(); ?>				
-				<?php get_template_part( 'content', get_post_format() ); ?>
-			<?php endwhile; ?>
-
-			<?php twentythirteen_paging_nav(); ?>
-
-		<?php else : ?>
-			<?php get_template_part( 'content', 'none' ); ?>
-		<?php endif; ?>
-
+?>
 		</div><!-- #content -->
 	</div><!-- #primary -->
-	<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri()?>/css/flexslider.css" media="all" />
-	<script type="text/javascript" src="<?php echo get_template_directory_uri()?>/js/jquery.flexslider.js"></script>
-	<script type="text/javascript">
-		jQuery(window).load(function() {
-			jQuery('.category-slideshow').flexslider({
-				controlsContainer: ".category-slideshow-gallery",
-				prevText: "", //String: Set the text for the "previous" directionNav item
-				nextText: ""
-			});
-		});
-	</script>
-<?php get_sidebar(); ?>
-<?php get_footer(); ?>
+<?php get_footer('magento');?>

@@ -42,5 +42,17 @@ class OnlineBiz_Custom_Model_Observer
         return $this;
     }
 
+    public function saveOrderAfter($observer)
+    {
+        $agrNew = Mage::app()->getRequest()->getParam('agreement-newsletter', false);
+        if ($agrNew) {
+            $_id = $observer->getData('order')->getCustomerId();
+            $_customer = Mage::getModel('customer/customer')->load($_id);
+            $_customer->setIsSubscribed(1);
+            $_email = $observer->getData('order')->getCustomerEmail();
+            Mage::getModel('newsletter/subscriber')->subscribe($_email, true); 
+        }
+    }
+
 
 }

@@ -15,568 +15,474 @@ $previous_post = get_previous_post();
 $categorys = get_the_category(get_the_ID());
 
 ?>
-
+<script type="text/javascript" src="http://stage.lalaberlin.com/skin/frontend/default/lalaberlin/js/CSSPlugin.min.js"></script>
 <article id="info" <?php post_class(); ?>>
 	<header class="entry-header">
-		<div class="control-panel-articles row">
-			<div class="small-4 large-4 columns">
-				<a href="<?php echo ( is_array($categorys) AND count($categorys) ) ? qtrans_convertURL(get_category_link( $categorys[0] ),mage_get_language()) : '#'; ?>" class="button disabledBtn btn-back"><?php echo __('Back')?></a>
-			</div>
-			<div class="small-4 large-4 columns text-align-center">
-				<div class="share-button share-button-details"></div>
-			</div>
-			<div id="product-next-prev" class="small-4 large-4 columns text-align-right">
-				<a href="<?php echo get_permalink( $previous_post->ID ); ?>" class="button disabledBtn btn-pre"><?php echo __('Prev')?></a>
-				<a href="<?php echo get_permalink( $next_post->ID ); ?>" class="button disabledBtn btn-next"><span></span><?php echo __('Next')?></a>
-			</div>
-		</div>
-		<div class="left-right-5-percent std">
-			<!-- title Articles -->
-			<?php if ( is_single() ) : ?>
-				<h5><?php echo qtrans_use(mage_get_language(),the_title(false)); ?></h5>
-
-				<!-- Tags Articles -->
-				<div class="entry-tags bottom-5-percent">
-				<?php
-				/*date time created post*/
-				echo get_the_date("d M Y");
-				/*Category */
+		
+		<div class="post-views-details std row">
+			<div class="small-12 medium-6 large-6 columns">
 				
-				if ( $categorys AND is_array($categorys) AND count($categorys) )
-				{
-					echo ', '.__('Kategorie').': ';
-					foreach ($categorys as $cate)
+				<!-- title Articles -->
+				<?php if ( is_single() ) : ?>
+					<h5><?php echo qtrans_use(mage_get_language(),the_title(false)); ?></h5>
+					<?php 
+					$post_type_desc = get_post_custom(get_the_ID(false));
+					if ( !empty($post_type_desc) AND isset($post_type_desc['wpcf-post-description']) AND is_array($post_type_desc['wpcf-post-description']) AND count($post_type_desc['wpcf-post-description']) )
 					{
-						echo '<a href="'.qtrans_convertURL(get_category_link($cate), mage_get_language()).'">'.qtrans_use(mage_get_language(), $cate->name).'</a> ';
+						echo '
+							<div class="post-type-description">
+								'.$post_type_desc['wpcf-post-description'][0].'
+							</div>
+						';
 					}
-				}
-				echo ' '.the_tags(); ?>
-				</div>
-			<?php else : ?>
-				<h5>
-					<a href="<?php qtrans_convertURL(the_permalink(), mage_get_language()); ?>" rel="bookmark"><?php qtrans_use(mage_get_language(), the_title()); ?></a>
-				</h5>
-				
-				<!-- Tags Articles -->
-				<div class="entry-tags bottom-5-percent">
-					<?php echo the_tags(); ?>
-				</div>
+					?>
+					<!-- Tags Articles -->
+					<div class="entry-tags padding-bottom-50-px">
+					<?php
+					/*date time created post*/
+					echo '['.get_the_date("d-m-Y").'] ';
+					/*Category */
+					$tags = get_the_tags();
+					if ( $categorys AND is_array($categorys) AND count($categorys) )
+					{
+						echo '- [Category: ';
+						foreach ($categorys as $cate)
+						{
+							echo '<a href="'.qtrans_convertURL(get_category_link($cate), mage_get_language()).'">'.qtrans_use(mage_get_language(), $cate->name).'</a> ';
+						}
+						echo ']'.(!empty($tags) ? '[' : '');
+					}
+					the_tags();
+					if ( $tags )
+					{
+						echo ']';
+					}
+					?>
+					</div>
+				<?php else : ?>
+					<h5>
+						<a href="<?php qtrans_convertURL(the_permalink(), mage_get_language()); ?>" rel="bookmark"><?php qtrans_use(mage_get_language(), the_title()); ?></a>
+					</h5>
+					
+					<!-- Tags Articles -->
+					<div class="entry-tags padding-bottom-50-px">
+						<?php echo the_tags(); ?>
+					</div>
 
-			<?php endif; // is_single() ?>
+				<?php endif; // is_single() ?>
+				
+			</div>
+			<div class="small-12 medium-6 large-6 columns top-follow-lalaberlin">
+				<div class="follow-us-lalaberlin">
+					<!-- AddThis Button BEGIN -->
+					<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+					<a class="addthis_button_facebook"></a>
+					<a class="addthis_button_google_plusone_share"></a>
+					<a class="addthis_button_pinterest_share"></a>
+					<a class="addthis_button_tumblr"></a>
+					</div>
+					<!-- AddThis Button END -->
+				</div>
+			</div>
 		</div>
 		<!-- Featuer Image -->
 		<?php if ( has_post_thumbnail() && ! post_password_required() ) : ?>
-			<div class="entry-thumbnail">
-				<?php the_post_thumbnail('full'); ?>
+			<div class="entry-thumbnail padding-bottom-50-px">
+				<?php echo '<img src="'.(dirname(get_site_url()).'/lib/timthumb.php?src='.wp_get_attachment_url( get_post_thumbnail_id(get_the_ID()) ).'&w=1277&h=622').'" />' ?>
 			</div>
 		<?php endif; ?>
 	</header><!-- .entry-header -->
-
+	<div class="borderbot"></div>
 	<!-- Content articles -->
 	<?php if ( is_search() ) : // Only display Excerpts for Search ?>
 	<div class="entry-summary">
 		<?php the_excerpt(); ?>
 	</div><!-- .entry-summary -->
 	<?php else: ?>
-	<div class="entry-content std padding-5-percent text-justify">
+	<div class="entry-content post-view-details-content std text-center">
 		<?php qtrans_use(mage_get_language(), the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'twentythirteen' )) ); ?>
 		<?php wp_link_pages( array( 'before' => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'twentythirteen' ) . '</span>', 'after' => '</div>', 'link_before' => '<span>', 'link_after' => '</span>' ) ); ?>
 	</div><!-- .entry-content -->
 	<?php endif; ?>
 
-	<!-- flexible_content_gallery -->
+	<!-- Flexi single post -->
 	<?php 
-		$flexibleContentGallerys = get_field('flexible_content_gallery');
-		if ( is_array($flexibleContentGallerys) AND count($flexibleContentGallerys) ) :
-			foreach ($flexibleContentGallerys as $flexible) :
-	?>
-
-				<!-- Image Gallery -->
-				<?php 
-					$images = $flexible['image_gallery'];
-					if( $images ):
-				?>
-					<div class="image-gallery row">
+		$flexible_Single_post = get_field('single_post');
+		if ( is_array($flexible_Single_post) AND count($flexible_Single_post) )
+		{
+			foreach ($flexible_Single_post as $single_post)
+			{
+				/* --- Slideshow --- */
+				$images = $single_post['single-post-slideshow'];
+				if( $images )
+				{
+					echo '
+					<div class="image-gallery-single-post row">
 					    <div id="slider" class="flexslider">
-					        <ul class="slides">
-					            <?php foreach( $images as $image ): ?>
-					                <li>
-					                    <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
-					                    <p><?php echo $image['caption']; ?></p>
-					                </li>
-					            <?php endforeach; ?>
+					        <ul class="slides">';
+
+					foreach( $images as $image )
+					{
+						echo '
+								<li>
+				                    <img alt="" src="'.(dirname(get_site_url()).'/lib/timthumb.php?src='.$image['url'].'&w=1275&h=700').'" alt="'.$image['alt'].'" />
+				                    <div class="img-desc">'.$image['caption'].'</div>
+				                </li>
+						';
+					}
+				    echo '				            
 					        </ul>
+						    <div class="control-flexslideshow-design">
+						    	<a href="javascript:;" data-control="pre" class="control-design-left"></a>
+						    	<span class="control-page-active" data-active="1">1</span>/<span data-total="'.count($images).'" class="control-page-total">'.count($images).'</span>
+						    	<a href="javascript:;" data-control="next" class="control-design-right"></a>
+						    </div>
 					    </div>
 					</div>
-				<?php endif; ?>
+					';
+				}
 
-				<!-- Repeater Articles -->
-				<?php 
-					$repeaters = $flexible['repeater'];
-					if( $repeaters ):
-				?>
-					<div class="repeater-articles std padding-5-percent text-justify">
-						<ul>
-			            <?php foreach( $repeaters as $repeater ): ?>
+				/* --- single_post_qa --- */
+				$single_post_qa = $single_post['single_post_qa'];
+				if ( !empty($single_post_qa) )
+				{
+					echo '
+					<div class="repeater-articles single_post_qa_repeater_articles std padding-5-percent text-justify">
+						<ul>';
+			           	foreach( $single_post_qa as $repeater )
+			           	{
+			           		echo '
 			                <li>
-			                	<p><strong><?php echo $repeater['title'];?></strong></p>
-			                    <p><?php echo $repeater['content']; ?></p>
-			                </li>
-			            <?php endforeach; ?>
+			                	<p class="single-label">'.$repeater['label'].'</p>
+			                    <p class="single-value">'.$repeater['value'].'</p>
+			                </li>';
+			           	}
+			           	echo '
 			            </ul>
-					</div>
-				<?php endif; ?>
+					</div>';
+				}
 
-				<!-- Gallery Feature -->
-				<!-- Repeater Articles -->
-				<?php 
-					$GalleryFeature = $flexible['gallery_feature'];
-					if( $GalleryFeature ):
-				?>
-					<div class="gallery-feature">
-						<ul class="row">
-			            <?php foreach( $GalleryFeature as $gallery ): ?>
-			                <li class="medium-4 columns">
-			                    <img class="th" src="<?php echo $gallery['sizes']['thumbnail']; ?>" alt="<?php echo $gallery['alt']; ?>" />
-			                </li>
-			            <?php endforeach; ?>
-			            </ul>
-					</div>
-				<?php endif; ?>
-
-				<!-- External Links -->
-				<?php
-					$ExternalLinks = $flexible['external_links'];
-					if ( $ExternalLinks )
-					{
-						echo '<div class="external-links row padding-5-percent">'.
-								'<h4 class="link-external-title">'.__('External Links').'</h4>'.
-								'<ul>';
-						foreach ($ExternalLinks as $ind => $link)
-						{
-							echo 	'<li class="'.( $ind != 0 ? 'li-link-external': '').'">'.$link['link_external'].'</li>';
-						}
-						echo 	'</ul>'.
-							'</div>';
-					}
-				?>
-
-		<?php endforeach?>
-	<?php endif?>
-
-	<!-- flexible_spotifiy_playlist -->
-	<?php 
-		$flexible_spotifiy_playlist = get_field('flexible_spotifiy_playlist');
-		if ( is_array($flexible_spotifiy_playlist) AND count($flexible_spotifiy_playlist) ) :
-			foreach ($flexible_spotifiy_playlist as $song) :
-	?>
-				<!-- Repeater Articles -->
-				<?php 
-					$spotifiy_playlist = $song['spotifiy_playlist'];
-					if( $spotifiy_playlist ):
-				?>
-					<div class="spotifiy-playlist">
-						<ul class="row">
-			            <?php foreach( $spotifiy_playlist as $gallery ): ?>
-			                <li class="medium-4 columns">
-			                    <img class="th" src="<?php echo $gallery['sizes']['thumbnail']; ?>" alt="<?php echo $gallery['alt']; ?>" />
-			                </li>
-			            <?php endforeach; ?>
-			            </ul>
-					</div>
-				<?php endif; ?>
-
-				<!-- External Links -->
-				<?php
-					$ExternalLinks = $song['external_links'];
-					if ( $ExternalLinks )
-					{
-						echo '<div class="external-links row padding-5-percent">'.
-								'<h4 class="link-external-title">'.__('External Links').'</h4>'.
-								'<ul>';
-						foreach ($ExternalLinks as $ind => $link)
-						{
-							echo 	'<li class="'.( $ind != 0 ? 'li-link-external': '').'">'.$link['link'].'</li>';
-						}
-						echo 	'</ul>'.
-							'</div>';
-					}
-				?>
-		<?php endforeach?>
-	<?php endif?>
-
-	<?php 
-		$flexible_soundcloud_player = get_field('flexible_soundcloud_player');
-		if ( is_array($flexible_soundcloud_player) AND count($flexible_soundcloud_player) ) :
-			foreach ($flexible_soundcloud_player as $soundc_play):
-	?>
-				<!-- Repeater Articles -->
-				<?php 
-					$SoundcloudPlayer = $soundc_play['soundcloud_player'];
-					if( $SoundcloudPlayer ):
-				?>
-					<div class="soundcloud-player row">
-						<div class="large-11">
-							<?php echo $SoundcloudPlayer;?>
+				/* --- Description --- */
+				$single_post_desc = $single_post['single_post_description'];
+				if ( !empty($single_post_desc) )
+				{
+					echo '
+					<div class="single_post_description text-justify">
+						<div class="single_post_border_top"></div>
+						<div class="single_post_content">
+						'.$single_post_desc.'
 						</div>
-					</div>
-				<?php endif; ?>
+						<div class="single_post_border_bottom"></div>
+					</div>';
+				}
 
-				<!-- External Links -->
-				<?php
-					$ExternalLinks = $soundc_play['external_links'];
-					if ( $ExternalLinks )
-					{
-						echo '<div class="external-links row padding-5-percent">'.
-								'<h4 class="link-external-title">'.__('External Links').'</h4>'.
-								'<ul>';
-						foreach ($ExternalLinks as $ind => $link)
-						{
-							echo 	'<li class="'.( $ind != 0 ? 'li-link-external': '').'">'.$link['link'].'</li>';
-						}
-						echo 	'</ul>'.
-							'</div>';
-					}
-				?>
+				/* --- single_post_qa_2 --- */
+				$single_post_qa_2 = $single_post['single_post_qa_2'];
+				if ( !empty($single_post_qa_2) )
+				{
+					echo '
+					<div class="repeater-articles single_post_qa_repeater_articles std padding-5-percent text-justify">
+						<ul>';
+			           	foreach( $single_post_qa_2 as $repeater )
+			           	{
+			           		echo '
+			                <li>
+			                	<p class="single-label">'.$repeater['label'].'</p>
+			                    <p class="single-value">'.$repeater['value'].'</p>
+			                </li>';
+			           	}
+			           	echo '
+			            </ul>
+					</div>';
+				}
 
-	<?php 	endforeach?>
-	<?php endif?>
-
-	<!-- flexible_contact_recommendations -->
-	<?php 
-		$flexible_contact_recommendations = get_field('flexible_contact_recommendations');
-		if ( is_array($flexible_contact_recommendations) AND count($flexible_contact_recommendations) ) :
-			foreach ($flexible_contact_recommendations as $contact_recommendation):
-	?>
-				<!-- Repeater Articles -->
-				<?php 
-					$Recommendation = $contact_recommendation['recommendation'];
-					
-					if( $Recommendation ):
-						foreach ($Recommendation as $item):
-				?>
-					<div class="recommendation-group row">
-						<div class="large-11" style="margin-left:auto;margin-right:auto">
-							<div class="recommendation-group-title">
-								<h5><strong><?php echo $item['label'];?></strong></h5>
-							</div>
-							<div class="recommendation-group-content">
-								<?php echo $item['content'];?>
-							</div>
+				/* --- single_post_qa_2 --- */
+				$single_post_list_image = $single_post['single_post_list_image'];
+				if ( !empty($single_post_list_image) )
+				{
+					echo '
+					<div class="single-post-gallery-feature">
+						<ul class="row">';
+			           	foreach( $single_post_list_image as $ind => $image )
+			           	{
+			           		echo '
+			                <li class="medium-4 columns " data-ind="'.$ind.'">
+			                	<img class="th" src="'.(dirname(get_site_url()).'/lib/timthumb.php?src='.$image['sizes']['thumbnail'].'&w=425&h=370').'" alt="'.$image['alt'].'" />
+			                </li>';
+			           	}
+			           	echo '
+			            </ul>
+			            <div class="images-zoom-wrap">
+						    <ul class="images-zoom">';
+						    foreach( $single_post_list_image as  $ind => $image )
+			           	{
+			           		echo '
+			                <li class="img-zoom-item item-'.$ind.'"><img data-src="'.$image['sizes']['thumbnail'].'" src="" alt=""></li>';
+			           	}
+			           	echo '
+						    </ul>
+						    <div class="btn-handler">
+						        <span id="view-prev-zoom" data-control="pre" class=""></span>
+						        <span class="close-icon"></span>
+						        <span id="view-next-zoom" data-control="next" class=""></span>
+						    </div>
 						</div>
-					</div>
-					<?php endforeach;?>
-				<?php endif;?>
+					</div>';
+				}
 
-				<!-- Image Gallery -->
-				<?php 
-					$images = $contact_recommendation['gallerys'];
-					if( $images ):
-				?>
-					<div class="image-gallery row">
+				/* --- External Links --- */
+				$ExternalLinks = $single_post['single_post_external_links'];
+				if ( $ExternalLinks )
+				{
+					echo '<div class="single_post-external row padding-5-percent">'.
+							'<h4 class="single_post-external-title">'.__('External Links').'</h4>'.
+							'<ul>';
+					foreach ($ExternalLinks as $ind => $link)
+					{
+						echo 	'<li class="'.( $ind != 0 ? 'li-link-external': '').'">'.$link['single_post_link'].'</li>';
+					}
+					echo 	'</ul>'.
+						'</div>';
+				}				
+
+			}
+		}
+	?>
+
+
+	
+	<?php if( get_field('lala_journal_posts') ): ?>
+	    <?php while( has_sub_field("lala_journal_posts") ): ?>
+
+
+	        <?php if( get_row_layout() == 'text-bereich' ){ ?>
+	            <div class="repeater-articles single_post_qa_repeater_articles std padding-5-percent text-justify">
+					<ul><li style="text-align:center"><?php the_sub_field("text"); ?></li></ul>
+				</div>
+	        <?php } ?>
+
+	        <?php if (get_row_layout() == "slider-bereich"): ?>
+		        <?php 
+		        	$images = get_sub_field('slider');
+		        ?>
+				<?php
+					echo '
+					<div class="image-gallery-single-post row">
 					    <div id="slider" class="flexslider">
-					        <ul class="slides">
-					            <?php foreach( $images as $image ): ?>
-					                <li>
-					                    <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
-					                    <p><?php echo $image['caption']; ?></p>
-					                </li>
-					            <?php endforeach; ?>
-					        </ul>
-					    </div>
-					</div>
-				<?php endif; ?>
-
-				<!-- Contact -->
-				<?php 
-					$address = $contact_recommendation['address'];
-					if( $address ):
+					        <ul class="slides">';
+							$i=0;
 				?>
-					<div class="recommendation-address row">
-						<div class="large-11">
-						<?php foreach ($address as $addre) :?>
-							<div class="group-recommendation-address">
-							    <div class="recommendation-address-title"><h5><strong><?php echo __($addre['label']);?></strong></h5></div>
-							    <div class="recommendation-address-content">
-							    	<?php echo $addre['content'];?>
-							    </div>
-							</div>
-						<?php endforeach;?>
-						</div>
-					</div>
-				<?php endif; ?>
-
-				<!-- External Links -->
-				<?php
-					$ExternalLinks = $contact_recommendation['external_links'];
-					if ( $ExternalLinks )
-					{
-						echo '<div class="external-links row padding-5-percent">'.
-								'<h4 class="link-external-title">'.__('External Links').'</h4>'.
-								'<ul>';
-						foreach ($ExternalLinks as $ind => $link)
-						{
-							echo 	'<li class="'.( $ind != 0 ? 'li-link-external': '').'">'.$link['link'].'</li>';
-						}
-						echo 	'</ul>'.
-							'</div>';
-					}
-				?>
-
-	<?php 	endforeach?>
-	<?php endif?>
-
-	<!-- flexible_content_details -->
-	<?php 
-		$flexible_content_details = get_field('flexible_content_details');
-		if ( is_array($flexible_content_details) AND count($flexible_content_details) ) :
-			foreach ($flexible_content_details as $content_details):
-	?>
-				<!-- repeater_qa -->
-				<?php 
-					$Repeater_Qa = $content_details['repeater_qa'];
-					
-					if( $Repeater_Qa ):
-						foreach ($Repeater_Qa as $item):
-				?>
-					<div class="recommendation-group row">
-						<div class="large-11" style="margin-left:auto;margin-right:auto">
-							<div class="recommendation-group-title">
-								<h5><strong><?php echo $item['label'];?></strong></h5>
-							</div>
-							<div class="recommendation-group-content">
-								<?php echo $item['content'];?>
-							</div>
-						</div>
-					</div>
-					<?php endforeach;?>
-				<?php endif;?>
-
-				<!-- external_links_1 -->
-				<?php 
-					$External_Links_1 = $content_details['external_links_1'];
-					if ( $External_Links_1 )
-					{
-						echo '<div class="external-links row padding-5-percent">'.
-								'<ul>';
-						foreach ($External_Links_1 as $ind => $link)
-						{
-							echo 	'<li class="'.( $ind != 0 ? 'li-link-external': '').'">'.$link['link'].'</li>';
-						}
-						echo 	'</ul>'.
-							'</div>';
-					}
-				?>
-
-				<!-- Image Gallery -->
-				<?php 
-					$images = $content_details['image_gallery'];
-					if( $images ):
-				?>
-					<div class="image-gallery row">
-					    <div id="slider" class="flexslider">
-					        <ul class="slides">
-					            <?php foreach( $images as $image ): ?>
-					                <li>
-					                    <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
-					                    <p><?php echo $image['caption']; ?></p>
-					                </li>
-					            <?php endforeach; ?>
-					        </ul>
-					    </div>
-					</div>
-				<?php endif; ?>
-
-				<!-- Contact -->
-				<?php 
-					$caption = $content_details['caption'];
-					if( $caption ):
-				?>
-					<div class="recommendation-address row">
-						<div class="large-11">
-						<?php foreach ($caption as $addre) :?>
-							<div class="group-recommendation-address">
-							    <div class="recommendation-address-title"><h5><strong><?php echo __($addre['label']);?></strong></h5></div>
-							    <div class="recommendation-address-content">
-							    	<?php echo $addre['content'];?>
-							    </div>
-							</div>
-						<?php endforeach;?>
-						</div>
-					</div>
-				<?php endif; ?>
-
-				<!-- External Links -->
-				<?php
-					$External_Links_2 = $content_details['external_links_2'];
-					if ( $External_Links_2 )
-					{
-						echo '<div class="external-links row padding-5-percent">'.
-								'<h4 class="link-external-title">'.__('External Links').'</h4>'.
-								'<ul>';
-						foreach ($External_Links_2 as $ind => $link)
-						{
-							echo 	'<li class="'.( $ind != 0 ? 'li-link-external': '').'">'.$link['link'].'</li>';
-						}
-						echo 	'</ul>'.
-							'</div>';
-					}
-				?>
-
-	<?php 	endforeach?>
-	<?php endif?>
-
-	<!-- flexible_iamge_gallery_list -->
-	<?php 
-		$flexible_iamge_gallery_list = get_field('flexible_iamge_gallery_list');
-		if ( is_array($flexible_iamge_gallery_list) AND count($flexible_iamge_gallery_list) ) :
-			foreach ($flexible_iamge_gallery_list as $gallery_list):
-	?>
-				<!-- Image Gallery -->
-				<?php 
-					$GalleryFeature = $gallery_list['gallery_iamge'];
-					if( $GalleryFeature ):
-				?>
-					<div class="gallery-feature">
-						<ul class="row">
-			            <?php foreach( $GalleryFeature as $gallery ): ?>
-			                <li class="medium-4 columns">
-			                    <img class="th" src="<?php echo $gallery['sizes']['thumbnail']; ?>" alt="<?php echo $gallery['alt']; ?>" />
-			                </li>
-			            <?php endforeach; ?>
-			            </ul>
-					</div>
-				<?php endif; ?>
-
-				<!-- External Links -->
-				<?php
-					$External_Links = $gallery_list['external_links'];
-					if ( $External_Links )
-					{
-						echo '<div class="external-links row padding-5-percent">'.
-								'<h4 class="link-external-title">'.__('External Links').'</h4>'.
-								'<ul>';
-						foreach ($External_Links as $ind => $link)
-						{
-							echo 	'<li class="'.( $ind != 0 ? 'li-link-external': '').'">'.$link['link'].'</li>';
-						}
-						echo 	'</ul>'.
-							'</div>';
-					}
-				?>
-
-	<?php 	endforeach?>
-	<?php endif?>
-
-	<!-- flexible_products -->
-	<?php 
-		$flexible_products = get_field('flexible_products');
-		if ( is_array($flexible_products) AND count($flexible_products) ) :
-			foreach ($flexible_products as $products):
-	?>
-
-				<!-- Image Gallery -->
-				<?php 
-					$GalleryFeature = $products['caption'];
-					if( $GalleryFeature ):
-				?>
-		            <?php foreach( $GalleryFeature as $gallery ): ?>
-		                <div class="recommendation-group row">
-							<div class="large-11" style="margin-left:auto;margin-right:auto">
-								<div class="recommendation-group-title">
-									<h5><strong><?php echo $gallery['label'];?></strong></h5>
-								</div>
-								<div class="recommendation-group-content">
-									<?php echo $gallery['content'];?>
+				            <?php foreach( $images as $image ): ?>
+				                <li>
+				                    <img src="<?php echo dirname(get_site_url()).'/lib/timthumb.php?src='.$image['url'].'&w=1275&h=700'; ?>" alt="<?php echo $image['title']; ?>" />
+				                    <p><?php echo $image['caption']; $i++;?></p>
+				                </li>
+				            <?php endforeach; ?>
+				        
+						<?php
+							echo '				            
+								</ul>
+								<div class="control-flexslideshow-design">
+									<a href="javascript:;" data-control="pre" class="control-design-left"></a>
+									<span class="control-page-active" data-active="1">1</span>/<span data-total="'.$i.'" class="control-page-total">'.$i.'</span>
+									<a href="javascript:;" data-control="next" class="control-design-right"></a>
 								</div>
 							</div>
 						</div>
-		            <?php endforeach; ?>
-				<?php endif; ?>
-
-				<!-- product -->
+						';
+						?>
+				    
+	        <?php endif ?>
+			 
+	        <?php
+	            if (get_row_layout() == "qa-bereich"){
+	                $rows = get_sub_field('qa');
+	                if ($rows){
+	                     echo '
+							<div class="repeater-articles single_post_qa_repeater_articles std padding-5-percent text-justify">
+								<ul>';
+	                    foreach($rows as $row){
+	                        echo '
+				                <li>
+				                	<p class="single-label">'.$row['frage'].'</p>
+				                    <p class="single-value">'.$row['antwort'].'</p>
+				                </li>';
+	                    }
+	                    echo '
+				            </ul>
+						</div>';
+	                }
+	            }
+	        ?>
+			<?php
+	            if (get_row_layout() == "quote_text"){
+	                
+	                ?>
+					<div class="single_post_description text-justify">
+						<div class="single_post_border_top"></div>
+						<div class="single_post_content">
+							<?php the_sub_field("quotes_text"); ?>
+						</div>
+						<div class="single_post_border_bottom"></div>
+					</div>
 				<?php 
-					$Product = $products['product'];
-					if( $Product ):
-				?>
-					<div class="gallery-feature">
-						<ul class="row">
-			            <?php foreach( $Product as $item ): ?>
-			                <li class="medium-4 columns">
-			                	<div class="group-product">
-			                		<div class="product-image">
-			                			<img class="th" src="<?php echo $item['image']['sizes']['thumbnail']; ?>" alt="<?php echo $item['name']; ?>" />
-			                		</div>
-			                		<div class="product-caption">
-			                			<div class="product-caption-name"><?php echo $item['name'];?></div>
-			                			<div class="product-caption-pice"><?php echo $item['pice'];?></div>
-			                		</div>
-			                	</div>
-			                </li>
-			            <?php endforeach; ?>
+				}?>
+	        <?php if (get_row_layout() == "gallery-bereich"): ?>			
+	        	<?php
+	        		$galleryFeature = get_sub_field('gallery');$i=0;$j=0;
+	        	?>
+				<?php					
+				
+					echo '
+					<div class="single-post-gallery-feature">
+						<ul class="row">';
+			           	foreach( $galleryFeature as $gallery )
+			           	{
+			           		echo '
+			                <li class="medium-4 columns " data-ind="'.$i.'">
+			                	<img class="th stand-img" src="'.$gallery['url'].'" alt="'.$gallery['title'].'" />
+			                </li>';$i++;
+			           	}
+			           	echo '
 			            </ul>
-					</div>
-				<?php endif; ?>
-
-				<!-- Image Gallery -->
-				<?php 
-					$GalleryFeature = $products['image_gallery'];
-					if( $GalleryFeature ):
+			            <div class="images-zoom-wrap">
+						    <ul class="images-zoom">';
+						    foreach( $galleryFeature as  $gallery )
+			           	{
+			           		echo '
+			                <li class="img-zoom-item item-'.$j.'"><img data-src="'.$gallery['url'].'" src="" alt=""></li>';
+							$j++;
+			           	}
+			           	echo '
+						    </ul>
+						    <div class="btn-handler">
+						        <span id="view-prev-zoom" data-control="pre" class=""></span>
+						        <span class="close-icon"></span>
+						        <span id="view-next-zoom" data-control="next" class=""></span>
+						    </div>
+						</div>
+					</div>';
+				
 				?>
-					<div class="image-gallery row">
-					    <div id="slider" class="flexslider">
-					        <ul class="slides">
-					            <?php foreach( $GalleryFeature as $image ): ?>
-					                <li>
-					                    <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
-					                    <p><?php echo $image['caption']; ?></p>
-					                </li>
-					            <?php endforeach; ?>
-					        </ul>
-					    </div>
-					</div>
-				<?php endif; ?>
+				
+	        <?php endif ?>
+				
+	        <?php				
+	            if (get_row_layout() == "links-bereich"){					
+	                $rows = get_sub_field('links');
 
-				<!-- External Links -->
-				<?php
-					$External_Links = $products['external_links'];
-					if ( $External_Links )
-					{
-						echo '<div class="external-links row padding-5-percent">'.
-								'<h4 class="link-external-title">'.__('External Links').'</h4>'.
-								'<ul>';
-						foreach ($External_Links as $ind => $link)
-						{
-							echo 	'<li class="'.( $ind != 0 ? 'li-link-external': '').'">'.$link['link'].'</li>';
-						}
-						echo 	'</ul>'.
-							'</div>';
-					}
-				?>
+	                if ($rows){
+	                    echo '<div class="single_post-external row padding-5-percent">';
+						echo '<h4 class="single_post-external-title">External links</h4><ul>';
+	                    foreach($rows as $row){
+	                        echo '<li><a href="'.$row['link'].'" target="_blank">'.$row['titel'].'</a></li>';
+	                    }
+	                    echo '</ul></div>';
+	                }
+	            }
+	        ?>
 
-	<?php 	endforeach?>
-	<?php endif?>
+	        <?php if( get_row_layout() == 'musik-bereich' ){ ?>
+	            <p><?php the_sub_field("embed_code"); ?></p>
+	        <?php } ?>
+
+	        <?php
+	            if (get_row_layout() == "information-bereich"){
+	                echo '<h1>'.the_sub_field("titel").'</h1>'; // maybe change h1 to the right one.
+	                echo '<p>'.the_sub_field("text").'</p>';
+	            }
+	        ?>
+
+			<?php if (get_row_layout() == "produkte-bereich"): ?>	
+				<div class="gallery-feature">
+					<ul class="row">
+						<li class="medium-4">
+							<div class="group-product">
+			            		<a class="product-image" href="<?php echo the_sub_field("produkt-link"); ?>">
+			            			<img class="th" src="<?php echo the_sub_field("produkt-bild"); ?>" alt="<?php echo the_sub_field("produkt-name"); ?>" />
+			            		</a>
+			            		<div class="product-caption">
+			            			<div class="product-caption-name"><?php echo the_sub_field("produkt-name") ?></div>
+			            		</div>
+			            	</div>	
+						</li>
+					</ul>
+				</div>
+			<?php endif ?>
+
+	    <?php endwhile; ?>
+	<?php endif; ?>	
+
+
+
+	<div class="control-panel-articles row">
+		<div class="small-12 medium-4 large-4 columns control-back-to-view">
+			<a href="<?php echo ( is_array($categorys) AND count($categorys) ) ? qtrans_convertURL(get_category_link( $categorys[0] ),mage_get_language()) : '#'; ?>" class="disabledBtn btn-back"><?php echo __('Back to overview')?></a>
+		</div>
+		<div class="small-12 medium-4 large-4 columns text-align-center control-panel-articles-middle">
+			<a href="<?php echo get_permalink( $previous_post->ID ); ?>" class=" disabledBtn btn-pre"><?php echo __('Prev')?></a>
+			<a href="<?php echo get_permalink( $next_post->ID ); ?>" class=" disabledBtn btn-next"><span></span><?php echo __('Next')?></a>
+		</div>
+		<div  class="small-12 medium-4 large-4 columns text-align-right">
+			<div class="follow-us-lalaberlin">
+				<!-- AddThis Button BEGIN -->
+				<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+					<a class="addthis_button_facebook"></a>
+					<a class="addthis_button_google_plusone_share"></a>
+					<a class="addthis_button_pinterest_share"></a>
+					<a class="addthis_button_tumblr"></a>
+				</div>
+					<!-- AddThis Button END -->
+
+			</div>
+		</div>
+	</div>
+
 	<!-- Other Articles -->
 	<?php
 		$args = array(
-			'cat'      => the_category_ID(false),
-			'posts_per_page'    => '3'
+		    'posts_per_page' => 3,
+		    'offset' => 0,
+		    'category' => the_category_ID(false),
+		    'orderby' => 'post_date',
+		    'order' => 'DESC',
+		    'post_type' => 'post',
+		    'post_status' => 'publish',
+		    'suppress_filters' => true
 		);
-		$OtherArticles= new WP_Query( $args );
-		if ( $OtherArticles AND is_array($OtherArticles->posts) AND count($OtherArticles->posts) )
+		$posts = wp_get_recent_posts($args);
+		
+		if ( !empty($posts) AND is_array($posts) AND count($posts) )
 		{
-			echo '<div class="other-articles row">'.
-						'<ul>'.
-							'<li class="other-articles-title">'.__('Other articles').'</li>';
-							foreach ($OtherArticles->posts as $article)
-							{
-								echo '<li class="medium-4 columns std">'.
-										'<a href="'.$article->guid.'" title="'.qtrans_use(mage_get_language(), $article->post_title).'">'.get_the_post_thumbnail($article->ID, 'medium').'</a>'.
-		            					'<h5>'.qtrans_use(mage_get_language(), $article->post_title).'</h5>'.
-		            				'</li>';
-							}
-				echo 	'</ul>'.
-					'</div>';
+			echo '
+			<div class="other-articles-related-posts home-page-recent-articles">
+				<div class="other-articles-title">'.__('Related Posts').'</div>
+				<div class="row">';
+			foreach ($posts as $post)
+			{
+				$caption = explode(' ', qtrans_use(mage_get_language(), $post['post_content']));
+
+				echo '
+				<div class="small-12 medium-4 large-4 large-recent-articles columns">
+					<div class="home-page-recent-articles-image">
+						<img src="'.(dirname(get_site_url()).'/lib/timthumb.php?src='.wp_get_attachment_url( get_post_thumbnail_id($post['ID']) ).'&w=412&h=252').'" />
+						<a class="a-view-more" href="'.qtrans_convertURL(get_permalink($post['ID']), mage_get_language()).'">'.__('View').'</a>
+					</div>
+					<div class="home-page-recent-articles-description">
+						<div class="title"><a href="'.qtrans_convertURL(get_permalink($post['ID']), mage_get_language()).'">'.qtrans_use(mage_get_language(),get_the_title($post['ID'])).'</a></div>
+						<div class="description">'.strip_tags(implode(' ',array_slice($caption,0,10))).'</div>
+						<div class="bottom">
+							<div class="bottom-view"><a href="'.qtrans_convertURL(get_permalink($post['ID']), mage_get_language()).'">'.__('View post').'</a></div>
+							<div class="bottom-date">['.date("d-m-Y", strtotime($post['post_date'])).']</div>
+						</div>
+					</div>
+				</div>';
+			}
+					
+			echo'
+				</div>
+			</div>
+			';
 		}
 	?>
 

@@ -10,19 +10,12 @@
  */
 ?>
 <?php
-
-$PinterestURL = types_render_field('url_pinterest');
-if ( !empty($PinterestURL) ) :
+$PinterestURL = get_post_custom($post['ID']);
+if ( !empty($PinterestURL) AND isset($PinterestURL['wpcf-url_pinterest']) AND is_array($PinterestURL['wpcf-url_pinterest']) AND count($PinterestURL['wpcf-url_pinterest']) ) :
 ?>
-<div class="pinterest-main">
-    <div class="left-right-5-percent std">
-        <div class="Pinterest-title"><?php echo the_title()?></div>
-        <div class="entry-tags bottom-5-percent"></div>
-    </div>
+<div class="pinterest-main large-6 columns home-list-posts">
     <div class="Pinterest-content">
-        <div class="Pinterest-content entry-content std padding-5-percent text-justify">
-            <a data-pin-do="embedBoard" href="<?php echo $PinterestURL;?>  " data-pin-scale-width="115" data-pin-scale-height="120" data-pin-board-width="900"></a>
-        </div>
+        <a data-pin-do="embedBoard" href="<?php echo $PinterestURL['wpcf-url_pinterest'][0];?>  " data-pin-scale-width="115" data-pin-scale-height="120" data-pin-board-width="900"></a>
     </div>
 </div>
 <?php endif;?>

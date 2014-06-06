@@ -35,9 +35,9 @@
 <div class="block block-cart" >
     <?php $_cartQty = $this->getSummaryCount() ?>
         <?php if ($_cartQty>0): ?>
-            <a href="https://www.lalaberlin-onlineshop.de/de/basket"><?php echo $this->__('Shopping bag (%s)',$_cartQty) ?></a>
+            <a href="<?php echo $this->getUrl('checkout/cart/') ?>"><?php echo $this->__('Shopping bag (%s)',$_cartQty) ?></a>
         <?php else: ?>
-            <a href="https://www.lalaberlin-onlineshop.de/de/basket"><?php echo $this->__('Shopping bag') ?></a>
+            <a href="<?php echo $this->getUrl('checkout/cart/') ?>"><?php echo $this->__('Shopping bag') ?></a>
         <?php endif; ?>
 </div>
 <?php endif;?>
