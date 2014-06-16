@@ -1719,13 +1719,23 @@ ol.checkout-agreements {
     margin-left: 0;
 }
 
+.label-opt {
+    font : 13px "Brown","Trebuchet MS",Verdana,sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
 
 
+#product-options-wrapper dd .input-box {
+    width: 65%;
+    margin-top: 15px;
+}
 
-
-
-
-
-
-
+#product-options-wrapper dd .input-box > div {
+    margin-top: 10px;
+    color: #ff0000;
+}
+.apptha-outofstock-block-body { width: 65%;}
+#product-options-wrapper > .apptha-outofstock-block-body { width: 100%;}
+#outofstock_notify_error1 { margin-bottom: 10px;}
 

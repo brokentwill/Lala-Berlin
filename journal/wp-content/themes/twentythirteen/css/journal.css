@@ -868,7 +868,7 @@ a.btn-back, a.btn-back:hover{
 }
 .control-panel-articles .btn-pre{
     background: url(../images/prod_prv-icon.png) no-repeat left center;
-    padding-left: 20px;
+    padding-left: 33px;
     border-right: 1px solid #c8c8c8;
     padding-right: 10px;
     font-size: 11px;
@@ -878,8 +878,8 @@ a.btn-back, a.btn-back:hover{
 }
 .control-panel-articles .btn-next{
     background: url(../images/prod-next-icon.png) no-repeat 100% center;
-    padding-right: 20px;
-    padding-left: 10px;
+    padding-right: 33px;
+    padding-left: 8px;
     font-size: 11px;
     font-weight: normal;
     font-family: "Brown";
@@ -1007,7 +1007,7 @@ a.btn-back, a.btn-back:hover{
 
 /* --- .footer-container --- */
 .footer-container{
-    padding-top: 0px;
+    
 }
 .btn-next{
     background: url(../images/prod_prv-icon.png) no-repeat;
@@ -1047,11 +1047,12 @@ a.btn-back, a.btn-back:hover{
     font-family: "Brown";
     font-weight: 700;
     padding: 0 5px;
+	padding-right:6px;
 }
 .control-flexslideshow-design .control-page-total{
     font-size: 14px;
     font-family: "Brown";
-    font-weight: 100;
+    font-weight: normal;
     padding: 0 5px;
 }
 /* ---- loading-loadmore ---- */

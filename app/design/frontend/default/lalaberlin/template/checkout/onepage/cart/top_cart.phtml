@@ -19,24 +19,25 @@
  * needs please refer to http://www.magentocommerce.com for more information.
  *
  * @category    design
- * @package     default_modern
+ * @package     base_default
  * @copyright   Copyright (c) 2013 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
+
+/**
+ * Shoping cart sidebar
+ *
+ * @see Mage_Checkout_Block_Cart_Sidebar
+ */
+
 ?>
-<div class="footer-container">
-    <div class="footer">
-        <div class="footer-top">
-            <?php //echo $this->getChildHtml('cms_footer_links') 
-			echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer_links')->toHtml();
-			?>
-            <?php //echo $this->getChildHtml('footer_links') ?>
-            <?php //echo $this->getChildHtml('newsletter') ?>
-                
-        </div>
-        <div class="footer-bottom">
-            <address><?php echo $this->getCopyright() ?></address>
-            <p class="copyright">© 2014 lala Berlin/Site by <a href="http://moresleep.net">MoreSleep</a></p>
-        </div>
-    </div>
+<?php if ($this->getIsNeedToDisplaySideBar()):?>
+<div class="block block-cart" >
+    <?php $_cartQty = $this->getSummaryCount() ?>
+        <?php if ($_cartQty>0): ?>
+            <a href="<?php echo $this->getUrl('checkout/cart/') ?>"><?php echo $this->__('Shopping bag (%s)',$_cartQty) ?></a>
+        <?php else: ?>
+            <a href="<?php echo $this->getUrl('checkout/cart/') ?>"><?php echo $this->__('Shopping bag') ?></a>
+        <?php endif; ?>
 </div>
+<?php endif;?>

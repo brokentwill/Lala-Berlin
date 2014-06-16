@@ -190,7 +190,7 @@
 					echo '
 						<div class="small-12 medium-4 large-4 large-soundcloud-spotify-player columns">
 							<div class="soundcloud-spotify-player-iframe">
-								<img src="'.(dirname(get_site_url()).'/lib/timthumb.php?src='.wp_get_attachment_url( get_post_thumbnail_id($post->ID) ).'&h=252').'" />
+								<img src="'.(dirname(get_site_url()).'/lib/timthumb.php?src='.wp_get_attachment_url( get_post_thumbnail_id($post->ID) ).'&h=252&w=252').'" />
 							</div>
 							<div class="soundcloud-spotify-player-bottom-play" style="'.(( !empty($Soundcloud_Spotify['wpcf-soundcloud-autoplay']) AND !empty($Soundcloud_Spotify['wpcf-soundcloud-autoplay'][0]) ) ? 'display:none': '').'">
 								<div class="title">'.( ( !empty($Soundcloud_Spotify['wpcf-title-spotify-song'][0]) AND !empty($Soundcloud_Spotify['wpcf-title-spotify-song']) ) ? $Soundcloud_Spotify['wpcf-title-spotify-song'][0] : '' ).'</div>
@@ -222,7 +222,7 @@
 							}
 							else
 							{
-						echo 	'<img src="'.(dirname(get_site_url()).'/lib/timthumb.php?src='.wp_get_attachment_url( get_post_thumbnail_id($post->ID) ).'&h=252').'" />';
+						echo 	'<img src="'.(dirname(get_site_url()).'/lib/timthumb.php?src='.wp_get_attachment_url( get_post_thumbnail_id($post->ID) ).'&h=252&w=252').'" />';
 							}
 						echo '
 							</div>

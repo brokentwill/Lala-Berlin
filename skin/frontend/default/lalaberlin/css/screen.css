@@ -2465,6 +2465,29 @@ p.p-sold {
     margin-left: 0 !important;
   }
 
+  .product-colour span:last-child {
+    padding: 15px 0 0;
+  }
+
+  #product-options-wrapper dl dd {
+    text-align: center;
+  }
+  #product-options-wrapper dl dd .input-box {
+    display: inline-block;
+  }
+  .apptha-outofstock-block-body { text-align: center;}
+  .apptha-outofstock-block-body > button { margin: 0 auto 20px !important;}
+  span#notify_message1 { float: none; width: auto;}
+
+  #notify_submit1 {
+    float: none;
+    margin: 10px auto 0;
+  }
+  button#ajaxButton1 { float: left;}
+  #outofstock_notify_error1 { text-align: left;}
+
+
+
 
 
 }

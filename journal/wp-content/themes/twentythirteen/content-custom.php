@@ -274,8 +274,19 @@ $categorys = get_the_category(get_the_ID());
 				?>
 				            <?php foreach( $images as $image ): ?>
 				                <li>
+									<?php
+										$position=strpos($image['caption'],"embed");
+										$position=strpos($image['caption'],"iframe");
+										if($position !== false){
+											echo '<div class="video-container">'.$image['caption']."</div>";
+										}else{
+									?>
 				                    <img src="<?php echo dirname(get_site_url()).'/lib/timthumb.php?src='.$image['url'].'&w=1275&h=700'; ?>" alt="<?php echo $image['title']; ?>" />
-				                    <p><?php echo $image['caption']; $i++;?></p>
+				                    <p><?php echo $image['caption']; ?></p>
+									<?php 
+									}
+									$i++;
+									?>
 				                </li>
 				            <?php endforeach; ?>
 				        
@@ -388,8 +399,11 @@ $categorys = get_the_category(get_the_ID());
 
 	        <?php
 	            if (get_row_layout() == "information-bereich"){
-	                echo '<h1>'.the_sub_field("titel").'</h1>'; // maybe change h1 to the right one.
-	                echo '<p>'.the_sub_field("text").'</p>';
+					echo "<div class='content_infor'>";
+				?>
+	                <h1 class="title_infor"><?php echo the_sub_field("titel");?></h1>
+					<p class="sub_infor"><?php   echo the_sub_field("text");?></p>
+					<?php echo "</div>";
 	            }
 	        ?>
 

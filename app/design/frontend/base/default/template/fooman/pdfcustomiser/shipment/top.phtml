@@ -58,9 +58,9 @@
             <td valign="top" width="50%"><?php echo $this->getPdfHelper()->getTranslatedString('Sold to:')?><br/>{{var billing_address}}</td>
             <td valign="top"><?php if(!$this->getPdfHelper()->getOrder()->getIsVirtual()):?><?php echo $this->getPdfHelper()->getTranslatedString('Ship to:')?><br/>{{var shipping_address}}<?php endif;?></td>
         <?php elseif($this->getPdfHelper()->getPdfAddresses() == 'shipping'): ?>
-            <td valign="top" colspan="2">{{var shipping_address}}</td>            
+            <td valign="top" colspan="2">{{var shipping_address}}</td>
         <?php elseif($this->getPdfHelper()->getPdfAddresses() == 'billing'): ?>
-            <td valign="top" colspan="2">{{var billing_address}}</td>             
+            <td valign="top" colspan="2"><?php echo $this->getPdfHelper()->getTranslatedString('Sold to:')?><br/>{{var billing_address}}</td>
         <?php endif;?>
     </tr>
     <tr>
@@ -86,4 +86,8 @@
     <tr>
         <td colspan="2">&nbsp;</td>
     </tr>
+    <tr>
+        <td colspan="2"><b>Welche Artikel wollen Sie retournieren bzw. umtauschen?</b></td>
+    </tr>
+
 </table>

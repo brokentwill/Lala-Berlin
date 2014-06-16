@@ -24,19 +24,10 @@
 
 <?php  
     $dump = json_decode($this->getJsonConfig(), true); 
-    // foreach ($dump as $val) {
-    //     foreach ($val as $v) {
-    //         if (is_array($v)) {
-    //             echo '<pre>';
-    //             print_r($v);
-    //         }
-    //     }
-    // }
-    // die();
+
     foreach ($_product->getTypeInstance(true)->getUsedProducts( null, $_product) as $simple) {
         $stock = Mage::getModel('cataloginventory/stock_item')->loadByProduct($simple)->getQty();
-        //echo '<pre>';
-        //print_r($simple->getData());
+        
         $_id = $simple->getId();
         if ($stock == 0) {
             $_text = '(out of stock)';
@@ -45,14 +36,12 @@
         }
         $_dumArr[] = array($_id => $_text);
     }
-    //echo '<pre>';
-    //print_r(json_encode($_dumArr));
-    //die();
+
 ?>
 
-    <dl style="display:none">
+    <dl style="">
         <?php foreach ($_attributes as $_attribute): ?>
-            <dt><label class="required"><em>*</em><?php echo $_attribute->getLabel() ?></label></dt>
+            <dt><label class="label-opt required"><em>*</em><?php echo $_attribute->getLabel() ?></label></dt>
 
             <dd<?php if ($_attribute->decoratedIsLast) { ?> class="last"<?php } ?>>
                 <div class="input-box">
@@ -81,7 +70,7 @@
         <?php foreach ($valx as $v): ?>
             <?php if (is_array($v)): ?>
             
-            <div id="<?php echo $v['id'] ?>" class="custom-attr">
+            <!-- <div id="<?php echo $v['id'] ?>" class="custom-attr">
                 <?php if (Mage::app()->getStore()->getCode() == 'de'): ?>
                     <span><?php echo 'Größe auswählen' ?></span>
                 <?php else: ?>
@@ -97,7 +86,7 @@
                     <?php endforeach ?>
                 </div>
                 <input class="opt-hidden" type="hidden" name="super_attribute[<?php echo $v['id'] ?>]" value="">
-            </div>
+            </div> -->
 
         <?php endif ?>
         <?php endforeach ?>
@@ -121,10 +110,10 @@
 
         <span id="notify_submit1" style="display:none;"> <b><?php echo $this->__('Email') ?>:</b>
             <input id="outofstock_email1" type="text"  name="outofstock_email1">
+            <div style="display: none;color: red;font-size: 11px;" id="outofstock_notify_error1" > <?php echo $this->__('Please specify a valid Email Address'); ?><br></div>
             <button class="button" id="ajaxButton1" title="Subscribe" type="submit">
                 <span><span><?php echo $this->__('Notify Me'); ?></span></span>
             </button> <div id='ajaximageshowing1' class="ajaxreloadimage" ></div>
-            <div style="display: none;color: red;font-size: 11px;" id="outofstock_notify_error1" > <?php echo $this->__('Please specify a valid Email Address'); ?><br></div>
             <span style="color: red;font-size: 11px;margin-left: 43px;" id="notify_errorVal1"></span>
         </span>
 
