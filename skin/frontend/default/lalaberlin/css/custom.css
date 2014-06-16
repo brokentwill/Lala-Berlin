@@ -998,8 +998,8 @@ table thead, table tfoot{ background: #fff; }
 
 #co-billing-form li.fields label em,
 #co-billing-form li.wide label em{
-    color: red;
-}
+/*    color: red;
+*/}
 
 #co-billing-form li .input-box{
     display: inline-block;
