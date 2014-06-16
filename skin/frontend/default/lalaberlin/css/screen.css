@@ -1845,6 +1845,7 @@ ul {
 */
 
 .shop-sub-cate { text-align: center;}
+.catalog-category-view .shop-sub-cate {margin: 0px;}
 .shop-sub-cate li {  }
 .shop-sub-cate li .sub-name { margin: 1.5625rem auto;}
 .shop-sub-cate li .sub-name a { font-weight: bold; font-size: 1rem;}
@@ -1896,7 +1897,7 @@ ul {
 
 .shop-sub-cate li .sub-img:hover .sub-overlay { opacity: 1;}
 
-.shop-top p { float: left;}
+.shop-top p { float: left; padding-right: 0px;}
 
 .header-container { background: #000; color: #fff; text-transform: uppercase; font-size: 0.75em; letter-spacing: 2px; height: 105px;line-height: 105px;}
 .header-wrap { margin: 0 auto;}
