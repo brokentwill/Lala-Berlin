@@ -691,7 +691,7 @@ button.button{font-family:Brown, 'Trebuchet MS', Verdana, sans-serif;text-transf
     -webkit-transition: background-color 300ms ease-out 0s;
     -moz-transition: background-color 300ms ease-out 0s;
     transition: background-color 300ms ease-out 0s}
-button.button:hover{background: #333;}
+button.button:hover, button.button:focus{background: #333;}
 .header-container{background: none;}
 .page{/*margin: 45px auto 0;*/}
 #navbar{height: 105px;padding: 0}
