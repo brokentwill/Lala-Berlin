@@ -1,3 +1,0 @@
-#!/bin/sh
-php shell/lala.php
-php magmi/cli/magmi.cli.php -profile=default -mode=create -CSV:filename="/var/www/stage.lalaberlin.com/var/import/import.csv"

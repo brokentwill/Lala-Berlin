@@ -85,7 +85,7 @@ class MoreSleep_Lala_Model_Import extends Varien_Object{
 		'meta_keyword' => '',
 		'custom_layout_update' => '',
 		'care' => '',
-		'delivery' => '',
+		'delivery' => 'Innerhalb Deutschlands: 1-3 Tage<br/>Ausserhalb Deutschland: 2-5 Tage',
 		'special_from_date' => '',
 		'special_to_date' => '',
 		'news_from_date' => '',
@@ -130,14 +130,14 @@ class MoreSleep_Lala_Model_Import extends Varien_Object{
 
 	protected function createImportFile(){
 		$csv = array(join(',', array_keys($this->importStructure)));
-		$query = $this->getDatabaseConnection()->query("SELECT DISTINCT(artikel.artikel_id) AS id, CONCAT(artikel._artikel_nr, '_', artikel.color) AS sku, IF(COUNT(artikel.name) > 1, 'configurable', 'simple') AS type, CONCAT(artikel.name, ', ', artikel.color_name) AS name, GROUP_CONCAT(artikel.color_name) AS color, GROUP_CONCAT(artikel.size) AS size, CONCAT(artikel.hwg, ',', artikel.wg) AS category, COALESCE(preisliste.empfohlener_VK, 0) AS price FROM moresleep_lala_import_artikel AS artikel LEFT JOIN moresleep_lala_import_preisliste AS preisliste ON artikel.artikel_id = preisliste.artikel_id AND artikel.size = preisliste.groesse AND artikel.color = preisliste.farb_nr WHERE artikel.hwg_nr != '1' GROUP BY sku");
-
+		#$query = $this->getDatabaseConnection()->query("SELECT DISTINCT(artikel.artikel_id) AS id, CONCAT(artikel._artikel_nr, '_', artikel.color) AS sku, IF(COUNT(artikel.name) > 1, 'configurable', 'simple') AS type, CONCAT(artikel.name, ', ', artikel.color_name) AS name, GROUP_CONCAT(artikel.color_name) AS color, GROUP_CONCAT(artikel.size) AS size, CONCAT(artikel.hwg, ',', artikel.wg) AS category, COALESCE(preisliste.empfohlener_VK, 0) AS price FROM moresleep_lala_import_artikel AS artikel LEFT JOIN moresleep_lala_import_preisliste AS preisliste ON artikel.artikel_id = preisliste.artikel_id AND artikel.size = preisliste.groesse AND artikel.color = preisliste.farb_nr WHERE artikel.hwg_nr != '1' GROUP BY sku");
+		$query = $this->getDatabaseConnection()->query("SELECT DISTINCT(artikel.artikel_id) AS id, qualitaet.qualitaet_nr AS care, CONCAT(artikel._artikel_nr, '_', artikel.color) AS sku, IF(COUNT(artikel.name) > 1, 'configurable', 'simple') AS type, CONCAT(artikel.name, ', ', artikel.color_name) AS name, GROUP_CONCAT(artikel.color_name) AS color, GROUP_CONCAT(artikel.size) AS size, CONCAT(artikel.hwg, ',', artikel.wg) AS category, COALESCE(preisliste.empfohlener_VK, 0) AS price FROM moresleep_lala_import_artikel AS artikel LEFT JOIN moresleep_lala_import_preisliste AS preisliste ON artikel.artikel_id = preisliste.artikel_id AND artikel.size = preisliste.groesse AND artikel.color = preisliste.farb_nr LEFT JOIN moresleep_lala_import_qualitaet AS qualitaet ON artikel._artikel_nr = qualitaet. _Artikel_nr WHERE artikel.hwg_nr != '1' GROUP BY sku");
+		
 		while($product = $query->fetch(PDO::FETCH_ASSOC)){
 			foreach($this->createImportRows(array_merge($this->importStructure, $product)) as $row){
 				$csv[] = '"' . join('","', array_values($row)) . '"';
 			}
-		}
-
+		}		
 		file_put_contents(Mage::getBaseDir('base') . '/var/import/import.csv', join("\n", $csv));
 	}
 
@@ -146,17 +146,27 @@ class MoreSleep_Lala_Model_Import extends Varien_Object{
 			'category_ids' => $this->resolveCategoryId($row['category']),
 			'color' => ((strpos($row['color'], ',') > -1) ? substr($row['color'], 0, strpos($row['color'], ',')) : $row['color']),
 			'product_name' => $row['name'],
-			'qty' => '1'
+			'qty' => '0'
 		));
 		$row = array_diff_key($row, array_flip(array('category', 'id')));
 
 		$rows = array();
 		if($row['type'] == 'configurable'){
-			foreach(explode(',', $row['size']) as $size){
+			if(!preg_match('~OS~', $row['size'])){
+				foreach(explode(',', $row['size']) as $size){
+					$rows[] = array_merge($row, array(
+						'product_type_id' => 'simple',
+						'size' => $size,
+						'sku' => join('_', array($row['sku'], $size)),
+						'type' => 'simple',
+						'visibility' => 'Not Visible Individually'
+					));
+				}
+			}else{
 				$rows[] = array_merge($row, array(
 					'product_type_id' => 'simple',
-					'size' => $size,
-					'sku' => join('_', array($row['sku'], $size)),
+					'size' => 'OS',
+					'sku' => join('_', array($row['sku'], 'OS')),
 					'type' => 'simple',
 					'visibility' => 'Not Visible Individually'
 				));
@@ -180,7 +190,7 @@ class MoreSleep_Lala_Model_Import extends Varien_Object{
 	protected function importCsvToDatabase($truncate = false, $version = 1){
 		foreach($this->import as $filename => $columns){
 			if($truncate) $this->getDatabaseConnection()->query("TRUNCATE TABLE moresleep_lala_import_" . strtolower(preg_replace('~export_~i', '', basename($filename, '.txt'))));
-			$this->getDatabaseConnection()->query("LOAD DATA INFILE '" . (Mage::getBaseDir('base') . '/var/import/Daten/' . $filename) . "' INTO TABLE moresleep_lala_import_" . strtolower(preg_replace('~export_~i', '', basename($filename, '.txt'))) . " FIELDS TERMINATED BY '|' OPTIONALLY ENCLOSED BY '\'' LINES TERMINATED BY '\n' IGNORE 1 LINES (" . join(',', $columns) . ") SET created_at = NOW(), updated_at = NOW(), version= '" . $version . "'");
+			$this->getDatabaseConnection()->query("LOAD DATA INFILE '" . (Mage::getBaseDir('base') . '/var/import/Daten/' . $filename) . "' INTO TABLE moresleep_lala_import_" . strtolower(preg_replace('~export_~i', '', basename($filename, '.txt'))) . " FIELDS TERMINATED BY '|' OPTIONALLY ENCLOSED BY '\'' LINES TERMINATED BY '\r\n' IGNORE 1 LINES (" . join(',', $columns) . ") SET created_at = NOW(), updated_at = NOW(), version= '" . $version . "'");
 		}
 	}
 
@@ -192,6 +202,21 @@ class MoreSleep_Lala_Model_Import extends Varien_Object{
 		$this->importCsvToDatabase(true);
 		$this->createImportFile();
 	}
+
+    public function updateStock(){
+        $db = Mage::getSingleton('core/resource')->getConnection('core_write');
+        $query = $db->query("SELECT CONCAT(artikel_nr, '_', farbe, '_', groesse) AS sku, qty FROM moresleep_lala_import_lager");
+        while($stock = $query->fetch(PDO::FETCH_ASSOC)){
+	        echo $stock["sku"] . " - " . $stock["qty"] . "\n";
+			$queryProduct = $db->query("SELECT entity_id AS id, sku FROM catalog_product_entity WHERE sku='" . $stock["sku"] . "' LIMIT 1");
+			if($product = $queryProduct->fetch(PDO::FETCH_ASSOC)){
+				echo $stock["sku"] . " - " . $stock["qty"] . "\n";
+	            $db->query("UPDATE cataloginventory_stock_item SET is_in_stock = '" . ($stock["qty"] > 0) . "', qty = '" . $stock["qty"] . "' WHERE product_id = '" . $product['id'] . "'");
+	            $db->query("UPDATE cataloginventory_stock_status SET stock_status = '" . ($stock["qty"] > 0) . "', qty = '" . $stock["qty"] . "' WHERE product_id = '" . $product['id'] . "'");
+	        }
+        }
+        Mage::getSingleton('index/indexer')->getProcessByCode('cataloginventory_stock')->reindexAll();
+    }
 
 }
 ?>
