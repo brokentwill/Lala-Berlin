@@ -46,8 +46,22 @@
                     </tr>
                 </table>
             </td>-->
-            <td valign="top" width="50%"><strong>Rechnungsadresse</strong><br/>{{var billing_address}}</td>
-            <td valign="top"><?php if(!$this->getPdfHelper()->getOrder()->getIsVirtual()):?><strong>Lieferadresse</strong><br/>{{var shipping_address}}<?php endif;?></td>
+
+            <?php
+                $language_settings = Mage::app()->getStore()->getCode();
+                $language_settings = strtolower($language_settings);
+
+                if ( $language_settings == "de") {
+                    $billingaddr = 'Rechnungsadresse';
+                    $shippingaddr = 'Lieferadresse';
+                } else {
+                    $billingaddr = 'Address of Invoice';
+                    $shippingaddr = 'Delivery Address';
+                }
+            ?>
+
+            <td valign="top" width="50%"><strong><?php echo $billingaddr ?></strong><br/>{{var billing_address}}</td>
+            <td valign="top"><?php if(!$this->getPdfHelper()->getOrder()->getIsVirtual()):?><strong><?php echo $shippingaddr ?></strong><br/>{{var shipping_address}}<?php endif;?></td>
         <?php elseif($this->getPdfHelper()->getPdfAddresses() == 'shipping'): ?>
             <td valign="top" colspan="2">{{var shipping_address}}</td>
         <?php elseif($this->getPdfHelper()->getPdfAddresses() == 'billing'): ?>
