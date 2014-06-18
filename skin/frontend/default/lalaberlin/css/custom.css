@@ -691,7 +691,7 @@ button.button{font-family:Brown, 'Trebuchet MS', Verdana, sans-serif;text-transf
     -webkit-transition: background-color 300ms ease-out 0s;
     -moz-transition: background-color 300ms ease-out 0s;
     transition: background-color 300ms ease-out 0s}
-button.button:hover, button.button:focus{background: #333;}
+button.button:hover, button.button:focus, button[disabled], button[disabled]:focus, button[disabled]:hover{background: #333 !important;}
 .header-container{background: none;}
 .page{/*margin: 45px auto 0;*/}
 #navbar{height: 105px;padding: 0}
@@ -1201,7 +1201,7 @@ b, strong{font-family: Brown-Bold, 'Trebuchet MS', Verdana, sans-serif;font-weig
 .cms-page-view .std p{ font-size: 20px; line-height: 30px;}
 .checkout-cart-index .btn-continue{float: left;}
 .checkout-cart-index .btn-update{border: none;}
-.checkout-cart-index .btn-update:hover{background: none;}
+.checkout-cart-index .btn-update:hover{background: transparent !important;}
 .my-account{font-size: .75em;}
 .my-account a{text-decoration: underline}
 .my-account address{font-style: normal}
