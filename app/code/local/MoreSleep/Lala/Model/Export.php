@@ -296,7 +296,7 @@ class MoreSleep_Lala_Model_Export extends Varien_Object{
 					$tsv[] = join("\t", $row);
 				}
 				$log[$filename] = join("\r\n", $tsv);
-				file_put_contents(Mage::getBaseDir("base") . "/var/export/" . $filename . "_" . date("Ymd_His") . ".txt", $log[$filename]);
+				file_put_contents(Mage::getBaseDir("base") . "/var/export/" . $filename . "_" . date("Ymd_His", Mage::getModel('core/date')->timestamp(time())) . ".txt", $log[$filename]);
 			}
 		}
 		Mage::getSingleton('core/resource')->getConnection('core_write')->query("INSERT INTO moresleep_lala_export (created_at, customers, orders) VALUES ('" . date("Y-m-d H:i:s") . "', '" . $log["CUSTOMER"] . "', '" . $log["ORDER"] . "')");
