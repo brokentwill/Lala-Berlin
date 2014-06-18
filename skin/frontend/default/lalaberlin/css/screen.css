@@ -14,9 +14,9 @@
   font-family: 'Brown-Bold';
   src:  url("../fonts/Brown-Bold.eot");
   /* IE9 Compat Modes */
-  src:  url("../fonts/Brown-Bold.eot?#iefix") format("embedded-opentype"), 
-        url("../fonts/Brown-Bold.woff") format("woff"), 
-        url("../fonts/Brown-Bold.ttf") format("truetype"), 
+  src:  url("../fonts/Brown-Bold.eot?#iefix") format("embedded-opentype"),
+        url("../fonts/Brown-Bold.woff") format("woff"),
+        url("../fonts/Brown-Bold.ttf") format("truetype"),
         url("../fonts/Brown-Bold.svg#bc16b9b0db9ef0f1430dd17d45a4b42f") format("svg");
   /* Legacy iOS */
   font-style: normal;
@@ -27,9 +27,9 @@
   font-family: 'Brown';
   src:  url("../fonts/Brown-Regular.eot");
   /* IE9 Compat Modes */
-  src:  url("../fonts/Brown-Regular.eot?#iefix") format("embedded-opentype"), 
-        url("../fonts/Brown-Regular.woff") format("woff"), 
-        url("../fonts/Brown-Regular.ttf") format("truetype"), 
+  src:  url("../fonts/Brown-Regular.eot?#iefix") format("embedded-opentype"),
+        url("../fonts/Brown-Regular.woff") format("woff"),
+        url("../fonts/Brown-Regular.ttf") format("truetype"),
         url("../fonts/Brown-Regular.svg#e8bb100efb3d47ffea678fdff45642f8") format("svg");
   /* Legacy iOS */
   font-style: normal;
@@ -39,11 +39,11 @@
 @font-face {
   font-family: 'ACP'; /*Adobe Caslon Pro*/
   src: url('../fonts/ACaslonPro-Italic.eot'); /* IE9 Compat Modes */
-  src: url('../fonts/ACaslonPro-Italic.eot?#iefix') format('embedded-opentype'), 
+  src: url('../fonts/ACaslonPro-Italic.eot?#iefix') format('embedded-opentype'),
        url('../fonts/ACaslonPro-Italic.woff') format('woff'),
-       url('../fonts/ACaslonPro-Italic.ttf')  format('truetype'), 
+       url('../fonts/ACaslonPro-Italic.ttf')  format('truetype'),
        url('../fonts/ACaslonPro-Italic.svg#0956a2a00d489b0636498748d7bd9cc3') format('svg'); /* Legacy iOS */
-       
+
   font-style:   italic;
   font-weight:  400;
 }
@@ -55,7 +55,7 @@
        url('../fonts/DomaineDisplayCondWeb-Regular.woff') format('woff'), /* Modern Browsers */
        url('../fonts/DomaineDisplayCondWeb-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
        url('../fonts/DomaineDisplayCondWeb-Regular.svg#87ef38439143e21c0555b142c25e044d') format('svg'); /* Legacy iOS */
-       
+
   font-style:   normal;
   font-weight:  400;
 }
@@ -547,8 +547,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /*
- * 1.	Avoid huge vertical spacing when heading wraps on multiple lines
- * 2.	CSS3 voodoo for kerning and ligatures
+ * 1. Avoid huge vertical spacing when heading wraps on multiple lines
+ * 2. CSS3 voodoo for kerning and ligatures
 */
 /* line 84, src/base/_typography.scss */
 .hero {
@@ -624,7 +624,7 @@ ul {
 
 /* line 32, src/base/_layout.scss */
 .l-footer {
-  
+
 }
 
 /*
@@ -683,13 +683,13 @@ ul {
   /* [4] */
 }
 
-	/*
-	 * 1.	By defaults, you don't want any visual styles when replacing
-	 *		the elemnt by an image
-	 * 2.	Hides text that is pushed out of the element
-	 * 3.	Allow the use of ’inline’ and ’inlune-block’ elements
- 	 * 4.	Pushes the text out of the element
-	*/
+  /*
+   * 1. By defaults, you don't want any visual styles when replacing
+   *    the elemnt by an image
+   * 2. Hides text that is pushed out of the element
+   * 3. Allow the use of ’inline’ and ’inlune-block’ elements
+   * 4. Pushes the text out of the element
+  */
 /* =UILIST
  * ------------------------------------------------
  * Apply the ’.uilist’ class to <ol> and <ul> elements to delete
@@ -715,7 +715,7 @@ ul {
 }
 
 /*
- * 1.	clear floated children
+ * 1. clear floated children
 */
 /* =FLUSH
  * ------------------------------------------------
@@ -766,10 +766,10 @@ ul {
 }
 
 /*
- * 1.	Fix for webkit that defaults to ’text-rendering: optimizeLegibility’
- *		which makes ’letter-spacing’ variable and unreliable
- * 2.	IE < 8 and Opera need ’word-spacing’ to delete whitespace between
- *		child elements
+ * 1. Fix for webkit that defaults to ’text-rendering: optimizeLegibility’
+ *    which makes ’letter-spacing’ variable and unreliable
+ * 2. IE < 8 and Opera need ’word-spacing’ to delete whitespace between
+ *    child elements
 */
 /* line 35, src/helpers/_no-ws.scss */
 .grid-unit, .centroid {
@@ -812,13 +812,13 @@ ul {
 }
 
 /*
- * 1.	Make sure text-overflow is activated on some elements like <td>
- * 2.	Hide overflow for text-overflow to be clipped
- * 3.	Clip text-overflow by adding an ellipsis character (…) at
- *		the end of the line
- * 4.	Keep the text on a single line
- * 5.	Prevent line-breaks in IE 8/9, where they might occur inside of
- *		words, if ’word-wrap: break-word’ is set on an ancestor element
+ * 1. Make sure text-overflow is activated on some elements like <td>
+ * 2. Hide overflow for text-overflow to be clipped
+ * 3. Clip text-overflow by adding an ellipsis character (…) at
+ *    the end of the line
+ * 4. Keep the text on a single line
+ * 5. Prevent line-breaks in IE 8/9, where they might occur inside of
+ *    words, if ’word-wrap: break-word’ is set on an ancestor element
  */
 /* =NO-SELECT
  * ------------------------------------------------
@@ -1169,12 +1169,12 @@ ul {
 }
 
 /*
- * 2.	Center horizontally
- * 1.	Delete white-space between ghost element and ’.centroid’ due to
- *		’display: inline-block’.
- * 3. 	Ghost element that allows for vertical centering
- * 4. 	Reset font-size for children elements
- * 5.	Center vertically
+ * 2. Center horizontally
+ * 1. Delete white-space between ghost element and ’.centroid’ due to
+ *    ’display: inline-block’.
+ * 3.   Ghost element that allows for vertical centering
+ * 4.   Reset font-size for children elements
+ * 5. Center vertically
 */
 /*
 | ---------------------------------------------------------------------
@@ -1201,7 +1201,7 @@ ul {
 }
 
 /*
- * 1.	By default = full width + clear sibling tiles
+ * 1. By default = full width + clear sibling tiles
 */
 /* line 41, src/components/_tiles.scss */
 .tile-left, .tile-right {
@@ -1626,16 +1626,16 @@ ul {
 
 /* line 57, src/modules/_foot-new.scss */
 .footnav .leveled-list li {
-  
+
 }
 /* line 60, src/modules/_foot-new.scss */
 .footnav .leveled-list li:first-child {
-  
+
 }
 
 /* line 66, src/modules/_foot-new.scss */
 .footnav .leveled-list, .footnav .newsletter-link {
-  
+
 }
 
 /* line 71, src/modules/_foot-new.scss */
@@ -1661,7 +1661,7 @@ ul {
   width: 100%;
   padding: 50px 0 0;
   background: #fff;
-  
+
 }
 .cms-home .footer-container .footer {
   padding: 0;
@@ -1685,8 +1685,8 @@ ul {
   font-weight: bold;
 }
 
-.footnav .subscribe-newsletter .form-subscribe { 
-  position: relative; 
+.footnav .subscribe-newsletter .form-subscribe {
+  position: relative;
 }
 
 .footer .footer-top { border-bottom: 1px solid #e7e7e7; padding-bottom: 30px; margin-bottom: 50px;}
@@ -1732,7 +1732,7 @@ ul {
 
 .banner_box { margin-bottom: 82px; overflow: hidden; height: 667px;}
 .banner_box .divSimpleSlider a img { width: 100%;}
-.banner_box .divSimpleSlider .banner_overlay { 
+.banner_box .divSimpleSlider .banner_overlay {
   position: absolute;
   left: 0;
   top: 0;
@@ -1774,7 +1774,7 @@ ul {
 .catalog-product-view .main-container {max-width: 1304px;}
 
 .main { background: #fafafa; min-height: 400px;}
-.col-main {width: 86%; margin: 0 auto; } 
+.col-main {width: 86%; margin: 0 auto; }
 .cms-home .col-main { padding-bottom: 80px; width: 100%; margin: 0; padding-top: 0;}
 .main .col-main .main {
   width: 86%; margin: 0 auto; padding-top: 0;
@@ -1845,20 +1845,22 @@ ul {
 */
 
 .shop-sub-cate { text-align: center;}
-.catalog-category-view .shop-sub-cate {margin: 0px;}
+body.category-shop .shop-sub-cate {margin: 0px;}
+.catalog-category-view .shop-sub-cate {margin-right: 0px;}
+.catalog-category-view .products-grid {margin: 0px -0.3125rem;}
 .shop-sub-cate li {  }
 .shop-sub-cate li .sub-name { margin: 1.5625rem auto;}
 .shop-sub-cate li .sub-name a { font-weight: bold; font-size: 1rem;}
-.shop-sub-cate li .sub-img { 
+.shop-sub-cate li .sub-img {
   position: relative;
   background-color: #fff;
-  
-	width: 100%;
+
+  width: 100%;
 }
 .shop-sub-cate li .sub-img img{
-	margin-left: 0.625rem; margin-right: 0.625rem;
+  margin-left: 0.625rem; margin-right: 0.625rem;
 }
-.sub-img .sub-overlay { 
+.sub-img .sub-overlay {
   display: block;
   position: absolute;
   top: 0;
@@ -1872,27 +1874,27 @@ ul {
   -ms-transition: opacity 0.35s ease-out 0s;
   -o-transition: opacity 0.35s ease-out 0s;
   transition: opacity 0.35s ease-out 0s;
-  
+
   box-sizing: content-box;
   -moz-box-sizing: content-box;
-  padding-left: 0.625rem; 
-  
- 
-  
+  padding-left: 0.625rem;
+
+
+
 }
 .sub-img .sub-overlay span {
    font-family: 'Domaine Display Condensed', 'Brown Bold';
   font-size: 3rem;
   font-weight: normal;
   text-transform: uppercase;
-  
+
   display: block;
   height: 100%;
   width: 100%;
    padding-top: 50%;
-   
-   
-  
+
+
+
 }
 
 .shop-sub-cate li .sub-img:hover .sub-overlay { opacity: 1;}
@@ -1918,8 +1920,8 @@ ul {
 .child-cate .sub-cate li { line-height: 24px;}
 .child-cate ul:first-child { margin-bottom: 5px;}
 .child-cate ul:first-child li a { font-size: 0.8125rem; letter-spacing: 2px;}
-.child-cate ul li a { 
-  color: #000; 
+.child-cate ul li a {
+  color: #000;
   font-size: 0.7rem;
   letter-spacing: 2px;
   -webkit-transition: all 0.3s ease-out 0s;
@@ -1973,9 +1975,9 @@ ul {
   transform: translate3d(0, 0, 0);
 }
 
-.breadcrumbs ul li a { 
-  font-size: 0.8125rem; 
-  letter-spacing: 2px; 
+.breadcrumbs ul li a {
+  font-size: 0.8125rem;
+  letter-spacing: 2px;
   color: #000;
   -webkit-transition: all 0.35s ease-out 0s;
   -moz-transition: all 0.35s ease-out 0s;
@@ -2000,7 +2002,7 @@ li.to-top:hover { color: #8d8d8d;}
 */
 
 ul.products-grid li { text-align: center; position: relative; background-color: transparent; padding: 0px 0.3125rem 2.8125rem 0.3125rem !important; }
-ul.products-grid li span.item-sale { 
+ul.products-grid li span.item-sale {
   border-bottom: 1px solid #b1b1b1;
   border-top: 1px solid #b1b1b1;
   display: block;
@@ -2013,7 +2015,7 @@ ul.products-grid li span.item-sale {
   width: 45px;
   font-family: 'Domaine Condensed Display';
 }
-ul.products-grid li span.item-new, ul.products-grid li span.item-sold { 
+ul.products-grid li span.item-new, ul.products-grid li span.item-sold {
   border-bottom: 1px solid #b1b1b1;
   border-top: 1px solid #b1b1b1;
   display: block;
@@ -2045,7 +2047,7 @@ ul.products-grid li a.product-image:hover img.full-img {
   opacity: 1;
   display: inline;
 }
-ul.products-grid li a.product-image img { 
+ul.products-grid li a.product-image img {
 
 }
 
@@ -2068,8 +2070,8 @@ ul.products-grid li .prod_bot { font-family: Brown-Bold; line-height: 1.25rem; }
 .product-img-box .more-views ul li a:hover { cursor: url(../images/plus.png), auto; }
 .product-img-box .more-views ul li:last-child { margin-bottom: 0;}
 
-.product-shop { 
-  float: right; 
+.product-shop {
+  float: right;
   width: 38%;
   padding-top: 40px;
 }
@@ -2101,14 +2103,14 @@ ul.products-grid li .prod_bot { font-family: Brown-Bold; line-height: 1.25rem; }
 .product-shop .product-options-bottom .add-to-links { display: none;}
 .product-shop .product-options-bottom .add-to-cart label { float: left; height: 37px; line-height: 37px; margin-right: 20px;}
 .product-shop .product-options-bottom .add-to-cart #qty { width: 165px; float: left;}
-.product-share { 
+.product-share {
   float: left;
   margin: 0 0 0 20px;
   padding-top: 20px;
 }
-.product-share.scroll-to-fixed-fixed, 
+.product-share.scroll-to-fixed-fixed,
 .product-shop.scroll-to-fixed-fixed{
-	padding-top: 60px;
+  padding-top: 60px;
 }
 .product-share a {
   border: 1px solid #585858;
@@ -2163,7 +2165,7 @@ ul.products-grid li .prod_bot { font-family: Brown-Bold; line-height: 1.25rem; }
   display: none;
 }
 
-.images-zoom-wrap ul li { 
+.images-zoom-wrap ul li {
   display: none;
   position: absolute;
   z-index: 999;
@@ -2177,7 +2179,7 @@ ul.products-grid li .prod_bot { font-family: Brown-Bold; line-height: 1.25rem; }
   left: 0;
   top: 0;
 }
-li.img-zoom-item { 
+li.img-zoom-item {
   float: left;
   text-align: center;
   overflow: hidden;
@@ -2209,7 +2211,7 @@ li.img-zoom-item {
 
 .lookbook_wrap { float: left; width: 100%;}
 
-.items { 
+.items {
   float: left;
   padding: 0 10px 0 0;
 }
@@ -2229,8 +2231,8 @@ li.img-zoom-item {
 #product-info .prd-info-wrap:last-child { padding: 0;}
 #product-info .prd-info-wrap > h2 { margin: 0 0 5px; padding-left: 18px; font-size: 13px; background: url(../img/des-icon.png) no-repeat left center; cursor: pointer; text-transform: uppercase; letter-spacing: 1px;}
 #product-info .prd-info-wrap > h2.active { background: url(../img/des-icon-active.png) no-repeat left center;}
-#product-info .prd-info-wrap > .prd-info { 
-  margin-left: 18px; 
+#product-info .prd-info-wrap > .prd-info {
+  margin-left: 18px;
   display: none;
   margin-bottom: 10px;
   padding-top: 5px;
@@ -2252,8 +2254,8 @@ li.img-zoom-item {
   top: -30px;
 }
 .blog-load button {
-  display:block; 
-  width:340px; 
+  display:block;
+  width:340px;
   height: 40px;
   line-height: 40px;
   margin:0 auto;
@@ -2323,29 +2325,29 @@ li.divider { display: none;}
 .prd-info-msn { float: left; clear: both; font-size: 14px; font-weight: normal; width: 100%; padding-bottom: 20px;}
 
 .prd-info-care-icon div{
-	padding-bottom: 41px !important;
-	background: transparent;
-	background-position: left bottom;
-	background-repeat: no-repeat;
-	
+  padding-bottom: 41px !important;
+  background: transparent;
+  background-position: left bottom;
+  background-repeat: no-repeat;
+
 }
 .prd-info-care-icon.cat-1 div{
-	background-image: url('../img/lala-care-01.png');
+  background-image: url('../img/lala-care-01.png');
 }
 .prd-info-care-icon.cat-2 div{
-	background-image: url('../img/lala-care-02.png');
+  background-image: url('../img/lala-care-02.png');
 }
 .prd-info-care-icon.cat-3 div{
-	background-image: url('../img/lala-care-03.png');
+  background-image: url('../img/lala-care-03.png');
 }
 .prd-info-care-icon.cat-4 div{
-	background-image: url('../img/lala-care-04.png');
+  background-image: url('../img/lala-care-04.png');
 }
 .prd-info-care-icon.cat-5 div{
-	background-image: url('../img/lala-care-05.png');
+  background-image: url('../img/lala-care-05.png');
 }
 .prd-info-care-icon.cat-6 div{
-	background-image: url('../img/lala-care-06.png');
+  background-image: url('../img/lala-care-06.png');
 }
 .prod-sold #responceMesPlace { /*display: none;*/}
 
@@ -2409,7 +2411,7 @@ p.p-sold {
 }
 
 
-@media (max-width: 40.063em){ 
+@media (max-width: 40.063em){
 
   .small-block-grid-1 > li {
     text-align: center;
@@ -2429,7 +2431,7 @@ p.p-sold {
     width: 100%;
     text-align: center;
   }
-  
+
   .product-img-box {
     margin-left: 0;
     width: 100%;
@@ -2438,7 +2440,7 @@ p.p-sold {
     width: 100%;
     text-align: center;
   }
-  .product-shop .add-to-cart button.btn-cart { 
+  .product-shop .add-to-cart button.btn-cart {
     float: none;
   }
   #product-info .prd-info-wrap > h2, #product-info .prd-info-wrap > h2.active {
@@ -2447,7 +2449,7 @@ p.p-sold {
   p.p-sold {
     margin: 50px auto 0;
   }
-  
+
   .opc .col2-set .col-1, .opc .col2-set .col-2 {
     /*width: 100% ! important;*/
   }
@@ -2495,7 +2497,7 @@ p.p-sold {
 
 @media (max-width:480px){
   .sub-img .sub-overlay span{
-    font-size: 3rem;  
+    font-size: 3rem;
   }
   #product-info .prd-info-wrap > h2, #product-info .prd-info-wrap > h2.active {
     background-position: 30% center;
