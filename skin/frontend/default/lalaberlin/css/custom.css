@@ -1433,7 +1433,7 @@ b, strong{font-family: Brown-Bold, 'Trebuchet MS', Verdana, sans-serif;font-weig
 .header-lala-logo a { line-height: 100px; }
 #navbar02 .header-lala-logo a { line-height: 48px; }
 
-.add-to-cart button.btn-cart { padding: 0 55px; float: left; clear: both; margin-bottom: 0;}
+.add-to-cart button.btn-cart { padding: 0px; width: 48.5%; float: left; clear: both; margin-bottom: 0;}
 .add-to-cart button.btn-cart span span { font-size: 14px; letter-spacing: 1px;}
 .top-bar-section .has-dropdown > a { color: #000; font-size: 0.6em;}
 .divi-span {
@@ -1651,8 +1651,8 @@ li.item.is-video iframe {
     height: 100%;
     background: none no-repeat scroll 0 0 / cover  rgba(0, 0, 0, 0);
     text-decoration: none;
-	background-size: cover !important;
-	-webkit-background-size: cover !important;
+    background-size: cover !important;
+    -webkit-background-size: cover !important;
 }
 .home-top-slider .divSimpleSlider > a img { height: 100% !important; display: none; }
 
@@ -1727,8 +1727,14 @@ ol.checkout-agreements {
 
 
 #product-options-wrapper dd .input-box {
-    width: 65%;
+    width: 48.5%;
     margin-top: 15px;
+}
+#product-options-wrapper dd .input-box select,
+#product-options-wrapper dd .input-box select option {
+    font-size: 14px;
+    background-color: #fff;
+    color: #181818;
 }
 
 #product-options-wrapper dd .input-box > div {
@@ -1739,3 +1745,14 @@ ol.checkout-agreements {
 #product-options-wrapper > .apptha-outofstock-block-body { width: 100%;}
 #outofstock_notify_error1 { margin-bottom: 10px;}
 
+span#notify_message {
+    display: block;
+    padding-bottom: 10px;
+  }
+
+#padding_div {
+    width: 74.6031746% !important;
+  }
+.sold-data #notify_submit button {
+  width: 100%;
+}
