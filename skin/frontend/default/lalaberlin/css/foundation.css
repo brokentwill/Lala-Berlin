@@ -1557,11 +1557,11 @@ meta.foundation-mq-topbar {
     padding: 12px 0 12px 0;
     padding-left: 15px;
     font-size: 12px;
-    letter-spacing: 5px;
+    letter-spacing: 0.5em;
     font-weight: normal;
     background: #fff; }
 .top-bar-section ul li > a.active {
-    color: #8d8d8d;
+    /* color: #8d8d8d; */
 }
 .top-bar-section ul li > a.button {
     background: #008cba;
@@ -1583,7 +1583,7 @@ meta.foundation-mq-topbar {
 .top-bar-section ul li > a.button.alert:hover {
     background: #d32a0e; }
 .top-bar-section ul li:hover > a {
-    color: #999; }
+    /* color: #999; */ }
 .top-bar-section ul li.active > a {
     background: #999;
     color: white; }
@@ -1768,7 +1768,9 @@ meta.foundation-mq-topbar {
         height: auto !important;
         display: inline; }
     .top-bar-section ul li {
-        float: left; }
+        float: left; 
+        padding: 0 30px;
+}
     .top-bar-section ul li .js-generated {
         display: none; }
     .top-bar-section li.hover > a:not(.button) {
@@ -1782,7 +1784,7 @@ meta.foundation-mq-topbar {
     }
     .top-bar-section li a:not(.button) {
         padding: 0 30px;
-        line-height: 105px;
+        line-height: 42px;
         background: #fff;
         -webkit-transition: all 0.35s ease-out 0s;
         -moz-transition: all 0.35s ease-out 0s;
@@ -5413,3 +5415,4 @@ th.hide-for-touch {
 
 .touch th.show-for-touch {
     display: table-cell !important; }
+/*foundation*/

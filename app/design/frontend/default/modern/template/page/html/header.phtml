@@ -27,54 +27,21 @@
  * @var Mage_Page_Block_Html_Header $this
  */
 ?>
-
-
-<?php $_helper       = Mage::helper('catalog/category') ?>
-<?php $_categories   = $_helper->getStoreCategories() ?>
-
-
 <div class="header-container">
-    <div class="header-wrap row">
-        <div class="header-category large-8">
-            <?php if (count($_categories) > 0): ?>
-                <ul class="category">
-                    <li class="header-lala-logo"><a href="<?php echo $this->getUrl('') ?>"><img src="<?php echo $this->getSkinUrl('images/lala-logo-white.png') ?> " alt=""></a></li>
-                    <?php foreach($_categories as $_category): ?>
-                        <li>
-                            <a href="<?php echo $_helper->getCategoryUrl($_category) ?>">
-                                <?php echo $_category->getName() ?>
-                            </a>
-                        </li>
-                    <?php endforeach; ?>
-                    <li><a href="#">Journal</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            <?php endif; ?>
-        </div>
-        <div class="header-top-link large-4">
-            <?php echo $this->getChildHtml('store_language') ?>
-            <?php echo $this->getChildHtml('topLinks') ?>
-        </div>
-    </div>
-</div>
-
-
-
-<!-- <div class="header-container">
     <div class="header">
         <?php if ($this->getIsHomePage()):?>
         <h1 class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a></h1>
         <?php else:?>
         <a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a>
         <?php endif?>
-        <div class="quick-access">
-            <?php echo $this->getChildHtml('topSearch') ?>
-            <p class="welcome-msg"><?php echo $this->getChildHtml('welcome') ?> <?php echo $this->getAdditionalHtml() ?></p>
-            <?php echo $this->getChildHtml('topLinks') ?>
-            <?php echo $this->getChildHtml('store_language') ?>
-        </div>
-        <?php echo $this->getChildHtml('topContainer'); ?>
+        <p class="top-promo" title="<?php echo $this->__('Free Shipping on orders over 50$'); ?>"><?php echo $this->__('Free Shipping on orders over 50$'); ?></p>
+        <?php echo $this->getChildHtml('topMenu') ?>
     </div>
+    <div class="quick-access">
+        <?php echo $this->getChildHtml('store_language') ?>
+        <p class="welcome-msg"><?php echo $this->getChildHtml('welcome') ?></p>
+        <?php echo $this->getChildHtml('topLinks') ?>
+    </div>
+    <?php echo $this->getChildHtml('topBar') ?>
+    <?php echo $this->getChildHtml('topContainer'); ?>
 </div>
-<?php echo $this->getChildHtml('topMenu') ?> -->

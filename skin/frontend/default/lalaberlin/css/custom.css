@@ -687,7 +687,7 @@ dl dt{font-size: 1.2em;font-weight: normal;font-family: Brown-Bold, 'Trebuchet M
 #quick_cart_widget .product-details{font-size: .8rem;}
 #quick_cart_widget button.button{margin: 0;padding: 15px;}
 #quick_cart_widget .view-cart{font-size: .8rem; font-weight: bold; margin-left: 10px;}
-button.button{font-family:Brown, 'Trebuchet MS', Verdana, sans-serif;text-transform: uppercase;background: none; font-size: 0.875rem; letter-spacing: 0.2em; height: 45px;/*line-height: 40px;*/border: 1px solid #000;color: #000;padding: 0 32px;
+button.button{font-family:Brown, 'Trebuchet MS', Verdana, sans-serif;text-transform: uppercase;background: none; font-size: 0.875rem; letter-spacing: 0.2em; height: 46px;/*line-height: 40px;*/border: 1px solid #000;color: #181818;padding: 0 32px;
     -webkit-transition: background-color 300ms ease-out 0s;
     -moz-transition: background-color 300ms ease-out 0s;
     transition: background-color 300ms ease-out 0s}
@@ -710,7 +710,7 @@ button.button:hover, button.button:focus, button[disabled], button[disabled]:foc
     .top-bar-section ul li.has-dropdown > a span{color: #000;}
     .top-bar-section ul li.has-dropdown > a span.active{color: #999;}
     .top-bar-section ul li:hover > a.top-link-cart span{color: #000;}
-    .top-bar-section li a:not(.button):hover{color: #999;}
+    .top-bar-section li a:not(.button):hover{/* color: #999; */}
     .top-bar-section .right li a:not(.button):hover{color: #000;}
     .top-bar-section .has-dropdown.language > a{padding-right: 15px !important;}
     .top-bar-section .has-dropdown.language > a span:hover { color: #999; opacity: 1;}
@@ -720,7 +720,7 @@ button.button:hover, button.button:focus, button[disabled], button[disabled]:foc
     .top-bar-section > ul > .divider, .top-bar-section > ul > [role="separator"]{}
     .top-bar-section .left li:not(.new_devi) a {text-align: center;}
     .top-bar-section .left li:last-child a { padding-right: 0}
-    .top-bar-section .left li a.active { color: #999;}
+    .top-bar-section .left li a.active { /* color: #999; */}
     .top-bar-section ul{background: #fff;}
     .top-bar-section ul.links{float: right;}
 }
@@ -775,10 +775,10 @@ button.button:hover, button.button:focus, button[disabled], button[disabled]:foc
 .checkout-cart-index h1 { border-bottom: 1px solid #ccc; }
 .cart .no-crosssell {display:none}
 .cart .data-table th {
-    color: #333;
-    font-size: 16px;
+    color: #181818;
+    font-size: 11px;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.2em;
 }
 .cart .totals{float: right; margin: 0 10px 3em 10px}
 .cart .totals table{float: right;margin: 0 0 1em;}
@@ -803,12 +803,13 @@ button.button:hover, button.button:focus, button[disabled], button[disabled]:foc
     color: #fff;
     display: block;
     float: right;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1em;
     margin: 0;
     padding: 0 18px;
     text-decoration: none;
     text-transform: uppercase;
+    width: 234px;
 }
 .cart .data-table tr td:first-child {
     width: 220px;
@@ -864,7 +865,7 @@ table thead, table tfoot{ background: #fff; }
     font-family: Brown-Bold, 'Trebuchet MS', Verdana, sans-serif;
     text-transform: uppercase;
     font-weight: normal;
-    color: #666;
+    color: #181818;
 }
 .col2-set h2 {
     font-size: 12px;
@@ -966,7 +967,7 @@ table thead, table tfoot{ background: #fff; }
 #opc-review .step { padding:0; }
 #opc-review .product-name { font-weight:bold; }
 #opc-review .item-options { margin:5px 0 0; }
-#opc-review .buttons-set { border:0; padding:15px 30px; }
+#opc-review .buttons-set { border:0; padding: 15px 0px; }
 #opc-review .buttons-set p { margin:0; line-height:28px; }
 #opc-review .buttons-set .please-wait { height:28px; line-height:28px; }
 #opc-review .authentication { margin:0 auto; width:570px; }
@@ -1003,7 +1004,7 @@ table thead, table tfoot{ background: #fff; }
 
 #co-billing-form li .input-box{
     display: inline-block;
-    width: 75%;
+    width: 40%;
 }
 #co-billing-form li .input-box .validation-advice{
     color: red;
@@ -1169,7 +1170,7 @@ table thead, table tfoot{ background: #fff; }
     .top-bar .title-area { width: 11% }
     .top-bar li.name{text-align: center}
     .top-bar-section ul.left li:not(.new_devi) a {
-        padding: 0 30px;
+        padding: 22px 0px 0;
     }
     .top-bar-section ul.right .divider{display: none;}
     .col-main{padding-top: 10px;}
@@ -1199,8 +1200,8 @@ b, strong{font-family: Brown-Bold, 'Trebuchet MS', Verdana, sans-serif;font-weig
 .std a:hover { text-decoration: inherit !important; color: #222; }
 .std > p { font-size: 20px; line-height: 30px; }
 .cms-page-view .std p{ font-size: 20px; line-height: 30px;}
-.checkout-cart-index .btn-continue{float: left;}
-.checkout-cart-index .btn-update{border: none;}
+.checkout-cart-index .btn-continue{float: left;padding: 0;width: 234px;margin-top: 30px;}
+.checkout-cart-index .btn-update{border: none;border-bottom: 1px solid #181818;margin-top: 30px;}
 .checkout-cart-index .btn-update:hover{background: transparent !important;}
 .my-account{font-size: .75em;}
 .my-account a{text-decoration: underline}
@@ -1651,8 +1652,8 @@ li.item.is-video iframe {
     height: 100%;
     background: none no-repeat scroll 0 0 / cover  rgba(0, 0, 0, 0);
     text-decoration: none;
-    background-size: cover !important;
-    -webkit-background-size: cover !important;
+	background-size: cover !important;
+	-webkit-background-size: cover !important;
 }
 .home-top-slider .divSimpleSlider > a img { height: 100% !important; display: none; }
 
@@ -1755,4 +1756,42 @@ span#notify_message {
   }
 .sold-data #notify_submit button {
   width: 100%;
+}
+.top-bar-section ul li:hover a {
+    border-bottom: 5px solid #181818;
+}
+#product-top .product-share.sharer-0 label {
+    line-height: 23px;
+}
+#product-top .product-share.sharer-0 {
+    width: 72px;
+}
+.checkout-onepage-index .page-title h1 {
+    font-family: Domaine Display Condensed;
+    font-size: 60px;
+    color: #181818;
+}
+#checkout-step-login button.button {
+    width: 234px;
+}
+.checkout-cart-index .page-title h1 {
+    font-family: Domaine Display Condensed;
+    font-size: 60px;
+    color: #181818;
+}
+.product-top .product-share.sharer-0 label {
+    color: #181818;
+    letter-spacing: 0.2em;
+}
+.checkout-onepage-success button.button {
+    width: 234px;
+    padding: 0;
+}
+.checkout-onepage-success .col-main {
+    text-align: center
+}
+.checkout-onepage-success .col-main .page-title h1{
+    font-family: Domaine Display Condensed;
+    font-size: 60px;
+    
 }

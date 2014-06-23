@@ -116,57 +116,8 @@ class Mage_Adminhtml_Cms_BlockController extends Mage_Adminhtml_Controller_Actio
         // check if data sent
         if ($data = $this->getRequest()->getPost()) {
 
-            //Git
-
-            $request = $this->getRequest();
             $id = $this->getRequest()->getParam('block_id');
             $model = Mage::getModel('cms/block')->load($id);
-
-            if (empty($data['link_to'])) {
-                $data['link_to'] = '';
-                $model->setLinkTo($data['link_to']);
-            }
-
-            if (isset($_FILES['feature_img']['name']) && $_FILES['feature_img']['name'] != '') {
-                $uploader = new Varien_File_Uploader('feature_img');
-
-                $uploader->setAllowedExtensions(array('jpg','jpeg','gif','png'));
-                $uploader->setAllowRenameFiles(false);
-                $uploader->setFilesDispersion(false);
-
-                // Set media as the upload dir
-                $media_path  = Mage::getBaseDir('media') . DS . 'feature_img' . DS;
-
-                // Set thumbnail name
-                $file_name = 'cms_';
-
-                // Upload the image
-                $uploader->save($media_path, $file_name . $_FILES['feature_img']['name']);
-
-                $data['feature_img'] = 'feature_img' . '/' . $file_name . $_FILES['feature_img']['name'];
-
-                // Set thumbnail name
-                $data['feature_img'] = $data['feature_img'];
-                $model->setFeatureImg($data['feature_img']);
-
-            } else {
-                $data = $request->getPost();
-                if($data['feature_img']['delete'] == 1) {
-                    $data['feature_img'] = '';
-                    $model->setFeatureImg($data['feature_img']);
-                } else {
-                    unset($data['feature_img']);
-                    $model->setFeatureImg(implode($request->getPost('feature_img')));
-                }
-            }
-
-            // end Git
-            
-            // echo '<pre>';
-            // print_r($data);
-            // die();
-
-            
             if (!$model->getId() && $id) {
                 Mage::getSingleton('adminhtml/session')->addError(Mage::helper('cms')->__('This block no longer exists.'));
                 $this->_redirect('*/*/');
