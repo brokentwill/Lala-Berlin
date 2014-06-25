@@ -1793,5 +1793,9 @@ span#notify_message {
 .checkout-onepage-success .col-main .page-title h1{
     font-family: Domaine Display Condensed;
     font-size: 60px;
-    
+
+}
+
+#shopping-cart-totals-table tr{
+    background-color: transparent !important;
 }
