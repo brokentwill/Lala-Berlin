@@ -1754,4 +1754,10 @@ tr.summary-details-excluded { font-style:italic; }
 .advanced-search-summary:after,
 .gift-messages-form .item:after,
 .send-friend .form-list li p:after { display:block; content:"."; clear:both; font-size:0; line-height:0; height:0; overflow:hidden; }
+
+.breadcrumbs ul.bcd-section li a {
+    font-size: 12px;
+    letter-spacing: 0.2em;
+}
+
 /* ======================================================================================= */

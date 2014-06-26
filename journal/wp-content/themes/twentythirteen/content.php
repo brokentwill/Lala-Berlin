@@ -518,6 +518,7 @@
 	if ( !empty($datas_cache) AND is_array($datas_cache) AND count($datas_cache) )
 	{
 		$datas_cache = array_values($datas_cache);
+		$options = get_option( 'sample_theme_options' );
 		echo '
 		<div class="home-page-facebocks">';
 			// < 0 and > 5
@@ -533,7 +534,7 @@
 				echo 				'<li>
 					                    <img src="'.(dirname(get_site_url()).'/lib/timthumb.php?src='.get_site_url().'/'.$slide->image).'&w=1345&h=525" />
 					                    <div class="posts-facebocks-desc">
-					                    	<div class="posts-facebocks-desc-headline">'.$slide->headline.'</div>
+					                    	<div class="posts-facebocks-desc-headline">'.$options['introtext'].'</div>
 					                    </div>
 					                </li>';
 				            }
@@ -546,6 +547,7 @@
 			}
 			else
 			{
+				
 				echo  '
 				<div class="row">
 					<div class="small-12 medium-8 large-8 columns home-page-facebocks-left">
@@ -558,7 +560,7 @@
 					echo 				'<li>
 						                    <img  src="'.(dirname(get_site_url()).'/lib/timthumb.php?src='.get_site_url().'/'.$slide->image).'&w=845&h=525" />
 						                    <div class="posts-facebocks-desc">
-						                    	<div class="posts-facebocks-desc-headline">'.$slide->headline.'</div>
+						                    	<div class="posts-facebocks-desc-headline">'.$options['introtext'].'</div>
 						                    </div>
 						                </li>';
 						                unset($datas_cache[$ind]);

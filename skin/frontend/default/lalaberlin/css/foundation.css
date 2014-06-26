@@ -1559,7 +1559,12 @@ meta.foundation-mq-topbar {
     font-size: 12px;
     letter-spacing: 0.5em;
     font-weight: normal;
-    background: #fff; }
+    background: #fff;
+	
+	}
+.top-bar-section ul.left li > a {
+	margin-right: -0.5em;
+}	
 .top-bar-section ul li > a.active {
     /* color: #8d8d8d; */
 }
@@ -1793,7 +1798,7 @@ meta.foundation-mq-topbar {
         transition: all 0.35s ease-out 0s;
     }
     #navbar02 .top-bar-section li a:not(.button) {
-        padding: 0 30px;
+        padding: 0 0px;
         line-height: 55px;
         background: #fff; }
     .top-bar-section li a:not(.button):hover {
@@ -5415,4 +5420,6 @@ th.hide-for-touch {
 
 .touch th.show-for-touch {
     display: table-cell !important; }
+.top-bar-section ul li:first-child {
+}    
 /*foundation*/

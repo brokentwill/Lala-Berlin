@@ -50,3 +50,7 @@ ul.slides li p{
     font-weight: 100;
     text-align: center;line-height: 30px;
 }
+.posts-facebocks-desc-headlinev p{
+	padding-top:0px!important;
+	font-size:72px!important;
+}
