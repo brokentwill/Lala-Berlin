@@ -712,7 +712,7 @@ button.button:hover, button.button:focus, button[disabled], button[disabled]:foc
     .top-bar-section ul li:hover > a.top-link-cart span{color: #000;}
     .top-bar-section li a:not(.button):hover{/* color: #999; */}
     .top-bar-section .right li a:not(.button):hover{color: #000;}
-    .top-bar-section .has-dropdown.language > a{padding-right: 15px !important;}
+    .top-bar-section .has-dropdown.language > a{/* padding-right: 15px !important; */}
     .top-bar-section .has-dropdown.language > a span:hover { color: #999; opacity: 1;}
     .top-bar-section ul li > a.top-link-cart{ padding-right: 35px;}
     .top-bar-section ul li > a.top-link-cart span{border: 1px solid #000;padding: 10px 35px; color: #000;}
@@ -1170,7 +1170,7 @@ table thead, table tfoot{ background: #fff; }
     .top-bar .title-area { width: 11% }
     .top-bar li.name{text-align: center}
     .top-bar-section ul.left li:not(.new_devi) a {
-        padding: 22px 0px 0;
+        padding: 31px 0px 0;
     }
     .top-bar-section ul.right .divider{display: none;}
     .col-main{padding-top: 10px;}
@@ -1781,6 +1781,7 @@ span#notify_message {
     font-family: Domaine Display Condensed;
     font-size: 60px;
     color: #181818;
+	margin-bottom: 0;
 }
 .product-top .product-share.sharer-0 label {
     color: #181818;
@@ -1796,9 +1797,14 @@ span#notify_message {
 .checkout-onepage-success .col-main .page-title h1{
     font-family: Domaine Display Condensed;
     font-size: 60px;
-
 }
 
 #shopping-cart-totals-table tr{
     background-color: transparent !important;
+
+    
+}
+.top-bar-section ul.right li a {
+    line-height: 105px;
+    border: 0;
 }
