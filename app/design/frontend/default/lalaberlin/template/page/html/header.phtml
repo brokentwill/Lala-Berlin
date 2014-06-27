@@ -73,7 +73,7 @@
 
 					<li><a class="<?php if($ig) echo 'active' ?>" href="<?php echo $this->getUrl('collections') ?>"><?php echo $this->__('Collections') ?></a></li>
 					
-					<li><a class="<?php if($sh) echo 'active' ?>" href="http://www.lalaberlin-onlineshop.de/"><?php echo $this->__('Shop') ?></a></li>
+					<li><a class="<?php if($sh) echo 'active' ?>" href="<?php echo $this->getUrl('shop.html') ?>"><?php echo $this->__('Shop') ?></a></li>
 					
 					<li><a class="<?php if($ab && $cms == 'about') echo 'active' ?>" href="<?php echo $this->getUrl('about') ?>"><?php echo $this->__('About') ?></a></li>
 
@@ -85,17 +85,17 @@
 				</ul>
 			<?php endif; ?>
 			<?php //echo $this->getChildHtml('topLinks') ?>
-			<?php //echo $this->getChildHtml('topCart')?>
+			<?php echo $this->getChildHtml('topCart')?>
 			<ul class="right">
 				<!-- <li class="new_devi"><a style="padding:0;"><span class="divi-span"></span></a></li> -->
 				<?php echo $language->toHTML(); ?>
 				<li class="divider"></li>
 				
 				<li class="account-link"><a href="<?php echo $this->getUrl('customer/account') ?>"><?php echo $this->__('Account') ?></a></li>
-			<?php if ($sessionCustomer->isLoggedIn()): ?>
-				<li class="divider"></li>
-				<li class="account-link logout"><a href="<?php echo $this->getUrl('customer/account/logout') ?>"><?php echo $this->__('Log Out') ?></a></li>
-			<?php endif; ?>
+				<?php if ($sessionCustomer->isLoggedIn()): ?>
+					<li class="divider"></li>
+					<li class="account-link logout"><a href="<?php echo $this->getUrl('customer/account/logout') ?>"><?php echo $this->__('Log Out') ?></a></li>
+				<?php endif; ?>
 			</ul>
 		</section>
 	</nav>
@@ -115,7 +115,7 @@
 
 					<li><a class="<?php if($ig) echo 'active' ?>" href="<?php echo $this->getUrl('collections') ?>"><?php echo $this->__('Collections') ?></a></li>
 					
-					<li><a class="<?php if($sh) echo 'active' ?>" href="http://www.lalaberlin-onlineshop.de/"><?php echo $this->__('Shop') ?></a></li>
+					<li><a class="<?php if($sh) echo 'active' ?>" href="<?php echo $this->getUrl('shop.html') ?>"><?php echo $this->__('Shop') ?></a></li>
 					
 					<li><a class="<?php if($ab && $cms == 'about') echo 'active' ?>" href="<?php echo $this->getUrl('about') ?>"><?php echo $this->__('About') ?></a></li>
 
@@ -126,7 +126,8 @@
 					<li class="divider contact"></li> -->
 				</ul>
 			<?php endif; ?>
-			<?php //echo $this->getChildHtml('topLinks') ?>
+			<?php // echo $this->getChildHtml('topLinks') ?>
+			<?php echo $this->getChildHtml('topCart')?>
 			<ul class="right">
 				<li class="to-top">Top <i class="fi-arrow-up"></i></li>
 				<!-- <li class="new_devi"><a style="padding:0;"><span class="divi-span"></span></a></li> -->
@@ -141,5 +142,4 @@
 			</ul>
 		</section>
 	</nav>
-	<?php //echo $this->getChildHtml('topCart')?>
 </div>

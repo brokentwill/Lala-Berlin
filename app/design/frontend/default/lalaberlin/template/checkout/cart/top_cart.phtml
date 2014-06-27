@@ -31,13 +31,28 @@
  */
 
 ?>
+
+<?php  
+	$store = Mage::app()->getStore()->getCode(); 
+   	$store = strtolower($store);
+?>
+
+
 <?php if ($this->getIsNeedToDisplaySideBar()):?>
 <div class="block block-cart" >
     <?php $_cartQty = $this->getSummaryCount() ?>
-        <?php if ($_cartQty>0): ?>
-            <a href="<?php echo $this->getUrl('checkout/cart/') ?>"><?php echo $this->__('Shopping bag (%s)',$_cartQty) ?></a>
-        <?php else: ?>
-            <a href="<?php echo $this->getUrl('checkout/cart/') ?>"><?php echo $this->__('Shopping bag') ?></a>
-        <?php endif; ?>
+    <?php if ($store == "de"): ?>
+	    <?php if ($_cartQty>0): ?>
+	        <a href="<?php echo $this->getUrl('checkout/cart/') ?>"><?php echo $this->__('Einkaufstasche (%s)',$_cartQty) ?></a>
+	    <?php else: ?>
+	        <a href="<?php echo $this->getUrl('checkout/cart/') ?>"><?php echo $this->__('Einkaufstasche') ?></a>
+	    <?php endif; ?>
+    <?php else: ?>
+    	<?php if ($_cartQty>0): ?>
+	        <a href="<?php echo $this->getUrl('checkout/cart/') ?>"><?php echo $this->__('Shopping bag (%s)',$_cartQty) ?></a>
+	    <?php else: ?>
+	        <a href="<?php echo $this->getUrl('checkout/cart/') ?>"><?php echo $this->__('Shopping bag') ?></a>
+	    <?php endif; ?>
+    <?php endif ?>
 </div>
 <?php endif;?>

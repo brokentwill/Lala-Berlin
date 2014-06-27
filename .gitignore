@@ -3,6 +3,7 @@
 /media/
 /puppet/
 /sql/
+/magmi/state/
 /journal/wp-content/uploads/
 /journal/wp-config.php
 /phpMyAdmin/
@@ -15,3 +16,4 @@
 /*.tar
 /*.rar
 /*.sql
+*.sh

@@ -42,14 +42,9 @@
     $_category = Mage::getModel('catalog/category')->load(3);
     $_subCate = $_category->getChildrenCategories();
 
-    // foreach ($_subCate as $_sub) {
-    //     if ($_sub->getId() == $_parentId) {
-    //         $_subSub = $_sub->getChildrenCategories();
-    //         foreach ($_subSub as $_xsub) {
+    $language_settings = Mage::app()->getStore()->getCode(); 
+    $language_settings = strtolower($language_settings);
 
-    //         }
-    //     }
-    // }
 
 ?> 
 
@@ -129,8 +124,6 @@
                 <input type="hidden" name="related_product" id="related-products-field" value="" />
             </div>
 
-            
-
             <div class="product-top" id="product-top">
 
                 <div class="top">
@@ -168,10 +161,22 @@
                     <?php echo $this->getChildHtml('alert_urls') ?>
                     <?php if($_product->isSaleable()): ?>
                         <?php echo $this->getChildHtml('product_type_data') ?>
+                        <?php
+                            $_taxAmount = round( ($_product->getPrice() * $_product->getData('tax_percent') / (100 + $_product->getData('tax_percent'))), 2 );
+                        ?>
+                        <?php if ($language_settings == "de" ): ?>
+                            <h2 class="vat"><?php echo $this->__('inkl. MwSt. zzgl. Versandkosten: ') . $this->helper('core')->formatPrice($_taxAmount) ?></h2>
+                        <?php else: ?>
+                            <h2 class="vat"><?php echo $this->__('VAT and Delivery price: ') . $this->helper('core')->formatPrice($_taxAmount) ?></h2>
+                        <?php endif ?>
+                        
                     <?php else: ?>
-                        <?php echo $this->getPriceHtml($_product, true, true) ?>
+
+                    <?php echo $this->getPriceHtml($_product, true, true) ?>
                     <?php endif; ?>
+
                     <?php echo $this->getTierPriceHtml() ?>
+
                     <?php //echo $this->getChildHtml('extrahint') ?>
 
                     <?php if (!$this->hasOptions()):?>
@@ -199,9 +204,7 @@
                                     if($_product->getCare() != '' ) {
                                     	
                                     	echo '<div>';
-                                
-                                    	$language_settings = Mage::app()->getStore()->getCode(); 
-                                    	$language_settings = strtolower($language_settings);
+
                                     	
                                     	if ( $_product->getCare() == '1' ) {
 	                                	    if ( $language_settings == "de") { 
@@ -505,5 +508,6 @@
         jQuery('.product-share').share();
     });
 </script>
+
 
 

@@ -2060,6 +2060,17 @@ ul.products-grid li .price-box p { margin: 0 5px 0 0; display: inline-block; fon
 ul.products-grid li .price-box p.old-price .price { color: #cacaca; text-decoration: line-through;}
 ul.products-grid li .prod_bot { font-family: Brown-Bold; line-height: 1.25rem; }
 
+#upsell-product-table ul li .price-box p {
+   margin: 0 5px 0 0; display: inline-block; font-size: 0.85rem;
+}
+#upsell-product-table ul li .price-box p span {
+  font-size: 0.85rem;
+}
+#upsell-product-table ul li .price-box p.old-price .price {
+  color: #cacaca;
+  text-decoration: line-through;
+}
+
 .product-top { background: #fff; float: left; width: 100%; padding-bottom: 100px; margin-bottom: 90px; margin-top: 25px;}
 .product-top .top { float: left; width: 100%;}
 
@@ -2091,7 +2102,9 @@ ul.products-grid li .prod_bot { font-family: Brown-Bold; line-height: 1.25rem; }
 	
 	padding-right: 41%;
 }
-.product-shop .price-box { margin-bottom: 30px;}
+
+.product-shop h2.vat { font-size: 14px; margin-bottom: 40px;}
+.product-shop .price-box { margin-bottom: 10px;}
 .product-shop .price-box > p { display: inline-block; margin: 0 5px 0 0;}
 .product-shop .price-box > p.old-price span.price { text-decoration: line-through; color: #cacaca;}
 .product-shop .price-box span.price { font-size: 17px; }
@@ -2241,11 +2254,11 @@ li.img-zoom-item {
   font-weight: normal;
 }
 #product-info .prd-info-wrap > .prd-info.active { display: block;}
-.product-colour { margin-top: 50px; font-size: 0.875rem; color: #2f2f2f;}
+.product-colour { margin-top: 40px; font-size: 0.875rem; color: #2f2f2f;}
 .product-colour span { display: inline-block;}
 .product-colour span:first-child { text-transform: uppercase; letter-spacing: 1px; font-size: 11px;}
 .product-colour span:last-child { padding: 15px 0 0 0px; font-size: 14px; }
-#product-options-wrapper { float: left; width: 100%; margin-top: 40px;}
+#product-options-wrapper { float: left; width: 100%; margin-top: 30px;}
 .product-options-bottom { float: left; width: 100%;}
 
 .blog-load { float: left; width: 100%; position: relative;}

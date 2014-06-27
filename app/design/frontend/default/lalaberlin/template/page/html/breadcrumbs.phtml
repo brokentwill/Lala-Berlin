@@ -75,13 +75,11 @@
         });
 
         jQuery(".bcd-menu-icon a:not('.a-home')").on('click',function (e) {
-            console.log('xx');
             jQuery(this).closest('#bdc').toggleClass('expland');
             e.stopImmediatePropagation();
         });
 
         jQuery(".bcd-menu-icon a.a-home").on('click',function (e) {
-            console.log('xx');
             jQuery(this).closest('#navbar02').toggleClass('home-expland');
             e.stopImmediatePropagation();
         });

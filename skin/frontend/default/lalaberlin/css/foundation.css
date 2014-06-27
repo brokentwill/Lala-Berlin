@@ -1434,8 +1434,8 @@ select {
     .columns.xxlarge-uncentered.opposite {
         float: right !important; } }
 meta.foundation-mq-topbar {
-    font-family: "/only screen and (min-width:64.063em)/";
-    width: 64.063em; }
+    font-family: "/only screen and (min-width:80em)/";
+    width: 80em; }
 
 /* Wrapped around .top-bar to contain to grid width */
 .contain-to-grid {
@@ -1647,7 +1647,7 @@ meta.foundation-mq-topbar {
     display: block; }
 
 
-@media only screen and (max-width: 50em) {
+@media only screen and (max-width: 80em) {
     .top-bar .toggle-topbar {
         position: absolute;
         right: 0;
@@ -1704,21 +1704,41 @@ meta.foundation-mq-topbar {
 
     li.to-top i { display: none;}
 
+    .block-cart {
+        width: 100%;
+        padding: 10px 0 !important;
+        text-align: center;
+    }
+    .top-bar-section ul.right li a {
+        line-height: 0;
+    }
+    .top-bar-section ul li:hover a {
+        color: #5d5d5d;
+        border-bottom: none !important;
+    }
+    .top-bar-section ul.right {
+        display: none;
+    }
+
+    .header-lala-logo a {
+        display: inline-block !important;
+    }
+
 
 }
 
-@media only screen and (min-width: 50em) {
+@media only screen and (min-width: 80em) {
 
     .breadcrumbs ul li span { display: inline-block; height: 100%;}
     .breadcrumbs .header-lala-logo { width: 11%;}
     .breadcrumbs .header-lala-logo a img{
-      max-width: 60%;
+        max-width: 60%;
     }
 
     li.to-top { 
         float: right !important; 
         margin-right: 35px;
-        padding-right: 15px;
+        padding-right: 15px !important;
         color: #000; cursor: pointer; 
         letter-spacing: 2px; height: 55px; 
         line-height: 55px;
@@ -1775,11 +1795,10 @@ meta.foundation-mq-topbar {
     .top-bar-section ul li {
         float: left; 
         padding: 0 30px;
-}
+    }
     .top-bar-section ul li .js-generated {
         display: none; }
     .top-bar-section li.hover > a:not(.button) {
-        /*background: #272727;*/
         color: #000; }
     .top-bar-section ul li.new_devi {
         display: block;
@@ -3924,8 +3943,8 @@ p.lead {
     margin-bottom: 0.5rem; }
 
 meta.foundation-mq-topbar {
-    font-family: "/only screen and (min-width:64.063em)/";
-    width: 64.063em; }
+    font-family: "/only screen and (min-width:80em)/";
+    width: 80em; }
 
 .off-canvas-wrap, .inner-wrap, nav.tab-bar, .left-off-canvas-menu, .left-off-canvas-menu *, .right-off-canvas-menu, .move-right a.exit-off-canvas, .move-left a.exit-off-canvas {
     -webkit-backface-visibility: hidden; }
