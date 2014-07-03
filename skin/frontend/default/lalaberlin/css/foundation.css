@@ -1434,8 +1434,8 @@ select {
     .columns.xxlarge-uncentered.opposite {
         float: right !important; } }
 meta.foundation-mq-topbar {
-    font-family: "/only screen and (min-width:80em)/";
-    width: 80em; }
+    font-family: "/only screen and (min-width:77em)/";
+    width: 77em; }
 
 /* Wrapped around .top-bar to contain to grid width */
 .contain-to-grid {
@@ -1516,6 +1516,7 @@ meta.foundation-mq-topbar {
 
 .top-bar.expanded {
     height: auto;
+    overflow: visible;
     background: #fff; }
 .top-bar.expanded .title-area {
     background: #fff; }
@@ -1566,7 +1567,7 @@ meta.foundation-mq-topbar {
 	margin-right: -0.5em;
 }	
 .top-bar-section ul li > a.active {
-    /* color: #8d8d8d; */
+    border-bottom: 5px solid #181818;
 }
 .top-bar-section ul li > a.button {
     background: #008cba;
@@ -1647,7 +1648,20 @@ meta.foundation-mq-topbar {
     display: block; }
 
 
-@media only screen and (max-width: 80em) {
+@media only screen and (max-width: 77em) {
+    .block-cart a { float: none !important;}
+
+    .top-bar-section ul.right li a {
+        line-height: 0 !important;
+    }
+    .top-bar-section ul.right > li {
+        padding-bottom: 10px !important;
+    }
+
+    .top-bar-section ul.right li.language {
+        padding-right: 0 !important;
+    }
+
     .top-bar .toggle-topbar {
         position: absolute;
         right: 0;
@@ -1706,7 +1720,7 @@ meta.foundation-mq-topbar {
 
     .block-cart {
         width: 100%;
-        padding: 10px 0 !important;
+        padding: 0 !important;
         text-align: center;
     }
     .top-bar-section ul.right li a {
@@ -1717,7 +1731,7 @@ meta.foundation-mq-topbar {
         border-bottom: none !important;
     }
     .top-bar-section ul.right {
-        display: none;
+       /* display: none;*/
     }
 
     .header-lala-logo a {
@@ -1727,7 +1741,7 @@ meta.foundation-mq-topbar {
 
 }
 
-@media only screen and (min-width: 80em) {
+@media only screen and (min-width: 77em) {
 
     .breadcrumbs ul li span { display: inline-block; height: 100%;}
     .breadcrumbs .header-lala-logo { width: 11%;}
@@ -3943,8 +3957,8 @@ p.lead {
     margin-bottom: 0.5rem; }
 
 meta.foundation-mq-topbar {
-    font-family: "/only screen and (min-width:80em)/";
-    width: 80em; }
+    font-family: "/only screen and (min-width:77em)/";
+    width: 77em; }
 
 .off-canvas-wrap, .inner-wrap, nav.tab-bar, .left-off-canvas-menu, .left-off-canvas-menu *, .right-off-canvas-menu, .move-right a.exit-off-canvas, .move-left a.exit-off-canvas {
     -webkit-backface-visibility: hidden; }

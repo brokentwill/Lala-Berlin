@@ -205,6 +205,13 @@ class MoreSleep_Lala_Model_Import extends Varien_Object{
 
     public function updateStock(){
         $db = Mage::getSingleton('core/resource')->getConnection('core_write');
+
+        $db->query("UPDATE cataloginventory_stock_item SET is_in_stock = '1' WHERE product_id IN (SELECT entity_id FROM catalog_product_entity WHERE type_id = 'configurable')");
+        $db->query("UPDATE cataloginventory_stock_status SET stock_status = '1' WHERE product_id IN (SELECT entity_id FROM catalog_product_entity WHERE type_id = 'configurable')");
+
+        $db->query("UPDATE cataloginventory_stock_item SET is_in_stock = '0', qty = '0' WHERE product_id IN (SELECT entity_id FROM catalog_product_entity WHERE sku NOT IN (SELECT CONCAT(artikel_nr, '_', farbe, '_', groesse) COLLATE utf8_unicode_ci AS sku FROM moresleep_lala_import_lager) AND type_id = 'simple')");
+        $db->query("UPDATE cataloginventory_stock_status SET stock_status = '0', qty = '0' WHERE product_id IN (SELECT entity_id FROM catalog_product_entity WHERE sku NOT IN (SELECT CONCAT(artikel_nr, '_', farbe, '_', groesse)  COLLATE utf8_unicode_ci AS sku FROM moresleep_lala_import_lager) AND type_id = 'simple')");
+       
         $query = $db->query("SELECT CONCAT(artikel_nr, '_', farbe, '_', groesse) AS sku, qty FROM moresleep_lala_import_lager");
         while($stock = $query->fetch(PDO::FETCH_ASSOC)){
 	        echo $stock["sku"] . " - " . $stock["qty"] . "\n";

@@ -48,14 +48,14 @@
 <div class="child-cate row columns">
     <ul class="large-12 columns">
         <?php foreach ($_subCate as $_sub): ?>
-            <?php if ($_sub->getId() == $_parentId): ?>
+            <?php if ($_sub->getId() == $_parentId || $_sub->getId() == $_curCate->getId()): ?>
                 <li><a href="<?php echo $_sub->getUrl() ?>" class="active"><?php echo $_sub->getName() ?></a></li>
             <?php else: ?>
                 <li><a href="<?php echo $_sub->getUrl() ?>"><?php echo $_sub->getName() ?></a></li>
             <?php endif; ?>
         <?php endforeach; ?>
     </ul>
-    <ul class="large-12 columns sub-cate">
+    <ul class="large-12 columns sub-cate <?php echo ($_sub->getId() == $_curCate->getId()) ? 'no-sub' : '' ?>" >
         <?php foreach ($_subCate as $_sub): ?>
             <?php if ($_sub->getId() == $_parentId): $_subSub = $_sub->getChildrenCategories(); ?>
                 <?php foreach ($_subSub as $_xsub): ?>
@@ -155,20 +155,14 @@
                     $today =  time();
                     $checkSale = false;
 
-                    $newF = $_product->getNewFromDate();
-                    $newT = $_product->getNewToDate();
-                    // $newC = $_product->getCreatedAt();
+                    $newF = $_product->getNewsFromDate();
+                    $newT = $_product->getNewsToDate();
                      
-                    
                     if ($specialprice) {
                         if ($today >= strtotime( $specialPriceFromDate) && $today <= strtotime($specialPriceToDate) || $today >= strtotime( $specialPriceFromDate) && is_null($specialPriceToDate)) {
                             $checkSale = true;
                         }
                     }
-                    
-                    
-
-
                 ?>
 
                 <?php if ($specialprice && $_product->isSaleable()): ?>
@@ -186,7 +180,7 @@
                 <?php endif ?>
 
                 <?php if(!$_product->isSaleable()): ?>
-                    <span class="item-sold <?php if($checkSale) echo 'sit' ?>">Sold Out</span>
+                    <span class="item-sold">Sold Out</span>
                 <?php endif; ?>
 
             </li>

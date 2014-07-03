@@ -34,7 +34,7 @@
 <?php
     $_helper    = $this->helper('catalog/output');
     $_category  = $this->getCurrentCategory();
-    $_parent = $_category->getParentCategory()->getId();
+    $_parent    = $_category->getParentCategory()->getId();
 
     $_store = Mage::app()->getStore()->getId();
     

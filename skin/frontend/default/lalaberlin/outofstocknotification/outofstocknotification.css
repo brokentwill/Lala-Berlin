@@ -30,8 +30,8 @@ input#outofstock_email1 { margin-top: 10px;}
 
 #notify_submit1 { display: block; float: left; clear: both; margin-top: 10px;}
 
-span#notify_message1 { background: url("../img/des-icon.png") no-repeat 100px 19px ; padding-right: 15px; float: left; width: 200px; line-height: 16px;}
-span#notify_message1.active { background: url("../img/des-icon-active.png") no-repeat 100px 20px}
+span#notify_message1 { background: url("../img/des-icon.png") no-repeat bottom; padding-right: 15px; float: left; width: 200px; line-height: 16px;}
+span#notify_message1.active { background: url("../img/des-icon-active.png") no-repeat bottom}
 
 
 

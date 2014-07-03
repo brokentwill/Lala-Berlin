@@ -4,6 +4,28 @@ body{
 #navbar02 .top-bar .top-bar-section .left li, #navbar .top-bar .top-bar-section li{
     text-align: left;
 }
+/* --- --- */
+.subnavigation-wp-lalaberlin{
+    max-width: 1304px;
+    width: 100%;
+    margin: 0px auto;
+}
+.subnavigation-wp-lalaberlin .post-categories{    
+    width: 92%;
+    margin: 0px auto;
+}
+.subnavigation-wp-lalaberlin .post-categories li{
+    display: table;
+    padding-right: 10px;
+    padding-top: 30px;
+}
+.subnavigation-wp-lalaberlin .post-categories li a{
+    color: #959595;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    transition: all 0.3s ease-out 0s;
+    text-transform: uppercase;
+}
 /* --- Home page --- */
 .cms-row-content{
     margin: 0px auto;
@@ -133,6 +155,10 @@ body{
 }
 .home-page-recent-articles .columns{
     padding-bottom: 0px;
+    margin-bottom: 90px;
+}
+.home-page-recent-articles .large-recent-articles:last-child{
+    float: left !important;
 }
 .home-page-recent-articles .columns .home-page-recent-articles-image{
     position: relative;

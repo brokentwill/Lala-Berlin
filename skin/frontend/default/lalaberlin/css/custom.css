@@ -614,10 +614,7 @@ ul,ol         { list-style:none; }
 ul, ol, dl{font-size: 0.8rem;}
 fieldset{padding: 0;}
 dl dt{font-size: 1.2em;font-weight: normal;font-family: Brown-Bold, 'Trebuchet MS', Verdana, sans-serif;}
-
 /* Layout ================================================================================ */
-
-
 
 .main-container {
     width: 100%;
@@ -659,11 +656,13 @@ dl dt{font-size: 1.2em;font-weight: normal;font-family: Brown-Bold, 'Trebuchet M
 #quick_cart_widget .product-details{font-size: .8rem;}
 #quick_cart_widget button.button{margin: 0;padding: 15px;}
 #quick_cart_widget .view-cart{font-size: .8rem; font-weight: bold; margin-left: 10px;}
+
 button.button{font-family:Brown, 'Trebuchet MS', Verdana, sans-serif;text-transform: uppercase;background: none; font-size: 0.875rem; letter-spacing: 0.2em; height: 46px;/*line-height: 40px;*/border: 1px solid #000;color: #181818;padding: 0 32px;
     -webkit-transition: background-color 300ms ease-out 0s;
     -moz-transition: background-color 300ms ease-out 0s;
     transition: background-color 300ms ease-out 0s}
-button.button:hover, button.button:focus, button[disabled], button[disabled]:focus, button[disabled]:hover{background: #333 !important;}
+
+button.button:hover, button.button:focus, button[disabled], button[disabled]:focus, button[disabled]:hover{background: #333;}
 .header-container{background: none;}
 .page{ }
 #navbar{height: 105px;padding: 0}
@@ -682,9 +681,9 @@ button.button:hover, button.button:focus, button[disabled], button[disabled]:foc
     .top-bar-section ul li.has-dropdown > a span{color: #000;}
     .top-bar-section ul li.has-dropdown > a span.active{color: #999;}
     .top-bar-section ul li:hover > a.top-link-cart span{color: #000;}
-    .top-bar-section li a:not(.button):hover{ }
+    .top-bar-section li a:not(.button):hover{/* color: #999; */}
     .top-bar-section .right li a:not(.button):hover{color: #000;}
-    .top-bar-section .has-dropdown.language > a{ }
+    .top-bar-section .has-dropdown.language > a{/* padding-right: 15px !important; */}
     .top-bar-section .has-dropdown.language > a span:hover { color: #999; opacity: 1;}
     .top-bar-section ul li > a.top-link-cart{ padding-right: 35px;}
     .top-bar-section ul li > a.top-link-cart span{border: 1px solid #000;padding: 10px 35px; color: #000;}
@@ -695,17 +694,15 @@ button.button:hover, button.button:focus, button[disabled], button[disabled]:foc
     .top-bar-section .left li a.active { }
     .top-bar-section ul{background: #fff;}
     .top-bar-section ul.links{float: right;}
-
 }
 
 @media only screen and (min-width: 90.063em) {
 
-}
 
+}
 @media only screen and (min-width: 120.063em) {
 
 }
-
 
 .header-lala-logo a img{}
 
@@ -850,12 +847,40 @@ table thead, table tfoot{ background: #fff; }
     margin-bottom: 30px;
     text-transform: uppercase;
 }
+
+.cart-collaterals .col-2 {
+    width: 100%;
+}
+
+.cart-collaterals .col-2 .discount  { float: left; margin: 0 10px 3em;}
+
+.cart-collaterals .col-2 .discount h2 {
+    color: #181818;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin: 12px 0;
+}
+
+#coupon_code {
+    height: 35px;
+    margin-bottom: 15px;
+    margin-top: 10px;
+    width: 100%;
+    color: rgba(0, 0, 0, 0.75);
+    padding: 0.5rem;
+    font-size: 0.875rem;
+}
+
+
 @media (max-width: 1240px){
     .account-login {
         width: 960px;
     }
     .col2-set .col-1, .col2-set .col-2 {
         width: 460px;
+    }
+    .cart-collaterals .col-2 {
+        width: 100%;
     }
 }
 
@@ -872,6 +897,8 @@ table thead, table tfoot{ background: #fff; }
     .account-login {
         width: 100%;
     }
+
+
 }
 
 /********** Common Checkout Styles > */
@@ -1062,10 +1089,10 @@ table thead, table tfoot{ background: #fff; }
 /* ======================================================================================= */
 
 
-
 .col1-layout .col-main,
 .col2-left-layout .col-left,
-.col2-left-layout .col-main {
+.col2-left-layout .col-main{
+    /*position: relative;*/
     padding-left: 0.9375rem;
     padding-right: 0.9375rem;
     width: 100%;
@@ -1077,25 +1104,11 @@ table thead, table tfoot{ background: #fff; }
 .top-bar ul.left{float: none !important;}
 .col2-left-layout{margin-bottom: 60px;}
 
-
-.block-cart { float: right; color: #000; padding-right: 20px; font-size: 0.9376rem;}
-.block-cart a { padding: 10px 20px; border: 1px solid #000;}
-
-.top-bar-section ul.right li a {
-    line-height: 105px;
-    border: 0;
-}
-
-.top-bar-section ul:not(.right) li:hover a {
-    border-bottom: 5px solid #181818;
-}
-
 @media only screen {
     .col2-right-layout .col-right,
     .col2-right-layout .col-main,
     .col2-left-layout .col-left,
     .col2-left-layout .col-main{
-        /*position: relative;*/
         padding-left: 0.83333rem;
         padding-right: 0.83333rem;
         float: left;}
@@ -1118,7 +1131,6 @@ table thead, table tfoot{ background: #fff; }
     .top-link-cart{padding-right: 15px;}
 }
 
-
 /* Medium Displays: 768px and up */
 @media only screen and (min-width: 48em) {
     .col2-left-layout .col-left{
@@ -1136,13 +1148,20 @@ table thead, table tfoot{ background: #fff; }
 }
 
 /* Large Displays: 1024px and up */
-@media only screen and (min-width: 80em) {
+@media only screen and (min-width: 77em) {
     .top-bar .title-area { width: 11% }
     .top-bar li.name{text-align: center}
     .top-bar-section ul.left li:not(.new_devi) a {
         padding: 31px 0px 0;
     }
-    .top-bar-section ul.right .divider{display: none;}
+    .top-bar-section ul.right .divider{
+        background: none repeat scroll center center #999999;
+        display: block;
+        height: 11px;
+        margin-top: 48px;
+        padding: 0;
+        width: 1px;
+    }
     .col-main{padding-top: 10px;}
 }
 /* X-Large Displays: 1441 and up */
@@ -1247,6 +1266,31 @@ b, strong{font-family: Brown-Bold, 'Trebuchet MS', Verdana, sans-serif;font-weig
 
 .igallery-category-view .masonry-container .item > a.has_link,
 .igallery-images.masonry-container .item > a.has_link { cursor: pointer;}
+
+
+
+#review-buttons-container > .btn-checkout {
+    float: left;
+    clear: left;
+    margin-top: 5px;
+}
+#review-buttons-container > .f-left a { text-decoration: underline;}
+#login-form .form-list .input-box input { width: 45%;}
+
+#payone_creditcard_cc_cid { float: left;}
+.cvv-what-is-this {
+    display: inline-block;
+    padding: 10px 0 0 5px;
+}
+
+#checkout-payment-method-load > dd { margin-bottom: 20px;}
+#checkout-payment-method-load > dd .form-list .input-box > input,
+#checkout-payment-method-load > dd .form-list .input-box > select {
+    width: 230px;
+}
+
+
+
 
 @media only screen and (max-width: 950px) {
     .banner_box .divSimpleSlider .banner_overlay > p {
@@ -1380,9 +1424,144 @@ b, strong{font-family: Brown-Bold, 'Trebuchet MS', Verdana, sans-serif;font-weig
 }
 
 @media only screen and (max-width: 495px) {
-    
 
+    #shopping-cart-table thead{
+        display: none;
+    }
+    #shopping-cart-table thead tr th{
+        padding: 2px 0px;
+        font-size: 14px;
+    }
+    #shopping-cart-table thead tr th span{
+        font-size: 14px;
+    }
+    .data-table tbody td{
+        padding: 2px 1px;
+    }
+    .cart .data-table tr td:first-child{
+        width: 60px;
+    }
+    .cart .data-table tr td .btn-remove{
+        font-size: 10px !important;
+    }
+    .cart .data-table tr td:first-child img{
+        width: 60px;
+    }
+    .cart .product-name, table tr th, table tr td, #shopping-cart-table td > span.cart-price{
+        font-size: 14px;
+    }
+    .cart .data-table input.qty{
+        padding: 2px 1px;
+        font-size: 14px;
+    }
+    .checkout-cart-index .page-title h1, .checkout-onepage-index .page-title h1{
+        font-size: 40px !important;
+        text-align: center;
+    }
+    #shopping-cart-table tfoot td, .cart-collaterals .col-2 .discount{
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+    #shopping-cart-table td .button, .buttons-set .button, .cart .totals button{
+        width: 100% !important
+    }
+    #shopping-cart-table tfoot td .btn-update {
+        background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+        border: 1px solid #000 !important;
+        color: #000;
+        float: left;
+        font-size: 13px;
+        padding: 0 5px;
+    }
+    #shopping-cart-table tfoot td .btn-update:hover {
+        background: #000000 !important;
+        color: #FFFFFF;
+        float: left;
+        font-size: 13px;
+        padding: 0 5px;
+    }
+    .buttons-set{
+        text-align: center;
+    }
+    .cart-collaterals .totals{
+        width: 100%;
+        float: none;
+        padding: 0px;
+        margin: 0px;
+    }
+    #checkout-payment-method-load > dd .form-list .input-box > input,
+    #checkout-payment-method-load > dd .form-list .input-box > select {
+        width: 100%;
+    }
+    /* step 2*/
+    .opc .step-title .number {
+        background: none repeat scroll 0 0 #333;
+        color: #fff;
+        float: left;
+        height: 20px;
+        line-height: 20px;
+        text-align: center;
+        width: 20px;
+    }
+    .opc .step-title h2{
+        font-size: 12px;
+        padding-left: 27px;
+    }
+    .opc .col2-set .col-1, .opc .col2-set .col-2 {
+        width: 100%;
+    }
+    .opc .col2-set .col-1 .buttons-set  {
+        margin: 0 !important;
+        padding: 0;
+    }
+    .opc .col2-set .col-1 .buttons-set button {
+        margin-bottom: 0;
+    }
+    .opc .col2-set .col-2 .buttons-set {
+        padding: 0;
+    }
 
+    #login-form .form-list .input-box input { width: 100%; }
+    #checkoutSteps h1, #checkoutSteps h2, #checkoutSteps h3, #checkoutSteps h4, #checkoutSteps h5, #checkoutSteps h6, #checkoutSteps p, #checkoutSteps span, #checkoutSteps li, #checkoutSteps label{
+        font-size: 12px !important;
+    }
+    .account-login .page-title h1{
+        font-size: 40px;
+        text-align: center;
+    }
+    .buttons-set .button{
+        background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+        border: 1px solid #000 !important;
+        color: #000;
+        float: left;
+        font-size: 13px;
+        padding: 0 5px;
+        width: 250px;
+        margin-top: 20px;
+    }
+    .form-list .field, #co-billing-form li.wide{
+        margin: 0px !important;
+        width: 100%;
+        padding: 0px !important;
+    }
+    #co-billing-form li.fields label, #co-billing-form li.wide label{
+        width: 38%;
+    }
+    #co-billing-form li .input-box{
+        width: 60%;
+    }
+    #checkout-review-table tr, #checkout-review-table td, #checkout-review-table th{
+        padding: 2px 1px;
+        font-size: 10px !important;
+    }
+    #payment_form_payone_creditcard li div.v-fix select{
+        width: 100% !important;
+    }
+    .footnav li h2.section-title{
+        font-size: 16px;
+    }
 }
 
 .header-lala-logo a { line-height: 100px; }
@@ -1593,6 +1772,17 @@ li.item.is-video iframe {
 }
 
 
+
+.block-cart { float: right; color: #000; padding-right: 20px; font-size: 0.9376rem;}
+.block-cart a { 
+    font-size: 0.625em;
+    display: inline-block;
+    float: left;
+    letter-spacing: 0.5em;
+    padding-left: 35px;
+    background: url(../img/cart-icon.png) no-repeat left  center;
+}
+
 .home-top-slider {
     margin-bottom: 30px;
     height: 620px;
@@ -1600,7 +1790,7 @@ li.item.is-video iframe {
 .home-top-slider .divSimpleSlider { height: 100%; }
 .home-top-slider .divSimpleSlider > a {
     height: 100%;
-    background: none no-repeat scroll 0 0 / cover  rgba(0, 0, 0, 0);
+    background: none no-repeat scroll 0 0 / cover rgba(0, 0, 0, 0);
     text-decoration: none;
 	background-size: cover !important;
 	-webkit-background-size: cover !important;
@@ -1710,12 +1900,26 @@ span#notify_message {
 .sold-data #notify_submit button {
   width: 100%;
 }
-
+.top-bar-section ul li:hover a {
+    border-bottom: 5px solid #181818;
+}
 #product-top .product-share.sharer-0 label {
-    line-height: 23px;
+    height: 25px;
+    position: relative;
+    width: 75px;
+    display: block;
+}
+#product-top .product-share.sharer-0 label span {
+    position: absolute;
+    display: block;
+    top: 12px;
+    margin-top: -12px;
+    text-align: center;
+    width: 100%;
+    height: 24px;
 }
 #product-top .product-share.sharer-0 {
-    width: 72px;
+    /*width: 72px;*/
 }
 .checkout-onepage-index .page-title h1 {
     font-family: Domaine Display Condensed;
@@ -1746,9 +1950,22 @@ span#notify_message {
     font-family: Domaine Display Condensed;
     font-size: 60px;
 }
-
 #shopping-cart-totals-table tr{
     background-color: transparent !important;
-
-    
 }
+.top-bar-section ul.right li a {
+    line-height: 105px;
+    border: 0;
+}
+.shop-top > p { overflow: hidden; }
+
+
+
+
+
+
+
+
+
+
+

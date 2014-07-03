@@ -85,6 +85,11 @@ if(class_exists('Mage')){
     $header = $Block->createBlock('page/html_header');
     $header->setTemplate('page/html/header.phtml');
 
+    // Add children
+
+    $topCart = $Block->createBlock('checkout/cart_sidebar')->setTemplate('checkout/cart/top_cart.phtml');
+    $header->setChild('topCart', $topCart);
+
     
 }
 ?><!DOCTYPE html>
@@ -116,3 +121,6 @@ if(class_exists('Mage')){
     <div class="wrapper">
         <div class="page">
         <?php echo (class_exists('Mage')) ? $header->toHTML() : '' ; ?>
+            <div class="subnavigation-wp-lalaberlin">
+                <?php echo get_the_category_list(); ?>
+            </div>

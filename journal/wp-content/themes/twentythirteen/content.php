@@ -503,6 +503,10 @@
 		}
 
 	}
+	else
+	{
+		file_put_contents("cache_social.txt", "");
+	}
 	
 	$datas_cache = file_get_contents('cache_social.txt');
 	

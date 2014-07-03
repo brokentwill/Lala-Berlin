@@ -13,11 +13,6 @@
  */
 define('WP_USE_THEMES', true);
 
-require_once (dirname(dirname(__FILE__))."/app/Mage.php");
-umask(0);
-Mage::app(Mage::app()->getStore()->getCode());
-Mage::getSingleton('core/translate')->init(Mage::app()->getLocale()->getLocaleCode(), true);
-
 /* ----- Load Lib Facebock ----- */
 require_once('libs/facebock/src/facebook.php');
 

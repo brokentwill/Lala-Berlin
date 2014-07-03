@@ -53,6 +53,45 @@
         <?php endforeach; ?>
     </dl>
 
+    <?php //$confAttributes = $_product->getTypeInstance(true)->getConfigurableAttributesAsArray($_product); ?>
+    <?php //foreach ($confAttributes as $v): ?>
+        <!-- <div id="<?php echo $v['attribute_id'] ?>" class="custom-attr">
+            <span>Choose <?php echo $v['store_label'] ?></span>
+            <div class="attr-option">
+                <?php foreach ($v['values'] as $val): ?>
+                    <span id="<?php echo $val['value_index'] ?>"><?php echo $val['label'] ?></span>
+                <?php endforeach ?>
+            </div>
+            <input class="opt-hidden" type="hidden" name="super_attribute[<?php echo $v['attribute_id'] ?>]" value="">
+        </div> -->
+    <?php //endforeach ?>
+
+    <?php foreach ($dump as $valx): ?>
+        <?php foreach ($valx as $v): ?>
+            <?php if (is_array($v)): ?>
+            
+            <!-- <div id="<?php echo $v['id'] ?>" class="custom-attr">
+                <?php if (Mage::app()->getStore()->getCode() == 'de'): ?>
+                    <span><?php echo 'Größe auswählen' ?></span>
+                <?php else: ?>
+                    <span><?php echo $this->__('Choose') . ' ' . $v['label'] ?></span>
+                <?php endif; ?>
+                
+                <div class="attr-option">
+                    <?php foreach ($v['options'] as $val): ?>
+
+                        <?php $dumpText = explode('(', trim($val['label']))  ?>
+                        <span class="<?php if(count($valx) == 1) { echo 'one'; } else { echo 'span_'.$v['code']; } ?>" alt='<?php echo json_encode($val['products']) ?>' id="<?php echo $val['id'] ?>" title="<?php echo trim($val['label']) ?>"><?php echo trim($dumpText[0]) ?></span>
+                    
+                    <?php endforeach ?>
+                </div>
+                <input class="opt-hidden" type="hidden" name="super_attribute[<?php echo $v['id'] ?>]" value="">
+            </div> -->
+
+        <?php endif ?>
+        <?php endforeach ?>
+    <?php endforeach ?>
+
     <?php if ($_product->getMsn()): ?>
         <div class="prd-info prd-info-des prd-info-msn">
             <?php echo $_product->getMsn() ?>
@@ -91,6 +130,7 @@ spConfig.getIdOfSelectedProduct = function()  // function for get child product 
     for (var i = this.settings.length - 1; i >= 0; i--)
     {
         var selected = this.settings[i].options[this.settings[i].selectedIndex];
+        console.log(selected);
         if (selected.config)
         {
             for (var iproducts = 0; iproducts < selected.config.products.length; iproducts++)
@@ -133,50 +173,54 @@ spConfig.getIdOfSelectedProduct = function()  // function for get child product 
 
 }
 
-function notifyMe(val, sel)
+function notifyMe(val, sel, prodId)
 {
-    var stockNotifyConfigure = spConfig.getIdOfSelectedProduct();
-    var outstockArr = sel.split('(');
-    var stockstatus = outstockArr[1].slice(0, outstockArr[1].lastIndexOf(")"));
+
     
-    if (stockstatus.trim() != 'in stock') {
-        document.getElementById('notify_message1').style.display = "block";
-        document.getElementById('notify_btn').style.display = "block";
-        // document.getElementById('notify_submit1').style.display = "block";
 
-        if (val != '') {
+    //var stockNotifyConfigure = spConfig.getIdOfSelectedProduct();
+    var stockNotifyConfigure = prodId;
+    if (sel.indexOf('(') != -1) {
+        var outstockArr = sel.split('(');
+        var stockstatus = outstockArr[1].slice(0, outstockArr[1].lastIndexOf(")"));
+        
+        if (stockstatus.trim() != 'in stock') {
+            document.getElementById('notify_message1').style.display = "block";
+            document.getElementById('notify_btn').style.display = "block";
+            document.getElementById('notify_submit1').style.display = "none";
 
+            if (val != '') {
+
+                $$('.add-to-cart').each(function(elem) {
+                    elem.hide();
+                });
+                document.getElementById('productId1').value = val;
+                document.getElementById('notify_errorVal1').innerHTML = '';
+                document.getElementById('ajaxButton1').setAttribute("onclick", "return stockNotifyValidate('" + stockNotifyConfigure + "','1')");
+
+
+                $$('.product-options-bottom .price-box').each(function(pricebox) {
+                    span = document.createElement('span');
+                    span.id = 'appthastock-status';
+                    span.style.paddingLeft = '10px';
+                    span.innerHTML = stockstatus;
+                    pricebox.appendChild(span);
+                }.bind(this));
+            }
+        } else {
             $$('.add-to-cart').each(function(elem) {
-                elem.hide();
+                elem.show();
             });
-            document.getElementById('productId1').value = val;
-            document.getElementById('notify_errorVal1').innerHTML = '';
-            document.getElementById('ajaxButton1').setAttribute("onclick", "return stockNotifyValidate('" + stockNotifyConfigure + "','1')");
-
-
-            $$('.product-options-bottom .price-box').each(function(pricebox) {
-                span = document.createElement('span');
-                span.id = 'appthastock-status';
-                span.style.paddingLeft = '10px';
-                span.innerHTML = stockstatus;
-                pricebox.appendChild(span);
-            }.bind(this));
-
-
-
+            if ($('appthastock-status'))
+            {
+                $('appthastock-status').remove();
+            }
+            document.getElementById('notify_submit1').style.display = "none";
+            document.getElementById('notify_btn').style.display = "none";
+            document.getElementById('notify_message1').style.display = "none";
         }
-    } else {
-        $$('.add-to-cart').each(function(elem) {
-            elem.show();
-        });
-        if ($('appthastock-status'))
-        {
-            $('appthastock-status').remove();
-        }
-        document.getElementById('notify_submit1').style.display = "none";
-        document.getElementById('notify_btn').style.display = "none";
-        document.getElementById('notify_message1').style.display = "none";
     }
+    
 }
 
 function newfunctionVal() {
@@ -197,10 +241,74 @@ Translator.add('AlreadyNotified', '<?php echo $this->__('This Mail Id Already No
 
 <script type="text/javascript">
     jQuery(document).ready(function() {
+        var prodId, proO, proC, proS, objO, objC, objS, object ;
+        jQuery('.custom-attr .attr-option span').click(function() {
+            jQuery(this).closest('#product-options-wrapper').addClass('on');
+            jQuery(this).closest('.attr-option').find('span').removeClass('active');
+            jQuery(this).addClass('active');
+
+            var id   = jQuery(this).closest('.custom-attr').attr('id');
+            var val  = jQuery(this).attr('id');
+            var txt  = jQuery(this).attr('title');
+            
+
+            if (jQuery(this).hasClass('span_color')) {
+                proC = jQuery(this).attr('alt');
+                objC = jQuery.parseJSON(proC);
+                //console.log(objC);
+            }
+            if (jQuery(this).hasClass('span_size')) {
+                proS = jQuery(this).attr('alt');
+                objS = jQuery.parseJSON(proS);
+                //console.log(objS);
+            }
+            if (jQuery(this).hasClass('one')) {
+                proO = jQuery(this).attr('alt');
+                objO = jQuery.parseJSON(proO);
+                prodId = objO[0];
+                //console.log(prodId);
+                
+            } else {
+                if (objC !== undefined && objS !== undefined) {
+                    object = objC.concat(objS);
+                    //console.log(object);
+                    var uniqueVals = [];
+                    jQuery.each(object, function(i, el){
+                        if(jQuery.inArray(el, uniqueVals) === -1) {
+                            uniqueVals.push(el);
+                        } else {
+                            prodId = el;
+                            
+                        }
+                    })
+                }   
+            }
+            
+            console.log(prodId);
+            var dumArr = <?php echo json_encode($_dumArr) ?>;
+            //console.log(dumArr);
+            if (prodId !== undefined) {
+                jQuery.each(dumArr, function(i, el){
+                    if (el[prodId] !== undefined) {
+                        txt = el[prodId];              
+                    }
+                })
+            }
+            if (prodId == null) {
+                txt = '(out of stock)';
+            }
+
+            console.log(txt);
+            jQuery(this).closest('.attr-option').next('input.opt-hidden').val(val);
+            notifyMe(prodId, txt, prodId);
+            prodId = null;
+        });
+
         jQuery('span#notify_message1').click(function() {
             jQuery(this).toggleClass('active');
             jQuery('#notify_submit1').slideToggle('slow');
         });
+
     });
 </script>
 

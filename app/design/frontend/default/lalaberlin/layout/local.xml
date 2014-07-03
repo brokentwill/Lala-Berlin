@@ -151,7 +151,7 @@
     <checkout_cart_index>
         <reference name="checkout.cart">
             <remove name="checkout.cart.shipping"/>
-            <remove name="checkout.cart.coupon"/>
+            <!-- <remove name="checkout.cart.coupon"/> -->
             <remove name="checkout.cart.crosssell"/>
         </reference>
         <reference name="checkout.cart.methods">
@@ -164,6 +164,12 @@
             <action method="setTemplate"><template>page/1column.phtml</template></action>
         </reference>
     </checkout_onepage_index>
+
+    <customer_account>
+        <reference name="customer_account_navigation" >
+            <action method="addLink" translate="label" module="customer"><name>account_logout</name><path>customer/account/logout</path><label>Log Out</label></action>
+        </reference>
+    </customer_account>
 
     <cms-no-route>
         <reference name="root">

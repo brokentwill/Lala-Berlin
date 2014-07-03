@@ -54,14 +54,17 @@
     if(!$_product->getCategoryIds())
         return; 
      
-    $cat_ids = $_product->getCategoryIds(); 
-    $cat = Mage::getModel('catalog/category')->load( $cat_ids[0] );
+    $cat_ids = $_product->getCategoryIds();
 
-     
+    if (count($cat_ids)) {
+        $cat = Mage::getModel('catalog/category')->load( $cat_ids[count($cat_ids) - 1] );
+    }
+
     $order = Mage::getStoreConfig('catalog/frontend/default_sort_by');
     $direction = 'asc';
      
     $category_products = $cat->getProductCollection()->addAttributeToSort($order, $direction);
+    $category_products->addAttributeToFilter('type_id', 'configurable');
     $category_products->addAttributeToFilter('status',1); 
     $category_products->addAttributeToFilter('visibility',4);
      
@@ -90,18 +93,19 @@
 <div class="child-cate row">
     <ul class="large-12 columns">
         <?php foreach ($_subCate as $_sub): ?>
-            <?php if ( $_parentCate->getId() == $_sub->getId() ): ?>
+            <?php if ( $_parentCate->getId() == $_sub->getId() || $_curCate->getId() == $_sub->getId() ): ?>
                 <li><a href="<?php echo $_sub->getUrl() ?>" class="active"><?php echo $_sub->getName() ?></a></li>
             <?php else: ?>
                 <li><a href="<?php echo $_sub->getUrl() ?>"><?php echo $_sub->getName() ?></a></li>
             <?php endif; ?>
         <?php endforeach; ?>
     </ul>
-    <ul class="large-12 columns sub-cate">
+    <ul class="large-12 columns sub-cate" <?php echo ($_category->getId() == $_parentCate->getId()) ? 'style="display:none"' : '' ?> >
         <?php foreach ($_parentCate->getChildrenCategories() as $_xsub): ?>
             <?php if ( $_xsub->getId() == $_curCate->getId() ): ?>
                 <li><a href="<?php echo $_xsub->getUrl() ?>" class="active"><?php echo $_xsub->getName() ?></a></li>
             <?php else: ?>
+                <?php // echo $_category->getId() . '-' .  $_parentCate->getId() ?>
                 <li><a href="<?php echo $_xsub->getUrl() ?>"><?php echo $_xsub->getName() ?></a></li>
             <?php endif; ?>
         <?php endforeach; ?>
@@ -129,7 +133,14 @@
                 <div class="top">
 
                     <div class="product-share">
-                        <a class="share-btn">SHARE</a>
+                        <div class="ps-wrap">
+                            <a class="share-btn">SHARE</a>
+                            <ul>
+                                <li><a class="ps-tw" href="<?php echo "https://twitter.com/intent/tweet?url=" . $_product->getUrlPath() ?>"></a></li>
+                                <li><a class="ps-fb" href="<?php echo "https://www.facebook.com/sharer.php?u=" . $_product->getUrlPath() ?>"></a></li>
+                                <li><a class="ps-gg" href="<?php echo "https://plus.google.com/share?url=" . $_product->getUrlPath() ?>"></a></li>
+                            </ul>
+                        </div>
                     </div>
 
                     <div class="product-next-prev" id="product-next-prev">
@@ -165,9 +176,9 @@
                             $_taxAmount = round( ($_product->getPrice() * $_product->getData('tax_percent') / (100 + $_product->getData('tax_percent'))), 2 );
                         ?>
                         <?php if ($language_settings == "de" ): ?>
-                            <h2 class="vat"><?php echo $this->__('inkl. MwSt. zzgl. Versandkosten: ') . $this->helper('core')->formatPrice($_taxAmount) ?></h2>
+                            <h2 class="vat"><?php echo $this->__('inkl. MwSt. zzgl. Versandkosten ') /*. $this->helper('core')->formatPrice($_taxAmount)*/ ?></h2>
                         <?php else: ?>
-                            <h2 class="vat"><?php echo $this->__('VAT and Delivery price: ') . $this->helper('core')->formatPrice($_taxAmount) ?></h2>
+                            <h2 class="vat"><?php echo $this->__('VAT and Delivery price ') /*. $this->helper('core')->formatPrice($_taxAmount)*/ ?></h2>
                         <?php endif ?>
                         
                     <?php else: ?>
@@ -395,7 +406,6 @@
             var url = item.find('img').attr('data-src');
             item.find('img').attr('src', url);
             item.find('img').load(function() {
-
                 $j(window).scrollTop(0);
                 $j('.zoom-loader').hide();
                 $j('.page').css('margin-top', '0');
@@ -459,6 +469,7 @@
 
             if (curNext) {
                 var nxtImg = curNext.find('img');
+                nxtImg.attr('src', '');
                 nxtImg.attr('src', nxtImg.attr('data-src'));
                 nxtImg.load(function() {
                     $j('.zoom-loader').hide();
@@ -481,6 +492,7 @@
 
             if ( curPrev ) {
                 var prevImg = curPrev.find('img');
+                prevImg.attr('src', '');
                 prevImg.attr('src', prevImg.attr('data-src'));
                 prevImg.load(function() {
                     $j('.zoom-loader').hide();
@@ -505,7 +517,59 @@
             });
         });
 
-        jQuery('.product-share').share();
+        /* Social share */
+        function social(url) {
+            var popup;
+            popup = {
+                    width: 600,
+                    height: 400
+                };
+                popup.top = (screen.height / 2) - (popup.height / 2);
+                popup.left = (screen.width / 2) - (popup.width / 2);
+                window.open(url, 'targetWindow', "toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,left=" + popup.left + ",top=" + popup.top + ",width=" + popup.width + ",height=" + popup.height);
+        }
+
+        var isMobile = {
+            Android: function() {
+                return navigator.userAgent.match(/Android/i);
+            },
+            BlackBerry: function() {
+                return navigator.userAgent.match(/BlackBerry/i);
+            },
+            iOS: function() {
+                return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+            },
+            Opera: function() {
+                return navigator.userAgent.match(/Opera Mini/i);
+            },
+            Windows: function() {
+                return navigator.userAgent.match(/IEMobile/i);
+            },
+            any: function() {
+                return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+            }
+        };
+
+        jQuery('.product-share ul li a').each(function() {
+            jQuery(this).click(function(e) {
+                e.preventDefault();
+                var _url = jQuery(this).attr('href');
+                if ( _url.indexOf("facebook") != -1 && isMobile.any() ) {
+                  _url = _url.replace('www', 'm');
+                };
+                social(_url);
+            });
+        });
+        
+        jQuery('.ps-wrap').hover(function() {
+            jQuery(this).animate({'width': '170px', 'overflow' : 'visible'}, 350);
+        }, function() {
+            jQuery(this).animate({'width': '75px', 'overflow' : 'hidden'}, 350);
+        });
+        /* End Social share */
+
+        // jQuery('.product-share').share();
+
     });
 </script>
 

@@ -31,7 +31,7 @@ get_header('magento'); ?>
 				echo '
 				<div class="home-page-recent-articles page-category">
 					<div class="page-category-title">
-						<div class="category-label">'.__('Cateogry').'</div>
+						<div class="category-label">'.__('Category').'</div>
 						<div class="category-value">'.qtrans_use(mage_get_language(),$category[0]->name).'</div>
 					</div>
 					<div class="row">';
