@@ -63,11 +63,11 @@ style="page-break-after:always;"
                 <td colspan="2">&nbsp;</td>
             </tr>
             <?php $nrTotals = sizeof($totals['totals']) ?>
-            <?php $counterTotals = 1 ?>                   
+            <?php $counterTotals = 1 ?>
             <?php foreach ($totals['totals'] as $total):?>
                 <?php $isLast =  $counterTotals >= $nrTotals ?>
                 <tr>
-                    <td width="50%">&nbsp;</td>
+                    <td width="50%" <?php echo $isLast?'style="border-bottom:1px solid black;"':'' ?>>&nbsp;</td>
                     <td <?php echo $isLast?'style="border-bottom:1px solid black;"':'' ?>
                             align="right"
                             width="34%"><?php echo $total['label'].($isLast?$vertSpacing:'') ?></td>
@@ -99,7 +99,7 @@ style="page-break-after:always;"
     <b><?php echo Mage::helper('giftmessage')->__('From:') ?></b> <?php echo $giftMessage['from'] ?><br/>
     <b><?php echo Mage::helper('giftmessage')->__('To:') ?></b> <?php echo $giftMessage['to'] ?><br/>
     <b><?php echo Mage::helper('giftmessage')->__('Message:') ?></b> <?php echo $giftMessage['message'] ?> <br/>
-<?php endif; ?>  
+<?php endif; ?>
 
 <?php if ($orderComments) : ?>
     <br/>
@@ -109,10 +109,10 @@ style="page-break-after:always;"
     <?php endforeach; ?>
     <br/>
 <?php endif; ?>
-        
+
 <?php if ($commentHistory) : ?>
     <br/>
-    <strong><?php echo Mage::helper('sales')->__('Comments') ?></strong><br/>  
+    <strong><?php echo Mage::helper('sales')->__('Comments') ?></strong><br/>
     <table border="0" cellpadding="2" cellspacing="0">
     <?php foreach ($commentHistory as $history): ?>
         <tr>
