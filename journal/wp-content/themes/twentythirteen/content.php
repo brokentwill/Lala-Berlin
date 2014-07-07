@@ -12,7 +12,7 @@
 <article>
 	<div id="info" class="row large-11 cms-row-content">
 <?php
-	
+
 	/* ------------------------- get meta ------------------------- */
 
 	$args = array(
@@ -20,6 +20,7 @@
 	    'order' => 'DESC',
 	    'post_type' => 'post',
 	    'post_status' => 'publish',
+	    'posts_per_page' => '-1'
 		'meta_query' => array(
 			array(
 				'key' => 'wpcf-slideshow-home-page'
@@ -28,7 +29,7 @@
 	);
 	$query = new WP_Query( $args );
 	$posts_slideshow = array();
-	
+
 
 	if ( !empty($query) AND isset($query->posts) AND !empty($query->posts) AND is_array($query->posts) AND count($query->posts) )
 	{
@@ -53,7 +54,7 @@
 		}
 	}
 	/* ------------------------- Slideshow post new ------------------------- */
-	
+
 	if ( count($posts_slideshow) )
 	{
 		echo '
@@ -79,7 +80,7 @@
 			    </div>
 			</div>
 		';
-	}	
+	}
 
 	$args = array(
 	    'posts_per_page' => 3,
@@ -93,12 +94,12 @@
 	);
 
 	$posts = wp_get_recent_posts($args);
-	
+
 	/* ------------------------- Post last new ------------------------- */
 
 	if ( !empty($posts) AND is_array($posts) AND count($posts) )
 	{
-		
+
 		echo '
 		<div class="home-page-recent-articles home-page-recent-articles-top">
 			<div class="row">';
@@ -129,7 +130,7 @@
 	}
 
 	/* ------------------------- Post Text Teaser top 1 ------------------------- */
-	
+
 	$args = array(
 		'post_type' => 'post',
 		'orderby' => 'post_date',
@@ -164,7 +165,7 @@
 	}
 
 	/* ------------------------- soundcloud or spotify player ------------------------- */
-	
+
 	$args = array(
 		'post_type' => array('soundclouds', 'spotify'),
 		'orderby' => 'post_date',
@@ -178,7 +179,7 @@
 		)
 	);
 	$query_soundcloud_spotify = new WP_Query( $args );
-	
+
 	if ( !empty($query_soundcloud_spotify) AND !empty($query_soundcloud_spotify->posts) AND is_array($query_soundcloud_spotify->posts) AND count($query_soundcloud_spotify->posts) )
 	{
 		echo '
@@ -213,7 +214,7 @@
 					$embed = $Soundcloud_Spotify['wpcf-soundcloud-embed'][0];
 					$embed = str_replace('"></iframe>', '', $embed);
 					$embed = explode('src="', $embed);
-					
+
 					if ( !empty($embed) AND is_array($embed) AND count($embed) == 2 )
 					{
 						echo '
@@ -251,7 +252,7 @@
 	}
 
 	/* ------------------------- Post Text Teaser top 2 ------------------------- */
-	
+
 	if ( !empty($query_text_teaser) AND !empty($query_text_teaser->posts) AND is_array($query_text_teaser->posts) AND count($query_text_teaser->posts) ==2 )
 	{
 		$post = $query_text_teaser->posts[1];
@@ -280,7 +281,7 @@
 	    'suppress_filters' => true
 	);
 	$posts = wp_get_recent_posts($args);
-	
+
 	/* ------------------------- Post last new ------------------------- */
 
 	if ( !empty($posts) AND is_array($posts) AND count($posts) )
@@ -292,7 +293,7 @@
 		{
 			$caption = get_post_custom($post['ID']);
 			$caption = ( isset($caption['wpcf-post-description']) AND !empty($caption['wpcf-post-description']) AND is_array($caption['wpcf-post-description']) AND count($caption['wpcf-post-description']) ) ? $caption['wpcf-post-description'][0] : '';
-			
+
 			echo '
 			<div class="small-12 medium-4 large-4 large-recent-articles columns">
 				<div class="home-page-recent-articles-image">
@@ -309,7 +310,7 @@
 				</div>
 			</div>';
 		}
-				
+
 		echo'
 			</div>
 		</div>
@@ -319,7 +320,7 @@
 	/* ------------------------- Facebock ------------------------- */
 
 	// File not exists
-	
+
 	if ( file_exists('cache_social.txt') )
 	{
 		$cache_social = file_get_contents('cache_social.txt');
@@ -331,7 +332,7 @@
 		{
 			$cache_social = json_decode($cache_social);
 		}
-	}	
+	}
 	// Open the file to get existing content
 
 	$args = array(
@@ -377,9 +378,9 @@
 						$ch = curl_init();
 						curl_error($ch);
 						curl_setopt($ch, CURLOPT_POST, 0);
-						curl_setopt($ch,CURLOPT_URL,$query); 
-						curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-						$json=curl_exec($ch); 
+						curl_setopt($ch,CURLOPT_URL,$query);
+						curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+						$json=curl_exec($ch);
 						// curl_close($ch);
 						$json = json_decode($json);
 
@@ -394,11 +395,11 @@
 
 								$ch = curl_init();
 								curl_setopt($ch, CURLOPT_POST, 0);
-								curl_setopt($ch,CURLOPT_URL,$thumbFB); 
-								curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-								$sourcecode=curl_exec($ch); 
+								curl_setopt($ch,CURLOPT_URL,$thumbFB);
+								curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+								$sourcecode=curl_exec($ch);
 								curl_close($ch);
-								
+
 								$savefile = fopen('wp-content/uploads/facebock/'.$imgResize, 'w');
 								fwrite($savefile, $sourcecode);
 								fclose($savefile);
@@ -431,9 +432,9 @@
 						$ch = curl_init();
 						curl_error($ch);
 						curl_setopt($ch, CURLOPT_POST, 0);
-						curl_setopt($ch,CURLOPT_URL,$query); 
-						curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-						$json=curl_exec($ch); 
+						curl_setopt($ch,CURLOPT_URL,$query);
+						curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+						$json=curl_exec($ch);
 						// curl_close($ch);
 						$json = json_decode($json);
 
@@ -447,11 +448,11 @@
 
 							$ch = curl_init();
 							curl_setopt($ch, CURLOPT_POST, 0);
-							curl_setopt($ch,CURLOPT_URL,$thumbFB); 
-							curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-							$sourcecode=curl_exec($ch); 
+							curl_setopt($ch,CURLOPT_URL,$thumbFB);
+							curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+							$sourcecode=curl_exec($ch);
 							curl_close($ch);
-							
+
 							$savefile = fopen('wp-content/uploads/instagram/'.$imgResize, 'w');
 							fwrite($savefile, $sourcecode);
 							fclose($savefile);
@@ -478,19 +479,19 @@
 					}
 					else
 					{
-						$datas_social['pinterest_'.$custom_type_pinterest['wpcf-url_pinterest'][0]] = array(								
+						$datas_social['pinterest_'.$custom_type_pinterest['wpcf-url_pinterest'][0]] = array(
 							'image' => ( ( !empty($custom_type_pinterest['wpcf-image']) AND !empty($custom_type_pinterest['wpcf-image'][0]) ) ?  str_replace(get_site_url(),'',$custom_type_pinterest['wpcf-image'][0]) : ''),
 							'title'=> $Social->post_title,
 							'link' => ( ( !empty($custom_type_pinterest['wpcf-url_pinterest']) AND !empty($custom_type_pinterest['wpcf-url_pinterest'][0]) ) ?  $custom_type_pinterest['wpcf-url_pinterest'][0] : ''),
 							'headline' => ''
 						);
 						$check_social_new = true;
-						
+
 					}
 				}
 			}
 		}
-		
+
 		// save cache facebock
 		if ( !isset($cache_social) )
 		{
@@ -510,9 +511,9 @@
 	{
 		file_put_contents("cache_social.txt", "");
 	}
-	
+
 	$datas_cache = file_get_contents('cache_social.txt');
-	
+
 	if ( empty($datas_cache) )
 	{
 		$datas_cache = array();
@@ -554,7 +555,7 @@
 			}
 			else
 			{
-				
+
 				echo  '
 				<div class="row">
 					<div class="small-12 medium-8 large-8 columns home-page-facebocks-left">
@@ -580,7 +581,7 @@
 				';
 				if ( count($datas_cache) > 0 )
 				{
-					
+
 					echo '
 						<div class="small-12 medium-4 large-4 columns home-page-facebocks-right">';
 						foreach ($datas_cache as $ind => $item)
@@ -606,7 +607,7 @@
 				reset($datas_cache);
 				if ( count($datas_cache) > 0 )
 				{
-					
+
 					echo '
 					<div class="row home-page-facebocks-bottom">';
 					foreach ($datas_cache as $ind => $item)
@@ -672,7 +673,7 @@
 			</div>';
 			$date_last = $post['post_date'];
 		}
-				
+
 		echo'
 			</div>
 		</div>';
