@@ -33,7 +33,7 @@
 				$json['html'] .= '
 				<div class="small-12 medium-4 large-4 columns">
 					<div class="home-page-recent-articles-image">
-						<img src="'.(dirname(get_site_url()).'/lib/timthumb.php?src='.wp_get_attachment_url( get_post_thumbnail_id($post['ID']) ).'&h=252').'" />
+						<img src="'.(dirname(get_site_url()).'/lib/timthumb.php?src='.wp_get_attachment_url( get_post_thumbnail_id($post['ID']) ).'&w=412&h=252').'" />
 						<a class="a-view-more" href="'.qtrans_convertURL(get_permalink($post['ID']), mage_get_language()).'">'.__('View').'</a>
 					</div>
 					<div class="home-page-recent-articles-description">
