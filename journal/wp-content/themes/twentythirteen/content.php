@@ -138,11 +138,14 @@
 	    'offset' => 0,
 		'meta_query' => array(
 			array(
-				'key' => 'wpcf-text-teaser'
+				'key' => 'wpcf-text-teaser',
+				'value'   => 'a:0:{}',
+				'compare' => '!='
 			)
 		)
 	);
 	$query_text_teaser = new WP_Query( $args );
+	// echo '<pre>';print_r($query_text_teaser);exit;
 	if ( !empty($query_text_teaser) AND !empty($query_text_teaser->posts) AND is_array($query_text_teaser->posts) AND count($query_text_teaser->posts) )
 	{
 		$post = $query_text_teaser->posts[0];
@@ -298,7 +301,7 @@
 				</div>
 				<div class="home-page-recent-articles-description">
 					<div class="title"><a href="'.qtrans_convertURL(get_permalink($post['ID']), mage_get_language()).'">'.qtrans_use(mage_get_language(),get_the_title($post['ID'])).'</a></div>
-					<div class="description">'.strip_tags(implode(' ',array_slice($caption,0,10))).'</div>
+					<div class="description">'.$caption.'</div>
 					<div class="bottom">
 						<div class="bottom-view"><a href="'.qtrans_convertURL(get_permalink($post['ID']), mage_get_language()).'">'.__('View post').'</a></div>
 						<div class="bottom-date">['.date("d-m-Y", strtotime($post['post_date'])).']</div>
@@ -660,7 +663,7 @@
 				</div>
 				<div class="home-page-recent-articles-description">
 					<div class="title"><a href="'.qtrans_convertURL(get_permalink($post['ID']), mage_get_language()).'">'.qtrans_use(mage_get_language(),get_the_title($post['ID'])).'</a></div>
-					<div class="description">'.strip_tags(implode(' ',array_slice($caption,0,10))).'</div>
+					<div class="description">'.$caption.'</div>
 					<div class="bottom">
 						<div class="bottom-view"><a href="'.qtrans_convertURL(get_permalink($post['ID']), mage_get_language()).'">'.__('View post').'</a></div>
 						<div class="bottom-date">['.date("d-m-Y", strtotime($post['post_date'])).']</div>

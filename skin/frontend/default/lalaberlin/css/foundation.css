@@ -2011,7 +2011,7 @@ button, .button {
 button:hover, button:focus, .button:hover, .button:focus {
     background-color: #0079a1; }
 button:hover, button:focus, .button:hover, .button:focus {
-    color: white; }
+    color: white !important; }
 button.secondary, .button.secondary {
     background-color: #e7e7e7;
     border-color: #dadada;

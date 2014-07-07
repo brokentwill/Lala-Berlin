@@ -107,6 +107,9 @@ if(class_exists('Mage')){
     <title><?php wp_title( '|', true, 'right' ); ?></title>
     <link rel="profile" href="http://gmpg.org/xfn/11">
     <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
+    <link rel="icon" href="<?php echo Mage::helper('core/url')->getHomeUrl();?>/media/favicon/default/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="<?php echo Mage::helper('core/url')->getHomeUrl();?>/media/favicon/default/favicon.ico" type="image/x-icon" />
+
     <!--[if lt IE 9]>
     <script src="<?php echo get_template_directory_uri(); ?>/js/html5.js"></script>
     <![endif]-->
@@ -124,5 +127,7 @@ if(class_exists('Mage')){
         <div class="page custom-wp">
         <?php echo (class_exists('Mage')) ? $header->toHTML() : '' ; ?>
             <div class="subnavigation-wp-lalaberlin">
-                <?php echo get_the_category_list(); ?>
+                <ul class="post-categories">
+                <?php wp_list_categories('title_li='); ?>
+                </ul>
             </div>

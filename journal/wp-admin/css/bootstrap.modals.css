@@ -385,7 +385,9 @@ hr {
     width: 900px;
   }
 }
-
+#postdivrich {
+    display: block !important;
+}
 #wpcf-group-metabox-id-id-post-facebock .wpcf-wrap:last-child{
   display: none !important;
 }

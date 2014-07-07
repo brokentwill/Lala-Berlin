@@ -15,8 +15,8 @@ body{
     margin: 0px auto;
 }
 .subnavigation-wp-lalaberlin .post-categories li{
-    display: table;
-    padding-right: 10px;
+    display: table-cell;
+    padding-right: 20px;
     padding-top: 30px;
 }
 .subnavigation-wp-lalaberlin .post-categories li a{
@@ -960,7 +960,7 @@ a.btn-back, a.btn-back:hover{
     padding-bottom: 35px;
 }
 .other-articles-related-posts .columns img{
-    height: 252px;
+    /*height: 252px;*/
 }
 /* --- .recommendation-group --- */
 .recommendation-group{
@@ -1166,7 +1166,6 @@ a.btn-back, a.btn-back:hover{
         padding-top: 0px;
         padding-bottom: 10px;
     }
-
 }
 @media screen and (max-width: 480px) {
     .home-page-posts-marked-slideshow > .flexslider > .slides li .posts-marked-slideshow-desc .posts-marked-slideshow-desc-title{
@@ -1293,5 +1292,9 @@ a.btn-back, a.btn-back:hover{
         margin: 0 auto;
         width: 180px;
     }
-
+}
+@media screen and (max-width: 940px){
+    #navbar02 .top-bar .top-bar-section .left li, #navbar .top-bar .top-bar-section li{
+        text-align: center !important;
+    }
 }

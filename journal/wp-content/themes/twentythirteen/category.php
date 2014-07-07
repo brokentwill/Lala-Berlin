@@ -37,8 +37,8 @@ get_header('magento'); ?>
 					<div class="row">';
 				foreach ($posts as $post)
 				{
-					$caption = explode(' ', qtrans_use(mage_get_language(), $post['post_content']));
-
+					$caption = get_post_custom($post['ID']);
+					$caption = ( isset($caption['wpcf-post-description']) AND !empty($caption['wpcf-post-description']) AND is_array($caption['wpcf-post-description']) AND count($caption['wpcf-post-description']) ) ? $caption['wpcf-post-description'][0] : '';
 					echo '
 					<div class="small-12 medium-4 large-4 large-recent-articles columns">
 						<div class="home-page-recent-articles-image">
@@ -47,7 +47,7 @@ get_header('magento'); ?>
 						</div>
 						<div class="home-page-recent-articles-description">
 							<div class="title"><a href="'.qtrans_convertURL(get_permalink($post['ID']), mage_get_language()).'">'.qtrans_use(mage_get_language(),get_the_title($post['ID'])).'</a></div>
-							<div class="description">'.strip_tags(implode(' ',array_slice($caption,0,10))).'</div>
+							<div class="description">'.$caption.'</div>
 							<div class="bottom">
 								<div class="bottom-view"><a href="'.qtrans_convertURL(get_permalink($post['ID']), mage_get_language()).'">'.__('View post').'</a></div>
 								<div class="bottom-date">['.date("d-m-Y", strtotime($post['post_date'])).']</div>

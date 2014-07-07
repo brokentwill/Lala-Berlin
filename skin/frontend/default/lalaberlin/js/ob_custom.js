@@ -77,8 +77,18 @@ function updateViewCovers() {
         });
     }
 
+    
+
     $(document).ready(function() {
+
         init();
+
+        if (navigator.userAgent.indexOf('Mac OS X') !== -1) {
+            document.body.className += " mac";
+        } else {
+            document.body.className += " pc";
+        }
+        
     })
 
 })(jQuery, window);

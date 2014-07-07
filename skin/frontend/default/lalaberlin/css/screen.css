@@ -1860,46 +1860,58 @@ body.category-shop .shop-sub-cate {margin: 0px;}
 .shop-sub-cate li .sub-img img{
   margin-left: 0.625rem; margin-right: 0.625rem;
 }
-.sub-img .sub-overlay {
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(249,249,249,0.6);
-  -webkit-transition: opacity 0.35s ease-out 0s;
-  -moz-transition: opacity 0.35s ease-out 0s;
-  -ms-transition: opacity 0.35s ease-out 0s;
-  -o-transition: opacity 0.35s ease-out 0s;
-  transition: opacity 0.35s ease-out 0s;
 
-  box-sizing: content-box;
-  -moz-box-sizing: content-box;
-  padding-left: 0.625rem;
+.sub-img .sub-overlay, .shop-top > p > .sub-overlay {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(249,249,249,0.6);
 
+    -webkit-transition: opacity 0.35s ease-out 0s;
+    -moz-transition: opacity 0.35s ease-out 0s;
+    -ms-transition: opacity 0.35s ease-out 0s;
+    -o-transition: opacity 0.35s ease-out 0s;
+    transition: opacity 0.35s ease-out 0s;
 
-
+    box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    padding-left: 0.625rem;
+    text-align: center;
 }
-.sub-img .sub-overlay span {
-   font-family: 'Domaine Display Condensed', 'Brown Bold';
-  font-size: 3rem;
-  font-weight: normal;
-  text-transform: uppercase;
 
-  display: block;
-  height: 100%;
-  width: 100%;
-   padding-top: 50%;
-
-
-
+.shop-top p { float: left; padding-right: 0px; position: relative; }
+.shop-top p:hover .sub-overlay { opacity: 1;}
+.shop-top > p > .sub-overlay span {
+    font-family: 'Domaine Display Condensed', 'Brown Bold';
+    font-size: 3rem;
+    font-weight: normal;
+    text-transform: uppercase;
+    position: absolute;
+    left: 50%;
+    margin-left: -90px;
+    top: 50%;
 }
+
+.sub-img .sub-overlay span  {
+    font-family: 'Domaine Display Condensed', 'Brown Bold';
+    font-size: 3rem;
+    font-weight: normal;
+    text-transform: uppercase;
+    display: block;
+    height: 100%;
+    width: 100%;
+    padding-top: 50%;
+}
+
+
 
 .shop-sub-cate li .sub-img:hover .sub-overlay { opacity: 1;}
 
-.shop-top p { float: left; padding-right: 0px;}
+
 
 .header-container { background: #000; color: #fff; text-transform: uppercase; font-size: 0.75em; letter-spacing: 2px; height: 105px;line-height: 105px;}
 .header-wrap { margin: 0 auto;}
@@ -1914,7 +1926,7 @@ body.category-shop .shop-sub-cate {margin: 0px;}
 .category-shop .child-cate ul { padding-left: 0.5355rem;}
 
 .catalog-product-view .child-cate { width: 100%; }
-.catalog-product-view .child-cate .sub-cate { border-bottom: 1px solid #dedede; }
+.catalog-product-view .child-cate .sub-cate { /*border-bottom: 1px solid #dedede;*/ }
 
 .child-cate .sub-cate { /*border-top: 1px solid #dedede;*/ padding: 25px 0; }
 .child-cate .sub-cate.no-sub { padding: 25px 0 0;}
@@ -2073,7 +2085,7 @@ ul.products-grid li .prod_bot { font-family: Brown-Bold; line-height: 1.25rem; }
   text-decoration: line-through;
 }
 
-.product-top { background: #fff; float: left; width: 100%; padding-bottom: 100px; margin-bottom: 90px; margin-top: 25px;}
+.product-top { background: #fff; float: left; width: 100%; padding-bottom: 100px; margin-bottom: 90px; /*margin-top: 25px;*/}
 .product-top .top { float: left; width: 100%;}
 
 .product-img-box { float: left; width: 47%; margin-left: 15%; padding-top: 10px; }
@@ -2127,48 +2139,18 @@ ul.products-grid li .prod_bot { font-family: Brown-Bold; line-height: 1.25rem; }
 }
 
 .product-share {
-    float: left;
-    margin: 0 0 0 20px;
-    padding-top: 20px;
+  float: left;
+  margin: 0 0 0 20px;
+  padding-top: 20px;
 }
-
-.ps-wrap {
-    border: 1px solid #585858;
-    height: 27px;
-    width: 75px;
-    overflow: hidden;
-}
-
-.product-share .ps-wrap > a {
-	color: #181818;
-	display: block;
-	font-size: 11px;
-	line-height: 23px;
-	text-align: center;
-	width: 75px;
-	height: 25px;
-	letter-spacing: 0.2em;
-	margin: 0px;
-    float: left;
-}
-.product-share ul { float: left;}
-.product-share ul li {
-    float: left;
-    margin-right: 15px;
-}
-.product-share ul li a {
-    width: 16px;
-    height: 25px;
-    display: block;
-}
-.product-share ul li a.ps-tw {
-    background: url(../img/share-tw.png) no-repeat center center;
-}
-.product-share ul li a.ps-fb {
-    background: url(../img/share-fb.png) no-repeat center center;
-}
-.product-share ul li a.ps-gg {
-    background: url(../img/share-gg.png) no-repeat center center;
+.product-share a {
+  border: 1px solid #585858;
+  display: block;
+  font-size: 11px;
+  line-height: 22px;
+  text-align: center;
+  width: 60px;
+  letter-spacing: 1px;
 }
 
 
