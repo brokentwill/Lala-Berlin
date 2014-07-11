@@ -40,7 +40,18 @@
 				<?php if($_lang->getId() == $this->getCurrentStoreId()): ?>
 					<span class="active"><?php echo $_lang->getCode(); ?></span>
 				<?php else: ?>
-					<span onclick="window.location='<?php echo $_lang->getCurrentUrl() ?>'"><?php echo $_lang->getCode(); ?></span>
+					<?php 
+					$current_url = explode('/?',$_lang->getCurrentUrl());
+					if ( is_array($current_url) AND count($current_url) >=2 )
+					{
+						$current_url =  Mage::getBaseUrl().'?'.$current_url[1];
+					}
+					else
+					{
+						$current_url =  $_lang->getCurrentUrl();
+					}
+					?>
+					<span  onclick="window.location='<?php echo $current_url?>'"><?php echo $_lang->getCode(); ?></span>
 				<?php endif; ?>
 
 				<?php if($i == 1) echo '/' ?>

@@ -787,7 +787,7 @@ function qtrans_use($lang, $text, $show_available=false) {
 	if(!$show_available){
 		// check if content is available in default language, if not return first language found. (prevent empty result)
 		if($lang!=$q_config['default_language'])
-			return "(".$q_config['language_name'][$q_config['default_language']].") ".qtrans_use($q_config['default_language'], $text, $show_available);
+			return qtrans_use($q_config['default_language'], $text, $show_available);
 		foreach($content as $language => $lang_text) {
 			$lang_text = trim($lang_text);
 			if(!empty($lang_text)) {

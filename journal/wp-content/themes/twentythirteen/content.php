@@ -16,20 +16,20 @@
 	/* ------------------------- get meta ------------------------- */
 
 	$args = array(
-		'orderby' => 'post_date',
-	    'order' => 'DESC',
-	    'post_type' => 'post',
-	    'post_status' => 'publish',
-	    'posts_per_page' => '-1'
-		'meta_query' => array(
-			array(
-				'key' => 'wpcf-slideshow-home-page'
-			)
-		)
-	);
-	$query = new WP_Query( $args );
-	$posts_slideshow = array();
-
+        'orderby' => 'post_date',
+        'posts_per_page' => 4,
+        'offset' => 0,
+        'order' => 'DESC',
+        'post_type' => 'post',
+        'post_status' => 'publish',
+        'meta_query' => array(
+            array(
+                'key' => 'wpcf-slideshow-home-page'
+            )
+        )
+    );
+    $query = new WP_Query( $args );
+    $posts_slideshow = array();
 
 	if ( !empty($query) AND isset($query->posts) AND !empty($query->posts) AND is_array($query->posts) AND count($query->posts) )
 	{
@@ -64,7 +64,7 @@
 			            foreach( $posts_slideshow as $slide )
 			            {
 		echo 				'<li>
-			                    <img src="'.(dirname(get_site_url()).'/lib/timthumb.php?src='.$slide['img']).'&w=1139&h=624" />
+			                    <a href="'.$slide['link'].'"><img src="'.(dirname(get_site_url()).'/lib/timthumb.php?src='.$slide['img']).'&w=1139&h=624" /></a>
 			                    <div class="posts-marked-slideshow-desc">
 			                    	<div class="posts-marked-slideshow-desc-title">'.$slide['title'].'</div>
 			                    	<div class="posts-marked-slideshow-desc-subline">'.$slide['subline'].'</div>
@@ -111,7 +111,7 @@
 			<div class="small-12 medium-4 large-4 large-recent-articles columns">
 				<div class="home-page-recent-articles-image">
 					<img src="'.(dirname(get_site_url()).'/lib/timthumb.php?src='.wp_get_attachment_url( get_post_thumbnail_id($post['ID']) ).'&w=412&h=252').'" />
-					<a class="a-view-more" href="'.qtrans_convertURL(get_permalink($post['ID']), mage_get_language()).'">'.__('View').'</a>
+					<a class="a-view-more" href="'.qtrans_convertURL(get_permalink($post['ID']), mage_get_language()).'"><span>'.__('View').'</span></a>
 				</div>
 				<div class="home-page-recent-articles-description">
 					<div class="title"><a href="'.qtrans_convertURL(get_permalink($post['ID']), mage_get_language()).'">'.qtrans_use(mage_get_language(),get_the_title($post['ID'])).'</a></div>
@@ -298,7 +298,7 @@
 			<div class="small-12 medium-4 large-4 large-recent-articles columns">
 				<div class="home-page-recent-articles-image">
 					<img src="'.(dirname(get_site_url()).'/lib/timthumb.php?src='.wp_get_attachment_url( get_post_thumbnail_id($post['ID']) ).'&w=412&h=252').'" />
-					<a class="a-view-more" href="'.qtrans_convertURL(get_permalink($post['ID']), mage_get_language()).'">'.__('View').'</a>
+					<a class="a-view-more" href="'.qtrans_convertURL(get_permalink($post['ID']), mage_get_language()).'"><span>'.__('View').'</span></a>
 				</div>
 				<div class="home-page-recent-articles-description">
 					<div class="title"><a href="'.qtrans_convertURL(get_permalink($post['ID']), mage_get_language()).'">'.qtrans_use(mage_get_language(),get_the_title($post['ID'])).'</a></div>
@@ -458,7 +458,7 @@
 							fclose($savefile);
 							$check_social_new = true;
 							$datas_social['instagram_'.$custom_type_instagram['wpcf-id_instagram'][0]] = array(
-								'link' => $json->author_url,
+								'link' => 'http://instagram.com/p/'.$custom_type_instagram['wpcf-id_instagram'][0],
 								'image' => 'wp-content/uploads/instagram/'.$imgResize,
 								'title'=> $Social->post_title,
 								'headline' => ( ( !empty($custom_type_instagram['wpcf-instagram-headline']) AND !empty($custom_type_instagram['wpcf-instagram-headline'][0]) ) ?  $custom_type_instagram['wpcf-instagram-headline'][0] : '')
@@ -660,7 +660,7 @@
 			<div class="small-12 medium-4 large-4 large-recent-articles columns">
 				<div class="home-page-recent-articles-image">
 					<img src="'.(dirname(get_site_url()).'/lib/timthumb.php?src='.wp_get_attachment_url( get_post_thumbnail_id($post['ID']) ).'&w=412&h=252').'" />
-					<a class="a-view-more" href="'.qtrans_convertURL(get_permalink($post['ID']), mage_get_language()).'">'.__('View').'</a>
+					<a class="a-view-more" href="'.qtrans_convertURL(get_permalink($post['ID']), mage_get_language()).'"><span>'.__('View').'</span></a>
 				</div>
 				<div class="home-page-recent-articles-description">
 					<div class="title"><a href="'.qtrans_convertURL(get_permalink($post['ID']), mage_get_language()).'">'.qtrans_use(mage_get_language(),get_the_title($post['ID'])).'</a></div>

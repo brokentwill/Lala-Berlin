@@ -106,8 +106,8 @@ if(class_exists('Mage')){
     <meta charset="<?php bloginfo( 'charset' ); ?>">
     <meta name="viewport" content="width=device-width">
     <title><?php wp_title( '|', true, 'right' ); ?></title>
-    <link rel="icon" href="<?php dirname(get_home_url())?>/media/favicon/default/favicon.ico" type="image/x-icon" />
-    <link rel="shortcut icon" href="<?php dirname(get_home_url())?>/media/favicon/default/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="<?php dirname(get_home_url())?>media/favicon/default/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="<?php dirname(get_home_url())?>media/favicon/default/favicon.ico" type="image/x-icon" />
     <link rel="profile" href="http://gmpg.org/xfn/11">
     <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
     <!--[if lt IE 9]>

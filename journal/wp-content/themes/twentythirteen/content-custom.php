@@ -20,7 +20,7 @@ $categorys = get_the_category(get_the_ID());
 	<header class="entry-header">
 		
 		<div class="post-views-details std row">
-			<div class="small-12 medium-6 large-6 columns">
+			<div class="small-12 medium-6 large-6 columns des"> 
 				
 				<!-- title Articles -->
 				<?php if ( is_single() ) : ?>
@@ -102,6 +102,26 @@ $categorys = get_the_category(get_the_ID());
 	<div class="entry-content post-view-details-content std text-center">
 		<?php qtrans_use(mage_get_language(), the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'twentythirteen' )) ); ?>
 		<?php wp_link_pages( array( 'before' => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'twentythirteen' ) . '</span>', 'after' => '</div>', 'link_before' => '<span>', 'link_after' => '</span>' ) ); ?>
+		
+		<!-- Author info section -->
+		<?php if( get_field('lala_journal_posts') ): ?>
+	    	<?php while( has_sub_field("lala_journal_posts") ): ?>
+				<?php if( get_row_layout() == 'author-info' ){ ?>
+					<p style="text-align: center;">
+						<a href="">
+							<img src="<?php the_sub_field("image") ?>" alt="">
+						</a>
+					</p>
+					<p style="text-align: center;">
+						<strong>
+							<em><?php the_sub_field("info") ?></em>
+						</strong>
+					</p>
+				<?php } ?>
+	    	<?php endwhile; ?>
+		<?php endif; ?>
+		<!-- Author info section -->
+		
 	</div><!-- .entry-content -->
 	<?php endif; ?>
 
@@ -406,7 +426,34 @@ $categorys = get_the_category(get_the_ID());
 					<?php echo "</div>";
 	            }
 	        ?>
-
+			
+			
+			<?php
+	            if (get_row_layout() == "produkte_mutil"){
+	                $rows = get_sub_field('produktea');
+	                if ($rows){?>
+						<div class="gallery-feature">
+							<ul class="row">
+								<?php  foreach($rows as $row){?>
+								<li class="medium-4">
+									<div class="group-product">
+										<a class="product-image" href="<?php echo $row["produkt-link"]; ?>">
+											<img class="th" src="<?php echo $row["produkt-bild"]; ?>" alt="<?php echo $row["produkt-name"]; ?>" />
+										</a>
+										<div class="product-caption">
+											<div class="product-caption-name"><?php echo $row["produkt-name"]; ?></div>
+										</div>
+									</div>	
+								</li>
+								<?php }?>
+							</ul>
+						</div>	                    
+					<?php
+	                }
+	            }
+	        ?>
+			
+			
 			<?php if (get_row_layout() == "produkte-bereich"): ?>	
 				<div class="gallery-feature">
 					<ul class="row">
@@ -431,7 +478,7 @@ $categorys = get_the_category(get_the_ID());
 
 	<div class="control-panel-articles row">
 		<div class="small-12 medium-4 large-4 columns control-back-to-view">
-			<a href="<?php echo ( is_array($categorys) AND count($categorys) ) ? qtrans_convertURL(get_category_link( $categorys[0] ),mage_get_language()) : '#'; ?>" class="disabledBtn btn-back"><?php echo __('Back to overview')?></a>
+			<a href="<?php echo ( is_array($categorys) AND count($categorys) ) ? qtrans_convertURL(get_home_url(),mage_get_language()) : '#'; ?>" class="disabledBtn btn-back"><?php echo __('Back to overview')?></a>
 		</div>
 		<div class="small-12 medium-4 large-4 columns text-align-center control-panel-articles-middle">
 			<a href="<?php echo get_permalink( $previous_post->ID ); ?>" class=" disabledBtn btn-pre"><?php echo __('Prev')?></a>
@@ -467,24 +514,23 @@ $categorys = get_the_category(get_the_ID());
 		$posts = wp_get_recent_posts($args);
 		
 		if ( !empty($posts) AND is_array($posts) AND count($posts) )
-		{
+		{			
 			echo '
 			<div class="other-articles-related-posts home-page-recent-articles">
 				<div class="other-articles-title">'.__('Related Posts').'</div>
 				<div class="row">';
 			foreach ($posts as $post)
-			{
-				$caption = explode(' ', qtrans_use(mage_get_language(), $post['post_content']));
-
+			{				
+				$des=(get_post_meta($post['ID'],'wpcf-post-description'));								
 				echo '
 				<div class="small-12 medium-4 large-4 large-recent-articles columns">
 					<div class="home-page-recent-articles-image">
 						<img src="'.(dirname(get_site_url()).'/lib/timthumb.php?src='.wp_get_attachment_url( get_post_thumbnail_id($post['ID']) ).'&w=412&h=252').'" />
-						<a class="a-view-more" href="'.qtrans_convertURL(get_permalink($post['ID']), mage_get_language()).'">'.__('View').'</a>
+						<a class="a-view-more" href="'.qtrans_convertURL(get_permalink($post['ID']), mage_get_language()).'"><span>'.__('View').'</span></a>
 					</div>
 					<div class="home-page-recent-articles-description">
 						<div class="title"><a href="'.qtrans_convertURL(get_permalink($post['ID']), mage_get_language()).'">'.qtrans_use(mage_get_language(),get_the_title($post['ID'])).'</a></div>
-						<div class="description">'.strip_tags(implode(' ',array_slice($caption,0,10))).'</div>
+						<div class="description">'.$des[0].'</div>
 						<div class="bottom">
 							<div class="bottom-view"><a href="'.qtrans_convertURL(get_permalink($post['ID']), mage_get_language()).'">'.__('View post').'</a></div>
 							<div class="bottom-date">['.date("d-m-Y", strtotime($post['post_date'])).']</div>

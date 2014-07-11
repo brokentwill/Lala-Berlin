@@ -285,7 +285,9 @@ function qtrans_initJS() {
 			tinyMCEPreInit.mceInit[id].setup = function(ed) {
 				ed.onSaveContent.add(function(ed, o) {
 					if (!ed.isHidden())  {
-						qtrans_save(switchEditors.pre_wpautop(o.content));
+						if (ed.editorId.match(/^qtrans_/)) {
+							qtrans_save(switchEditors.pre_wpautop(o.content));
+						}
 					}
 				});
 			};

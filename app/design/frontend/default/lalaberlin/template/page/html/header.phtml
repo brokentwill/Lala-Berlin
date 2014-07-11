@@ -46,6 +46,7 @@
 	$sh = false;
 	$ab = false;
 	$bl = false;
+	$jo = false;
 	if ($router == 'catalog') {
 		$sh = true;
 	}
@@ -58,7 +59,9 @@
 	if ($router == 'blog') {
 		$bl = true;
 	}
-	
+	if ($router == '') {
+		$jo = true;
+	}	
 ?>
 <div id="navbar" class="header-container scroll-collapse hover-collapse active contain-to-grid">
 	<nav class="top-bar" data-topbar>
@@ -75,9 +78,9 @@
 					
 					<li><a class="<?php if($sh) echo 'active' ?>" href="<?php echo $this->getUrl('shop') ?>"><?php echo $this->__('Shop') ?></a></li>
 					
-					<li><a class="<?php if($ab && $cms == 'about') echo 'active' ?>" href="<?php echo $this->getUrl('about') ?>"><?php echo $this->__('About') ?></a></li>
+					<!-- <li><a class="<?php if($ab && $cms == 'about') echo 'active' ?>" href="<?php echo $this->getUrl('about') ?>"><?php echo $this->__('About') ?></a></li> -->
 
-					<!-- <li><a class="" href="<?php echo $this->getUrl('journal') ?>"><?php echo $this->__('Journal') ?></a></li> -->
+					<li><a class="<?php if($jo) echo "active";?>" href="<?php echo $this->getUrl('journal') ?>"><?php echo $this->__('Journal') ?></a></li>
 					
 					<li><a class="<?php if($bl) echo 'active' ?>" href="http://lalaberlinlive.tumblr.com/"><?php echo $this->__('#Lalaberlin') ?></a></li>
 					<!-- <li class="contact"><a class="<?php if($ab && $cms == 'contact') echo 'active' ?>" href="<?php echo $this->getUrl('contact') ?>"><?php echo $this->__('Contact') ?></a></li>
@@ -122,9 +125,9 @@
 					
 					<li><a class="<?php if($sh) echo 'active' ?>" href="<?php echo $this->getUrl('shop') ?>"><?php echo $this->__('Shop') ?></a></li>
 					
-					<li><a class="<?php if($ab && $cms == 'about') echo 'active' ?>" href="<?php echo $this->getUrl('about') ?>"><?php echo $this->__('About') ?></a></li>
+					<!-- <li><a class="<?php if($ab && $cms == 'about') echo 'active' ?>" href="<?php echo $this->getUrl('about') ?>"><?php echo $this->__('About') ?></a></li> -->
 
-					<!-- <li><a class="" href="<?php echo $this->getUrl('journal') ?>"><?php echo $this->__('Journal') ?></a></li> -->
+					<li><a class="" href="<?php echo $this->getUrl('journal') ?>"><?php echo $this->__('Journal') ?></a></li>
 					
 					<li><a class="<?php if($bl) echo 'active' ?>" href="http://lalaberlinlive.tumblr.com/"><?php echo $this->__('#Lalaberlin') ?></a></li>
 					<!-- <li class="contact"><a class="<?php if($ab && $cms == 'contact') echo 'active' ?>" href="<?php echo $this->getUrl('contact') ?>"><?php echo $this->__('Contact') ?></a></li>
