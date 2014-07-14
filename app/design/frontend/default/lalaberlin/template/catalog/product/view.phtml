@@ -42,18 +42,18 @@
     $_category = Mage::getModel('catalog/category')->load(3);
     $_subCate = $_category->getChildrenCategories();
 
-    $language_settings = Mage::app()->getStore()->getCode(); 
+    $language_settings = Mage::app()->getStore()->getCode();
     $language_settings = strtolower($language_settings);
 
 
-?> 
+?>
 
 
-<?php 
-     
+<?php
+
     if(!$_product->getCategoryIds())
-        return; 
-     
+        return;
+
     $cat_ids = $_product->getCategoryIds();
 
     if (count($cat_ids)) {
@@ -62,19 +62,19 @@
 
     $order = Mage::getStoreConfig('catalog/frontend/default_sort_by');
     $direction = 'asc';
-     
+
     $category_products = $cat->getProductCollection()->addAttributeToSort($order, $direction);
     $category_products->addAttributeToFilter('type_id', 'configurable');
-    $category_products->addAttributeToFilter('status',1); 
+    $category_products->addAttributeToFilter('status',1);
     $category_products->addAttributeToFilter('visibility',4);
-     
+
     $cat_prod_ids = $category_products->getAllIds();
     $_product_id = $_product->getId();
-     
+
     $_pos = array_search($_product_id, $cat_prod_ids);
     $_next_pos = $_pos+1;
     $_prev_pos = $_pos-1;
-     
+
     // get the next product url
     if( isset($cat_prod_ids[$_next_pos]) ) {
         $_next_prod = Mage::getModel('catalog/product')->load( $cat_prod_ids[$_next_pos] );
@@ -147,7 +147,7 @@
                     </div>
 
                 </div>
-                
+
                 <div class="product-img-box">
                     <?php echo $this->getChildHtml('media') ?>
                 </div>
@@ -169,11 +169,11 @@
                             $_taxAmount = round( ($_product->getPrice() * $_product->getData('tax_percent') / (100 + $_product->getData('tax_percent'))), 2 );
                         ?>
                         <?php if ($language_settings == "de" ): ?>
-                            <h2 class="vat"><?php echo $this->__('inkl. MwSt. zzgl. Versandkosten ') /*. $this->helper('core')->formatPrice($_taxAmount)*/ ?></h2>
+                            <h2 class="vat"><?php echo $this->__('inkl. MwSt. zzgl. Versandkosten') /*. $this->helper('core')->formatPrice($_taxAmount)*/ ?></h2>
                         <?php else: ?>
-                            <h2 class="vat"><?php echo $this->__('VAT and Delivery price ') /*. $this->helper('core')->formatPrice($_taxAmount)*/ ?></h2>
+                            <h2 class="vat"><?php echo $this->__('incl. VAT, plus shipping cost') /*. $this->helper('core')->formatPrice($_taxAmount)*/ ?></h2>
                         <?php endif ?>
-                        
+
                     <?php else: ?>
 
                     <?php echo $this->getPriceHtml($_product, true, true) ?>
@@ -203,56 +203,56 @@
                             <div class="prd-info-wrap">
                                 <h2><?php echo $_product->getResource()->getAttribute('care')->getStoreLabel() ?></h2>
                                 <div class="prd-info prd-info-care<?php if($_product->getCare() != '' ) { echo ' prd-info-care-icon cat-' . $_product->getCare(); } ?>">
-                                    <?php 
-                                    
+                                    <?php
+
                                     if($_product->getCare() != '' ) {
-                                    	
+
                                     	echo '<div>';
 
-                                    	
+
                                     	if ( $_product->getCare() == '1' ) {
-	                                	    if ( $language_settings == "de") { 
-		                            	    	echo "30° Schonwaschgang"; 
+	                                	    if ( $language_settings == "de") {
+		                            	    	echo "30° Schonwaschgang";
 		                            	    } else {
 			                        	        echo 'Delicate Cycle';
 			                        	    }
                                     	} elseif ( $_product->getCare() == '2' ) {
-	                                	   	if ( $language_settings == "de") { 
-		                            	    	echo "30° Schonwaschgang"; 
+	                                	   	if ( $language_settings == "de") {
+		                            	    	echo "30° Schonwaschgang";
 		                            	    } else {
 			                        	        echo 'Delicate Cycle';
 			                        	    }
                                     	} elseif ( $_product->getCare() == '3' ) {
-	                                	    if ( $language_settings == "de") { 
-		                            	    	echo "Handwäsche & Reinigung"; 
+	                                	    if ( $language_settings == "de") {
+		                            	    	echo "Handwäsche & Reinigung";
 		                            	    } else {
 			                        	        echo "Hand Wash & Cleaner's";
 			                        	    }
                                     	} elseif ( $_product->getCare() == '4' ) {
-	                                	    if ( $language_settings == "de") { 
-		                            	    	echo "Reinigung / nicht waschen"; 
+	                                	    if ( $language_settings == "de") {
+		                            	    	echo "Reinigung / nicht waschen";
 		                            	    } else {
 			                        	        echo "Cleaner's / do not wash";
 			                        	    }
                                     	} elseif ( $_product->getCare() == '5' ) {
-	                                	    if ( $language_settings == "de") { 
-		                            	    	echo "Handwäsche / nicht waschen"; 
+	                                	    if ( $language_settings == "de") {
+		                            	    	echo "Handwäsche / nicht waschen";
 		                            	    } else {
 			                        	        echo "Hand wash / do not wash";
 			                        	    }
                                     	} elseif ( $_product->getCare() == '6' ) {
-	                                	    if ( $language_settings == "de") { 
-		                            	    	echo "Handwäsche/ nicht bügeln"; 
+	                                	    if ( $language_settings == "de") {
+		                            	    	echo "Handwäsche/ nicht bügeln";
 		                            	    } else {
 			                        	        echo "Hand wash / do not iron";
 			                        	    }
                                     	} else {
 	                                	    echo $_product->getCare();
-                                    	} 
-                                    	
+                                    	}
+
                                     	echo '</div>';
                                     }
-                                    
+
                                     ?>
                                 </div>
                             </div>
@@ -269,7 +269,7 @@
                         <div class="product-colour">
                             <span><?php echo $_product->getResource()->getAttribute('colour')->getStoreLabel() ?></span><br />
                             <span><?php echo $_product->getColour() ?></span>
-                        </div> 
+                        </div>
                     <?php endif ?>
 
                     <?php if ($_product->isSaleable() && $this->hasOptions()):?>
@@ -363,18 +363,18 @@
     jQuery(window).load(function() {
         if (jQuery(window).width() > 642) {
             var limit = jQuery('#more-views ul li:last-child').offset().top - 50;
-            jQuery('.product-shop').scrollToFixed({ 
+            jQuery('.product-shop').scrollToFixed({
                 zIndex: 99,
                 limit: limit,
             });
-            jQuery('.product-share').scrollToFixed({ 
+            jQuery('.product-share').scrollToFixed({
                 zIndex: 99,
                 limit: limit,
             });
         } else {
-            jQuery('.product-shop').trigger('detach.ScrollToFixed'); 
+            jQuery('.product-shop').trigger('detach.ScrollToFixed');
         }
-        
+
     });
 </script>
 
@@ -391,11 +391,11 @@
             var itemClass = $j(this).attr('class');
             var item = $j('.images-zoom-wrap ul li.'+itemClass);
 
-            
+
             $j('.images-zoom-wrap').show();
             $j('.zoom-loader').show();
 
-            
+
             var url = item.find('img').attr('data-src');
             item.find('img').attr('src', url);
             item.find('img').load(function() {
@@ -407,7 +407,7 @@
                 item.fadeIn('slow');
                 $j('.btn-handler').fadeIn('slow');
             });
-            
+
 
             $j('.product-next-prev').css('position', 'normal');
             $j('.product-shop').css('position', 'normal');
@@ -436,7 +436,7 @@
                 $j(this).css('width', $j(window).width());
             });
             if (jQuery(window).width() < 642) {
-                jQuery('.product-shop').trigger('detach.ScrollToFixed'); 
+                jQuery('.product-shop').trigger('detach.ScrollToFixed');
             };
         });
 
@@ -471,7 +471,7 @@
                     curNext.fadeIn('slow');
                 });
             };
-            
+
         });
 
         $j('#view-prev-zoom').click(function(ev) {
@@ -537,7 +537,7 @@
         //         social(_url);
         //     });
         // });
-        
+
         // jQuery('.ps-wrap').hover(function() {
         //     jQuery(this).animate({'width': '170px'}, 350);
         // }, function() {
