@@ -17,7 +17,7 @@
 
 	$args = array(
         'orderby' => 'post_date',
-        'posts_per_page' => 4,
+        'posts_per_page' => -1,
         'offset' => 0,
         'order' => 'DESC',
         'post_type' => 'post',
@@ -33,6 +33,7 @@
 
 	if ( !empty($query) AND isset($query->posts) AND !empty($query->posts) AND is_array($query->posts) AND count($query->posts) )
 	{
+		$i = 0;
 		foreach ($query->posts as $post)
 		{
 			$FacebockId = get_post_custom($post->ID);
@@ -50,6 +51,7 @@
 						'subline' =>( ( !empty($FacebockId['wpcf-subline']) AND is_array($FacebockId['wpcf-subline']) AND count($FacebockId['wpcf-subline']) ) ? $FacebockId['wpcf-subline'][0] : '')
 					);
 				}
+			if (++$i == 5) break;
 			}
 		}
 	}
