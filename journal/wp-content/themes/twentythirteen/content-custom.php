@@ -18,14 +18,14 @@ $categorys = get_the_category(get_the_ID());
 <script type="text/javascript" src="http://stage.lalaberlin.com/skin/frontend/default/lalaberlin/js/CSSPlugin.min.js"></script>
 <article id="info" <?php post_class(); ?>>
 	<header class="entry-header">
-		
+
 		<div class="post-views-details std row">
-			<div class="small-12 medium-6 large-6 columns des"> 
-				
+			<div class="small-12 medium-6 large-6 columns des">
+
 				<!-- title Articles -->
 				<?php if ( is_single() ) : ?>
 					<h5><?php echo qtrans_use(mage_get_language(),the_title(false)); ?></h5>
-					<?php 
+					<?php
 					$post_type_desc = get_post_custom(get_the_ID(false));
 					if ( !empty($post_type_desc) AND isset($post_type_desc['wpcf-post-description']) AND is_array($post_type_desc['wpcf-post-description']) AND count($post_type_desc['wpcf-post-description']) )
 					{
@@ -63,14 +63,14 @@ $categorys = get_the_category(get_the_ID());
 					<h5>
 						<a href="<?php qtrans_convertURL(the_permalink(), mage_get_language()); ?>" rel="bookmark"><?php qtrans_use(mage_get_language(), the_title()); ?></a>
 					</h5>
-					
+
 					<!-- Tags Articles -->
 					<div class="entry-tags padding-bottom-50-px">
 						<?php echo the_tags(); ?>
 					</div>
 
 				<?php endif; // is_single() ?>
-				
+
 			</div>
 			<div class="small-12 medium-6 large-6 columns top-follow-lalaberlin">
 				<div class="follow-us-lalaberlin">
@@ -102,7 +102,7 @@ $categorys = get_the_category(get_the_ID());
 	<div class="entry-content post-view-details-content std text-center">
 		<?php qtrans_use(mage_get_language(), the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'twentythirteen' )) ); ?>
 		<?php wp_link_pages( array( 'before' => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'twentythirteen' ) . '</span>', 'after' => '</div>', 'link_before' => '<span>', 'link_after' => '</span>' ) ); ?>
-		
+
 		<!-- Author info section -->
 		<?php if( get_field('lala_journal_posts') ): ?>
 	    	<?php while( has_sub_field("lala_journal_posts") ): ?>
@@ -121,12 +121,12 @@ $categorys = get_the_category(get_the_ID());
 	    	<?php endwhile; ?>
 		<?php endif; ?>
 		<!-- Author info section -->
-		
+
 	</div><!-- .entry-content -->
 	<?php endif; ?>
 
 	<!-- Flexi single post -->
-	<?php 
+	<?php
 		$flexible_Single_post = get_field('single_post');
 		if ( is_array($flexible_Single_post) AND count($flexible_Single_post) )
 		{
@@ -150,7 +150,7 @@ $categorys = get_the_category(get_the_ID());
 				                </li>
 						';
 					}
-				    echo '				            
+				    echo '
 					        </ul>
 						    <div class="control-flexslideshow-design">
 						    	<a href="javascript:;" data-control="pre" class="control-design-left"></a>
@@ -263,14 +263,14 @@ $categorys = get_the_category(get_the_ID());
 					}
 					echo 	'</ul>'.
 						'</div>';
-				}				
+				}
 
 			}
 		}
 	?>
 
 
-	
+
 	<?php if( get_field('lala_journal_posts') ): ?>
 	    <?php while( has_sub_field("lala_journal_posts") ): ?>
 
@@ -282,7 +282,7 @@ $categorys = get_the_category(get_the_ID());
 	        <?php } ?>
 
 	        <?php if (get_row_layout() == "slider-bereich"): ?>
-		        <?php 
+		        <?php
 		        	$images = get_sub_field('slider');
 		        ?>
 				<?php
@@ -303,15 +303,15 @@ $categorys = get_the_category(get_the_ID());
 									?>
 				                    <img src="<?php echo dirname(get_site_url()).'/lib/timthumb.php?src='.$image['url'].'&w=1275&h=700'; ?>" alt="<?php echo $image['title']; ?>" />
 				                    <p><?php echo $image['caption']; ?></p>
-									<?php 
+									<?php
 									}
 									$i++;
 									?>
 				                </li>
 				            <?php endforeach; ?>
-				        
+
 						<?php
-							echo '				            
+							echo '
 								</ul>
 								<div class="control-flexslideshow-design">
 									<a href="javascript:;" data-control="pre" class="control-design-left"></a>
@@ -322,9 +322,9 @@ $categorys = get_the_category(get_the_ID());
 						</div>
 						';
 						?>
-				    
+
 	        <?php endif ?>
-			 
+
 	        <?php
 	            if (get_row_layout() == "qa-bereich"){
 	                $rows = get_sub_field('qa');
@@ -347,7 +347,7 @@ $categorys = get_the_category(get_the_ID());
 	        ?>
 			<?php
 	            if (get_row_layout() == "quote_text"){
-	                
+
 	                ?>
 					<div class="single_post_description text-justify">
 						<div class="single_post_border_top"></div>
@@ -356,14 +356,14 @@ $categorys = get_the_category(get_the_ID());
 						</div>
 						<div class="single_post_border_bottom"></div>
 					</div>
-				<?php 
+				<?php
 				}?>
-	        <?php if (get_row_layout() == "gallery-bereich"): ?>			
+	        <?php if (get_row_layout() == "gallery-bereich"): ?>
 	        	<?php
 	        		$galleryFeature = get_sub_field('gallery');$i=0;$j=0;
 	        	?>
-				<?php					
-				
+				<?php
+
 					echo '
 					<div class="single-post-gallery-feature">
 						<ul class="row">';
@@ -371,7 +371,7 @@ $categorys = get_the_category(get_the_ID());
 			           	{
 			           		echo '
 			                <li class="medium-4 columns " data-ind="'.$i.'">
-			                	<img class="th stand-img" src="'.$gallery['url'].'" alt="'.$gallery['title'].'" />
+			                	<img class="th stand-img" src="' . dirname(get_site_url()).'/lib/timthumb.php?src='.$gallery['url'].'&w=400&h=370" alt="'.$gallery['title'].'" />
 			                </li>';$i++;
 			           	}
 			           	echo '
@@ -393,13 +393,13 @@ $categorys = get_the_category(get_the_ID());
 						    </div>
 						</div>
 					</div>';
-				
+
 				?>
-				
+
 	        <?php endif ?>
-				
-	        <?php				
-	            if (get_row_layout() == "links-bereich"){					
+
+	        <?php
+	            if (get_row_layout() == "links-bereich"){
 	                $rows = get_sub_field('links');
 
 	                if ($rows){
@@ -426,8 +426,8 @@ $categorys = get_the_category(get_the_ID());
 					<?php echo "</div>";
 	            }
 	        ?>
-			
-			
+
+
 			<?php
 	            if (get_row_layout() == "produkte_mutil"){
 	                $rows = get_sub_field('produktea');
@@ -443,18 +443,18 @@ $categorys = get_the_category(get_the_ID());
 										<div class="product-caption">
 											<div class="product-caption-name"><?php echo $row["produkt-name"]; ?></div>
 										</div>
-									</div>	
+									</div>
 								</li>
 								<?php }?>
 							</ul>
-						</div>	                    
+						</div>
 					<?php
 	                }
 	            }
 	        ?>
-			
-			
-			<?php if (get_row_layout() == "produkte-bereich"): ?>	
+
+
+			<?php if (get_row_layout() == "produkte-bereich"): ?>
 				<div class="gallery-feature">
 					<ul class="row">
 						<li class="medium-4">
@@ -465,14 +465,14 @@ $categorys = get_the_category(get_the_ID());
 			            		<div class="product-caption">
 			            			<div class="product-caption-name"><?php echo the_sub_field("produkt-name") ?></div>
 			            		</div>
-			            	</div>	
+			            	</div>
 						</li>
 					</ul>
 				</div>
 			<?php endif ?>
 
 	    <?php endwhile; ?>
-	<?php endif; ?>	
+	<?php endif; ?>
 
 
 
@@ -512,16 +512,16 @@ $categorys = get_the_category(get_the_ID());
 		    'suppress_filters' => true
 		);
 		$posts = wp_get_recent_posts($args);
-		
+
 		if ( !empty($posts) AND is_array($posts) AND count($posts) )
-		{			
+		{
 			echo '
 			<div class="other-articles-related-posts home-page-recent-articles">
 				<div class="other-articles-title">'.__('Related Posts').'</div>
 				<div class="row">';
 			foreach ($posts as $post)
-			{				
-				$des=(get_post_meta($post['ID'],'wpcf-post-description'));								
+			{
+				$des=(get_post_meta($post['ID'],'wpcf-post-description'));
 				echo '
 				<div class="small-12 medium-4 large-4 large-recent-articles columns">
 					<div class="home-page-recent-articles-image">
@@ -538,7 +538,7 @@ $categorys = get_the_category(get_the_ID());
 					</div>
 				</div>';
 			}
-					
+
 			echo'
 				</div>
 			</div>
