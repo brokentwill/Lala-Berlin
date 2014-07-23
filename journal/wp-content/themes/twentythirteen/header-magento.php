@@ -89,7 +89,7 @@ if(class_exists('Mage')){
     // Add children
     $topCart = $Block->createBlock('checkout/cart_sidebar')->setTemplate('checkout/cart/top_cart.phtml');
     $header->setChild('topCart', $topCart);
-    
+
 }
 ?><!DOCTYPE html>
 <!--[if IE 7]>
@@ -114,7 +114,7 @@ if(class_exists('Mage')){
     <script src="<?php echo get_template_directory_uri(); ?>/js/html5.js"></script>
     <![endif]-->
     <?php echo (class_exists('Mage')) ? $head->getCssJsHtml() : '' ;?>
-    
+
     <link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri()?>/css/journal.css" media="all" />
     <link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri()?>/css/flexslider.css" media="all" />
 	<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri()?>/css/custom.css" media="all" />
@@ -128,6 +128,12 @@ if(class_exists('Mage')){
         <?php echo (class_exists('Mage')) ? $header->toHTML() : '' ; ?>
             <div class="subnavigation-wp-lalaberlin">
                 <ul class="post-categories">
-                <?php wp_list_categories('title_li='); ?>
+                <?php // ...for 'wp_list_categories'
+                    if(is_single()) {
+                        $category = get_the_category();
+                        $class .= $category[0]->cat_ID;
+                    }
+                ?>
+                <?php wp_list_categories('title_li=&current_category='.$class); ?>
                 </ul>
             </div>

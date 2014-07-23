@@ -10,7 +10,7 @@ body{
     width: 100%;
     margin: 0px auto;
 }
-.subnavigation-wp-lalaberlin .post-categories{    
+.subnavigation-wp-lalaberlin .post-categories{
     width: 92%;
     margin: 0px auto;
 }
@@ -20,12 +20,16 @@ body{
     padding-top: 30px;
 }
 .subnavigation-wp-lalaberlin .post-categories li a{
-    color: #959595;
+
     font-size: 12px;
     letter-spacing: 0.2em;
     transition: all 0.3s ease-out 0s;
     text-transform: uppercase;
 }
+.subnavigation-wp-lalaberlin .post-categories li a:hover, .subnavigation-wp-lalaberlin .post-categories li.current-cat a{
+    color: #959595;
+}
+
 /* --- Home page --- */
 .cms-row-content{
     margin: 0px auto;
@@ -158,7 +162,7 @@ body{
     padding-top: 50px;
     padding-bottom: 0px;
 }
-.home-page-recent-articles-top{    
+.home-page-recent-articles-top{
     border-bottom: 1px solid #000000;
 }
 .home-page-recent-articles .columns{
@@ -307,7 +311,7 @@ body{
     color: #000;
     letter-spacing: 2px;
 }
-/* ---- soundcloud or spotify player ---- */ 
+/* ---- soundcloud or spotify player ---- */
 .homepage-soundcloud-spotify-player{
     padding-bottom: 50px;
     border-bottom: 1px solid #000;
@@ -327,7 +331,7 @@ body{
     font-family: "Brown";
     font-weight: bold;
 }
-.homepage-soundcloud-spotify-player .soundcloud-spotify-player-bottom-play{    
+.homepage-soundcloud-spotify-player .soundcloud-spotify-player-bottom-play{
     text-align: center;
 }
 .homepage-soundcloud-spotify-player .soundcloud-spotify-player-bottom-play .decscription{
@@ -390,7 +394,7 @@ body{
     border-radius: 0px;
 }
 .flexslider .slides img{
-	display: inline-block;    
+	display: inline-block;
     position: relative;
     vertical-align: middle;
 }
@@ -514,7 +518,7 @@ a.btn-read-move{
 a.btn-read-move:hover{
     background: none repeat scroll 0 0 #333333 !important;
     border: 1px solid #666666;
-    color: #ffffff !important; 
+    color: #ffffff !important;
 }
 a.btn-back, a.btn-back:hover{
     background: url("../images/prod_prv-icon.png") no-repeat scroll left center rgba(0, 0, 0, 0);
@@ -658,7 +662,7 @@ a.btn-back, a.btn-back:hover{
     font-family: "Brown","Trebuchet MS",Verdana,sans-serif !important;
 }
 .share-button-details > label:hover{
-    
+
 }
 .share-button > label > span{
     padding: 0px !important;
@@ -1086,7 +1090,7 @@ a.btn-back, a.btn-back:hover{
 
 /* --- .footer-container --- */
 .footer-container{
-    
+
 }
 .btn-next{
     background: url(../images/prod_prv-icon.png) no-repeat;
@@ -1257,7 +1261,7 @@ a.btn-back, a.btn-back:hover{
         top: 5px;
         /*padding-top: 5px;*/
     }
-   
+
     .home-page-posts-marked-slideshow > .flexslider > .slides li .posts-marked-slideshow-desc{
         font-size: 20px;
     }
