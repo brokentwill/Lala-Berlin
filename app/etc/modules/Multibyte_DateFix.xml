@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<config>
+    <modules>
+        <Multibyte_DateFix>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Multibyte_DateFix>
+    </modules>
+</config>

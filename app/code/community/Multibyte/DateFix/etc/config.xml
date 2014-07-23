@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config>
+    <modules>
+        <Multibyte_DateFix>
+            <version>1.0</version>
+        </Multibyte_DateFix>
+    </modules>
+    <global>
+        <models>
+            <class>Multibyte_DateFix_Model</class>
+            <catalog>
+                <rewrite>
+                    <product_attribute_backend_startdate>Multibyte_DateFix_Model_Startdate</product_attribute_backend_startdate>
+                </rewrite>
+            </catalog>
+        </models>
+    </global>
+</config>
