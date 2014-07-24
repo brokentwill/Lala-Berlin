@@ -66,7 +66,7 @@
 			            foreach( $posts_slideshow as $slide )
 			            {
 		echo 				'<li>
-			                    <a href="'.$slide['link'].'"><img src="'.(dirname(get_site_url()).'/lib/timthumb.php?src='.$slide['img']).'&w=1139&h=624" /></a>
+			                    <a href="'.$slide['link'].'"><img src="'.(dirname(get_site_url()).'/lib/timthumb.php?src='.$slide['img']).'&w=1275&h=700" /></a>
 			                    <div class="posts-marked-slideshow-desc">
 			                    	<div class="posts-marked-slideshow-desc-title">'.$slide['title'].'</div>
 			                    	<div class="posts-marked-slideshow-desc-subline">'.$slide['subline'].'</div>

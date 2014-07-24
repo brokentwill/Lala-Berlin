@@ -397,6 +397,12 @@ body{
 	display: inline-block;
     position: relative;
     vertical-align: middle;
+    width: auto !important;
+    margin: 0px auto;
+    max-width: 100%;
+}
+.home-page-posts-marked-slideshow .flexslider .slides img{
+    width: 100% !important;
 }
 .home-page-facebocks .flexslider ul li .posts-facebocks-desc {
     color: #FFFFFF;
@@ -1105,6 +1111,7 @@ a.btn-back, a.btn-back:hover{
     text-align: center;
     width: 120px;
     z-index: 9999999;
+    margin-top: 30px;
 }
 .flexslider .flex-control-nav{
     display: none;
@@ -1134,7 +1141,8 @@ a.btn-back, a.btn-back:hover{
     top: 0;
     width: 19px;
 }
-.home-page-facebocks .flex-direction-nav{
+.home-page-facebocks .flex-direction-nav,
+#info .image-gallery-single-post #slider .flex-direction-nav{
     display: none;
     opacity: 0;
 }
@@ -1143,8 +1151,7 @@ a.btn-back, a.btn-back:hover{
     font-family: "Brown";
     font-weight: 100;
     text-align: center;
-    padding-top: 30px;
-    padding-bottom: 30px;
+    margin-top: 30px;
 }
 .control-flexslideshow-design .control-design-left{
     padding: 4px 15px;

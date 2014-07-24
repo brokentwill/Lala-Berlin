@@ -88,7 +88,7 @@ $categorys = get_the_category(get_the_ID());
 		<!-- Featuer Image -->
 		<?php if ( has_post_thumbnail() && ! post_password_required() ) : ?>
 			<div class="entry-thumbnail padding-bottom-50-px">
-				<?php echo '<img src="'.(dirname(get_site_url()).'/lib/timthumb.php?src='.wp_get_attachment_url( get_post_thumbnail_id(get_the_ID()) ).'&w=1277&h=622').'" />' ?>
+				<?php echo '<img src="'.(dirname(get_site_url()).'/lib/timthumb.php?src='.wp_get_attachment_url( get_post_thumbnail_id(get_the_ID()) ).'&w=1275&h=700').'" />' ?>
 			</div>
 		<?php endif; ?>
 	</header><!-- .entry-header -->
@@ -125,149 +125,7 @@ $categorys = get_the_category(get_the_ID());
 	</div><!-- .entry-content -->
 	<?php endif; ?>
 
-	<!-- Flexi single post -->
-	<?php
-		$flexible_Single_post = get_field('single_post');
-		if ( is_array($flexible_Single_post) AND count($flexible_Single_post) )
-		{
-			foreach ($flexible_Single_post as $single_post)
-			{
-				/* --- Slideshow --- */
-				$images = $single_post['single-post-slideshow'];
-				if( $images )
-				{
-					echo '
-					<div class="image-gallery-single-post row">
-					    <div id="slider" class="flexslider">
-					        <ul class="slides">';
 
-					foreach( $images as $image )
-					{
-						echo '
-								<li>
-				                    <img alt="" src="'.(dirname(get_site_url()).'/lib/timthumb.php?src='.$image['url'].'&w=1275&h=700').'" alt="'.$image['alt'].'" />
-				                    <div class="img-desc">'.$image['caption'].'</div>
-				                </li>
-						';
-					}
-				    echo '
-					        </ul>
-						    <div class="control-flexslideshow-design">
-						    	<a href="javascript:;" data-control="pre" class="control-design-left"></a>
-						    	<span class="control-page-active" data-active="1">1</span>/<span data-total="'.count($images).'" class="control-page-total">'.count($images).'</span>
-						    	<a href="javascript:;" data-control="next" class="control-design-right"></a>
-						    </div>
-					    </div>
-					</div>
-					';
-				}
-
-				/* --- single_post_qa --- */
-				$single_post_qa = $single_post['single_post_qa'];
-				if ( !empty($single_post_qa) )
-				{
-					echo '
-					<div class="repeater-articles single_post_qa_repeater_articles std padding-5-percent text-justify">
-						<ul>';
-			           	foreach( $single_post_qa as $repeater )
-			           	{
-			           		echo '
-			                <li>
-			                	<p class="single-label">'.$repeater['label'].'</p>
-			                    <p class="single-value">'.$repeater['value'].'</p>
-			                </li>';
-			           	}
-			           	echo '
-			            </ul>
-					</div>';
-				}
-
-				/* --- Description --- */
-				$single_post_desc = $single_post['single_post_description'];
-				if ( !empty($single_post_desc) )
-				{
-					echo '
-					<div class="single_post_description text-justify">
-						<div class="single_post_border_top"></div>
-						<div class="single_post_content">
-						'.$single_post_desc.'
-						</div>
-						<div class="single_post_border_bottom"></div>
-					</div>';
-				}
-
-				/* --- single_post_qa_2 --- */
-				$single_post_qa_2 = $single_post['single_post_qa_2'];
-				if ( !empty($single_post_qa_2) )
-				{
-					echo '
-					<div class="repeater-articles single_post_qa_repeater_articles std padding-5-percent text-justify">
-						<ul>';
-			           	foreach( $single_post_qa_2 as $repeater )
-			           	{
-			           		echo '
-			                <li>
-			                	<p class="single-label">'.$repeater['label'].'</p>
-			                    <p class="single-value">'.$repeater['value'].'</p>
-			                </li>';
-			           	}
-			           	echo '
-			            </ul>
-					</div>';
-				}
-
-				/* --- single_post_qa_2 --- */
-				$single_post_list_image = $single_post['single_post_list_image'];
-				if ( !empty($single_post_list_image) )
-				{
-					echo '
-					<div class="single-post-gallery-feature">
-						<ul class="row">';
-			           	foreach( $single_post_list_image as $ind => $image )
-			           	{
-			           		echo '
-			                <li class="medium-4 columns " data-ind="'.$ind.'">
-			                	<img class="th" src="'.(dirname(get_site_url()).'/lib/timthumb.php?src='.$image['sizes']['thumbnail'].'&w=425&h=370').'" alt="'.$image['alt'].'" />
-			                </li>';
-			           	}
-			           	echo '
-			            </ul>
-			            <div class="images-zoom-wrap">
-						    <ul class="images-zoom">';
-						    foreach( $single_post_list_image as  $ind => $image )
-			           	{
-			           		echo '
-			                <li class="img-zoom-item item-'.$ind.'"><img data-src="'.$image['sizes']['thumbnail'].'" src="" alt=""></li>';
-			           	}
-			           	echo '
-						    </ul>
-						    <div class="btn-handler">
-						        <span id="view-prev-zoom" data-control="pre" class=""></span>
-						        <span class="close-icon"></span>
-						        <span id="view-next-zoom" data-control="next" class=""></span>
-						    </div>
-						</div>
-					</div>';
-				}
-
-				/* --- External Links --- */
-				$ExternalLinks = $single_post['single_post_external_links'];
-				if ( $ExternalLinks )
-				{
-					echo '<div class="single_post-external row padding-5-percent">'.
-							'<h4 class="single_post-external-title">'.__('External Links').'</h4>'.
-							'<ul>';
-					foreach ($ExternalLinks as $ind => $link)
-					{
-						echo 	'<li class="'.( $ind != 0 ? 'li-link-external': '').'">'.$link['single_post_link'].'</li>';
-					}
-					echo 	'</ul>'.
-						'</div>';
-				}
-
-			}
-		}
-	?>
 
 
 
@@ -286,12 +144,10 @@ $categorys = get_the_category(get_the_ID());
 		        	$images = get_sub_field('slider');
 		        ?>
 				<?php
-					echo '
-					<div class="image-gallery-single-post row">
-					    <div id="slider" class="flexslider">
-					        <ul class="slides">';
 							$i=0;
-				?>
+				?>				<div class="image-gallery-single-post row">
+					    			<div id="slider" class="flexslider">
+					        		<ul class="slides">
 				            <?php foreach( $images as $image ): ?>
 				                <li>
 									<?php
@@ -300,29 +156,33 @@ $categorys = get_the_category(get_the_ID());
 										if($position !== false){
 											echo '<div class="video-container">'.$image['caption']."</div>";
 										}else{
+											if ($image['height'] > $image['width']) {
+												$sizesetting = '&h=700';
+											} else {
+												$sizesetting = '&w=1275&h=700';
+											}
 									?>
-				                    <img src="<?php echo dirname(get_site_url()).'/lib/timthumb.php?src='.$image['url'].'&w=1275&h=700'; ?>" alt="<?php echo $image['title']; ?>" />
-				                    <p><?php echo $image['caption']; ?></p>
+				                    <img src="<?php echo dirname(get_site_url()).'/lib/timthumb.php?src='.$image['url'].''.$sizesetting; ?>" alt="<?php echo $image['title']; ?>" />
+				                   	<?php if (!empty($image['caption'])) { echo '<p>' . $image['caption'] . '</p>'; } ?>
 									<?php
 									}
 									$i++;
 									?>
 				                </li>
 				            <?php endforeach; ?>
-
+									</ul>
 						<?php
-							echo '
-								</ul>
-								<div class="control-flexslideshow-design">
+
+							if (count($images) > 1){
+							echo '<div class="control-flexslideshow-design">
 									<a href="javascript:;" data-control="pre" class="control-design-left"></a>
 									<span class="control-page-active" data-active="1">1</span>/<span data-total="'.$i.'" class="control-page-total">'.$i.'</span>
 									<a href="javascript:;" data-control="next" class="control-design-right"></a>
-								</div>
-							</div>
-						</div>
-						';
+								</div>';
+							}
 						?>
-
+						</div>
+						</div>
 	        <?php endif ?>
 
 	        <?php
