@@ -5,14 +5,15 @@
 	margin-bottom:183px;
 }
 .custom-wp .main{
-	width:92%!important;
+	width:100%;
+    padding: 0px 0.9375rem;
 }
 .video-container {
     position: relative;
     padding-bottom: 56.25%;
     padding-top: 30px; height: 0; overflow: hidden;
 }
- 
+
 .video-container iframe,
 .video-container object,
 .video-container embed {
@@ -30,7 +31,7 @@ ul.slides li p{
 	text-align:center;
 	padding-top:30px;
 	padding-bottom:6px;
-	font-size:14px;	
+	font-size:14px;
 }
 .content_infor{
 	padding-top: 20px;

@@ -678,13 +678,13 @@ button.button:hover, button.button:focus, button[disabled], button[disabled]:foc
     .top-bar-section li .dropdown a:not(.button){line-height: 1em;}
     .top-bar-section ul li.account-link > a,
     .top-bar-section ul li.has-dropdown > a{font-size: .625em;padding: 0 15px;}
-    .top-bar-section ul li.has-dropdown > a span{color: #000;}
-    .top-bar-section ul li.has-dropdown > a span.active{color: #999;}
-    .top-bar-section ul li:hover > a.top-link-cart span{color: #000;}
+    .top-bar-section ul li.has-dropdown > a span{color: #999;}
+    .top-bar-section ul li.has-dropdown > a span.active{color: #181818;}
+    .top-bar-section ul li:hover > a.top-link-cart span{color: #181818;}
     .top-bar-section li a:not(.button):hover{/* color: #999; */}
-    .top-bar-section .right li a:not(.button):hover{color: #000;}
+    .top-bar-section .right li a:not(.button):hover{color: #181818;}
     .top-bar-section .has-dropdown.language > a{/* padding-right: 15px !important; */}
-    .top-bar-section .has-dropdown.language > a span:hover { color: #999; opacity: 1;}
+    .top-bar-section .has-dropdown.language > a span:hover { color: #181818; opacity: 1;}
     .top-bar-section ul li > a.top-link-cart{ padding-right: 35px;}
     .top-bar-section ul li > a.top-link-cart span{border: 1px solid #000;padding: 10px 35px; color: #000;}
     .top-bar .name,
@@ -1160,13 +1160,14 @@ table thead, table tfoot{ background: #fff; }
     .top-bar .title-area { width: 11% }
     .top-bar li.name{text-align: center}
     .top-bar-section ul.left li:not(.new_devi) a {
-        padding: 31px 0px 0;
+        padding: 42px 0px 0;
+        line-height: 28px !important;
     }
     .top-bar-section ul.right .divider{
         background: none repeat scroll center center #999999;
         display: block;
         height: 11px;
-        margin-top: 48px;
+        margin-top: 50px;
         padding: 0;
         width: 1px;
     }
@@ -1583,7 +1584,7 @@ b, strong{font-family: Brown-Bold, 'Trebuchet MS', Verdana, sans-serif;font-weig
     .col2-set .col-2.new-users .content > p { width: 100%; }
 }
 
-.header-lala-logo a { line-height: 100px; }
+.header-lala-logo a { line-height: 105px; }
 #navbar02 .header-lala-logo a { line-height: 48px; }
 
 .add-to-cart button.btn-cart { padding: 0px; width: 48.5%; float: left; clear: both; margin-bottom: 0;}
@@ -1605,9 +1606,9 @@ b, strong{font-family: Brown-Bold, 'Trebuchet MS', Verdana, sans-serif;font-weig
     transition: all ease-out 0.2s 0.1s;
 }
 .igallery-category-view .tabs{padding: 5px 0; border-top: 1px solid #dedede;}
-.igallery-category-view .tabs a{color: #000; padding: 15px 0; text-transform: uppercase;background: none;font-family: Brown, 'Trebuchet MS', Verdana, sans-serif;margin-right: 30px;font-size: 12px; letter-spacing: 1px;}
+.igallery-category-view .tabs a{color: #999; padding: 15px 0; text-transform: uppercase;background: none;font-family: Brown, 'Trebuchet MS', Verdana, sans-serif;margin-right: 30px;font-size: 12px; letter-spacing: 1px;}
 .igallery-category-view .tabs dd > a:hover,
-.igallery-category-view .tabs dd.active a{background: none;color: #8d8d8d;}
+.igallery-category-view .tabs dd.active a{background: none;color: #181818;}
 .igallery-category-view .page-title{display: none;}
 .masonry-container .item .button-group {
     /*display: none;*/
@@ -1626,10 +1627,10 @@ b, strong{font-family: Brown-Bold, 'Trebuchet MS', Verdana, sans-serif;font-weig
 .masonry-container .item .button-group .button:hover {background: #000;}
 button, .button{font-family: Brown, 'Trebuchet MS', Verdana, sans-serif;}
 .collection-selector{margin: 20px 0 0; padding-bottom: 15px;}
-.collection-selector li{display: inline-block;margin: 0 30px 10px 0;color: #000;font-size: 13px;text-transform: uppercase; letter-spacing: 1px;}
+.collection-selector li{display: inline-block;margin: 0 30px 10px 0;color: #999;font-size: 13px;text-transform: uppercase; letter-spacing: 1px;}
 .collection-selector li a{ display: inline-block;font-family: Brown, 'Trebuchet MS', Verdana, sans-serif;}
 .collection-selector li a:hover,
-.collection-selector li.active a{color: #8d8d8d;/*font-family: Brown-Bold, 'Trebuchet MS', Verdana, sans-serif;*/
+.collection-selector li.active a{color: #181818;/*font-family: Brown-Bold, 'Trebuchet MS', Verdana, sans-serif;*/
     -webkit-transition: all 0.2s ease-in-out, width 0, height 0, top 0, left 0;
     -moz-transition: all 0.2s ease-in-out, width 0, height 0, top 0, left 0;
     -o-transition: all 0.2s ease-in-out, width 0, height 0, top 0, left 0;
@@ -1794,13 +1795,20 @@ li.item.is-video iframe {
 
 .block-cart { float: right; color: #000; padding-right: 20px; font-size: 0.9376rem;}
 .block-cart a {
+    color: #181818;
     font-size: 0.625em;
     display: inline-block;
     float: left;
     letter-spacing: 0.5em;
     padding-left: 35px;
     background: url(../img/cart-icon.png) no-repeat left  center;
+
+    line-height: 1.4375rem;
+    margin-top: 2.875rem;
 }
+/*.block-cart a:hover{
+    color: #999;
+}*/
 
 .home-top-slider {
     margin-bottom: 30px;
@@ -1961,8 +1969,9 @@ span#notify_message {
 #shopping-cart-totals-table tr{
     background-color: transparent !important;
 }
-.top-bar-section ul.right li a {
-    line-height: 105px;
+   .top-bar-section ul.right li a {
+    line-height: 1em;
+    margin-top: 52px;
     border: 0;
 }
 .shop-top > p { overflow: hidden; }

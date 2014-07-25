@@ -9,25 +9,27 @@ body{
     max-width: 1304px;
     width: 100%;
     margin: 0px auto;
+    padding: 0px 0.9375rem;
 }
 .subnavigation-wp-lalaberlin .post-categories{
-    width: 92%;
-    margin: 0px auto;
+    width: 100%%;
+/*    padding: 0px 0.5355rem;
+*/    margin: 0px auto;
 }
 .subnavigation-wp-lalaberlin .post-categories li{
-    display: table-cell;
+    float: left;
     padding-right: 40px;
     padding-top: 30px;
 }
 .subnavigation-wp-lalaberlin .post-categories li a{
-
+    color: #959595;
     font-size: 12px;
     letter-spacing: 0.2em;
     transition: all 0.3s ease-out 0s;
     text-transform: uppercase;
 }
 .subnavigation-wp-lalaberlin .post-categories li a:hover, .subnavigation-wp-lalaberlin .post-categories li.current-cat a{
-    color: #959595;
+    color: #181818;
 }
 
 /* --- Home page --- */

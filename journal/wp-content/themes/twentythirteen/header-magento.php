@@ -144,7 +144,7 @@ if(class_exists('Mage')){
         <div class="page custom-wp">
         <?php echo (class_exists('Mage')) ? $header->toHTML() : '' ; ?>
             <div class="subnavigation-wp-lalaberlin">
-                <ul class="post-categories">
+                <ul class="post-categories row">
                 <?php // ...for 'wp_list_categories'
                     if(is_single()) {
                         $category = get_the_category();
