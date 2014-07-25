@@ -662,14 +662,14 @@ button.button{font-family:Brown, 'Trebuchet MS', Verdana, sans-serif;text-transf
     -moz-transition: background-color 300ms ease-out 0s;
     transition: background-color 300ms ease-out 0s}
 
-button.button:hover, button.button:focus, button[disabled], button[disabled]:focus, button[disabled]:hover{background: #333;}
+button.button:hover, button.button:focus, button[disabled], button[disabled]:focus, button[disabled]:hover{background: #333 !important; outline: 0;}
 .header-container{background: none;}
 .page{ }
 #navbar{height: 105px;padding: 0}
 #navbar02{height: 55px;padding: 0}
 
 @media only screen and (min-width: 40.063em){
-    
+
 }
 
 @media only screen and (min-width: 64.063em) {
@@ -811,7 +811,7 @@ button.button:hover, button.button:focus, button[disabled], button[disabled]:foc
 .cart .item-options,
 .cart .product-name{text-align: left;}
 .cart .btn-empty{display: none;}
-.cart .btn-update{float: right;padding: 0; background: none; color: #000;}
+.cart .btn-update{float: right;padding: 0; background: none; color: #181818;}
 table tr.even, table tr.alt, table tr:nth-of-type(even){background: #f7f7f7}
 table thead, table tfoot{ background: #fff; }
 .checkout-cart-index .cart-empty {
@@ -902,7 +902,7 @@ table thead, table tfoot{ background: #fff; }
     .account-login {
         width: 100%;
     }
-    
+
     .col2-set .col-2.new-users { margin-top: 30px; }
     .col2-set .col-2.new-users .content > p { width: 70%; }
 
@@ -1199,7 +1199,7 @@ b, strong{font-family: Brown-Bold, 'Trebuchet MS', Verdana, sans-serif;font-weig
 .cms-page-view .std p{ font-size: 20px; line-height: 30px;}
 .checkout-cart-index .btn-continue{float: left;padding: 0;width: 234px;margin-top: 30px;}
 .checkout-cart-index .btn-update{border: none;border-bottom: 1px solid #181818;margin-top: 30px;}
-.checkout-cart-index .btn-update:hover{background: transparent !important;}
+.checkout-cart-index .btn-update:hover{background: transparent !important; color: #000 !important;}
 .my-account{font-size: .75em;}
 .my-account a{text-decoration: underline}
 .my-account address{font-style: normal}
@@ -1434,7 +1434,7 @@ b, strong{font-family: Brown-Bold, 'Trebuchet MS', Verdana, sans-serif;font-weig
     .form-list .customer-name .field {
         width: 320px;
     }
-    .account-create .fieldset .form-list .field, 
+    .account-create .fieldset .form-list .field,
     .account-create .fieldset .form-list .input-box {
         width: 320px;
     }
@@ -1757,7 +1757,7 @@ html, body, .wrapper, .page { height: 100%; background: #fafafa; }
     background: #fff url(../img/a_shop.png) no-repeat right center;
 }
 
-.registered-users .buttons-set > button { float: left; clear: left; margin: 10px 0 0;} 
+.registered-users .buttons-set > button { float: left; clear: left; margin: 10px 0 0;}
 
 .cms-page-view .child-cate { margin-top: 20px;}
 
@@ -1793,7 +1793,7 @@ li.item.is-video iframe {
 
 
 .block-cart { float: right; color: #000; padding-right: 20px; font-size: 0.9376rem;}
-.block-cart a { 
+.block-cart a {
     font-size: 0.625em;
     display: inline-block;
     float: left;
