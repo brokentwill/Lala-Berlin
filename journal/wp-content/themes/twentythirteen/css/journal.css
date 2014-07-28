@@ -760,12 +760,12 @@ a.btn-back, a.btn-back:hover{
     color: #000000;
 }
 .page-category .page-category-title .category-value{
-    padding-top: 30px;
+    padding-top: 36px;
     font-size: 72px;
     font-weight: 100;
     font-family: "Domaine Display Condensed";
     color: #000000;
-    padding-bottom: 50px;
+    padding-bottom: 40px;
 }
 /* --- page --- */
 .page-posts{
