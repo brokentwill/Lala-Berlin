@@ -47,7 +47,7 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
 	<?php endforeach ?>
 </ul>
 
-<?php  
+<?php
 
 	$breadcrumbs = $this->getLayout()->getBlock('breadcrumbs');
 	$breadcrumbs->addCrumb('home', array('label'=>Mage::helper('cms')->__('Home'), 'title'=>Mage::helper('cms')->__('Home Page'), 'link'=>Mage::getBaseUrl()));
@@ -61,7 +61,7 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
 				$breadcrumbs->addCrumb('col-sub', array('label'=>$banner->getName(), 'title'=>$banner->getName(), 'link'=>Mage::getBaseUrl().$banner->getFriendlyUrl()));
 				$breadcrumbs->addCrumb('col-sub-tab', array('label'=>Mage::helper('cms')->__('LookBook'), 'title'=>Mage::helper('cms')->__('LookBook')));
 			}
-		}	
+		}
 	}
 
 	echo $this->getLayout()->getBlock('breadcrumbs')->toHtml();
@@ -74,7 +74,7 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
 		</div>
 	<?php endif; ?>
 	<?php $_imageCollection = $this->_getCollection(); ?>
-	<?php  
+	<?php
 		$cmsBlockId = $_gallery->getCmsBlock();
 		$cmsBlockVideoId = $_gallery->getCmsBlockVideo();
 		$_noLookBook = $_noShow = $_noBackstage = $_noVideo = $_noInfo = false;
@@ -469,8 +469,8 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
 			jQuery(this).click();
 			var txt = jQuery(this).text();
 			jQuery(this).closest('.col-main').find('#bdc ul li.col-sub-tab a').text(txt);
-		}).click(function() {
 
+		}).click(function(event) {
 				function getH() {
 			        jQuery('li.is-video').each(function(){
 			            if ( jQuery(this).hasClass('rows-2') ) {
@@ -487,9 +487,11 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
 			            }
 			        })
 			    }
-			    
 			    getH();
 				jQuery('.masonry-container').masonry();
+    		window.location.hash = this.hash;
+    		event.preventDefault(event);
+    		window.scrollTo(0, 0);
 			});
 
 	</script>
@@ -523,12 +525,19 @@ $timthumb = Mage::getBaseUrl() . 'lib/timthumb.php';
 			});
 		}
 	});
+
+	window.onload = function () {
+    if (location.hash) {
+        window.scrollTo(0, 0);
+    }
+	};
+
 </script>
 
 <script type="text/javascript">
     $j = jQuery.noConflict();
     $j(document).ready(function() {
-        
+
     });
 
     function getH() {
