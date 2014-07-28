@@ -666,7 +666,7 @@ button.button:hover, button.button:focus, button[disabled], button[disabled]:foc
 .header-container{background: none;}
 .page{ }
 #navbar{height: 105px;padding: 0}
-#navbar02{height: 55px;padding: 0}
+#navbar02{height: 62px;padding: 0}
 
 @media only screen and (min-width: 40.063em){
 
@@ -1159,8 +1159,15 @@ table thead, table tfoot{ background: #fff; }
 @media only screen and (min-width: 77em) {
     .top-bar .title-area { width: 11% }
     .top-bar li.name{text-align: center}
+    .top-bar-section ul.left li:not(.new_devi){
+        margin-top: 42px;
+    }
+    #navbar02 .top-bar-section ul.left li:not(.new_devi){
+        margin-top: 17px;
+
+    }
     .top-bar-section ul.left li:not(.new_devi) a {
-        padding: 42px 0px 0;
+        padding: 0px 0px 0;
         line-height: 28px !important;
     }
     .top-bar-section ul.right .divider{
@@ -1585,7 +1592,12 @@ b, strong{font-family: Brown-Bold, 'Trebuchet MS', Verdana, sans-serif;font-weig
 }
 
 .header-lala-logo a { line-height: 105px; }
-#navbar02 .header-lala-logo a { line-height: 48px; }
+#navbar02 .top-bar, #navbar02 .top-bar .name, #navbar02 .top-bar li.to-top{
+    height: 62px;
+    line-height: 62px;
+}
+#navbar02 .header-lala-logo a { line-height: 62px; }
+#navbar02 .header-lala-logo a img { max-height: 42px; }
 
 .add-to-cart button.btn-cart { padding: 0px; width: 48.5%; float: left; clear: both; margin-bottom: 0;}
 .add-to-cart button.btn-cart span span { font-size: 14px; letter-spacing: 1px;}
