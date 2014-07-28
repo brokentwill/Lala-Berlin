@@ -1438,14 +1438,14 @@ b, strong{font-family: Brown-Bold, 'Trebuchet MS', Verdana, sans-serif;font-weig
         width: 100%;
     }
 
-    .customer-account-forgotpassword #email_address { width: 320px;}
+    .customer-account-forgotpassword #email_address { /*width: 320px;*/}
     .form-list .customer-name .field {
-        width: 320px;
-    }
+/*        width: 320px;
+*/    }
     .account-create .fieldset .form-list .field,
     .account-create .fieldset .form-list .input-box {
-        width: 320px;
-    }
+/*        width: 320px;
+*/    }
 }
 
 @media only screen and (max-width: 495px) {
