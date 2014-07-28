@@ -161,12 +161,8 @@ function wpcf_form( $id, $form = array() ) {
     if ( isset( $wpcf_forms[$id] ) ) {
         return $wpcf_forms[$id];
     }
-    if ( !class_exists(Enlimbo_Forms_Wpcf) )
-    {
-        include_once(WPCF_EMBEDDED_ABSPATH . '/classes/forms.php');
-    }
-    
-    $new_form = new Enlimbo_Forms_Wpcf('');
+    require_once WPCF_EMBEDDED_ABSPATH . '/classes/forms.php';
+    $new_form = new Enlimbo_Forms_Wpcf();
     $new_form->autoHandle( $id, $form );
     $wpcf_forms[$id] = $new_form;
     return $wpcf_forms[$id];
