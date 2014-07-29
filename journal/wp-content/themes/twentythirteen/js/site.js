@@ -1,5 +1,5 @@
 ( function( $ ) {
-	
+
 	$( function() {
 		// set height home-list-item
 		var height = 300;
@@ -22,7 +22,7 @@
 				}
 			}
 		});
-	    
+
 
 		$('.home-page-recent-articles-image', '.home-page-recent-articles').hover(function(){
 			$(this).children('.a-view-more').show();
@@ -31,22 +31,32 @@
 			$(this).children('.a-view-more').hide();
 			$(this).children('img').css({'opacity':1});
 		});
-				
+
+		$('.soundcloud-spotify-player-iframe').hover(function(){
+			$(this).children('.icon-play-img').show();
+			$(this).children('img').css({'opacity':0.6});
+		}, function(){
+			$(this).children('.icon-play-img').hide();
+			$(this).children('img').css({'opacity':1});
+		});
+
 		// Stop
-		$('.if-click-stop').click(function(){
-			var parent = $(this).parent().parent().parent();
-			parent.children('.soundcloud-spotify-player-iframe').empty().append('<img src="'+$(this).data('img')+'" />');
-			parent.children('.soundcloud-spotify-player-bottom-stop').hide();
-			parent.children('.soundcloud-spotify-player-bottom-play').show();
+		$('.large-soundcloud-spotify-player').on('click', '.if-click-stop', function() {
+			$(this).parents('.large-soundcloud-spotify-player').children('.soundcloud-spotify-player-iframe').empty().append('<img src="'+$(this).data('img')+'" /><a class="if-click-play icon-play-img" href="javascript:;" data-id="'+$(this).data('id')+'" data-src="'+$(this).data('src')+'" ></a>');
+			$(this).parents('.large-soundcloud-spotify-player').children('.soundcloud-spotify-player-bottom-stop').hide();
+			$(this).parents('.large-soundcloud-spotify-player').children('.soundcloud-spotify-player-bottom-play').show();
+			$(this).parents('.large-soundcloud-spotify-player').children('.soundcloud-spotify-player-iframe').children('img').css('height','auto');
+			$(this).parents('.large-soundcloud-spotify-player').children('.soundcloud-spotify-player-iframe').children('a').css('height','100%');
 			return false;
 		});
 
 		/*Play*/
-		$('.if-click-play').click(function(){
-			var parent = $(this).parent().parent().parent();
-			parent.children('.soundcloud-spotify-player-iframe').empty().append('<iframe id="iframe-'+($(this).data('id'))+'" class="iframe-soundcloud" scrolling="no" frameborder="no" src="'+$(this).data('src')+'"></iframe>');
-			parent.children('.soundcloud-spotify-player-bottom-play').hide();
-			parent.children('.soundcloud-spotify-player-bottom-stop').show();
+		$('.large-soundcloud-spotify-player').on('click', '.if-click-play', function() {
+				$(this).parents('.large-soundcloud-spotify-player').children('.soundcloud-spotify-player-bottom-play').hide();
+				$(this).parents('.large-soundcloud-spotify-player').children('.soundcloud-spotify-player-bottom-stop').show();
+				$(this).parents('.large-soundcloud-spotify-player').children('.soundcloud-spotify-player-iframe').children('img').css('height','0px');
+				$(this).parents('.large-soundcloud-spotify-player').children('.soundcloud-spotify-player-iframe').children('a').css('height','0px');
+				$(this).parents('.large-soundcloud-spotify-player').children('.soundcloud-spotify-player-iframe').append('<iframe id="iframe-'+($(this).data('id'))+'" class="iframe-soundcloud" scrolling="no" frameborder="no" src="'+$(this).data('src')+'"></iframe>');
 			return false;
 		});
 
@@ -235,7 +245,7 @@
 		                item.fadeIn('slow');
 		                $('.btn-handler').fadeIn('slow');
 		            });
-		            
+
 
 		            $('.product-next-prev').css('position', 'normal');
 		            $('.product-shop').css('position', 'normal');
@@ -259,7 +269,7 @@
 
 					$('.btn-handler #view-prev-zoom, .btn-handler #view-next-zoom').click(function(){
 						my.loading();
-						var control = $(this).data('control');						
+						var control = $(this).data('control');
 						if ( control == 'pre' )
 						{
 							pr.ind = ( pr.ind > 0 ) ? (pr.ind - 1) : 0;
@@ -306,7 +316,7 @@
             var wH = $(window).height();
             var range = imgH - wH;
             var ratio = range / wH;
-            var speed = e.clientY * ratio;			
+            var speed = e.clientY * ratio;
             // TweenLite.to(img, 1.2, { css: { top: '-' + speed, ease : Cubic.easeOut }});
             TweenLite.to(img, 1, { css: { transform:'translate3d(0px,' + '-'+speed+'px' + ', 0px)', ease:Cubic.easeOut }});
         }
@@ -317,6 +327,6 @@
         });
 
 	} );
-	
-	
+
+
 } )( jQuery );
