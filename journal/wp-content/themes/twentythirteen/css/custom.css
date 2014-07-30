@@ -2,7 +2,7 @@
 	width:100%!important;
 }
 .custom-wp .main-container{
-	margin-bottom:183px;
+	margin-bottom:100px;
 }
 .custom-wp .main{
 	width:100%;
@@ -54,4 +54,7 @@ ul.slides li p{
 .posts-facebocks-desc-headlinev p{
 	padding-top:0px!important;
 	font-size:72px!important;
+}
+[class*="column"] + [class*="column"]:last-child{
+    float: left !important;
 }

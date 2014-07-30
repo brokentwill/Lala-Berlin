@@ -217,6 +217,9 @@ body{
 .home-page-recent-articles .large-recent-articles:last-child{
     float: left !important;
 }
+.home-page-recent-articles .columns:last-child{
+    margin-bottom: 0px;
+}
 .home-page-recent-articles .columns .home-page-recent-articles-image{
     position: relative;
     width: 100%;
@@ -285,6 +288,9 @@ body{
     text-decoration: underline;
     font-family: "Brown";
 }
+.home-page-recent-articles .home-page-recent-articles-description .bottom .bottom-view a:hover{
+    text-decoration: none;
+}
 .home-page-recent-articles .home-page-recent-articles-description .bottom .bottom-date{
     font-size: 10px;
     letter-spacing: 2px;
@@ -293,7 +299,7 @@ body{
 }
 /* -- home-page-bottom-load-more -- */
 .home-page-bottom-load-more{
-    padding: 50px 0px 0px;
+    padding: 0px 0px 0px;
     text-align: center;
 }
 .home-page-bottom-load-more a{
@@ -361,9 +367,16 @@ body{
     padding-bottom: 50px;
     border-bottom: 1px solid #000;
 }
+.heavy-rotation .homepage-soundcloud-spotify-player{
+    padding-bottom: 0px;
+    border: 0px;
+}
+.heavy-rotation .homepage-soundcloud-spotify-player .row{
+    margin-bottom: 50px;
+}
 .homepage-soundcloud-spotify-player .homepage-soundcloud-spotify-player-title{
     padding-top: 50px;
-    font-size: 40px;
+    font-size: 30px;
     font-family: "Brown";
     font-weight: bold;
     text-align: center;
@@ -388,15 +401,22 @@ body{
 .homepage-soundcloud-spotify-player .soundcloud-spotify-player-bottom-play .play-img{
     padding-top: 25px;
 }
-.homepage-soundcloud-spotify-player .soundcloud-spotify-player-bottom-play .play{
+.homepage-soundcloud-spotify-player .soundcloud-spotify-player-bottom-play .play,
+.homepage-soundcloud-spotify-player .soundcloud-spotify-player-bottom-all .all{
     padding-top: 20px;
 }
-.homepage-soundcloud-spotify-player .soundcloud-spotify-player-bottom-play .play a{
+.homepage-soundcloud-spotify-player .soundcloud-spotify-player-bottom-all .all{
+    padding-top: 50px;
+    text-align: center;
+}
+.homepage-soundcloud-spotify-player .soundcloud-spotify-player-bottom-play .play a,
+.homepage-soundcloud-spotify-player .soundcloud-spotify-player-bottom-all .all a{
     font-size: 14px;
     font-weight: bold;
     font-family: "Brown";
     color: #000;
     text-decoration: underline;
+
 }
 .homepage-soundcloud-spotify-player .soundcloud-spotify-player-iframe{
     position: relative;
@@ -412,7 +432,7 @@ body{
 }
 
 .homepage-soundcloud-spotify-player .soundcloud-spotify-player-bottom-stop{
-    padding-top: 85px;
+    padding-top: 50px;
     text-align: center;
 }
 .homepage-soundcloud-spotify-player .soundcloud-spotify-player-bottom-stop .if-click-stop{
@@ -1161,6 +1181,10 @@ a.btn-back, a.btn-back:hover{
     width: 100%;
     height: 380px;
 }
+.iframe-spotify{
+    width: 100%;
+    height:493px;
+}
 .iframe-soundcloud .outerWidgetContainer{
     width: 100% !important;
 }
@@ -1258,6 +1282,7 @@ a.btn-back, a.btn-back:hover{
     left: 0px;
     z-index: 999999;
     background: url(../images/load-more.png) no-repeat center;
+    background-color: rgba(255,255,255,.75);
 }
 .images-zoom-wrap{
     background: #FFFFFF;
