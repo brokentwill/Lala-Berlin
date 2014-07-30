@@ -24,14 +24,18 @@
 
 		if ( !empty($posts) AND is_array($posts) AND count($posts) )
 		{
-			$json = array('status'=>true, 'html'=>'');
+			if (count($posts) < 3) {
+				$json = array('status'=>true, 'end'=>true, 'html'=>'');
+			} else {
+				$json = array('status'=>true, 'html'=>'');
+			}
 			foreach ($posts as $post)
 			{
 				$caption = get_post_custom($post['ID']);
 				$caption = ( isset($caption['wpcf-post-description']) AND !empty($caption['wpcf-post-description']) AND is_array($caption['wpcf-post-description']) AND count($caption['wpcf-post-description']) ) ? $caption['wpcf-post-description'][0] : '';
 
 				$json['html'] .= '
-				<div class="small-12 medium-4 large-4 columns">
+				<div class="small-12 medium-4 large-4 large-recent-articles columns">
 					<div class="home-page-recent-articles-image">
 						<img src="'.(dirname(get_site_url()).'/lib/timthumb.php?src='.wp_get_attachment_url( get_post_thumbnail_id($post['ID']) ).'&w=412&h=252').'" />
 						<a class="a-view-more" href="'.qtrans_convertURL(get_permalink($post['ID']), mage_get_language()).'"><span>'.__('View').'</span></a>

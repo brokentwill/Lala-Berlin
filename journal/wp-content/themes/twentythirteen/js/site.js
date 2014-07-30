@@ -40,13 +40,13 @@
 			$(this).children('img').css({'opacity':1});
 		});
 
+
+
 		// Stop
 		$('.large-soundcloud-spotify-player').on('click', '.if-click-stop', function() {
-			$(this).parents('.large-soundcloud-spotify-player').children('.soundcloud-spotify-player-iframe').empty().append('<img src="'+$(this).data('img')+'" /><a class="if-click-play icon-play-img" href="javascript:;" data-id="'+$(this).data('id')+'" data-src="'+$(this).data('src')+'" ></a>');
+			$(this).parents('.large-soundcloud-spotify-player').children('.soundcloud-spotify-player-iframe').empty().append('<img src="'+$(this).data('img')+'" /><a class="if-click-play icon-play-img" href="javascript:;" data-id="'+$(this).data('id')+'" data-class="'+$(this).data('class')+'" data-src="'+$(this).data('src')+'" ></a>');
 			$(this).parents('.large-soundcloud-spotify-player').children('.soundcloud-spotify-player-bottom-stop').hide();
 			$(this).parents('.large-soundcloud-spotify-player').children('.soundcloud-spotify-player-bottom-play').show();
-			$(this).parents('.large-soundcloud-spotify-player').children('.soundcloud-spotify-player-iframe').children('img').css('height','auto');
-			$(this).parents('.large-soundcloud-spotify-player').children('.soundcloud-spotify-player-iframe').children('a').css('height','100%');
 			return false;
 		});
 
@@ -54,9 +54,7 @@
 		$('.large-soundcloud-spotify-player').on('click', '.if-click-play', function() {
 				$(this).parents('.large-soundcloud-spotify-player').children('.soundcloud-spotify-player-bottom-play').hide();
 				$(this).parents('.large-soundcloud-spotify-player').children('.soundcloud-spotify-player-bottom-stop').show();
-				$(this).parents('.large-soundcloud-spotify-player').children('.soundcloud-spotify-player-iframe').children('img').css('height','0px');
-				$(this).parents('.large-soundcloud-spotify-player').children('.soundcloud-spotify-player-iframe').children('a').css('height','0px');
-				$(this).parents('.large-soundcloud-spotify-player').children('.soundcloud-spotify-player-iframe').append('<iframe id="iframe-'+($(this).data('id'))+'" class="iframe-soundcloud" scrolling="no" frameborder="no" src="'+$(this).data('src')+'"></iframe>');
+				$(this).parents('.large-soundcloud-spotify-player').children('.soundcloud-spotify-player-iframe').empty().append('<iframe id="iframe-'+($(this).data('id'))+'" scrolling="no" frameborder="no" src="'+$(this).data('src')+'" class="'+$(this).data('class')+'"></iframe>');
 			return false;
 		});
 
@@ -66,13 +64,14 @@
 				// Remove control nav home-page-facebocks
 				$('.flex-direction-nav','.home-page-facebocks ').remove();
 				intiHeight(option_resize);
-			}, 2000);
+			}, 1);
 		};
 		intiHeight(option_resize);
 		// window resize
 		$(window).resize(function(){
 			intiHeight(option_resize);
 		});
+
 		// resize image
 		function intiHeight( opt ){
 			if ( opt.length )
@@ -112,6 +111,7 @@
 						{
 							resp = JSON.parse(resp.responseText);
 							setting.data.date_last = resp.date_last;
+							intiHeight(option_resize);
 						}
 					},
 					error: function(){}
@@ -182,7 +182,13 @@
 						$(this).children('.a-view-more').hide();
 						$(this).children('img').css({'opacity':1});
 					});
+					if (resp.end){
+						$('.home-page-bottom-load-more > a.load-more').parent().hide();
+					}
 					$('.home-page-bottom-load-more > a.load-more').attr('data-date', resp.date_last);
+
+
+
 				}
 				else
 				{
