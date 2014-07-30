@@ -196,16 +196,16 @@
 					echo '
 						<div class="small-12 medium-4 large-4 large-soundcloud-spotify-player columns">
 							<div class="soundcloud-spotify-player-iframe">
-								<img src="'.(dirname(get_site_url()).'/lib/timthumb.php?src='.wp_get_attachment_url( get_post_thumbnail_id($post->ID) ).'&h=252&w=252').'" />
-								<a class="if-click-play icon-play-img" href="javascript:;" data-id="iframe-'.($ind+1).'" data-src="https://embed.spotify.com/?uri='.$Soundcloud_Spotify['wpcf-id-spotify-song'][0].'" ></a>
+								<img src="'.(dirname(get_site_url()).'/lib/timthumb.php?src='.wp_get_attachment_url( get_post_thumbnail_id($post->ID) ).'&h=413&w=413').'" />
+								<a class="if-click-play icon-play-img" href="javascript:;" data-class="iframe-spotify" data-id="iframe-'.($ind+1).'" data-src="https://embed.spotify.com/?uri='.$Soundcloud_Spotify['wpcf-id-spotify-song'][0].'" ></a>
 							</div>
 							<div class="soundcloud-spotify-player-bottom-play" style="'.(( !empty($Soundcloud_Spotify['wpcf-soundcloud-autoplay']) AND !empty($Soundcloud_Spotify['wpcf-soundcloud-autoplay'][0]) ) ? 'display:none': '').'">
 								<div class="title">'.( ( !empty($Soundcloud_Spotify['wpcf-title-spotify-song'][0]) AND !empty($Soundcloud_Spotify['wpcf-title-spotify-song']) ) ? $Soundcloud_Spotify['wpcf-title-spotify-song'][0] : '' ).'</div>
 								<div class="decscription">'.( ( !empty($Soundcloud_Spotify['wpcf-description-spotify-song'][0]) AND !empty($Soundcloud_Spotify['wpcf-description-spotify-song']) ) ? $Soundcloud_Spotify['wpcf-description-spotify-song'][0] : '' ).'</div>
-								<div class="play"><a class="if-click-play" href="javascript:;" data-id="iframe-'.($ind+1).'" data-src="https://embed.spotify.com/?uri='.$Soundcloud_Spotify['wpcf-id-spotify-song'][0].'" >Play</a></div>
+								<div class="play"><a class="if-click-play" href="javascript:;" data-class="iframe-spotify" data-id="iframe-'.($ind+1).'" data-src="https://embed.spotify.com/?uri='.$Soundcloud_Spotify['wpcf-id-spotify-song'][0].'" >Play</a></div>
 							</div>
 							<div class="soundcloud-spotify-player-bottom-stop" style="display:none">
-								<div class="play"><a class="if-click-stop" href="javascript:;" data-id="iframe-'.($ind+1).'" data-src="https://embed.spotify.com/?uri='.$Soundcloud_Spotify['wpcf-id-spotify-song'][0].'" data-img="'.(dirname(get_site_url()).'/lib/timthumb.php?src='.wp_get_attachment_url( get_post_thumbnail_id($post->ID) ).'&h=252').'" >Stop</a></div>
+								<div class="play"><a class="if-click-stop" href="javascript:;" data-class="iframe-spotify" data-id="iframe-'.($ind+1).'" data-src="https://embed.spotify.com/?uri='.$Soundcloud_Spotify['wpcf-id-spotify-song'][0].'" data-img="'.(dirname(get_site_url()).'/lib/timthumb.php?src='.wp_get_attachment_url( get_post_thumbnail_id($post->ID) ).'&h=252').'" >Stop</a></div>
 							</div>
 							<div class="soundcloud-spotify-player-date">['.date("d-m-Y", strtotime($post->post_date)).']</div>
 						</div>
@@ -228,17 +228,18 @@
 							}
 							else
 							{
-						echo 	'<img src="'.(dirname(get_site_url()).'/lib/timthumb.php?src='.wp_get_attachment_url( get_post_thumbnail_id($post->ID) ).'&h=252&w=252').'" /><a class="if-click-play icon-play-img" href="javascript:;" data-id="iframe-'.($ind+1).'" data-src="'.str_replace('auto_play=false', 'auto_play=true', $embed[1]).'" ></a>';
+						echo 	'<img src="'.(dirname(get_site_url()).'/lib/timthumb.php?src='.wp_get_attachment_url( get_post_thumbnail_id($post->ID) ).'&h=413&w=413').'" /><a class="if-click-play icon-play-img" href="javascript:;" data-id="iframe-'.($ind+1).'" data-src="'.str_replace('auto_play=false', 'auto_play=true', $embed[1]).'" ></a>
+									<a class="if-click-play" href="javascript:;" data-class="iframe-soundcloud" data-id="iframe-'.($ind+1).'" data-src="'.str_replace('auto_play=false', 'auto_play=true', $embed[1]).'" >Play</a>';
 							}
 						echo '
 							</div>
 							<div class="soundcloud-spotify-player-bottom-play" style="'.(( !empty($Soundcloud_Spotify['wpcf-soundcloud-autoplay']) AND !empty($Soundcloud_Spotify['wpcf-soundcloud-autoplay'][0]) ) ? 'display:none': '').'">
 								<div class="title">'.( ( !empty($Soundcloud_Spotify['wpcf-soundcloud-title'][0]) AND !empty($Soundcloud_Spotify['wpcf-soundcloud-title']) ) ? $Soundcloud_Spotify['wpcf-soundcloud-title'][0] : '' ).'</div>
 								<div class="decscription">'.( ( !empty($Soundcloud_Spotify['wpcf-soundcloud-description'][0]) AND !empty($Soundcloud_Spotify['wpcf-soundcloud-title']) ) ? $Soundcloud_Spotify['wpcf-soundcloud-description'][0] : '' ).'</div>
-								<div class="play"><a class="if-click-play" href="javascript:;" data-id="iframe-'.($ind+1).'" data-src="'.str_replace('auto_play=false', 'auto_play=true', $embed[1]).'" >Play</a></div>
+								<div class="play"><a class="if-click-play" href="javascript:;" data-class="iframe-soundcloud" data-id="iframe-'.($ind+1).'" data-src="'.str_replace('auto_play=false', 'auto_play=true', $embed[1]).'" >Play</a></div>
 							</div>
 							<div class="soundcloud-spotify-player-bottom-stop" style="'.(( !empty($Soundcloud_Spotify['wpcf-soundcloud-autoplay']) AND !empty($Soundcloud_Spotify['wpcf-soundcloud-autoplay'][0]) ) ? '': 'display:none').'">
-								<div class="play"><a class="if-click-stop" href="javascript:;" data-id="iframe-'.($ind+1).'" data-src="'.str_replace('auto_play=true', 'auto_play=false', $embed[1]).'" data-img="'.(dirname(get_site_url()).'/lib/timthumb.php?src='.wp_get_attachment_url( get_post_thumbnail_id($post->ID) ).'&h=252').'" >Stop</a></div>
+								<div class="play"><a class="if-click-stop" href="javascript:;" data-class="iframe-soundcloud" data-id="iframe-'.($ind+1).'" data-src="'.str_replace('auto_play=true', 'auto_play=false', $embed[1]).'" data-img="'.(dirname(get_site_url()).'/lib/timthumb.php?src='.wp_get_attachment_url( get_post_thumbnail_id($post->ID) ).'&h=252').'" >Stop</a></div>
 							</div>
 							<div class="soundcloud-spotify-player-date">['.date("d-m-Y", strtotime($post->post_date)).']</div>
 						</div>
@@ -247,6 +248,12 @@
 				}
 			}
 		echo '
+
+<div class="small-12 medium-12 large-12 large-soundcloud-spotify-player columns">
+					<div class="soundcloud-spotify-player-bottom-all">
+						<div class="all"><a href="'.qtrans_convertURL(get_permalink('1171'), mage_get_language()).'">'.__('View all').'</a></div>
+					</div>
+				</div>
 				</div>
 			</div>
 		';
