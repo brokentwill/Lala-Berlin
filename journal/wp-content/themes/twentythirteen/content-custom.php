@@ -314,6 +314,17 @@ $categorys = get_the_category(get_the_ID());
 				</div>
 			<?php endif ?>
 
+				<?php if( get_row_layout() == 'author-info' ){ ?>
+					<p style="text-align: center;">
+							<img src="<?php the_sub_field("image") ?>" alt="<?php echo get_sub_field("info"); ?>">
+					</p>
+					<p style="text-align: center;">
+						<strong>
+							<em><?php the_sub_field("info") ?></em>
+						</strong>
+					</p>
+				<?php } ?>
+
 	    <?php endwhile; ?>
 	<?php endif; ?>
 
