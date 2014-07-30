@@ -88,7 +88,7 @@ $categorys = get_the_category(get_the_ID());
 		<!-- Featuer Image -->
 		<?php if ( has_post_thumbnail() && ! post_password_required() ) : ?>
 			<div class="entry-thumbnail padding-bottom-50-px">
-				<?php echo '<img src="'.(dirname(get_site_url()).'/lib/timthumb.php?src='.wp_get_attachment_url( get_post_thumbnail_id(get_the_ID()) ).'&w=1275&h=700').'" />' ?>
+				<?php echo '<img src="'.(dirname(get_site_url()).'/lib/timthumb.php?src='.wp_get_attachment_url( get_post_thumbnail_id(get_the_ID()) ).'&w=1275&h=625').'" />' ?>
 			</div>
 		<?php endif; ?>
 	</header><!-- .entry-header -->
@@ -103,24 +103,7 @@ $categorys = get_the_category(get_the_ID());
 		<?php qtrans_use(mage_get_language(), the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'twentythirteen' )) ); ?>
 		<?php wp_link_pages( array( 'before' => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'twentythirteen' ) . '</span>', 'after' => '</div>', 'link_before' => '<span>', 'link_after' => '</span>' ) ); ?>
 
-		<!-- Author info section -->
-		<?php if( get_field('lala_journal_posts') ): ?>
-	    	<?php while( has_sub_field("lala_journal_posts") ): ?>
-				<?php if( get_row_layout() == 'author-info' ){ ?>
-					<p style="text-align: center;">
-						<a href="">
-							<img src="<?php the_sub_field("image") ?>" alt="">
-						</a>
-					</p>
-					<p style="text-align: center;">
-						<strong>
-							<em><?php the_sub_field("info") ?></em>
-						</strong>
-					</p>
-				<?php } ?>
-	    	<?php endwhile; ?>
-		<?php endif; ?>
-		<!-- Author info section -->
+
 
 	</div><!-- .entry-content -->
 	<?php endif; ?>

@@ -67,8 +67,17 @@ body{
     border: medium none;
     box-shadow: none;
     max-height: none;
-    padding-bottom: 30px;
+    /*padding-bottom: 30px;*/
     text-shadow: none;
+}
+.home-page-posts-marked-slideshow > .flexslider > .slides li a.overlay{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    display: block;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
 }
 .home-page-posts-marked-slideshow > .flexslider > .slides li .posts-marked-slideshow-desc{
     width: 100%;
@@ -80,6 +89,8 @@ body{
     vertical-align: middle;
     color: #FFFFFF;
     font-size: 24px;
+
+
 }
 .home-page-posts-marked-slideshow > .flexslider > .slides li .posts-marked-slideshow-desc .posts-marked-slideshow-desc-title{
     /*padding-top: 170px;*/
@@ -89,6 +100,10 @@ body{
     position: absolute;
     width: 100%;
     top: 170px;
+
+    -webkit-text-shadow: 0px 0px 150px rgba(0, 0, 0, 1);
+    -moz-text-shadow: 0px 0px 150px rgba(0, 0, 0, 1);
+    text-shadow: 0px 0px 150px rgba(0, 0, 0, 1);
 
 }
 .home-page-posts-marked-slideshow > .flexslider > .slides li .posts-marked-slideshow-desc .posts-marked-slideshow-desc-subline {
@@ -103,12 +118,21 @@ body{
     text-align: center;
     font-size: 72px;
     font-family: 'Domaine Display Condensed';
+
+    -webkit-text-shadow: 0px 0px 150px rgba(0, 0, 0, 1);
+    -moz-text-shadow: 0px 0px 150px rgba(0, 0, 0, 1);
+    text-shadow: 0px 0px 150px rgba(0, 0, 0, 1);
 }
 .home-page-posts-marked-slideshow > .flexslider > .slides li .posts-marked-slideshow-desc .posts-marked-slideshow-desc-bottom{
     bottom: 65px;
     left: 0;
     position: absolute;
     right: 0;
+    z-index:1001;
+
+    -webkit-text-shadow: 0px 0px 50px rgba(0, 0, 0, .5);
+    -moz-text-shadow: 0px 0px 50px rgba(0, 0, 0, .5);
+    text-shadow: 0px 0px 50px rgba(0, 0, 0, .5);
 }
 .home-page-posts-marked-slideshow > .flexslider > .slides li .posts-marked-slideshow-desc .posts-marked-slideshow-desc-bottom .posts-marked-bottom-view a {
     font-size: 14px;
@@ -116,6 +140,7 @@ body{
     text-decoration: underline;
     font-weight: bold;
     font-family: "Brown";
+
 }
 .home-page-posts-marked-slideshow > .flexslider > .slides li .posts-marked-slideshow-desc .posts-marked-slideshow-desc-bottom .posts-marked-bottom-view a:hover {
     text-decoration: none;
@@ -131,29 +156,47 @@ body{
 .home-page-posts-marked-slideshow > .flexslider > .slides li img{
     width: 100%;
 }
+/*.home-page-posts-marked-slideshow > .flexslider > .slides li{
+    position: relative;;
+}
+.home-page-posts-marked-slideshow > .flexslider > .slides li .overlay{
+    width: 100%;
+    height: 100%;
+    background: url(../images/slider-bg.png) no-repeat center !important;
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}*/
 .home-page-posts-marked-slideshow  .flex-control-nav{
     width: 100%;
     bottom: 0px;
     position: absolute;
-    margin-top:10px;
+    margin-top:15px;
 }
-.home-page-posts-marked-slideshow  .flex-control-paging li{
-    width: 19px;
-    height: 19px;
-    position: relative;
-    padding:0px;
+.home-page-posts-marked-slideshow .flex-control-paging li a {
+    background: transparent url('../images/dot-gray.svg') no-repeat center center !important;
+    cursor: pointer;
+    display: block;
+    height: 17px;
+    text-indent: -9999px;
+    width: 17px;
+    background-size: 7px 7px !important;
 }
-.home-page-posts-marked-slideshow  .flex-control-paging li a{
-    top: 5px;
-    left: 4px;
-    position: absolute;
+.home-page-posts-marked-slideshow .flex-control-paging li a:hover{
+   background-image: url('../images/dot-black.svg') !important;
 }
-.home-page-posts-marked-slideshow  .flex-control-paging li a.flex-active{
-    background: url(../images/flexislideshow.png) no-repeat center !important;
-    width: 19px;
-    height: 19px;
-    top: 0px;
-    left: 0px;
+.no-svg .home-page-posts-marked-slideshow .flex-control-paging li a{
+    background-image: url('../images/dot-gray.png') !important;
+}
+.home-page-posts-marked-slideshow .flex-control-paging li a.flex-active {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0) !important;
+    border: 1px solid #c6c6c6;
+    height: 17px;
+    left: 0;
+    margin-top: 0;
+    top: 0;
+    width: 17px;
 }
 .home-page-posts-marked-slideshow  .flex-direction-nav{
     display: none;
@@ -388,7 +431,7 @@ body{
 }
 /* --- Facebock --- */
 .home-page-facebocks{
-    padding-top: 50px;
+    padding-top: 40px;
     padding-bottom: 40px;
     border-top: 1px solid #000000;
 	border-bottom: 1px solid #000000;
@@ -417,10 +460,15 @@ body{
     position: absolute;
     text-align: center;
     top: 34.888438134%;
-    width: 100%;
+    width: 75%;
+    margin: 0px 12.5%;
     font-size: 72px;
-    font-weight: bold;
-    font-family: "Domaine Display Condensed"
+    font-weight: normal;
+    font-family: "Domaine Display Condensed";
+
+    -webkit-text-shadow: 0px 0px 150px rgba(0, 0, 0, .75);
+    -moz-text-shadow: 0px 0px 150px rgba(0, 0, 0, .75);
+    text-shadow: 0px 0px 150px rgba(0, 0, 0, .75);
 }
 .home-page-facebocks .home-page-facebocks-right .hp-fb-right-item-5{
     padding-bottom: 10px;
@@ -1131,26 +1179,42 @@ a.btn-back, a.btn-back:hover{
 .home-page-facebocks .flexslider .flex-control-nav{
     display: block !important;
     position: relative;
+
+}
+.home-page-facebocks .flexslider .flex-control-nav{
+    position: absolute;
+    height: 125px;
+    bottom: 0px;
+    width: 100%;
+    background-image: url('../images/social-overlay.png');
+    background-repeat: repeat-x;
+    background-position: bottom center;
+    padding-top: 87px;
+    z-index: 100;
 }
 .home-page-facebocks .flex-control-paging li a {
-    background: none repeat scroll 0 0 #fff;
-    border-radius: 20px;
-    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3) inset;
+    background: transparent url('../images/dot-white.svg') no-repeat center center !important;
     cursor: pointer;
     display: block;
-    height: 15px;
-    margin-top: 2px;
+    height: 17px;
     text-indent: -9999px;
-    width: 15px;
+    width: 17px;
+    background-size: 7px 7px !important;
+}
+.home-page-facebocks .flex-control-paging li a:hover{
+    opacity: .5;
+}
+.no-svg .home-page-facebocks .flex-control-paging li a{
+    background-image: url('../images/dot-white.png');
 }
 .home-page-facebocks .flex-control-paging li a.flex-active {
-    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
-    border: 2px solid #fff;
-    height: 19px;
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0) !important;
+    border: 1px solid #fff;
+    height: 17px;
     left: 0;
     margin-top: 0;
     top: 0;
-    width: 19px;
+    width: 17px;
 }
 .home-page-facebocks .flex-direction-nav,
 #info .image-gallery-single-post #slider .flex-direction-nav{
