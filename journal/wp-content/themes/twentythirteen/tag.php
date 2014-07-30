@@ -45,7 +45,7 @@ get_header('magento'); ?>
 							<div class="description">'.$caption.'</div>
 							<div class="bottom">
 								<div class="bottom-view"><a href="'.qtrans_convertURL(get_permalink(get_the_ID()), mage_get_language()).'">'.__('View post').'</a></div>
-								<div class="bottom-date">['.date("d-m-Y", strtotime(get_the_date())).']</div>
+								<div class="bottom-date">['.get_the_date("d-m-Y").']</div>
 							</div>
 						</div>
 					</div>';
