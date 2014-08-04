@@ -120,6 +120,8 @@ if(class_exists('Mage')){
 	<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri()?>/css/custom.css" media="all" />
     <script type="text/javascript" src="<?php echo get_template_directory_uri()?>/js/site.js"></script>
     <script type="text/javascript" src="<?php echo get_template_directory_uri()?>/js/share.js"></script>
+    <script type="text/javascript" src="<?php echo get_template_directory_uri()?>/js/share.js"></script>
+    <script type="text/javascript" src="<?php echo plugins_url('wp-slimstat/wp-slimstat.js') ?>"></script>
 
     <script type="text/javascript">
     //<![CDATA[
