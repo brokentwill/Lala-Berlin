@@ -371,7 +371,8 @@ body{
     padding-bottom: 0px;
     border: 0px;
 }
-.heavy-rotation .homepage-soundcloud-spotify-player .row{
+.heavy-rotation .homepage-soundcloud-spotify-player .row .columns {
+    padding-bottom: 0px;
     margin-bottom: 50px;
 }
 .homepage-soundcloud-spotify-player .homepage-soundcloud-spotify-player-title{
