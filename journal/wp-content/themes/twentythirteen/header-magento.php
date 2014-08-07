@@ -33,8 +33,8 @@ if(class_exists('Mage')){
     $head->addCss('css/screen.css');
     $head->addCss('css/custom.css');
     $head->addCss('css/polyfill.object-fit.css');
-    $head->addCss('css/journal.css');
-    $head->addCss('css/journal.css');
+    // $head->addCss('css/journal.css');
+    // $head->addCss('css/journal.css');
 
     // $head->addCss('css/styles.css');
     // Add Prototype JS file
@@ -80,7 +80,7 @@ if(class_exists('Mage')){
     // making it look like the URL below:
     // http://localhost/magento/js/prototype/prototype.js
     $head->addJs('prototype/prototype.js');
-    $head->addJs('js/site.js');
+    // $head->addJs('js/site.js');
 
     // Get the header's HTML
     $header = $Block->createBlock('page/html_header');
