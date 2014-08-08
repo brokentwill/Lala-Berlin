@@ -309,20 +309,14 @@ body{
     display: inline-block;
     font-family: "Brown";
     font-size: 10px;
-    padding: 15px 30px 15px 40px;
+    padding: 15px 12px 15px 32px;
     text-transform: uppercase;
-    width: 145px;
+    width: auto;
 }
 .home-page-bottom-load-more a:hover{
-    background: #000000;
-    border: 1px solid #000000;
+    background-color: #000000;
     color: #FFFFFF;
-    display: inline-block;
-    font-family: "Brown";
-    font-size: 10px;
-    padding: 15px 30px 15px 40px;
-    text-transform: uppercase;
-    width: 145px;
+
 }
 /* -- home-page-text-teaser -- */
 .home-page-text-teaser{
@@ -613,11 +607,6 @@ a.btn-back, a.btn-back:hover{
 .main-container {
     overflow: hidden;
 }
-.gallery-feature .row li{
-    padding: 10px;
-	margin:auto;
-	text-align:center;
-}
 .stand-img{
 	height:370px;
 }
@@ -625,8 +614,28 @@ a.btn-back, a.btn-back:hover{
     font-size: 20px;
     line-height: 30px;
 }
+article.post .padding-top-bottom p{
+    margin-bottom: 2.5rem;
+}
+article.post .padding-top-bottom p:last-child {
+    margin-bottom: 0px !important;
+}
 .padding-5-percent{
-    padding: 5%;
+/*    padding: 5%;
+*/}
+.padding-left-right{
+    padding-left: 14.678178964%;
+    padding-right: 14.678178964%;
+}
+.padding-bottom{
+    padding-bottom: 3.13rem;
+}
+.padding-top-bottom{
+    padding-top: 3.13rem;
+    padding-bottom: 2.63rem;
+}
+.text.padding-top-bottom{
+    padding-top: 2.75rem;
 }
 .left-right-5-percent{
     padding-left: 5%;
@@ -639,7 +648,7 @@ a.btn-back, a.btn-back:hover{
     padding-bottom: 40px;
 }
 /* --- .text --- */
-.text-justify{
+.justify{
     text-align: justify;
 }
 .text-align-right{
@@ -686,7 +695,7 @@ a.btn-back, a.btn-back:hover{
 }
 /* --- control-panel-articles --- */
 .control-panel-articles{
-    padding: 20px 0 0;
+    padding: 3.13rem 0 0;
 }
 .control-panel-articles .columns{
     position: relative;
@@ -905,35 +914,38 @@ a.btn-back, a.btn-back:hover{
 }
 /* ----- image-gallery-single-post ----- */
 #info .image-gallery-single-post{
-    padding-top: 90px;
+    /*padding-top: 90px;*/
 }
 #info .image-gallery-single-post #slider{
     text-shadow: none;
     box-shadow: none;
     border:none;
     padding: 0px;
+    height: 100% !important;
+    max-height: 100% !important;
 }
 
 #info .single_post_qa_repeater_articles{
     text-align: center;
-	padding-left:14%;
-	padding-right:14%;
+    padding-bottom: 0.38rem !important;
 }
-#info .single_post_qa_repeater_articles .single-label{
+#info .single_post_qa_repeater_articles .single-label,
+#info .single_post_qa_repeater_articles .single-value{
+    display: block;
     font-family: "Brown";
     font-weight: bold;
     font-size: 30px;
+    line-height: 38px;
     color: #000;
     text-align: left;
-	padding-bottom:25px;
+    padding-bottom: 0.56rem;
+    text-align: center;
 }
 #info .single_post_qa_repeater_articles .single-value{
-    font-family: "Brown";
     font-weight: 100;
     font-size: 20px;
-    color: #000;
-    text-align: left;
-	padding-bottom:25px;
+    line-height: 30px;
+    padding-bottom: 2.13rem;
 }
 
 #info .single_post_description{
@@ -950,11 +962,6 @@ a.btn-back, a.btn-back:hover{
 }
 #info .single_post_description .single_post_content{
     display: inline-block;
-    padding-bottom: 40px;
-    padding-top: 50px;
-    padding-left: 14%;
-    padding-right: 14%;
-    text-align: center;
 }
 #info .single_post_description .single_post_border_top{
     border-bottom: 1px solid #000;
@@ -968,18 +975,24 @@ a.btn-back, a.btn-back:hover{
 #info .single-post-gallery-feature ul li img{
     border:none;
     padding: 0px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+
+}
+#info .single-post-embed-feature iframe{
+    display: block;
+    margin: 0px auto;
 }
 #info .single_post-external .single_post-external-title{
     font-size: 30px;
     font-weight: bold;
     font-family: "Brown";
-    padding-top: 100px;
-    text-align: center;
-    padding-bottom: 30px;
-}
+/*    padding-top: 100px;
+*/    text-align: center;
+/*    padding-bottom: 30px;
+*/}
 #info .single_post-external ul li{
     text-align: center;
-	padding:4px 0px;
 }
 #info .single_post-external ul li a{
     font-size: 20px;
@@ -987,6 +1000,48 @@ a.btn-back, a.btn-back:hover{
     font-family: "Brown";
     text-decoration: underline;
     text-align: center;
+    line-height: 30px;
+}
+#info .produkte-feature h1,
+#info .author-info h1{
+    color: #000;
+    font-family: "Brown";
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 38px;
+    text-align: center;
+}
+info .produkte-feature .row{
+    margin: 0px auto;
+}
+#info .produkte-feature .row li{
+    padding: 5px;
+    margin:auto;
+    text-align:center;
+    float: left;
+    vertical-align: top;
+}
+#info .produkte-feature .row li img{
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: none;
+}
+#info .produkte-feature .row li .group-product{
+    background-color: #fff;
+    height: 100%;
+    display: block;
+    padding: 10px;
+}
+#info .author-info{
+    text-align: center;
+}
+#info .author-info .author{
+    margin: 0px auto;
+    padding: 0px 5px;
+}
+#info .author-info span{
+    display: block;
+    padding-top: 1rem;
 }
 .control-panel-articles .btn-back{
     background: url(../images/icon-list.png) no-repeat 10px center;
@@ -1089,8 +1144,12 @@ a.btn-back, a.btn-back:hover{
     padding-top: 50px;
     margin-top: 50px;
     border-top: 1px solid #000000;
-    padding-bottom: 100px;
+    padding-bottom: 50px;
 }
+.other-articles-related-posts .columns{
+    margin-bottom: 0px;
+}
+
 .other-articles-related-posts .other-articles-title{
     font-size: 30px;
     font-weight: bold;
@@ -1140,11 +1199,14 @@ a.btn-back, a.btn-back:hover{
 /* --- group-product --- */
 .group-product .product-caption{
     text-align: center;
+    vertical-align: top;
+    m
 }
 .group-product .product-caption .product-caption-name{
     font-size: 20px;
     font-weight: 400;
-    padding: 5px;
+    line-height: 30px;
+    padding-top: 12px;
 }
 .group-product .product-caption .product-caption-pice{
     font-size: 20px;
@@ -1193,7 +1255,7 @@ a.btn-back, a.btn-back:hover{
     margin: 0 auto;
     position: relative;
     text-align: center;
-    width: 120px;
+    width: 100%;
     z-index: 9999999;
     margin-top: 30px;
 }
@@ -1424,7 +1486,7 @@ a.btn-back, a.btn-back:hover{
         padding-top: 0px;
     }
     #info .image-gallery-single-post{
-        padding-top: 20px;
+        /*padding-top: 20px;*/
     }
     .padding-5-percent{
         padding:5px;

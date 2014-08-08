@@ -58,7 +58,7 @@
 			return false;
 		});
 
-		var option_resize = ['.home-page-recent-articles-top .large-recent-articles', '.home-page-recent-articles-bottom .large-recent-articles', '.home-page-recent-articles-middle .large-recent-articles', '.page-category .large-recent-articles'];
+		var option_resize = ['.home-page-recent-articles-top .large-recent-articles', '.home-page-recent-articles-bottom .large-recent-articles', '.home-page-recent-articles-middle .large-recent-articles', '.page-category .large-recent-articles', '.produkte-feature .medium-4', '.other-articles-related-posts .large-recent-articles'];
 		window.onload = function () {
 			setTimeout(function(){
 				// Remove control nav home-page-facebocks

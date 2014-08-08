@@ -10,8 +10,8 @@
 }
 .video-container {
     position: relative;
-    padding-bottom: 56.25%;
-    padding-top: 30px; height: 0; overflow: hidden;
+    padding-bottom: 54.2215337%;
+    padding-top: 0px; height: 0; overflow: hidden;
 }
 
 .video-container iframe,
@@ -32,16 +32,18 @@ ul.slides li p{
 	padding-top:30px;
 	padding-bottom:6px;
 	font-size:14px;
+    margin: 0px;
 }
 .content_infor{
-	padding-top: 20px;
-    text-align: center;
+/*	padding-top: 20px;
+*/    text-align: center;
 }
 .content_infor .title_infor{
-	 color: #000;
+	color: #000;
     font-family: "Brown";
     font-size: 30px;
     font-weight: bold;
+    line-height: 38px;
     text-align: center;
 }
 .content_infor p.sub_infor{
@@ -49,7 +51,8 @@ ul.slides li p{
     font-family: "Brown";
     font-size: 20px;
     font-weight: 100;
-    text-align: center;line-height: 30px;
+    text-align: center;
+    line-height: 30px;
 }
 .posts-facebocks-desc-headlinev p{
 	padding-top:0px!important;

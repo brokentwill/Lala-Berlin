@@ -15,7 +15,7 @@ $previous_post = get_previous_post();
 $categorys = get_the_category(get_the_ID());
 
 ?>
-<script type="text/javascript" src="http://stage.lalaberlin.com/skin/frontend/default/lalaberlin/js/CSSPlugin.min.js"></script>
+<script type="text/javascript" src="http://www.lalaberlin.com/skin/frontend/default/lalaberlin/js/CSSPlugin.min.js"></script>
 <article id="info" <?php post_class(); ?>>
 	<header class="entry-header">
 
@@ -87,7 +87,7 @@ $categorys = get_the_category(get_the_ID());
 		</div>
 		<!-- Featuer Image -->
 		<?php if ( has_post_thumbnail() && ! post_password_required() ) : ?>
-			<div class="entry-thumbnail padding-bottom-50-px">
+			<div class="entry-thumbnail padding-bottom">
 				<?php echo '<img src="'.(dirname(get_site_url()).'/lib/timthumb.php?src='.wp_get_attachment_url( get_post_thumbnail_id(get_the_ID()) ).'&w=1275&h=625').'" />' ?>
 			</div>
 		<?php endif; ?>
@@ -99,13 +99,13 @@ $categorys = get_the_category(get_the_ID());
 		<?php the_excerpt(); ?>
 	</div><!-- .entry-summary -->
 	<?php else: ?>
-	<div class="entry-content post-view-details-content std text-center">
-		<?php qtrans_use(mage_get_language(), the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'twentythirteen' )) ); ?>
-		<?php wp_link_pages( array( 'before' => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'twentythirteen' ) . '</span>', 'after' => '</div>', 'link_before' => '<span>', 'link_after' => '</span>' ) ); ?>
 
+		<?php if (qtrans_use(mage_get_language(), get_the_content() )) : ?>
+			<div class="entry-content post-view-details-content std text-center">
+				<?php qtrans_use(mage_get_language(), the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'twentythirteen' )) ); ?>
+			</div><!-- .entry-content -->
+		<?php endif; ?>
 
-
-	</div><!-- .entry-content -->
 	<?php endif; ?>
 
 
@@ -117,7 +117,7 @@ $categorys = get_the_category(get_the_ID());
 
 
 	        <?php if( get_row_layout() == 'text-bereich' ){ ?>
-	            <div class="repeater-articles single_post_qa_repeater_articles std padding-5-percent text-justify">
+	            <div class="repeater-articles std padding-left-right padding-top-bottom text justify">
 					<ul><li style="text-align:center"><?php the_sub_field("text"); ?></li></ul>
 				</div>
 	        <?php } ?>
@@ -128,9 +128,9 @@ $categorys = get_the_category(get_the_ID());
 		        ?>
 				<?php
 							$i=0;
-				?>				<div class="image-gallery-single-post row">
+				?>				<div class="image-gallery-single-post padding-top-bottom row">
 					    			<div id="slider" class="flexslider">
-					        		<ul class="slides">
+					        		<ul class="slides row">
 				            <?php foreach( $images as $image ): ?>
 				                <li>
 									<?php
@@ -173,13 +173,13 @@ $categorys = get_the_category(get_the_ID());
 	                $rows = get_sub_field('qa');
 	                if ($rows){
 	                     echo '
-							<div class="repeater-articles single_post_qa_repeater_articles std padding-5-percent text-justify">
+							<div class="repeater-articles single_post_qa_repeater_articles std padding-left-right padding-top-bottom justify">
 								<ul>';
 	                    foreach($rows as $row){
 	                        echo '
 				                <li>
-				                	<p class="single-label">'.$row['frage'].'</p>
-				                    <p class="single-value">'.$row['antwort'].'</p>
+				                	<span class="single-label">'.$row['frage'].'</span>
+				                    <span class="single-value">'.$row['antwort'].'</span>
 				                </li>';
 	                    }
 	                    echo '
@@ -192,10 +192,10 @@ $categorys = get_the_category(get_the_ID());
 	            if (get_row_layout() == "quote_text"){
 
 	                ?>
-					<div class="single_post_description text-justify">
+					<div class="single_post_description padding-left-right padding-top-bottom justify">
 						<div class="single_post_border_top"></div>
-						<div class="single_post_content">
-							<?php the_sub_field("quotes_text"); ?>
+						<div class="single_post_content padding-top-bottom">
+							<?php echo '&ldquo;'.get_sub_field("quotes_text").'&rdquo;'; ?>
 						</div>
 						<div class="single_post_border_bottom"></div>
 					</div>
@@ -208,7 +208,7 @@ $categorys = get_the_category(get_the_ID());
 				<?php
 
 					echo '
-					<div class="single-post-gallery-feature">
+					<div class="single-post-gallery-feature padding-top-bottom">
 						<ul class="row">';
 			           	foreach( $galleryFeature as $gallery )
 			           	{
@@ -246,7 +246,7 @@ $categorys = get_the_category(get_the_ID());
 	                $rows = get_sub_field('links');
 
 	                if ($rows){
-	                    echo '<div class="single_post-external row padding-5-percent">';
+	                    echo '<div class="single_post-external row padding-left-right padding-top-bottom">';
 						echo '<h4 class="single_post-external-title">External links</h4><ul>';
 	                    foreach($rows as $row){
 	                        echo '<li><a href="'.$row['link'].'" target="_blank">'.$row['titel'].'</a></li>';
@@ -257,12 +257,12 @@ $categorys = get_the_category(get_the_ID());
 	        ?>
 
 	        <?php if( get_row_layout() == 'musik-bereich' ){ ?>
-	            <p><?php the_sub_field("embed_code"); ?></p>
+	            <div class="single-post-embed-feature padding-left-right padding-top-bottom"><?php the_sub_field("embed_code"); ?></div>
 	        <?php } ?>
 
 	        <?php
 	            if (get_row_layout() == "information-bereich"){
-					echo "<div class='content_infor'>";
+					echo "<div class='content_infor padding-left-right padding-top-bottom'>";
 				?>
 	                <h1 class="title_infor"><?php echo the_sub_field("titel");?></h1>
 					<p class="sub_infor"><?php   echo the_sub_field("text");?></p>
@@ -275,16 +275,17 @@ $categorys = get_the_category(get_the_ID());
 	            if (get_row_layout() == "produkte_mutil"){
 	                $rows = get_sub_field('produktea');
 	                if ($rows){?>
-						<div class="gallery-feature">
+						<div class="produkte-feature padding-left-right padding-top-bottom">
+						<h1 class="title_infor">Related Products</h1>
 							<ul class="row">
 								<?php  foreach($rows as $row){?>
-								<li class="medium-4">
+								<li class="small-12 medium-4 large-4">
 									<div class="group-product">
 										<a class="product-image" href="<?php echo $row["produkt-link"]; ?>">
-											<img class="th" src="<?php echo $row["produkt-bild"]; ?>" alt="<?php echo $row["produkt-name"]; ?>" />
+											<img class="th" src="<?php  echo dirname(get_site_url()) . '/lib/timthumb.php?src=' . $row["produkt-bild"] . '&w=300&h=300'; ?>" alt="<?php echo $row["produkt-name"]; ?>" />
 										</a>
 										<div class="product-caption">
-											<div class="product-caption-name"><?php echo $row["produkt-name"]; ?></div>
+											<div class="product-caption-name"><a class="product-image" href="<?php echo the_sub_field("produkt-link"); ?>"><?php echo $row["produkt-name"]; ?></a></div>
 										</div>
 									</div>
 								</li>
@@ -298,15 +299,16 @@ $categorys = get_the_category(get_the_ID());
 
 
 			<?php if (get_row_layout() == "produkte-bereich"): ?>
-				<div class="gallery-feature">
+				<div class="produkte-feature padding-left-right padding-top-bottom">
+					<h1 class="title_infor">Related Products</h1>
 					<ul class="row">
-						<li class="medium-4">
+						<li class="small-12 medium-4 large-4">
 							<div class="group-product">
 			            		<a class="product-image" href="<?php echo the_sub_field("produkt-link"); ?>">
-			            			<img class="th" src="<?php echo the_sub_field("produkt-bild"); ?>" alt="<?php echo the_sub_field("produkt-name"); ?>" />
+			            			<img class="th" src="<?php  echo dirname(get_site_url()) . '/lib/timthumb.php?src=' . get_sub_field("produkt-bild") . '&w=300&h=300'; ?>" alt="<?php echo the_sub_field("produkt-name"); ?>" />
 			            		</a>
 			            		<div class="product-caption">
-			            			<div class="product-caption-name"><?php echo the_sub_field("produkt-name") ?></div>
+			            			<div class="product-caption-name"><a class="product-image" href="<?php echo the_sub_field("produkt-link"); ?>"><?php echo the_sub_field("produkt-name") ?></a></div>
 			            		</div>
 			            	</div>
 						</li>
@@ -315,14 +317,15 @@ $categorys = get_the_category(get_the_ID());
 			<?php endif ?>
 
 				<?php if( get_row_layout() == 'author-info' ){ ?>
-					<p style="text-align: center;">
-							<img src="<?php the_sub_field("image") ?>" alt="<?php echo get_sub_field("info"); ?>">
-					</p>
-					<p style="text-align: center;">
-						<strong>
-							<em><?php the_sub_field("info") ?></em>
-						</strong>
-					</p>
+				<div class="author-info padding-left-right padding-top-bottom">
+<!-- 				<h1></h1> -->
+					<div class="author small-12 medium-4 large-4">
+						<img src="<?php the_sub_field("image") ?>" alt="<?php echo get_sub_field("info"); ?>">
+						<span>
+							<?php the_sub_field("info") ?>
+						</span>
+					</div>
+				</div>
 				<?php } ?>
 
 	    <?php endwhile; ?>

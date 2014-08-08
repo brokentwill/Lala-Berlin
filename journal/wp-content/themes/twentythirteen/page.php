@@ -27,11 +27,11 @@ get_header(); ?>
 							<?php endif; ?>
 
 							<h5><?php the_title(); ?></h5>
-						
+
 						</div>
 					</header><!-- .entry-header -->
 
-					<div class="entry-content std padding-5-percent text-justify">
+					<div class="entry-content std padding-left-right padding-top-bottom text-justify">
 						<?php the_content(); ?>
 					</div><!-- .entry-content -->
 
