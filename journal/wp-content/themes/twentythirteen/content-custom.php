@@ -285,7 +285,7 @@ $categorys = get_the_category(get_the_ID());
 											<img class="th" src="<?php  echo dirname(get_site_url()) . '/lib/timthumb.php?src=' . $row["produkt-bild"] . '&w=300&h=300'; ?>" alt="<?php echo $row["produkt-name"]; ?>" />
 										</a>
 										<div class="product-caption">
-											<div class="product-caption-name"><a class="product-image" href="<?php echo the_sub_field("produkt-link"); ?>"><?php echo $row["produkt-name"]; ?></a></div>
+											<div class="product-caption-name"><a class="product-image" href="<?php echo $row["produkt-link"]; ?>"><?php echo $row["produkt-name"]; ?></a></div>
 										</div>
 									</div>
 								</li>
@@ -308,7 +308,7 @@ $categorys = get_the_category(get_the_ID());
 			            			<img class="th" src="<?php  echo dirname(get_site_url()) . '/lib/timthumb.php?src=' . get_sub_field("produkt-bild") . '&w=300&h=300'; ?>" alt="<?php echo the_sub_field("produkt-name"); ?>" />
 			            		</a>
 			            		<div class="product-caption">
-			            			<div class="product-caption-name"><a class="product-image" href="<?php echo the_sub_field("produkt-link"); ?>"><?php echo the_sub_field("produkt-name") ?></a></div>
+			            			<div class="product-caption-name"><a class="product-image" href="<?php echo $row["produkt-link"]; ?>"><?php echo the_sub_field("produkt-name") ?></a></div>
 			            		</div>
 			            	</div>
 						</li>
