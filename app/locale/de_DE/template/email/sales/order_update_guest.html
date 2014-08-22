@@ -15,37 +15,51 @@ body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;
 
 <body style="background:#F6F6F6; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; margin:0; padding:0;">
 <div style="background:#F6F6F6; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; margin:0; padding:0;">
-<table cellspacing="0" cellpadding="0" border="0" width="100%">
-<tr>
-    <td align="center" valign="top">
-        <!-- [ header starts here] -->
-        <table cellspacing="0" cellpadding="0" border="0" width="650">
-        <tr>
-            <td valign="top"><a href="{{store url=""}}"><img src="{{var logo_url}}" alt="{{var logo_alt}}" style="margin-bottom:10px;" border="0"/></a></td>
-        </tr>
-        </table>
 
-        <!-- [ middle starts here] -->
-        <table cellspacing="0" cellpadding="0" border="0" width="650">
-        <tr>
-            <td valign="top">
-                <p>
-                    <strong>Guten Tag {{htmlescape var=$billing.getName()}}</strong>,<br/>
-                    Ihre Bestellung Nr. {{var order.increment_id}} hat den Status <br/>
-                    <strong>{{var order.getStatusLabel()}}</strong>.
-                </p>
-                <p>{{var comment}}</p>
-                <p>
-                    Sollten Sie Fragen zu Ihrem Kundenkonto oder andere Anfragen haben,
-                    senden Sie uns eine E-Mail an <a href="mailto:{{config path='trans_email/ident_support/email'}}" style="color:#1E7EC8;">{{config path='trans_email/ident_support/email'}}</a>
-                    oder rufen Sie uns von Montag bis Freitag von 8.00 bis 17.00 Uhr unter {{config path='general/store_information/phone'}} an.
-                </p>
-                <p>Vielen Dank!<br/><strong>{{var store.getFrontendName()}}</strong></p>
-            </td>
-        </tr>
+<h2 style="text-align:center; background:#fff; height:80px; line-height:80px; margin:0px;">
+    <a href="{{store url=""}}">
+        <img style="vertical-align:middle;" src="{{skin url='img/email_logo.png' _area='frontend'}}" alt="{{var logo_alt}}" border="0"/>
+    </a>
+</h2>
+
+<table style="background:#f0f0f0;" cellspacing="0" cellpadding="0" border="0" width="100%">
+    <tr>
+        <td align="center" valign="top" style="padding:20px 0 20px 0">
+            <table bgcolor="" cellspacing="0" cellpadding="30" border="0" width="600" style="width:600px">
+            <!-- [ header starts here] -->
+            <!-- <tr>
+                
+            </tr> -->
+            <!-- [ middle starts here] -->
+
+            <tr>
+                <td valign="top" style="font-size:14px; line-height:22px;">
+                    <p>
+                        <strong>Guten Tag {{htmlescape var=$billing.getName()}}</strong>,<br/>
+                        Ihre Bestellung Nr. {{var order.increment_id}} hat den Status <br/>
+                        <strong>{{var order.getStatusLabel()}}</strong>.
+                    </p>
+                    <p>{{var comment}}</p>
+                    <p>
+                        Sollten Sie Fragen zu Ihrem Kundenkonto oder andere Anfragen haben,
+                        senden Sie uns eine E-Mail an <a href="mailto:{{config path='trans_email/ident_support/email'}}" style="color:#1E7EC8;">{{config path='trans_email/ident_support/email'}}</a>
+                        oder rufen Sie uns von Montag bis Freitag von 8.00 bis 17.00 Uhr unter {{config path='general/store_information/phone'}} an.
+                    </p>
+                    <p>Vielen Dank!<br/><strong>{{var store.getFrontendName()}}</strong></p>
+                </td>
+            </tr>
+
         </table>
     </td>
 </tr>
 </table>
+
+<div style="float:left; width:100%; background:#ffffff; padding: 20px 0;">
+    <div style="width:600px; margin: 0 auto;">
+        <a style="text-transform: uppercase; display:block; float:left; padding:12px 50px; color: #000; text-decoration: none; border: 1px solid #000; " href="mailto:{{config path='trans_email/ident_support/email'}}">Email Support</a>
+        <div style="font-size: 14px; padding-top: 13px; float:right; ">TEL: {{config path='general/store_information/phone'}}</div>
+    </div>
+</div>
+
 </div>
 </body>
