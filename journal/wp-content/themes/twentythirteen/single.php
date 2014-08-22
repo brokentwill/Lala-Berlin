@@ -28,9 +28,13 @@ get_header('magento'); ?>
 				prevText: "",
 				nextText: "",
 				animation: 'fade',
-				
+				smoothHeight: true,
+				slideshow: false,
+				// controlNav: false,
+				directionNav: false,
+
 			});
 		});
-		var addthis_config = {"data_track_addressbar":true};
+		var addthis_config = {"data_track_addressbar":false};
 	</script>
 <?php get_footer('magento');?>

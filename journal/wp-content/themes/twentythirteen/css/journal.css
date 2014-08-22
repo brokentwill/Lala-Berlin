@@ -632,7 +632,7 @@ article.post .padding-top-bottom p:last-child {
 }
 .padding-top-bottom{
     padding-top: 3.13rem;
-    padding-bottom: 2.63rem;
+    padding-bottom: 1.56rem;
 }
 .text.padding-top-bottom{
     padding-top: 2.75rem;
@@ -660,6 +660,10 @@ article.post .padding-top-bottom p:last-child {
 /* --- end --- */
 .entry-tags a{
     text-decoration: none;
+}
+.entry-thumbnail{
+    height: 625px;
+    margin-bottom: 3.13rem;
 }
 .entry-thumbnail img{
     width: 100%;
@@ -921,8 +925,8 @@ article.post .padding-top-bottom p:last-child {
     box-shadow: none;
     border:none;
     padding: 0px;
-    height: 100% !important;
-    max-height: 100% !important;
+/*    height: 100% !important;
+    max-height: 100% !important;*/
 }
 
 #info .single_post_qa_repeater_articles{
@@ -946,6 +950,10 @@ article.post .padding-top-bottom p:last-child {
     font-size: 20px;
     line-height: 30px;
     padding-bottom: 2.13rem;
+}
+
+#info .single_post_qa_repeater_articles li:last-child .single-value{
+    padding-bottom: 0.56rem;
 }
 
 #info .single_post_description{

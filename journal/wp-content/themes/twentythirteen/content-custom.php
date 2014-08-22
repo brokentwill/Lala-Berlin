@@ -87,8 +87,7 @@ $categorys = get_the_category(get_the_ID());
 		</div>
 		<!-- Featuer Image -->
 		<?php if ( has_post_thumbnail() && ! post_password_required() ) : ?>
-			<div class="entry-thumbnail padding-bottom">
-				<?php echo '<img src="'.(dirname(get_site_url()).'/lib/timthumb.php?src='.wp_get_attachment_url( get_post_thumbnail_id(get_the_ID()) ).'&w=1275&h=625').'" />' ?>
+			<div class="entry-thumbnail" style="background-image: url('<?php $image_id = get_post_thumbnail_id(); $image_url = wp_get_attachment_image_src($image_id,'large', true); echo $image_url[0]; ?>'); background-size: cover; background-position: center center;">
 			</div>
 		<?php endif; ?>
 	</header><!-- .entry-header -->
@@ -139,13 +138,9 @@ $categorys = get_the_category(get_the_ID());
 										if($position !== false){
 											echo '<div class="video-container">'.$image['caption']."</div>";
 										}else{
-											if ($image['height'] > $image['width']) {
-												$sizesetting = '&h=700';
-											} else {
-												$sizesetting = '&w=1275&h=700';
-											}
+
 									?>
-				                    <img src="<?php echo dirname(get_site_url()).'/lib/timthumb.php?src='.$image['url'].''.$sizesetting; ?>" alt="<?php echo $image['title']; ?>" />
+				                    <img src="<?php echo $image['sizes']['large'] ?>" alt="<?php echo $image['title']; ?>" />
 				                   	<?php if (!empty($image['caption'])) { echo '<p>' . $image['caption'] . '</p>'; } ?>
 									<?php
 									}
@@ -154,6 +149,9 @@ $categorys = get_the_category(get_the_ID());
 				                </li>
 				            <?php endforeach; ?>
 									</ul>
+
+						</div>
+
 						<?php
 
 							if (count($images) > 1){
@@ -164,7 +162,6 @@ $categorys = get_the_category(get_the_ID());
 								</div>';
 							}
 						?>
-						</div>
 						</div>
 	        <?php endif ?>
 
@@ -278,11 +275,13 @@ $categorys = get_the_category(get_the_ID());
 						<div class="produkte-feature padding-left-right padding-top-bottom">
 						<h1 class="title_infor">Related Products</h1>
 							<ul class="row">
-								<?php  foreach($rows as $row){?>
+								<?php  	foreach($rows as $row){
+												$image = wp_get_attachment_image_src($row['produkt-bild'], 'medium');
+									?>
 								<li class="small-12 medium-4 large-4">
 									<div class="group-product">
 										<a class="product-image" href="<?php echo $row["produkt-link"]; ?>">
-											<img class="th" src="<?php  echo dirname(get_site_url()) . '/lib/timthumb.php?src=' . $row["produkt-bild"] . '&w=300&h=300'; ?>" alt="<?php echo $row["produkt-name"]; ?>" />
+											<img class="th" src="<?php echo $image[0]; ?>" alt="<?php echo $row["produkt-name"]; ?>" />
 										</a>
 										<div class="product-caption">
 											<div class="product-caption-name"><a class="product-image" href="<?php echo $row["produkt-link"]; ?>"><?php echo $row["produkt-name"]; ?></a></div>
@@ -305,7 +304,7 @@ $categorys = get_the_category(get_the_ID());
 						<li class="small-12 medium-4 large-4">
 							<div class="group-product">
 			            		<a class="product-image" href="<?php echo the_sub_field("produkt-link"); ?>">
-			            			<img class="th" src="<?php  echo dirname(get_site_url()) . '/lib/timthumb.php?src=' . get_sub_field("produkt-bild") . '&w=300&h=300'; ?>" alt="<?php echo the_sub_field("produkt-name"); ?>" />
+			            			<img class="th" src="<?php $image = wp_get_attachment_image_src(get_sub_field('produkt-bild'), 'medium'); echo $image[0]; ?>" alt="<?php echo the_sub_field("produkt-name"); ?>" />
 			            		</a>
 			            		<div class="product-caption">
 			            			<div class="product-caption-name"><a class="product-image" href="<?php echo $row["produkt-link"]; ?>"><?php echo the_sub_field("produkt-name") ?></a></div>
@@ -320,7 +319,8 @@ $categorys = get_the_category(get_the_ID());
 				<div class="author-info padding-left-right padding-top-bottom">
 <!-- 				<h1></h1> -->
 					<div class="author small-12 medium-4 large-4">
-						<img src="<?php the_sub_field("image") ?>" alt="<?php echo get_sub_field("info"); ?>">
+					<!-- <?php echo get_sub_field('image') . '/' . get_sub_field('info')  ?>  -->
+						<img src="<?php $image = wp_get_attachment_image_src(get_sub_field('image'), 'medium'); echo $image[0]; ?>" alt="<?php echo get_sub_field("info"); ?>">
 						<span>
 							<?php the_sub_field("info") ?>
 						</span>

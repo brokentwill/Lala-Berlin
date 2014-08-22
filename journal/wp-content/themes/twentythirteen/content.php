@@ -351,7 +351,7 @@
 		'post_type' => array('facebook', 'instagram', 'pinterest'),
 		'orderby' => 'post_date',
 	    'order' => 'DESC',
-	    'posts_per_page' => 17,
+	    'posts_per_page' => 18,
 	    'offset' => 0,
 	    'post_status' => 'publish',
 		'meta_query' => array(

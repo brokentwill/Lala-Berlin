@@ -549,24 +549,24 @@ add_action( 'customize_preview_init', 'twentythirteen_customize_preview_js' );
 
 
 add_action( 'admin_init', 'theme_options_init' );
-add_action( 'admin_menu', 'theme_options_add_page' ); 
+add_action( 'admin_menu', 'theme_options_add_page' );
 
 function theme_options_init(){
  register_setting( 'sample_options', 'sample_theme_options');
-} 
+}
 
 function theme_options_add_page() {
  add_theme_page( __( 'Headline', 'sampletheme' ), __( 'Headline', 'sampletheme' ), 'edit_theme_options', 'theme_options', 'theme_options_do_page' );
-} 
-function theme_options_do_page() { 
-global $select_options; if ( ! isset( $_REQUEST['settings-updated'] ) ) $_REQUEST['settings-updated'] = false; 
+}
+function theme_options_do_page() {
+global $select_options; if ( ! isset( $_REQUEST['settings-updated'] ) ) $_REQUEST['settings-updated'] = false;
 echo "<div>";
-screen_icon(); echo "<h2>". __( 'Headline Facebook, Pinterest, Intergram', 'customtheme' ) . "</h2>"; 
+screen_icon(); echo "<h2>". __( 'Headline Facebook, Pinterest, Intergram', 'customtheme' ) . "</h2>";
 
 "</div>";
 
 echo '<form method="post" action="options.php"><table>';
-settings_fields( 'sample_options' ); 
+settings_fields( 'sample_options' );
 
 $options = get_option( 'sample_theme_options' );
 echo '<tr valign="top"><th scope="row">'._e( 'Content', 'customtheme' ).'</th>';
