@@ -209,7 +209,7 @@
 								<div class="play"><a class="if-click-play" href="javascript:;" data-class="iframe-spotify" data-id="iframe-'.($ind+1).'" data-src="https://embed.spotify.com/?uri='.$Soundcloud_Spotify['wpcf-id-spotify-song'][0].'" >Play</a></div>
 							</div>
 							<div class="soundcloud-spotify-player-bottom-stop" style="display:none">
-								<div class="play"><a class="if-click-stop" href="javascript:;" data-class="iframe-spotify" data-id="iframe-'.($ind+1).'" data-src="https://embed.spotify.com/?uri='.$Soundcloud_Spotify['wpcf-id-spotify-song'][0].'" data-img="'.(dirname(get_site_url()).'/lib/timthumb.php?src='.wp_get_attachment_url( get_post_thumbnail_id($post->ID) ).'&h=252').'" >Stop</a></div>
+								<div class="play"><a class="if-click-stop" href="javascript:;" data-class="iframe-spotify" data-id="iframe-'.($ind+1).'" data-src="https://embed.spotify.com/?uri='.$Soundcloud_Spotify['wpcf-id-spotify-song'][0].'" data-img="'.(dirname(get_site_url()).'/lib/timthumb.php?src='.wp_get_attachment_url( get_post_thumbnail_id($post->ID) ).'&h=413&w=413').'" >Stop</a></div>
 							</div>
 							<div class="soundcloud-spotify-player-date">['.date("d-m-Y", strtotime($post->post_date)).']</div>
 						</div>
@@ -243,7 +243,7 @@
 								<div class="play"><a class="if-click-play" href="javascript:;" data-class="iframe-soundcloud" data-id="iframe-'.($ind+1).'" data-src="'.str_replace('auto_play=false', 'auto_play=true', $embed[1]).'" >Play</a></div>
 							</div>
 							<div class="soundcloud-spotify-player-bottom-stop" style="'.(( !empty($Soundcloud_Spotify['wpcf-soundcloud-autoplay']) AND !empty($Soundcloud_Spotify['wpcf-soundcloud-autoplay'][0]) ) ? '': 'display:none').'">
-								<div class="play"><a class="if-click-stop" href="javascript:;" data-class="iframe-soundcloud" data-id="iframe-'.($ind+1).'" data-src="'.str_replace('auto_play=true', 'auto_play=false', $embed[1]).'" data-img="'.(dirname(get_site_url()).'/lib/timthumb.php?src='.wp_get_attachment_url( get_post_thumbnail_id($post->ID) ).'&h=252').'" >Stop</a></div>
+								<div class="play"><a class="if-click-stop" href="javascript:;" data-class="iframe-soundcloud" data-id="iframe-'.($ind+1).'" data-src="'.str_replace('auto_play=true', 'auto_play=false', $embed[1]).'" data-img="'.(dirname(get_site_url()).'/lib/timthumb.php?src='.wp_get_attachment_url( get_post_thumbnail_id($post->ID) ).'&h=413&w=413').'" >Stop</a></div>
 							</div>
 							<div class="soundcloud-spotify-player-date">['.date("d-m-Y", strtotime($post->post_date)).']</div>
 						</div>
